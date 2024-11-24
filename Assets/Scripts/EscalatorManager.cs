@@ -554,6 +554,8 @@ public class EscalatorManager : MonoBehaviour
 
     bool completedOnce = false;
 
+    public bool doorOpen = false;
+
     MMFeedbacks mmFeedbacksCompleted;
     // Update the outline of the escalator based on gameplay conditions
     public void UpdateEscalatorOutLine()
@@ -579,6 +581,7 @@ public class EscalatorManager : MonoBehaviour
                 var outlinable1 = escalatorObject1.GetComponent<Outlinable>();
                 //var outlinable2 = escalatorObject2.GetComponent<Outlinable>();
                 outlinable1.FrontParameters.Color = Color.green;
+                doorOpen = true;
                 //outlinable2.FrontParameters.Color = Color.green;
             }
             else
@@ -587,6 +590,7 @@ public class EscalatorManager : MonoBehaviour
                 var outlinable1 = escalatorObject1.GetComponent<Outlinable>();
                 //var outlinable2 = escalatorObject2.GetComponent<Outlinable>();
                 outlinable1.FrontParameters.Color = Color.red;
+                doorOpen = false;
                 //outlinable2.FrontParameters.Color = Color.red;
             }
 

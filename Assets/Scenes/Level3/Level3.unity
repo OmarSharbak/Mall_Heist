@@ -11327,7 +11327,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -46251,6 +46251,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7624307625156308610, guid: 1f541de4787d7ba428d3756879e7633b, type: 3}
+      propertyPath: doorTransform
+      value: 
+      objectReference: {fileID: 2047167414}
     - target: {fileID: 7678721947763190308, guid: 1f541de4787d7ba428d3756879e7633b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -52005,7 +52009,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -53631,6 +53635,7 @@ MonoBehaviour:
   defeatMusic: {fileID: 8300000, guid: 444f144b422bc09448fd38d0c1b9a597, type: 3}
   countdownToStartTimer: 3
   levelName: Level3
+  doorOpen: 0
   winRestartButtonGameObject: {fileID: 916191156}
   winNextLevelButtonGameObject: {fileID: 1461630621}
   loseRestartLevelButtonGameObject: {fileID: 1981479675}
@@ -70003,7 +70008,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
