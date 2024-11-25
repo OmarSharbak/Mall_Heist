@@ -43065,6 +43065,7 @@ GameObject:
   - component: {fileID: 1838632813047160555}
   - component: {fileID: 4912049928621786723}
   - component: {fileID: 5373501536057453680}
+  - component: {fileID: 5373501536057453681}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -44062,6 +44063,14 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!81 &5373501536057453681
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629664101142273972}
+  m_Enabled: 1
 --- !u!222 &5423672659405391590
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44712,7 +44721,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -48785,7 +48794,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5

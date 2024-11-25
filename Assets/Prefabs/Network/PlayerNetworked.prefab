@@ -581,7 +581,6 @@ GameObject:
   - component: {fileID: 8007460362904496100}
   - component: {fileID: 4181234896922540917}
   - component: {fileID: 9064374381481665709}
-  - component: {fileID: 7664762374867148864}
   - component: {fileID: 8364247024231753398}
   - component: {fileID: 9031012949165570818}
   - component: {fileID: 8251832827004154259}
@@ -726,18 +725,11 @@ MonoBehaviour:
   _speed: 0
   canMove: 1
   captured: 0
-  audioManager: {fileID: 0}
-  escalatorManager: {fileID: 0}
   inputDirection: {x: 0, y: 0, z: 0}
-  FullMapCinemachineCamera: {fileID: 0}
   interactionRange: 2.5
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
-  pauseMenuGameObject: {fileID: 0}
-  resumeButtonGameObject: {fileID: 0}
-  eventSystem: {fileID: 0}
-  outliner: {fileID: 0}
   rightArm: {fileID: 2845554260198848928}
   playerTransform: {fileID: 6163629171227806718}
 --- !u!114 &8007460362904496100
@@ -853,12 +845,6 @@ MonoBehaviour:
   rightHand: {fileID: 2845554260198848928}
   maxItemsPerType: 1
   heldItem: {fileID: 0}
-  objectiveItemNames:
-  - Password
-  - Package
-  objectiveItemTexts:
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &9064374381481665709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -878,14 +864,6 @@ MonoBehaviour:
   isInvincible: 0
   InvincibilityTime: 5
   moneyGameObject: {fileID: 8506112470358834129}
---- !u!81 &7664762374867148864
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2173169219286557168}
-  m_Enabled: 1
 --- !u!82 &8364247024231753398
 AudioSource:
   m_ObjectHideFlags: 0

@@ -80,8 +80,8 @@ public class PlayerDamageHandler : MonoBehaviour
 	{
 		CapturedText.enabled = false;
 		TimerText.enabled = false;
-		LivesText.text = Lives.ToString();
-		LivesText.gameObject.SetActive(false);
+		//LivesText.text = Lives.ToString();
+		//LivesText.gameObject.SetActive(false);
 		moneyText.text = moneyCount.ToString(); // Initialize money text
 		thirdPersonController = GetComponent<ThirdPersonController>();
 		myAudioSource = GetComponent<AudioSource>();

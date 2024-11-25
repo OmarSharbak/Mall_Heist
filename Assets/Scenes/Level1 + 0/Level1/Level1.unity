@@ -37796,7 +37796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fa95b1032e84a759729da88be8c919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDamageHandler: {fileID: 0}
   contentText: {fileID: 118153033971127677}
   dialogueUI: {fileID: 7231976887122946425}
   continueButton: {fileID: 3399031998248471154}
@@ -69800,8 +69799,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ThirdPersonController, Assembly-CSharp
+      - m_Target: {fileID: 5765160605666177568}
+        m_TargetAssemblyTypeName: ResumeButton, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -72433,6 +72432,7 @@ GameObject:
   - component: {fileID: 1838632813047160555}
   - component: {fileID: 4912049928621786723}
   - component: {fileID: 4107786378357852596}
+  - component: {fileID: 5373501536057453680}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -72508,6 +72508,7 @@ GameObject:
   - component: {fileID: 110428162341274167}
   - component: {fileID: 1396599210707350582}
   - component: {fileID: 1368048358}
+  - component: {fileID: 5765160605666177568}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -73011,6 +73012,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &5373501536057453680
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629664101142273972}
+  m_Enabled: 1
 --- !u!114 &5394245669375348167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73275,6 +73284,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4887122154421288597}
   m_CullTransparentMesh: 1
+--- !u!114 &5765160605666177568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4887122154421288597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58c3494214b5495408bbe50445e89778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &5842766411316040847
 CanvasRenderer:
   m_ObjectHideFlags: 0

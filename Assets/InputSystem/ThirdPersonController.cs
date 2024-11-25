@@ -209,18 +209,17 @@ public class ThirdPersonController : NetworkBehaviour
 		// Trigger the event
 		OnLocalPlayerStarted?.Invoke(this);
 
+		Debug.Log("Player local:" + transform.name);
+
 	}
 	private void Start()
 	{
 		FullMapCinemachineCamera = GameObject.Find("PlayerFollowCamera(FullMap)").GetComponent<CinemachineVirtualCamera>();
-		FullMapCinemachineCamera.Follow = CinemachineCameraTarget.transform;
 		CinemachineVirtualCamera FollowTopCinemachineCamera = GameObject.Find("PlayerFollowCamera(Top)").GetComponent<CinemachineVirtualCamera>();
 		CinemachineVirtualCamera FollowCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)").GetComponent<CinemachineVirtualCamera>();
-		FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
-		FollowCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+
 
 		pauseMenuGameObject = GameObject.Find("PauseUI");
-		pauseMenuGameObject.SetActive(false);
 		resumeButtonGameObject = GameObject.Find("ResumeButton");
 		eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		outliner = GameObject.Find("MainCamera").GetComponent<Outliner>();
@@ -247,7 +246,14 @@ public class ThirdPersonController : NetworkBehaviour
 		_jumpTimeoutDelta = JumpTimeout;
 		_fallTimeoutDelta = FallTimeout;
 
+		if (isLocalPlayer)
+		{
+			FullMapCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+			FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+			FollowCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+			pauseMenuGameObject.SetActive(false);
 
+		}
 	}
 
 	public Vector3 inputDirection;

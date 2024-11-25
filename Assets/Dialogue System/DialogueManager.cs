@@ -10,7 +10,7 @@ public class DialogueManager : MonoBehaviour
 	public static DialogueManager Instance { get; private set; }
 
 	ThirdPersonController thirdPersonController=null;
-	[SerializeField] PlayerDamageHandler playerDamageHandler;
+	PlayerDamageHandler playerDamageHandler;
 	[SerializeField] TMP_Text contentText;
 	[SerializeField] GameObject dialogueUI; // Container for all dialogue-related UI elements
 	[SerializeField] Button continueButton; // Button to close the dialogue
@@ -42,6 +42,7 @@ public class DialogueManager : MonoBehaviour
 	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
 	{
 		thirdPersonController= localPlayer;
+		playerDamageHandler= thirdPersonController.GetComponent<PlayerDamageHandler>();
 	}
 
 	void Update()
