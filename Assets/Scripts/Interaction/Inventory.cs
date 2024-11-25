@@ -6,13 +6,13 @@ using TMPro;
 public class Inventory : MonoBehaviour
 {
     [Header("Audio")]
-    [SerializeField] private AudioManager audioManager;
+    private AudioManager audioManager;
 
     [Header("Player Settings")]
     [SerializeField] private Transform rightHand;
 
     [Header("UI Elements")]
-    [SerializeField] private TMP_Text currentItemText;
+    private TMP_Text currentItemText;
 
     [Header("Inventory Settings")]
     [SerializeField] private int maxItemsPerType = 2;
@@ -21,22 +21,22 @@ public class Inventory : MonoBehaviour
     private Dictionary<string, int> itemCounts = new Dictionary<string, int>(); // Tracks count of each item type.
     private List<InventoryItem> items = new List<InventoryItem>(); // List of items in the inventory.
 
-    [Header("Objective Items UI")]
-    [SerializeField] private List<string> objectiveItemNames; // Names of the objective items
-    [SerializeField] private List<TMP_Text> objectiveItemTexts; // Corresponding UI texts for each objective item
-
     private Dictionary<string, TMP_Text> objectiveItemsTextMap = new Dictionary<string, TMP_Text>();
 
     private string lastItemText = "";
 
-    private void Start()
+    private Objectives objectives;
+	private void Start()
     {
-        // Initialize the dictionary
-        for (int i = 0; i < objectiveItemNames.Count; i++)
+        audioManager = FindObjectOfType<AudioManager>();
+		currentItemText = GameObject.Find("CurrentItem").GetComponent<TMP_Text>();
+		objectives = GameObject.Find("Objectives").GetComponent<Objectives>();
+		// Initialize the dictionary
+		for (int i = 0; i < objectives.objectiveItemNames.Count; i++)
         {
-            if (i < objectiveItemTexts.Count)
+            if (i < objectives.objectiveItemTexts.Count)
             {
-                objectiveItemsTextMap[objectiveItemNames[i]] = objectiveItemTexts[i];
+                objectiveItemsTextMap[objectives.objectiveItemNames[i]] = objectives.objectiveItemTexts[i];
             }
         }
     }

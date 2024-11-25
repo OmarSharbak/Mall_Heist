@@ -12,8 +12,15 @@ public class LevelLoader : MonoBehaviour
     {
         StartCoroutine(LoadLevelNumerator(lvlIndex));
     }
+	public void LoadMultiplayer()
+	{
+		SceneManager.LoadScene("MultiplayerScene");
 
-    IEnumerator LoadLevelNumerator(int levelIndex)
+	}
+
+
+
+	IEnumerator LoadLevelNumerator(int levelIndex)
     {
         animator.SetTrigger("Start");
         

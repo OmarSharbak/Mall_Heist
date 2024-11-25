@@ -43,7 +43,7 @@ public class EscalatorManager : MonoBehaviour
     public int moneyCollected = 0;
 
     // Player's inventory system
-    public Inventory inventory;
+    private Inventory inventory;
 
     // List of all guard AI in the level
     public List<EmeraldAIEventsManager> allGuards;
@@ -57,7 +57,7 @@ public class EscalatorManager : MonoBehaviour
     public bool exposed = false;
 
     // Reference to the player's transform for AI interactions
-    public Transform playerTransform;
+    private Transform playerTransform;
 
     //Music Fading
     public AudioSource audioSource1;
@@ -201,7 +201,18 @@ public class EscalatorManager : MonoBehaviour
     ThirdPersonController thirdPersonController;
     [SerializeField] TMP_Text countDownText;
 
-    private void Start()
+	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
+	{
+		thirdPersonController = localPlayer;
+		playerTransform=thirdPersonController.transform;
+        inventory= playerTransform.GetComponent<Inventory>();
+		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+
+		Initialize();
+	}
+
+
+	private void Initialize()
     {
         thirdPersonController = playerTransform.GetComponent<ThirdPersonController>();
         if (thirdPersonController != null)
@@ -658,7 +669,6 @@ public class EscalatorManager : MonoBehaviour
         {
             playerNearEscalator = true;
 
-            promptUIManager = other.GetComponent<InputPromptUIManager>();
         }
     }
 
@@ -724,5 +734,15 @@ public class EscalatorManager : MonoBehaviour
         string formattedTime = string.Format("{0:0}:{1:00}", minutes, seconds);
         stopwatchTextFinished.text = formattedTime;
     }
+	private void OnEnable()
+	{
+		// Subscribe to the event
+		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
+	}
 
+	private void OnDisable()
+	{
+		// Unsubscribe from the event to avoid memory leaks
+		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
+	}
 }

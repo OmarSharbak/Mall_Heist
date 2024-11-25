@@ -47,9 +47,11 @@ public class SealableDoor : MonoBehaviour
         audioManager = GameObject.Find("Player/Sounds").GetComponent<AudioManager>();
         outlinable = GetComponent<Outlinable>();
         audioSource = GetComponent<AudioSource>();
-    }
+		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
 
-    void Update()
+	}
+
+	void Update()
     {
         // Check if player is not sealing and currentSealTime is above zero.
         if (!playerIsSealing && currentSealTime > 0)
@@ -74,7 +76,6 @@ public class SealableDoor : MonoBehaviour
         {
             if (isSealed == false)
             {
-                promptUIManager = other.GetComponent<InputPromptUIManager>();
                 promptUIManager.ShowSouthButtonUI();
             }
 

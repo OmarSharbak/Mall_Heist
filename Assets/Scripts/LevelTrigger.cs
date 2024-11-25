@@ -24,8 +24,11 @@ public class LevelTrigger : MonoBehaviour
         // Initially disable the level info UI
         levelInfoUI.SetActive(false);
 
-        // Subscribe to the button's onClick event
-        loadLevelButton.onClick.AddListener(LoadLevel);
+		promptUI = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+
+
+		// Subscribe to the button's onClick event
+		loadLevelButton.onClick.AddListener(LoadLevel);
     }
     public void InteractBuilding()
     {
@@ -43,7 +46,6 @@ public class LevelTrigger : MonoBehaviour
         {
             inRange = true;
             Debug.Log("Inrange");
-            promptUI = other.gameObject.GetComponent<InputPromptUIManager>();
             promptUI.ShowSouthButtonObjectsUI();
             playerGO = other.gameObject;
             other.GetComponent<SimpleCarController>().levelTrigger = this;

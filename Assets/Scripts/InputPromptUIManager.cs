@@ -16,12 +16,14 @@ public class InputPromptUIManager : MonoBehaviour
 
     InputSchemeChecker schemeChecker;
 
-    private void Start()
-    {
-        schemeChecker = GetComponent<InputSchemeChecker>();
-    }
 
-    public void ShowSouthButtonUI()
+	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
+	{
+		schemeChecker = localPlayer.transform.GetComponent<InputSchemeChecker>();
+
+	}
+
+	public void ShowSouthButtonUI()
     {
         string currentScheme = schemeChecker.currentScheme;
 
@@ -105,4 +107,16 @@ public class InputPromptUIManager : MonoBehaviour
         if (eKeyboardUI != null) eKeyboardUI.SetActive(false);
         if (southPadUI != null) southPadUI.SetActive(false);
     }
+
+	private void OnEnable()
+	{
+		// Subscribe to the event
+		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
+	}
+
+	private void OnDisable()
+	{
+		// Unsubscribe from the event to avoid memory leaks
+		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
+	}
 }

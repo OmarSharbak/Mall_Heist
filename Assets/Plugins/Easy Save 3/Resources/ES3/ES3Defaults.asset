@@ -33,12 +33,19 @@ MonoBehaviour:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
     - Cinemachine
+    - Edgegap
     - Febucci.Attributes.Runtime
     - Febucci.TextAnimator.Demo.Runtime
     - Febucci.TextAnimator.Runtime
     - Febucci.TextAnimator.TMP.Runtime
+    - kcp2k
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
+    - Mirror
+    - Mirror.Authenticators
+    - Mirror.Components
+    - Mirror.Examples
+    - Mirror.Transports
     - MK.Toon
     - MK.Toon.URP
     - MoreMountains.Feedbacks
@@ -55,7 +62,9 @@ MonoBehaviour:
     - ProjectDawn.SplitScreen.Demo
     - ProjectDawn.SplitScreen.HighDefinition
     - ProjectDawn.SplitScreen.Universal
+    - SimpleWebTransport
     - Tanks
+    - Telepathy
     - Unity.InputSystem.RebindingUI
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
