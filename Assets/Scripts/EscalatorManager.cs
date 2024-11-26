@@ -236,7 +236,7 @@ public class EscalatorManager : MonoBehaviour
 
     }
         
-    private void InitiateGameStart()
+    public void InitiateGameStart()
     {
         Time.timeScale = 1f;
         countDownText.text = "GO!";
@@ -275,12 +275,12 @@ public class EscalatorManager : MonoBehaviour
 
         if (currentState == GameState.CountdownToStart)
         {
-            countDownText.text = Mathf.Ceil(countdownToStartTimer).ToString();
-            countdownToStartTimer -= Time.deltaTime;
-            if (countdownToStartTimer < 0f)
-            {
-                InitiateGameStart();
-            }
+            //countDownText.text = Mathf.Ceil(countdownToStartTimer).ToString();
+            //countdownToStartTimer -= Time.deltaTime;
+            //if (countdownToStartTimer < 0f)
+            //{
+            //    InitiateGameStart();
+            //}
         }
 
         // Update the stopwatch timer if timing is active
@@ -324,7 +324,13 @@ public class EscalatorManager : MonoBehaviour
 
     }
 
-    private bool AreAllObjectivesComplete()
+    public void UpdateCountdown(float countDown)
+    {
+        countDownText.text = Mathf.Ceil(countDown).ToString();
+
+    }
+
+	private bool AreAllObjectivesComplete()
     {
         foreach (TMP_Text objectiveText in countObjectives)
         {
