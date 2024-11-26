@@ -162,6 +162,8 @@ public class ThirdPersonController : NetworkBehaviour
 	public TMP_Text playerNameText;
 	public GameObject floatingInfo;
 
+	private SceneScript sceneScript;
+
 	//private Material playerMaterialClone;
 
 	[SyncVar(hook = nameof(OnNameChanged))]
@@ -228,10 +230,23 @@ public class ThirdPersonController : NetworkBehaviour
 				Debug.LogError("MainCamera not found among the player's parent's children");
 			}
 		}
+
+		sceneScript = GameObject.FindObjectOfType<SceneScript>();
+
 	}
+
+	[Command]
+	public void CmdSendPlayerMessage()
+	{
+		if (sceneScript)
+			sceneScript.statusText = $"{playerName} says hello {UnityEngine.Random.Range(10, 99)}";
+	}
+
 	public override void OnStartLocalPlayer()
 	{
 		base.OnStartLocalPlayer();
+
+		sceneScript.thirdPersonController = this;
 
 		// Trigger the event
 		OnLocalPlayerStarted?.Invoke(this);
@@ -247,6 +262,7 @@ public class ThirdPersonController : NetworkBehaviour
 		// player info sent to server, then server updates sync vars which handles it on all clients
 		playerName = _name;
 		playerColor = _col;
+		sceneScript.statusText = $"{playerName} joined.";
 	}
 
 	public override void OnStartClient()
