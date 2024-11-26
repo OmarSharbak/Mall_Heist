@@ -16389,14 +16389,38 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2060959136}
-        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
-        m_MethodName: LoadLevel
+      - m_Target: {fileID: 1286113913}
+        m_TargetAssemblyTypeName: MultiplayerMode, Assembly-CSharp
+        m_MethodName: SetLevelIndex
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1286113913}
+        m_TargetAssemblyTypeName: MultiplayerMode, Assembly-CSharp
+        m_MethodName: SetSinglePlayer
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2060959136}
+        m_TargetAssemblyTypeName: LevelLoader, Assembly-CSharp
+        m_MethodName: LoadMultiplayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -20311,6 +20335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSinglePlayer: 1
+  lvlIndex: 1
 --- !u!4 &1286113914
 Transform:
   m_ObjectHideFlags: 0
@@ -23585,7 +23610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1495758082}
   - component: {fileID: 1495758081}
-  - component: {fileID: 1495758083}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -23648,14 +23672,6 @@ Transform:
   - {fileID: 632111990}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 20.93, y: 0, z: 0}
---- !u!81 &1495758083
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495758080}
-  m_Enabled: 1
 --- !u!1 &1496318321
 GameObject:
   m_ObjectHideFlags: 0
@@ -31777,6 +31793,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1286113913}
+        m_TargetAssemblyTypeName: MultiplayerMode, Assembly-CSharp
+        m_MethodName: SetLevelIndex
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1286113913}
         m_TargetAssemblyTypeName: MultiplayerMode, Assembly-CSharp
         m_MethodName: SetSinglePlayer

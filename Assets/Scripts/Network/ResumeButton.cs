@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResumeButton : MonoBehaviour
 {
-	private ThirdPersonController thirdPersonController;
+	private ThirdPersonController thirdPersonController=null;
 	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
 	{
 		thirdPersonController = localPlayer;
@@ -12,7 +12,15 @@ public class ResumeButton : MonoBehaviour
 
 	public void Resume()
 	{
-		thirdPersonController.Resume();
+		if (thirdPersonController != null)
+			thirdPersonController.Resume();
+		else //singleplayer
+		{
+			thirdPersonController = FindObjectOfType<ThirdPersonController>();
+			thirdPersonController.Resume();
+
+		}
+
 	}
 
 	private void OnEnable()

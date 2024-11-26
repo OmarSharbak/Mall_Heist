@@ -18,6 +18,11 @@ public class GameManager : NetworkBehaviour
 			return;
 		}
 		Instance = this;
+		MultiplayerMode multiplayerMode = FindObjectOfType<MultiplayerMode>();
+		if ((multiplayerMode != null && multiplayerMode.isSinglePlayer) || multiplayerMode == null)
+			requiredPlayers = 1;
+
+
 	}
 
 	public void CheckAllPlayersReady()
