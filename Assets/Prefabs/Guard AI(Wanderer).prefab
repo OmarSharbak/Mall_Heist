@@ -2042,6 +2042,10 @@ GameObject:
   - component: {fileID: 7150471629693941165}
   - component: {fileID: 3797163714886714454}
   - component: {fileID: 7611620014005895146}
+  - component: {fileID: -135462740953253753}
+  - component: {fileID: 8938486892476217471}
+  - component: {fileID: -53870729177198261}
+  - component: {fileID: -8869728159887738064}
   m_Layer: 9
   m_Name: Guard AI(Wanderer)
   m_TagString: Guard
@@ -3517,11 +3521,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   closeProximityThreshold: 0.5
-  detectionRadius: 1.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 1024
   canDetect: 1
+  fieldOfViewAngle: 60
+  attackCooldown: 0.3
 --- !u!114 &3797163714886714454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3575,6 +3580,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba0589af5649b74f969f2c55fcdf95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-135462740953253753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284623867559350072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 1441630267
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
+--- !u!114 &8938486892476217471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284623867559350072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 4525294246193012685}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+--- !u!114 &-53870729177198261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284623867559350072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  clientAuthority: 0
+  animator: {fileID: 5175641799392087045}
+--- !u!114 &-8869728159887738064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284623867559350072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db06ac4e4a9215d45a8afec446edb66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!1 &7292206704541113654
 GameObject:
   m_ObjectHideFlags: 0
