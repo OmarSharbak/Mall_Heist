@@ -10,6 +10,8 @@ using UnityEngine.Rendering;
 using Mirror;
 using System;
 using Unity.VisualScripting;
+using TMPro.EditorUtilities;
+
 
 
 
@@ -157,6 +159,30 @@ public class ThirdPersonController : NetworkBehaviour
 	CinemachineVirtualCamera FollowTopCinemachineCamera;
 	CinemachineVirtualCamera FollowCinemachineCamera;
 
+	public TMP_Text playerNameText;
+	public GameObject floatingInfo;
+
+	//private Material playerMaterialClone;
+
+	[SyncVar(hook = nameof(OnNameChanged))]
+	public string playerName;
+
+	[SyncVar(hook = nameof(OnColorChanged))]
+	public Color playerColor = Color.white;
+
+	void OnNameChanged(string _Old, string _New)
+	{
+		playerNameText.text = playerName;
+	}
+
+	void OnColorChanged(Color _Old, Color _New)
+	{
+		playerNameText.color = _New;
+		//playerMaterialClone = new Material(GetComponent<Renderer>().material);
+		//playerMaterialClone.color = _New;
+		//GetComponent<Renderer>().material = playerMaterialClone;
+	}
+
 	//DAD
 
 	private EscalatorManager escalatorManager;
@@ -164,6 +190,7 @@ public class ThirdPersonController : NetworkBehaviour
 	private bool isVisible = true;
 	private const string VISIBLE_TAG = "Player"; // Assuming "Player" is the default tag when the player is visible.
 	private const string INVISIBLE_TAG = "PlayerInvisible"; // Custom tag when the player is invisible. Ensure you've added this tag in Unity.
+
 
 	public void ToggleVisibility()
 	{
@@ -209,8 +236,17 @@ public class ThirdPersonController : NetworkBehaviour
 		// Trigger the event
 		OnLocalPlayerStarted?.Invoke(this);
 
-		Debug.Log("Player local:" + transform.name);
+		string name = "Player" + UnityEngine.Random.Range(100, 999);
+		Color color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
+		CmdSetupPlayer(name, color);
+	}
 
+	[Command]
+	public void CmdSetupPlayer(string _name, Color _col)
+	{
+		// player info sent to server, then server updates sync vars which handles it on all clients
+		playerName = _name;
+		playerColor = _col;
 	}
 
 	public override void OnStartClient()
@@ -277,7 +313,8 @@ public class ThirdPersonController : NetworkBehaviour
 	public Vector3 inputDirection;
 	private void Update()
 	{
-		if (!isLocalPlayer) { return; }
+		if (!isLocalPlayer) {
+			return; }
 
 		Pause();
 
