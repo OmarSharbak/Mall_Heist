@@ -47,7 +47,6 @@ public class SealableDoor : MonoBehaviour
         audioManager = GameObject.Find("Player/Sounds").GetComponent<AudioManager>();
         outlinable = GetComponent<Outlinable>();
         audioSource = GetComponent<AudioSource>();
-		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
 
 	}
 
@@ -76,7 +75,8 @@ public class SealableDoor : MonoBehaviour
         {
             if (isSealed == false)
             {
-                promptUIManager.ShowSouthButtonUI();
+				promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+				promptUIManager.ShowSouthButtonUI();
             }
 
             // Grab the ThirdPersonController component from the player.

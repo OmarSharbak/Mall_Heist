@@ -206,7 +206,7 @@ public class EscalatorManager : MonoBehaviour
 		thirdPersonController = localPlayer;
 		playerTransform=thirdPersonController.transform;
         inventory= playerTransform.GetComponent<Inventory>();
-		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+
 
 		Initialize();
 	}
@@ -677,7 +677,8 @@ public class EscalatorManager : MonoBehaviour
         if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
         {
             playerNearEscalator = false;
-            promptUIManager.HideSouthButtonEscalatorUI();
+			promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+			promptUIManager.HideSouthButtonEscalatorUI();
             promptUIManager = null;
         }
     }

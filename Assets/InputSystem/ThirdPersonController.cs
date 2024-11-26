@@ -154,8 +154,8 @@ public class ThirdPersonController : NetworkBehaviour
 #endif
 		}
 	}
-
-
+	CinemachineVirtualCamera FollowTopCinemachineCamera;
+	CinemachineVirtualCamera FollowCinemachineCamera;
 
 	//DAD
 
@@ -212,14 +212,45 @@ public class ThirdPersonController : NetworkBehaviour
 		Debug.Log("Player local:" + transform.name);
 
 	}
+
+	public override void OnStartClient()
+	{
+		base.OnStartClient();
+
+
+		_input = GetComponent<InputSystem>();
+
+#if ENABLE_INPUT_SYSTEM
+		_playerInput = GetComponent<PlayerInput>();
+#else
+        Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+#endif
+
+		if (isLocalPlayer)
+		{
+			FullMapCinemachineCamera = GameObject.Find("PlayerFollowCamera(FullMap)").GetComponent<CinemachineVirtualCamera>();
+			FollowTopCinemachineCamera = GameObject.Find("PlayerFollowCamera(Top)").GetComponent<CinemachineVirtualCamera>();
+			FollowCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)").GetComponent<CinemachineVirtualCamera>();
+			pauseMenuGameObject = GameObject.Find("PauseUI");
+
+			FullMapCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+			FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+			FollowCinemachineCamera.Follow = CinemachineCameraTarget.transform;
+			pauseMenuGameObject.SetActive(false);
+
+		}
+		else
+		{
+			_input.enabled = false;
+			_playerInput.enabled = false;
+		}
+
+	}
 	private void Start()
 	{
-		FullMapCinemachineCamera = GameObject.Find("PlayerFollowCamera(FullMap)").GetComponent<CinemachineVirtualCamera>();
-		CinemachineVirtualCamera FollowTopCinemachineCamera = GameObject.Find("PlayerFollowCamera(Top)").GetComponent<CinemachineVirtualCamera>();
-		CinemachineVirtualCamera FollowCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)").GetComponent<CinemachineVirtualCamera>();
 
 
-		pauseMenuGameObject = GameObject.Find("PauseUI");
+
 		resumeButtonGameObject = GameObject.Find("ResumeButton");
 		eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		outliner = GameObject.Find("MainCamera").GetComponent<Outliner>();
@@ -230,15 +261,10 @@ public class ThirdPersonController : NetworkBehaviour
 
 		_hasAnimator = TryGetComponent(out _animator);
 		_controller = GetComponent<CharacterController>();
-		_input = GetComponent<InputSystem>();
 		_inventory = GetComponent<Inventory>();
 		_playerDamageHandler = GetComponent<PlayerDamageHandler>();
 		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
-#if ENABLE_INPUT_SYSTEM
-		_playerInput = GetComponent<PlayerInput>();
-#else
-        Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
-#endif
+
 
 		AssignAnimationIDs();
 
@@ -246,14 +272,6 @@ public class ThirdPersonController : NetworkBehaviour
 		_jumpTimeoutDelta = JumpTimeout;
 		_fallTimeoutDelta = FallTimeout;
 
-		if (isLocalPlayer)
-		{
-			FullMapCinemachineCamera.Follow = CinemachineCameraTarget.transform;
-			FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
-			FollowCinemachineCamera.Follow = CinemachineCameraTarget.transform;
-			pauseMenuGameObject.SetActive(false);
-
-		}
 	}
 
 	public Vector3 inputDirection;
