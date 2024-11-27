@@ -1,20 +1,25 @@
 using EPOOutline;
+using Mirror;
 using MoreMountains.Feedbacks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class LockDoor : MonoBehaviour
+public class LockDoor : NetworkBehaviour
 {
     [SerializeField] List<SealableDoor> sealableDoors;
     [SerializeField] TMP_Text doorOpenedText;
 
     Outlinable outlinable;
     Animator animator;
-    bool isOpened = false;
     MMFeedbacks mmFeedbacksOpenDoor;
-    private void Start()
+
+
+	[SyncVar(hook = nameof(OnDoorStateChanged))]
+	private bool isOpened = false;
+
+	private void Start()
     {
         outlinable = GetComponent<Outlinable>();
         animator = GetComponent<Animator>();
@@ -26,22 +31,44 @@ public class LockDoor : MonoBehaviour
     {
         if (!isOpened && AreAllDoorsSealed())
         {
-            OpenDoor();
-        }
+			OpenDoor();
+		}
     }
+	private void OnDoorStateChanged(bool oldState, bool newState)
+	{
+		if (newState)
+		{
+			OpenDoorClient(); // Trigger animations and effects for all clients
+		}
+	}
 
-    private void OpenDoor()
-    {
-        Debug.Log("opened");
-        isOpened = true;
-        animator.SetTrigger("OpenDoor");
-        outlinable.FrontParameters.Color = Color.green;
-        outlinable.BackParameters.Color = Color.green;
+	[Client] 
+	private void OpenDoor()
+	{
+		CmdOpenDoor();
+	}
 
-        StartCoroutine(ShowDoorOpenedText()); // Start the coroutine
-    }
+	// Called on the server when a player tries to seal the door
+	[Command(requiresAuthority = false)]
+	public void CmdOpenDoor()
+	{
+		if (!isOpened) // Ensure door is not already sealed
+		{
+			isOpened = true; // SyncVar will automatically update clients
+		}
+	}
 
-    IEnumerator ShowDoorOpenedText()
+	[Client]
+	private void OpenDoorClient()
+	{
+		animator.SetTrigger("OpenDoor");
+		outlinable.FrontParameters.Color = Color.green;
+		outlinable.BackParameters.Color = Color.green;
+
+		StartCoroutine(ShowDoorOpenedText());
+	}
+
+	IEnumerator ShowDoorOpenedText()
     {
         if (mmFeedbacksOpenDoor != null)
             mmFeedbacksOpenDoor.PlayFeedbacks();

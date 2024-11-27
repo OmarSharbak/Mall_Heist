@@ -4233,6 +4233,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6310350870690750479, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: _assetId
+      value: 118906180
+      objectReference: {fileID: 0}
     - target: {fileID: 6629802664292599385, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -6906,6 +6910,14 @@ PrefabInstance:
     - target: {fileID: 7511459579904109011, guid: c72b9ecc4595dad4197a2a35e98e4fc7, type: 3}
       propertyPath: sealDuration
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511459579904109011, guid: c72b9ecc4595dad4197a2a35e98e4fc7, type: 3}
+      propertyPath: syncDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9120283925879019376, guid: c72b9ecc4595dad4197a2a35e98e4fc7, type: 3}
+      propertyPath: _assetId
+      value: 118906180
       objectReference: {fileID: 0}
     - target: {fileID: 9163299855096319209, guid: c72b9ecc4595dad4197a2a35e98e4fc7, type: 3}
       propertyPath: m_AnchoredPosition.x

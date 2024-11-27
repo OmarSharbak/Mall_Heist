@@ -1169,4 +1169,14 @@ public class ThirdPersonController : NetworkBehaviour
 			}
 		}
 	}
+
+	// Called on the server when a player tries to seal the door
+	[Command(requiresAuthority = false)]
+	public void CmdSealDoor()
+	{
+		if (!nearbyDoor.isSealed) // Ensure door is not already sealed
+		{
+			nearbyDoor.isSealed = true; // SyncVar will automatically update clients
+		}
+	}
 }

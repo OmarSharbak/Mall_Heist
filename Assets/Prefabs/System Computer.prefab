@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: 1978247505478332377}
   - component: {fileID: 5668533494063654572}
   - component: {fileID: 2247277534460605131}
+  - component: {fileID: 9120283925879019376}
   m_Layer: 0
   m_Name: System Computer
   m_TagString: Untagged
@@ -279,6 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b93d9572eeb4a46a104a1d79dc4ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   sealProgressBar: {fileID: 5678491558572117749}
   fillImage: {fileID: 1982559633237924760}
   gradient:
@@ -586,6 +590,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &9120283925879019376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154540138689437657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 4019859369
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &5370251833736723805
 GameObject:
   m_ObjectHideFlags: 0

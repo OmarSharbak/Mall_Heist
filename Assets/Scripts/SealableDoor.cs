@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EPOOutline;
+using Mirror;
 
-public class SealableDoor : MonoBehaviour
+public class SealableDoor : NetworkBehaviour
 {
     [SerializeField]
     // UI element to display the progress of sealing the door.
@@ -20,11 +21,12 @@ public class SealableDoor : MonoBehaviour
 
     InputPromptUIManager promptUIManager;
 
-    // Flag to determine if the door is sealed or not.
-    public bool isSealed = false;
+	[SyncVar(hook = nameof(OnSealedStateChanged))]
+	public bool isSealed = false; // Syncs the sealed state across clients
 
-    // Time duration to complete the sealing process.
-    public float sealDuration = 5.0f;
+
+	// Time duration to complete the sealing process.
+	public float sealDuration = 5.0f;
 
     // Timer to keep track of how long the door has been sealed.
     float currentSealTime = 0.0f;
@@ -68,95 +70,105 @@ public class SealableDoor : MonoBehaviour
     }
 
 
+
+
     void OnTriggerEnter(Collider other)
     {
-        // Check if the triggering object is the player and the door is not sealed.
-        if ((other.CompareTag("Player") || other.CompareTag("PlayerInvisible")) && !isSealed)
+
+		// Grab the ThirdPersonController component from the player.
+		thirdPersonController = other.GetComponent<ThirdPersonController>();
+        if (thirdPersonController != null && thirdPersonController.isLocalPlayer)
         {
-            if (isSealed == false)
+            // Check if the triggering object is the player and the door is not sealed.
+            if ((other.CompareTag("Player") || other.CompareTag("PlayerInvisible")) && !isSealed)
             {
-				promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
-				promptUIManager.ShowSouthButtonUI();
+
+                promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+                promptUIManager.ShowSouthButtonUI();
+
+
+
+                // Update player proximity status.
+                playerNearby = true;
+
+                // If the component exists, let the player's controller know about this door.
+                    thirdPersonController.SetNearbyDoor(this);
+
+                // Show the sealing progress UI.
+                sealProgressBar.gameObject.SetActive(true);
             }
-
-            // Grab the ThirdPersonController component from the player.
-            thirdPersonController = other.GetComponent<ThirdPersonController>();
-
-            // Update player proximity status.
-            playerNearby = true;
-
-            // If the component exists, let the player's controller know about this door.
-            if (thirdPersonController != null)
-                thirdPersonController.SetNearbyDoor(this);
-
-            // Show the sealing progress UI.
-            sealProgressBar.gameObject.SetActive(true);
+            else if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
+                sealProgressBar.gameObject.SetActive(true);
         }
-        else if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
-            sealProgressBar.gameObject.SetActive(true);
     }
 
     void OnTriggerExit(Collider other)
     {
-        // Check if the exiting object is the player.
-        if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
+
+		// Grab the ThirdPersonController component from the player.
+		thirdPersonController = other.GetComponent<ThirdPersonController>();
+        if (thirdPersonController != null && thirdPersonController.isLocalPlayer)
         {
-            if (promptUIManager != null) 
+            // Check if the exiting object is the player.
+            if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
             {
-                promptUIManager.HideSouthButtonUI();
-                promptUIManager = null;
-            }
+                if (promptUIManager != null)
+                {
+                    promptUIManager.HideSouthButtonUI();
+                    promptUIManager = null;
+                }
 
-            // Reset player status flags.
-            playerNearby = false;
-            playerIsSealing = false;
+                // Reset player status flags.
+                playerNearby = false;
+                playerIsSealing = false;
 
-            // Clear reference to the door in the player's controller.
-            ThirdPersonController thirdPersonController = other.GetComponent<ThirdPersonController>();
-            if (thirdPersonController != null)
-            {
+                // Clear reference to the door in the player's controller.
                 thirdPersonController.ClearNearbyDoor(this);
-            }
-            thirdPersonController = null;
+                thirdPersonController = null;
 
-            // Hide the sealing progress UI.
-            audioSource.Stop();
-            sealProgressBar.gameObject.SetActive(false);
+                // Hide the sealing progress UI.
+                audioSource.Stop();
+                sealProgressBar.gameObject.SetActive(false);
+            }
         }
     }
 
+    [Client]
     public void StartSealing()
     {
-        // Check if the player is near and door isn't sealed.
-        if (playerNearby && !isSealed)
+        if (thirdPersonController != null && thirdPersonController.isLocalPlayer)
         {
-            playerIsSealing = true;
-
-            // Increment the seal timer.
-            currentSealTime += Time.deltaTime;
-
-            if (audioPlaying == false)
+            // Check if the player is near and door isn't sealed.
+            if (playerNearby && !isSealed)
             {
-                audioSource.Play();
-                audioPlaying = true;
+                playerIsSealing = true;
+
+                // Increment the seal timer.
+                currentSealTime += Time.deltaTime;
+
+                if (audioPlaying == false)
+                {
+                    audioSource.Play();
+                    audioPlaying = true;
+                }
+
+                // Update the progress UI.
+                sealProgressBar.value = Mathf.Clamp01(currentSealTime / sealDuration);
+                fillImage.color = gradient.Evaluate(sealProgressBar.value);
+
+                // If sealing is complete.
+                if (currentSealTime >= sealDuration)
+                {
+                    CmdSealDoor();
+                }
             }
-
-            // Update the progress UI.
-            sealProgressBar.value = Mathf.Clamp01(currentSealTime / sealDuration);
-            fillImage.color = gradient.Evaluate(sealProgressBar.value);
-
-            // If sealing is complete.
-            if (currentSealTime >= sealDuration)
+            else if (!playerNearby)
             {
-                SealDoor();
+                StopSealing();
             }
-        }
-        else if (!playerNearby)
-        {
-            StopSealing();
         }
     }
-
+    [Client]
     public void StopSealing()
     {
         // Reset the flag when the player stops sealing.
@@ -168,7 +180,15 @@ public class SealableDoor : MonoBehaviour
         }
     }
 
-    void SealDoor()
+
+	// Hook to update visuals when `isSealed` changes
+	private void OnSealedStateChanged(bool oldValue, bool newValue)
+	{
+		UpdateDoorVisual();
+	}
+
+    [Client]
+	void UpdateDoorVisual()
     {
         // Mark the door as sealed and reset the seal timer.
         if (promptUIManager != null)
@@ -179,7 +199,6 @@ public class SealableDoor : MonoBehaviour
 
         PopupTextManager.Instance.ShowPopupText("Hacked");
 
-        isSealed = true;
         currentSealTime = 0;
         fillImage.color = gradient.Evaluate(1f);
         outlinable.enabled = false;
@@ -195,4 +214,14 @@ public class SealableDoor : MonoBehaviour
         yield return new WaitForSeconds(0.1f); // Delay of 0.1 seconds. Adjust as needed.
         audioManager.PlayAudio("ObjectiveComplete");
     }
+
+	// Called on the server when a player tries to seal the door
+	[Command(requiresAuthority = false)]
+	public void CmdSealDoor()
+	{
+		if (!isSealed) // Ensure door is not already sealed
+		{
+			isSealed = true; // SyncVar will automatically update clients
+		}
+	}
 }
