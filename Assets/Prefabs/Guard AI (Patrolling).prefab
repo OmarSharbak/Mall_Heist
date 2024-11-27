@@ -3042,7 +3042,7 @@ MonoBehaviour:
   DamageAmountRun: 5
   WanderRadius: 25
   TabNumber: 1
-  TemperamentTabNumber: 1
+  TemperamentTabNumber: 5
   DetectionTagsTabNumber: 2
   AnimationTabNumber: 0
   SoundTabNumber: 0

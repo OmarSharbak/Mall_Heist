@@ -9,8 +9,9 @@ using EPOOutline;
 using MoreMountains.Feedbacks;
 using System;
 using MK.Toon;
+using Mirror;
 
-public class PlayerDamageHandler : MonoBehaviour
+public class PlayerDamageHandler : NetworkBehaviour
 {
 	[SerializeField] private int Lives = 1; // Player starts with 1 life
 	[SerializeField] int moneyCount = 0; // Money count
@@ -55,7 +56,7 @@ public class PlayerDamageHandler : MonoBehaviour
 	InputPromptUIManager promptUIManager;
 
 	EmeraldAIEventsManager emeraldAIEventsManager;
-	private void Start()
+	private void Initialize()
 	{
 		// Dynamically find the UI elements (e.g., by name or tag)
 		regularCanvas = GameObject.Find("InGameUI");
@@ -76,14 +77,22 @@ public class PlayerDamageHandler : MonoBehaviour
 		InitializeComponents();
 	}
 
-	private void InitializeComponents()
+    private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
+    {
+        thirdPersonController = localPlayer;
+
+		if(isLocalPlayer)
+			Initialize();
+    }
+
+    private void InitializeComponents()
 	{
 		CapturedText.enabled = false;
 		TimerText.enabled = false;
-		//LivesText.text = Lives.ToString();
-		//LivesText.gameObject.SetActive(false);
+		lostCanvas.SetActive(false);
+		LivesText.text = Lives.ToString();
+		LivesText.gameObject.SetActive(false);
 		moneyText.text = moneyCount.ToString(); // Initialize money text
-		thirdPersonController = GetComponent<ThirdPersonController>();
 		myAudioSource = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		playerFlash = GetComponent<PlayerFlash>();
@@ -96,6 +105,8 @@ public class PlayerDamageHandler : MonoBehaviour
 
 	private void Update()
 	{
+		if (thirdPersonController== null || (thirdPersonController != null && !thirdPersonController.isLocalPlayer))
+			return;
 		if (isWaitingForX)
 		{
 			HandleTimer();
@@ -111,18 +122,50 @@ public class PlayerDamageHandler : MonoBehaviour
 	{
 		thirdPersonController.ResetAttackAnimations();
 	}
-	public void OnDamagedByAI(EmeraldAIEventsManager EventsManager)
-	{
 
-		emeraldAIEventsManager = EventsManager;
-		if (isInvincible) return;
-		ResetAnimations();
-		HandlePlayerDamage();
+
+    [Command]
+    public void CmdDamageByAI( NetworkGuard networkGuard)
+    {
+        OnDamagedByAI(networkGuard);
+
+    }
+
+    [ClientRpc]
+	public void OnDamagedByAI(NetworkGuard networkGuard)
+
+
+	{
+        EmeraldAIEventsManager _emeraldAIEventsManager = networkGuard.GetComponent<EmeraldAIEventsManager>();
+
+        Transform target = _emeraldAIEventsManager.GetCombatTarget();
+
+        Debug.Log("On DAmaged by AI attacked: "+ target + " " + (target==transform));
+
+		if(target != null) {
+			ThirdPersonController targetThird = target.GetComponent<ThirdPersonController>();
+			if (targetThird != null)
+			{
+                Debug.Log("target name" + targetThird.playerName);
+				if (thirdPersonController != null)
+				{
+                    Debug.Log("name" + thirdPersonController.playerName);
+
+                    if (targetThird.playerName == thirdPersonController.playerName)
+					{
+						emeraldAIEventsManager = _emeraldAIEventsManager;
+						if (isInvincible) return;
+						ResetAnimations();
+						HandlePlayerDamage();
+					}
+				}
+			}
+		}
 	}
 
 	private void HandlePlayerDamage()
 	{
-
+		Debug.Log("PLayer Damaged");
 		PlayTakeDownSound();
 
 		this.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
@@ -192,6 +235,7 @@ public class PlayerDamageHandler : MonoBehaviour
 		Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Walls"));
 		StartTimer();
 		waitForXPressCoroutine = StartCoroutine(WaitForXPress());
+		Debug.Log("Started damage sequence");
 	}
 
 	// Start the countdown timer.
@@ -239,7 +283,9 @@ public class PlayerDamageHandler : MonoBehaviour
 	// Resume game after player's input.
 	public void ResumePlay()
 	{
-		if (!isInvincible || emeraldAIEventsManager == null || bribed) return;
+        if (thirdPersonController == null || (thirdPersonController != null && !thirdPersonController.isLocalPlayer))
+            return;
+        if (!isInvincible || emeraldAIEventsManager == null || bribed) return;
 
 		bribed = true;
 		// Rotate player to face the guard
@@ -283,6 +329,8 @@ public class PlayerDamageHandler : MonoBehaviour
 
 	public void DisableMoneyGameObject()
 	{
+		if (thirdPersonController == null)
+			return;
 		//Play sfx (moneywithdrawin)
 		moneyGameObject.SetActive(false);
 		thirdPersonController.EnableMovement();
@@ -347,4 +395,16 @@ public class PlayerDamageHandler : MonoBehaviour
 		moneyCount += amount;
 		UpdateMoneyUI();
 	}
+
+    private void OnEnable()
+    {
+        // Subscribe to the event
+        ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from the event to avoid memory leaks
+        ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
+    }
 }

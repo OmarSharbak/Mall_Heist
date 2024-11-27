@@ -162,6 +162,8 @@ public class EscalatorManager : MonoBehaviour
             ClearTargetAll();
             UpdateEscalatorOutLine();
 
+            Debug.Log(currentState);
+
             if (currentState != GameState.Defeat)
                 SetGameState(GameState.Stealth);
 
@@ -175,6 +177,7 @@ public class EscalatorManager : MonoBehaviour
         foreach (var e in allGuards)
         {
             e.ClearTarget();
+
         }
 
         if(currentState != GameState.Defeat)

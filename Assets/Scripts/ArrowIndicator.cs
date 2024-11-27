@@ -5,7 +5,7 @@ using EmeraldAI;
 using EmeraldAI.Utility;
 using Mirror;
 
-public class ArrowIndicator : MonoBehaviour
+public class ArrowIndicator : NetworkBehaviour
 {
 	private Transform player;
 	public List<Transform> guards = new List<Transform>();
@@ -22,10 +22,14 @@ public class ArrowIndicator : MonoBehaviour
 
 	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
 	{
-		player = localPlayer.transform;
-		CreateArrows();
+		if (isLocalPlayer)
+		{
+            player = localPlayer.transform;
+            CreateArrows();
 
-	}
+        }
+
+    }
 
 	private void CreateArrows()
 	{
@@ -39,6 +43,8 @@ public class ArrowIndicator : MonoBehaviour
 
 	private void Update()
 	{
+		if (player == null)
+			return;
 		if (arrows.Count > 0)
 		{
 			for (int i = 0; i < guards.Count; i++)

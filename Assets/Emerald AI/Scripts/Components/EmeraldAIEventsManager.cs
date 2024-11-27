@@ -796,6 +796,8 @@ namespace EmeraldAI
             EmeraldComponent.LineOfSightTargets.Clear();
             EmeraldComponent.potentialTargets.Clear();
             EmeraldComponent.TargetEmerald = null;
+
+            Debug.Log("Target cleared");
         }
 
         /// <summary>

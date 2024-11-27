@@ -144,8 +144,9 @@ public class ThirdPersonController : NetworkBehaviour
 
 	// Declare a static event
 	public static event Action<ThirdPersonController> OnLocalPlayerStarted;
-
-	private bool IsCurrentDeviceMouse
+    // Declare a static event
+    public static event Action<ThirdPersonController> OnPlayerJoined;
+    private bool IsCurrentDeviceMouse
 	{
 		get
 		{
@@ -265,7 +266,15 @@ public class ThirdPersonController : NetworkBehaviour
 		sceneScript.statusText = $"{playerName} joined.";
 	}
 
-	public override void OnStartClient()
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+
+        Debug.Log($"Player {gameObject.name} has spawned on the server!");
+		OnPlayerJoined?.Invoke(this);
+    }
+
+    public override void OnStartClient()
 	{
 		base.OnStartClient();
 
