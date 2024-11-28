@@ -66,7 +66,6 @@ public class NetworkGuard : NetworkBehaviour
 
 					playerDamageHandler.RpcSetNetworkGuard(GetComponent<NetworkIdentity>());
 
-                    StartCoroutine(DelayedPlayerStatus(playerDamageHandler));
 
 					//Debug.LogError("COMBAT MATCH! " + combatTarget.name + " ### " + player.name);
 					return;
@@ -76,13 +75,6 @@ public class NetworkGuard : NetworkBehaviour
             //Debug.LogError("COMBAT TARGET DON'T MATCH!  null" + " ### " + player.name);
 
 		}
-	}
-
-	[ServerCallback]
-	private IEnumerator DelayedPlayerStatus(PlayerDamageHandler playerDamageHandler)
-    {
-		yield return new WaitForSeconds(1f);
-		playerDamageHandler.playerStatus = 1;
 	}
 
 	private void OnEnable()

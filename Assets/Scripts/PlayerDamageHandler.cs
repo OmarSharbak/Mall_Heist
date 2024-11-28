@@ -56,9 +56,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	EmeraldAIEventsManager emeraldAIEventsManager=null;
 
-	[SyncVar(hook = nameof(OnPlayerStatusChanged))]
-	public int playerStatus = 0;
-
 	private void Initialize()
 	{
 		// Dynamically find the UI elements (e.g., by name or tag)
@@ -117,7 +114,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 			Debug.LogWarning("No AudioSource component found on this GameObject.");
 		}
 	}
-
+	[ClientCallback]
 	private void Update()
 	{
 		if (!isLocalPlayer)
@@ -138,26 +135,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 		if (thirdPersonController != null)
 			thirdPersonController.ResetAttackAnimations();
 	}
-
-
-	void OnPlayerStatusChanged(int _Old, int _New)
-	{
-		ManagePlayerStatus();
-	}
-
-	void ManagePlayerStatus()
-	{
-		
-		if (playerStatus == 0) // normal
-		{
-		}
-		else if (playerStatus == 1) // damaged
-		{
-
-		}
-	}
-	//public void OnDamagedByAI(EmeraldAIEventsManager _emeraldAIEventsManager)
-
 
 
 	[ClientRpc]
@@ -345,6 +322,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		StartCoroutine(HandleInvincibility());
 	}
 
+	[ClientCallback]
 	public void DisableMoneyGameObject()
 	{
 		if (thirdPersonController == null || emeraldAIEventsManager==null)
@@ -356,7 +334,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 		emeraldAIEventsManager.ResumeMovement();
 		emeraldAIEventsManager.ClearIgnoredTarget(this.transform);
 		emeraldAIEventsManager = null;
-		playerStatus = 0;
 	}
 	private void StopXPressCoroutine()
 	{

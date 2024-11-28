@@ -11527,7 +11527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: TabNumber
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: WalkSpeed
