@@ -1035,6 +1035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ff7bd5b7b936d4bb34bc4a67d8d309, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   Lives: 3
   moneyCount: 0
   takeDownClip: {fileID: 8300000, guid: efa2a2a849a760e40b1a24325f71c0f0, type: 3}
@@ -1154,7 +1157,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -1221,8 +1224,8 @@ MonoBehaviour:
   switchDown: 0
   pause: 0
   analogMovement: 0
-  cursorLocked: 1
-  cursorInputForLook: 1
+  cursorLocked: 0
+  cursorInputForLook: 0
 --- !u!114 &8300905094730079672
 MonoBehaviour:
   m_ObjectHideFlags: 0

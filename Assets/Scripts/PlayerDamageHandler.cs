@@ -56,13 +56,20 @@ public class PlayerDamageHandler : NetworkBehaviour
 	InputPromptUIManager promptUIManager;
 
 	EmeraldAIEventsManager emeraldAIEventsManager;
+
+	[SyncVar(hook = nameof(OnPlayerStatusChanged))]
+	public int playerStatus = 0;
+
 	private void Initialize()
 	{
 		// Dynamically find the UI elements (e.g., by name or tag)
 		regularCanvas = GameObject.Find("InGameUI");
-		lostCanvas = GameObject.Find("LostUI");
+		if (isLocalPlayer)
+		{
+			lostCanvas = GameObject.Find("LostUI");
+			LivesText = GameObject.Find("LivesText")?.GetComponent<TMP_Text>();
+		}
 		CapturedText = GameObject.Find("CapturedText")?.GetComponent<TMP_Text>();
-		LivesText = GameObject.Find("LivesText")?.GetComponent<TMP_Text>();
 		TimerText = GameObject.Find("WaitForXTimerText")?.GetComponent<TMP_Text>();
 		PlayerCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)")?.GetComponent<CinemachineVirtualCamera>();
 		escalatorManager = GameObject.Find("Escalator")?.GetComponent<EscalatorManager>();
@@ -74,24 +81,31 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		loseRestartButtonGameObject = GameObject.Find("RestartButton")?.GetComponent<GameObject>();
 		outliner = GameObject.Find("MainCamera")?.GetComponent<Outliner>();
+
+		thirdPersonController = GetComponent<ThirdPersonController>();
+
 		InitializeComponents();
+
+		Debug.Log("canvas initialized!" + regularCanvas.name);
+
 	}
 
-    private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
-    {
-        thirdPersonController = localPlayer;
+	private void Start()
+	{
 
-		if(isLocalPlayer)
-			Initialize();
-    }
+		Initialize();
+	}
 
-    private void InitializeComponents()
+	private void InitializeComponents()
 	{
 		CapturedText.enabled = false;
 		TimerText.enabled = false;
-		lostCanvas.SetActive(false);
-		LivesText.text = Lives.ToString();
-		LivesText.gameObject.SetActive(false);
+		if (isLocalPlayer)
+		{
+			lostCanvas.SetActive(false);
+			LivesText.text = Lives.ToString();
+			LivesText.gameObject.SetActive(false);
+		}
 		moneyText.text = moneyCount.ToString(); // Initialize money text
 		myAudioSource = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
@@ -105,8 +119,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	private void Update()
 	{
-		if (thirdPersonController== null || (thirdPersonController != null && !thirdPersonController.isLocalPlayer))
-			return;
 		if (isWaitingForX)
 		{
 			HandleTimer();
@@ -117,51 +129,63 @@ public class PlayerDamageHandler : NetworkBehaviour
 			emeraldAIEventsManager.StopMovement();
 		}
 	}
-
+	[ClientCallback]
 	void ResetAnimations()
 	{
-		thirdPersonController.ResetAttackAnimations();
+		if (thirdPersonController != null)
+			thirdPersonController.ResetAttackAnimations();
 	}
 
 
-    [Command]
-    public void CmdDamageByAI( NetworkGuard networkGuard)
-    {
-        OnDamagedByAI(networkGuard);
-
-    }
-
-    [ClientRpc]
-	public void OnDamagedByAI(NetworkGuard networkGuard)
-
-
+	void OnPlayerStatusChanged(int _Old, int _New)
 	{
-        EmeraldAIEventsManager _emeraldAIEventsManager = networkGuard.GetComponent<EmeraldAIEventsManager>();
-
-        Transform target = _emeraldAIEventsManager.GetCombatTarget();
-
-        Debug.Log("On DAmaged by AI attacked: "+ target + " " + (target==transform));
-
-		if(target != null) {
-			ThirdPersonController targetThird = target.GetComponent<ThirdPersonController>();
-			if (targetThird != null)
-			{
-                Debug.Log("target name" + targetThird.playerName);
-				if (thirdPersonController != null)
-				{
-                    Debug.Log("name" + thirdPersonController.playerName);
-
-                    if (targetThird.playerName == thirdPersonController.playerName)
-					{
-						emeraldAIEventsManager = _emeraldAIEventsManager;
-						if (isInvincible) return;
-						ResetAnimations();
-						HandlePlayerDamage();
-					}
-				}
-			}
+		if (playerStatus == 0) // normal
+		{
+		}
+		else if (playerStatus == 1) // damaged
+		{
+			if (isInvincible) return;
+			ResetAnimations();
+			HandlePlayerDamage();
 		}
 	}
+	//public void OnDamagedByAI(EmeraldAIEventsManager _emeraldAIEventsManager)
+
+
+	//{
+
+	//	Transform target = _emeraldAIEventsManager.GetCombatTarget();
+
+	//	Debug.Log("On Damaged by AI attacked: " + target + " " + (target == transform));
+
+	//	if (target != null)
+	//	{
+	//		ThirdPersonController targetThird = target.GetComponent<ThirdPersonController>();
+	//		if (targetThird != null)
+	//		{
+	//			Debug.Log("target name" + targetThird.playerName);
+	//			if (thirdPersonController != null)
+	//			{
+	//				Debug.Log("name" + thirdPersonController.playerName);
+
+	//				if (targetThird.playerName == thirdPersonController.playerName)
+	//				{
+	//					emeraldAIEventsManager = _emeraldAIEventsManager;
+
+	//				}
+	//			}
+	//		}
+	//	}
+	//}
+
+	[ClientRpc]
+	public void RpcSetNetworkGuard(NetworkGuard networkGuard)
+	{
+		emeraldAIEventsManager = networkGuard.GetComponent<EmeraldAIEventsManager>();
+	}
+
+
+	[ClientCallback]
 
 	private void HandlePlayerDamage()
 	{
@@ -204,6 +228,10 @@ public class PlayerDamageHandler : NetworkBehaviour
 	// Manage end of game state.
 	private void HandleGameOver()
 	{
+		if (!isLocalPlayer)
+		{
+			return;
+		}
 		regularCanvas.SetActive(false);
 		lostCanvas.SetActive(true);
 		outliner.enabled = false;
@@ -224,6 +252,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	public static event Action OnPlayerCaught;
 	// Sequence of events after player takes damage.
+
 	private void StartDamageSequence()
 	{
 		OnPlayerCaught?.Invoke();
@@ -239,6 +268,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	// Start the countdown timer.
+	
 	private void StartTimer()
 	{
 		currentWaitToPressXTime = WaitToPressXTime;
@@ -247,6 +277,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	// Handle countdown for player's action.
+	
 	private void HandleTimer()
 	{
 		currentWaitToPressXTime -= Time.deltaTime;
@@ -260,6 +291,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	// Wait for player's input while immobile.
+	
 	private IEnumerator WaitForXPress()
 	{
 		thirdPersonController.StopMovement();
@@ -281,11 +313,10 @@ public class PlayerDamageHandler : NetworkBehaviour
 	bool bribed = false;
 
 	// Resume game after player's input.
+
 	public void ResumePlay()
 	{
-        if (thirdPersonController == null || (thirdPersonController != null && !thirdPersonController.isLocalPlayer))
-            return;
-        if (!isInvincible || emeraldAIEventsManager == null || bribed) return;
+		if (!isInvincible || emeraldAIEventsManager == null || bribed) return;
 
 		bribed = true;
 		// Rotate player to face the guard
@@ -396,15 +427,15 @@ public class PlayerDamageHandler : NetworkBehaviour
 		UpdateMoneyUI();
 	}
 
-    private void OnEnable()
-    {
-        // Subscribe to the event
-        ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
-    }
+	//private void OnEnable()
+	//{
+	//	// Subscribe to the event
+	//	ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
+	//}
 
-    private void OnDisable()
-    {
-        // Unsubscribe from the event to avoid memory leaks
-        ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-    }
+	//private void OnDisable()
+	//{
+	//	// Unsubscribe from the event to avoid memory leaks
+	//	ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
+	//}
 }

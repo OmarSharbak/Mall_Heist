@@ -223,8 +223,8 @@ public class EscalatorManager : MonoBehaviour
             thirdPersonController.canMove = false;
         }
         CalculateTotalMoney();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
 
         originalVolume = audioSource1.volume;
         audioSource2.volume = 0;

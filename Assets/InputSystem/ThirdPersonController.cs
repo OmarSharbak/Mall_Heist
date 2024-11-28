@@ -815,8 +815,8 @@ public class ThirdPersonController : NetworkBehaviour
 		outliner.enabled = true;
 		EscalatorManager.Instance.SetGameState(lastGameState);
 		Debug.Log("Last gamestate is: " + lastGameState.ToString());
-		Cursor.visible = false;
-		Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
 		//Time.timeScale = 1.0f;       
 	}
 

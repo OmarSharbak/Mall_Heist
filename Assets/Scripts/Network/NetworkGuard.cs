@@ -24,21 +24,38 @@ public class NetworkGuard : NetworkBehaviour
         {
             //Example - It is recomended that EmeraldComponent is cached somewhere
             EmeraldAISystem emeraldAISystem = GetComponent<EmeraldAISystem>();
-            
-            PlayerDamageHandler playerDamageHandler = playerJoined.GetComponent<PlayerDamageHandler>();
-            emeraldAISystem.OnDoDamageEvent.AddListener(() => OnDamageByAI(playerDamageHandler));
+
+            emeraldAISystem.OnDoDamageEvent.AddListener(() => CheckPlayerDamaged(playerJoined));
             Debug.Log("PLayer Joined added to guards AI");
         }
     }
 
-
-    private void OnDamageByAI(PlayerDamageHandler playerDamageHandler)
+    [ServerCallback]
+    private void CheckPlayerDamaged(ThirdPersonController playerJoined)
     {
-        playerDamageHandler.CmdDamageByAI(this);
-    }
+		PlayerDamageHandler playerDamageHandler = playerJoined.GetComponent<PlayerDamageHandler>();
+		EmeraldAIEventsManager _emeraldAIEventsManager = GetComponent<EmeraldAIEventsManager>();
+
+		EmeraldAISystem emeraldAISystem = GetComponent<EmeraldAISystem>();
+
+		Transform combatTarget = emeraldAISystem.PlayerDamageComponent.transform;
+
+		if (combatTarget != null)
+        {
+            if (combatTarget == playerDamageHandler.transform)
+            {
+                playerDamageHandler.RpcSetNetworkGuard(this);
+
+                playerDamageHandler.playerStatus = 1;
+                return;
+            }
+			Debug.LogError("COMBAT TARGET DON'T MATCH! " + combatTarget.name);
+		}
+		Debug.LogError("COMBAT TARGET DON'T MATCH!  null");
+	}
 
 
-    private void OnEnable()
+	private void OnEnable()
     {
         // Subscribe to the event
         ThirdPersonController.OnPlayerJoined += HandlePlayerJoined;

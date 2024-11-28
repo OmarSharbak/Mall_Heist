@@ -11534,6 +11534,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: EventTabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: CombatTabNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: AgentAcceleration
       value: 35
       objectReference: {fileID: 0}
@@ -11551,6 +11559,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DetectionTagsTabNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: FactionsAndTagTabNumber
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
@@ -11574,6 +11586,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -11590,6 +11606,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1711760579}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -11600,7 +11620,7 @@ PrefabInstance:
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7141619735437732399}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -11618,6 +11638,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1006419100}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetExposed
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -11630,8 +11654,16 @@ PrefabInstance:
       value: Level1Achievement3, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EscalatorManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Level1Achievement1, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
@@ -11643,6 +11675,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
@@ -27954,7 +27990,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -46866,7 +46902,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -66036,7 +66072,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -67981,7 +68017,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -67997,7 +68033,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68013,7 +68049,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68029,7 +68065,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68045,7 +68081,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68061,7 +68097,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68077,7 +68113,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68093,7 +68129,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68109,7 +68145,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68125,7 +68161,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68141,7 +68177,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68157,7 +68193,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68173,7 +68209,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68189,7 +68225,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68205,7 +68241,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68221,7 +68257,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68237,7 +68273,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68253,7 +68289,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -68269,7 +68305,7 @@ MonoBehaviour:
     cutoutTextureName: 
     DilateRenderingMode: 0
     cutoutTextureIndex: 0
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
