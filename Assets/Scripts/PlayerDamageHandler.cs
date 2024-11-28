@@ -54,7 +54,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	InputPromptUIManager promptUIManager;
 
-	EmeraldAIEventsManager emeraldAIEventsManager;
+	EmeraldAIEventsManager emeraldAIEventsManager=null;
 
 	[SyncVar(hook = nameof(OnPlayerStatusChanged))]
 	public int playerStatus = 0;
@@ -82,6 +82,10 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		thirdPersonController = GetComponent<ThirdPersonController>();
 
+		myAudioSource = GetComponent<AudioSource>();
+		animator = GetComponent<Animator>();
+		playerFlash = GetComponent<PlayerFlash>();
+
 		InitializeComponents();
 
 		Debug.Log("canvas initialized!" + regularCanvas.name);
@@ -91,6 +95,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private void Start()
 	{
 
+		if (!isLocalPlayer)
+			return;
 		Initialize();
 	}
 
@@ -104,9 +110,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 			LivesText.text = Lives.ToString();
 			LivesText.gameObject.SetActive(false);
 		}
-		myAudioSource = GetComponent<AudioSource>();
-		animator = GetComponent<Animator>();
-		playerFlash = GetComponent<PlayerFlash>();
+
 
 		if (myAudioSource == null)
 		{
@@ -116,6 +120,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	private void Update()
 	{
+		if (!isLocalPlayer)
+			return;
 		if (isWaitingForX)
 		{
 			HandleTimer();
@@ -147,14 +153,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		}
 		else if (playerStatus == 1) // damaged
 		{
-			if (emeraldAIEventsManager == null)
-			{
-				playerStatus = 0;
-				return;
-			}
-			if (isInvincible) return;
-			ResetAnimations();
-			HandlePlayerDamage();
+
 		}
 	}
 	//public void OnDamagedByAI(EmeraldAIEventsManager _emeraldAIEventsManager)
@@ -162,10 +161,14 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 
 	[ClientRpc]
-	public void RpcSetNetworkGuard(NetworkGuard networkGuard)
+	public void RpcSetNetworkGuard(NetworkIdentity networkIdentity)
 	{
+		var networkGuard= networkIdentity.GetComponent<NetworkGuard>();
 		emeraldAIEventsManager = networkGuard.GetComponent<EmeraldAIEventsManager>();
-		ManagePlayerStatus();
+
+		if (isInvincible || !isLocalPlayer) return;
+		ResetAnimations();
+		HandlePlayerDamage();
 	}
 
 
@@ -324,7 +327,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	public void PlayBribeFeedback()
 	{
-		if (mmFeedbacksBribe != null)
+		if (mmFeedbacksBribe != null && emeraldAIEventsManager!=null)
 			mmFeedbacksBribe.PlayFeedbacks();
 	}
 	private IEnumerator ResumePlayAfterDelay()
@@ -344,7 +347,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	public void DisableMoneyGameObject()
 	{
-		if (thirdPersonController == null)
+		if (thirdPersonController == null || emeraldAIEventsManager==null)
 			return;
 		//Play sfx (moneywithdrawin)
 		moneyGameObject.SetActive(false);
