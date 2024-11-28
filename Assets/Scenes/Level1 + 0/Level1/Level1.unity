@@ -54785,6 +54785,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  moneyText: {fileID: 89969319}
 --- !u!4 &1848165206
 Transform:
   m_ObjectHideFlags: 0

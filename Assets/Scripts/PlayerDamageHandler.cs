@@ -14,8 +14,7 @@ using Mirror;
 public class PlayerDamageHandler : NetworkBehaviour
 {
 	[SerializeField] private int Lives = 1; // Player starts with 1 life
-	[SerializeField] int moneyCount = 0; // Money count
-	private TMP_Text moneyText; // Text to display money
+	
 
 	// UI References
 	private GameObject regularCanvas;
@@ -73,7 +72,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 		TimerText = GameObject.Find("WaitForXTimerText")?.GetComponent<TMP_Text>();
 		PlayerCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)")?.GetComponent<CinemachineVirtualCamera>();
 		escalatorManager = GameObject.Find("Escalator")?.GetComponent<EscalatorManager>();
-		moneyText = GameObject.Find("MoneyText")?.GetComponent<TMP_Text>();
 		mmFeedbacksCaptured = GameObject.Find("MMFeedbacks(captured)")?.GetComponent<MMFeedbacks>();
 		mmFeedbacksBribe = GameObject.Find("MMFeedbacks(bribe)")?.GetComponent<MMFeedbacks>();
 		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
@@ -106,7 +104,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 			LivesText.text = Lives.ToString();
 			LivesText.gameObject.SetActive(false);
 		}
-		moneyText.text = moneyCount.ToString(); // Initialize money text
 		myAudioSource = GetComponent<AudioSource>();
 		animator = GetComponent<Animator>();
 		playerFlash = GetComponent<PlayerFlash>();
@@ -163,31 +160,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 	//public void OnDamagedByAI(EmeraldAIEventsManager _emeraldAIEventsManager)
 
 
-	//{
-
-	//	Transform target = _emeraldAIEventsManager.GetCombatTarget();
-
-	//	Debug.Log("On Damaged by AI attacked: " + target + " " + (target == transform));
-
-	//	if (target != null)
-	//	{
-	//		ThirdPersonController targetThird = target.GetComponent<ThirdPersonController>();
-	//		if (targetThird != null)
-	//		{
-	//			Debug.Log("target name" + targetThird.playerName);
-	//			if (thirdPersonController != null)
-	//			{
-	//				Debug.Log("name" + thirdPersonController.playerName);
-
-	//				if (targetThird.playerName == thirdPersonController.playerName)
-	//				{
-	//					emeraldAIEventsManager = _emeraldAIEventsManager;
-
-	//				}
-	//			}
-	//		}
-	//	}
-	//}
 
 	[ClientRpc]
 	public void RpcSetNetworkGuard(NetworkGuard networkGuard)
@@ -211,7 +183,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		if (mmFeedbacksCaptured != null)
 			mmFeedbacksCaptured.PlayFeedbacks();
 
-		if (moneyCount >= 10)
+		if (GameManager.Instance.GetCurrentGlobalMoney() >= 10)
 		{
 			StartDamageSequence();
 		}
@@ -340,9 +312,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		StopXPressCoroutine();
 
-		moneyCount -= 10;
+		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney() - 10);
 		PopupTextManager.Instance.ShowPopupText("-10");
-		UpdateMoneyUI();
 		moneyGameObject.SetActive(true);
 		animator.SetTrigger("GiveMoney");
 
@@ -430,26 +401,28 @@ public class PlayerDamageHandler : NetworkBehaviour
 		gameObject.tag = "Player";
 	}
 
-	private void UpdateMoneyUI()
-	{
-		moneyText.text = moneyCount.ToString();
-	}
+	
 
 	public void AddMoney(int amount)
 	{
-		moneyCount += amount;
-		UpdateMoneyUI();
+		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney() + amount);
 	}
 
-	//private void OnEnable()
-	//{
-	//	// Subscribe to the event
-	//	ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
-	//}
 
-	//private void OnDisable()
-	//{
-	//	// Unsubscribe from the event to avoid memory leaks
-	//	ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-	//}
+	public void TryUpdateMoney(int value)
+	{
+		if (isLocalPlayer)
+		{
+			CmdRequestMoneyUpdate(value); // Send request to server
+		}
+	}
+
+	[Command]
+	private void CmdRequestMoneyUpdate(int value)
+	{
+		// Ensure server validates or updates the shared variable
+		GameManager.Instance.UpdateGlobalMoney(value);
+	}
+
+
 }

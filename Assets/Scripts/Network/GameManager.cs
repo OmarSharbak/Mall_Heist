@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mirror;
 using System.Collections;
+using TMPro;
 
 public class GameManager : NetworkBehaviour
 {
@@ -9,6 +10,12 @@ public class GameManager : NetworkBehaviour
 	[SyncVar] private bool gameStarted = false;
 	private float countdownTime = 3f;
 	private int requiredPlayers = 2; // Fixed number of players
+
+	// Define the SyncVar with a hook
+	[SyncVar(hook = nameof(OnGlobalMoneyChanged))]
+	private int globalMoney;
+	[SerializeField]
+	private TMP_Text moneyText; // Text to display money
 
 	private void Awake()
 	{
@@ -22,6 +29,7 @@ public class GameManager : NetworkBehaviour
 		if ((multiplayerMode != null && multiplayerMode.isSinglePlayer) || multiplayerMode == null)
 			requiredPlayers = 1;
 
+		moneyText.text = GameManager.Instance.GetCurrentGlobalMoney().ToString(); // Initialize money text
 
 	}
 
@@ -84,5 +92,29 @@ public class GameManager : NetworkBehaviour
 		// Trigger game start logic here
 		EscalatorManager.Instance.InitiateGameStart();
 
+	}
+
+	// Method to update the SyncVar value (server-side only)
+	[Server]
+	public void UpdateGlobalMoney(int newValue)
+	{
+		globalMoney = newValue; // Updates are automatically synced to all clients
+	}
+
+	// Hook method called on clients when globalScore changes
+	private void OnGlobalMoneyChanged(int oldValue, int newValue)
+	{
+		Debug.Log($"Global Score updated: {oldValue} -> {newValue}");
+		UpdateMoneyUI();
+	}
+
+	private void UpdateMoneyUI()
+	{
+		moneyText.text = GameManager.Instance.GetCurrentGlobalMoney().ToString();
+	}
+
+	public int GetCurrentGlobalMoney()
+	{
+		return globalMoney;
 	}
 }
