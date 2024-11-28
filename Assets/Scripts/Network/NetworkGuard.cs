@@ -36,7 +36,7 @@ public class NetworkGuard : NetworkBehaviour
         {
             playersJoined[count]= playerJoined;
             count++;
-			Debug.LogError("plyer joined" + " ### " + playerJoined.name);
+			Debug.Log("plyer joined" + " ### " + playerJoined.name);
 
 		}
 	}
@@ -53,7 +53,7 @@ public class NetworkGuard : NetworkBehaviour
         int i = 0;
 		foreach (var player in playersJoined)
         {
-            Debug.LogError(player.name + " ### " + i);
+           // Debug.LogError(player.name + " ### " + i);
             i++;
 
 			if (combatTarget != null)
@@ -68,12 +68,12 @@ public class NetworkGuard : NetworkBehaviour
 
                     StartCoroutine(DelayedPlayerStatus(playerDamageHandler));
 
-					Debug.LogError("COMBAT MATCH! " + combatTarget.name + " ### " + player.name);
+					//Debug.LogError("COMBAT MATCH! " + combatTarget.name + " ### " + player.name);
 					return;
                 }
-                Debug.LogError("COMBAT TARGET DON'T MATCH! " + combatTarget.name +" ### " +player.name);
+                //Debug.LogError("COMBAT TARGET DON'T MATCH! " + combatTarget.name +" ### " +player.name);
 			}
-            Debug.LogError("COMBAT TARGET DON'T MATCH!  null" + " ### " + player.name);
+            //Debug.LogError("COMBAT TARGET DON'T MATCH!  null" + " ### " + player.name);
 
 		}
 	}
