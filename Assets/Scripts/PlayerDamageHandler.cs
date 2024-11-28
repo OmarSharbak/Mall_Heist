@@ -139,11 +139,22 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	void OnPlayerStatusChanged(int _Old, int _New)
 	{
+		ManagePlayerStatus();
+	}
+
+	void ManagePlayerStatus()
+	{
+		
 		if (playerStatus == 0) // normal
 		{
 		}
 		else if (playerStatus == 1) // damaged
 		{
+			if (emeraldAIEventsManager == null)
+			{
+				playerStatus = 0;
+				return;
+			}
 			if (isInvincible) return;
 			ResetAnimations();
 			HandlePlayerDamage();
@@ -182,7 +193,9 @@ public class PlayerDamageHandler : NetworkBehaviour
 	public void RpcSetNetworkGuard(NetworkGuard networkGuard)
 	{
 		emeraldAIEventsManager = networkGuard.GetComponent<EmeraldAIEventsManager>();
+		ManagePlayerStatus();
 	}
+
 
 
 	[ClientCallback]
@@ -369,6 +382,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		emeraldAIEventsManager.ResumeMovement();
 		emeraldAIEventsManager.ClearIgnoredTarget(this.transform);
 		emeraldAIEventsManager = null;
+		playerStatus = 0;
 	}
 	private void StopXPressCoroutine()
 	{

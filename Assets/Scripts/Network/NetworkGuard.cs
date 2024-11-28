@@ -44,9 +44,10 @@ public class NetworkGuard : NetworkBehaviour
         {
             if (combatTarget == playerDamageHandler.transform)
             {
-                playerDamageHandler.RpcSetNetworkGuard(this);
+				playerDamageHandler.playerStatus = 1;
 
-                playerDamageHandler.playerStatus = 1;
+				playerDamageHandler.RpcSetNetworkGuard(this);
+
                 return;
             }
 			Debug.LogError("COMBAT TARGET DON'T MATCH! " + combatTarget.name);
