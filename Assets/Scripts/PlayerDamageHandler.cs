@@ -231,9 +231,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private void StartDamageSequence()
 	{
 		OnPlayerCaught?.Invoke();
-		escalatorManager.ClearTargetAll(thirdPersonController);
-		CmdStopGuard();
-		thirdPersonController.SetCapturedState(true);
+		CmdStopGuard(netId);
 		PlayerCinemachineCamera.Priority = 9;
 		Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Walls"));
 		StartTimer();
@@ -242,10 +240,23 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	[Command]
-	private void CmdStopGuard() {
-		stopGuard = true;
-		emeraldAIEventsManager.SetIgnoredTarget(this.transform);
-		Debug.Log("guard stop guard");
+	private void CmdStopGuard(uint netId) {
+		if (NetworkClient.spawned.TryGetValue(netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				ThirdPersonController controller = identity.GetComponent<ThirdPersonController>();
+				if (controller != null)
+				{
+					stopGuard = true;
+					EscalatorManager.Instance.ClearTargetAll(controller);
+					emeraldAIEventsManager.SetIgnoredTarget(controller.transform);
+					controller.SetCapturedState(true);
+
+					Debug.Log("guard stop guard");
+				}
+			}
+		}
 
 	}
 

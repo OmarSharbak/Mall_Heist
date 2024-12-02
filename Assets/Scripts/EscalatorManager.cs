@@ -616,7 +616,10 @@ public class EscalatorManager : NetworkBehaviour
 		{
 			EmeraldAIDetection emeraldAIDetection = e.GetComponent<EmeraldAIDetection>();
 			if (emeraldAIDetection.EmeraldComponent.CurrentTarget == player.playerTransform)
+			{
+				Debug.Log("clear all - guard clear");
 				e.ClearTarget();
+			}
 
 		}
 
