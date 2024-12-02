@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState: NetworkBehaviour
+public class PlayerState : NetworkBehaviour
 {
 	[HideInInspector]
 	[SyncVar]
-	public bool exposed=false; // Whether this player is exposed
+	public bool exposed = false; // Whether this player is exposed
 
 	public Transform playerTransform; // Reference to the player's transform										  
-	public EscalatorManager.GameState currentState { get; set; }= EscalatorManager.GameState.WaitingToStart;// Current game state
+	public EscalatorManager.GameState currentState { get; set; } = EscalatorManager.GameState.WaitingToStart;// Current game state
 
 	public ThirdPersonController thirdPersonController = null;
 
@@ -43,6 +43,7 @@ public class PlayerState: NetworkBehaviour
 				thirdPersonController.canMove = false;
 				thirdPersonController.StopMovement();
 				thirdPersonController.ToggleVisibility();
+				CmdSetGameStateDefeat(netId);
 				//Time.timeScale = 0.0f;
 				break;
 
@@ -81,8 +82,48 @@ public class PlayerState: NetworkBehaviour
 				Debug.LogWarning("Unknown game state set: " + newState);
 				break;
 		}
-	}
 
+	}
+	[Command]
+
+	public void CmdSetGameStateDefeat(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				PlayerState playerState = identity.GetComponent<PlayerState>();
+
+				Debug.LogWarning("Server game state set: defeat ");
+				
+				playerState.thirdPersonController.canMove = false;
+				playerState.thirdPersonController.StopMovement();
+				playerState.thirdPersonController.ToggleVisibility();
+
+
+			}
+		}
+
+	}
+	[Command]
+
+	public void CmdSetGameStateVictory(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				PlayerState playerState = identity.GetComponent<PlayerState>();
+
+				Debug.LogWarning("Server game state set: victory ");
+
+				playerState.thirdPersonController.canMove = false;
+				playerState.thirdPersonController.StopMovement();
+
+			}
+		}
+
+	}
 }
 
 

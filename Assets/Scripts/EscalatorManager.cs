@@ -13,6 +13,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEditor;
 using Mirror;
+using UnityEngine.AI;
 
 public class EscalatorManager : NetworkBehaviour
 {
@@ -209,7 +210,7 @@ public class EscalatorManager : NetworkBehaviour
 
 		if (combatTarget != null)
 		{
-			SetExposed(combatTarget.GetComponent<ThirdPersonController>(),false);
+			SetExposed(combatTarget.GetComponent<ThirdPersonController>(), false);
 		}
 		else
 		{
@@ -254,7 +255,7 @@ public class EscalatorManager : NetworkBehaviour
 	}
 
 	[Command]
-	private void CmdSetExposed(uint netId,bool input)
+	private void CmdSetExposed(uint netId, bool input)
 	{
 		Debug.Log(" SERVER set exposed called ");
 
@@ -262,7 +263,7 @@ public class EscalatorManager : NetworkBehaviour
 		{
 			if (identity != null)
 			{
-				PlayerState player= identity.transform.GetComponent<PlayerState>();
+				PlayerState player = identity.transform.GetComponent<PlayerState>();
 				if (player != null)
 				{
 
@@ -872,10 +873,47 @@ public class EscalatorManager : NetworkBehaviour
 	public void SetCurrentState(ThirdPersonController thirdPersonController, GameState gameState)
 	{
 		if (player1 != null && thirdPersonController == player1.thirdPersonController)
-			player1.currentState = gameState;
+			player1.SetGameState(gameState);
 
 		if (player2 != null && thirdPersonController == player2.thirdPersonController)
-			player2.currentState = gameState;
+			player2.SetGameState(gameState);
+	}
+
+	[ClientCallback]
+	public void StopGuard(NetworkGuard guard)
+	{
+
+		NavMeshAgent agent = guard.transform.GetComponent<NavMeshAgent>();
+
+		if(agent != null)
+		{
+			agent.isStopped = true;
+			Debug.Log(" CLIENT stopped guard");
+			CmdStopGuard(guard.netId);
+
+		}
+
+
+
+	}
+
+
+	[Command(requiresAuthority = false)]
+	public void CmdStopGuard(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				NavMeshAgent guard = identity.transform.GetComponent<NavMeshAgent>();
+				if (guard != null)
+				{
+					guard.isStopped = true;
+					Debug.Log(" SERVER stopped guard");
+
+				}
+			}
+		}
 	}
 	private void OnEnable()
 	{

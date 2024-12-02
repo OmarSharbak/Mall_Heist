@@ -12,6 +12,7 @@ using MK.Toon;
 using Mirror;
 using UnityEngine.InputSystem.XR;
 using System.Security.Principal;
+using UnityEngine.AI;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
@@ -38,10 +39,14 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	// Gameplay states and values
 	private const float DEFAULT_TIME_SCALE = 0.0f;
+	[SyncVar]
+
 	public bool isInvincible = false;
 	[SerializeField] private float InvincibilityTime = 3.0f;
 	private const float WaitToPressXTime = 10.0f;
-	private float currentWaitToPressXTime;	
+	private float currentWaitToPressXTime;
+	[SyncVar]
+
 	private bool isWaitingForX = false;
 
 	private Animator animator;
@@ -63,10 +68,14 @@ public class PlayerDamageHandler : NetworkBehaviour
 	Outliner outliner;
 	[SerializeField] GameObject moneyGameObject;
 
-
+	[SyncVar]
 	bool stopGuard = false;
 
 	public static event Action OnPlayerCaught;
+
+	[SyncVar]
+
+	bool bribed = false;
 
 	private void Initialize()
 	{
@@ -135,18 +144,35 @@ public class PlayerDamageHandler : NetworkBehaviour
 			HandleTimer();
 		}
 
-		if (isServer && emeraldAIEventsManager != null && stopGuard == true)
+		if (emeraldAIEventsManager != null && stopGuard == true)
 		{
 			GuardStop();
 		}
 	}
-	[ServerCallback]
-	private void GuardStop()
+	public void GuardStop()
 	{
-		emeraldAIEventsManager.StopMovement();
-		Debug.Log("guard stop movement");
+		Debug.Log("CLIENT -guard stopMovement");
 
+		emeraldAIEventsManager.StopMovement();
+		CmdStopGuardMovement(emeraldAIEventsManager.transform.GetComponent<NetworkIdentity>().netId);
 	}
+
+	[Command(requiresAuthority = false)]
+	public void CmdStopGuardMovement(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				EmeraldAIEventsManager emerald = identity.transform.GetComponent<EmeraldAIEventsManager>();
+				emerald.StopMovement();
+				Debug.Log("SERVER - guard stopMovement");
+
+			}
+
+		}
+	}
+
 	[ClientCallback]
 	void ResetAnimations()
 	{
@@ -192,14 +218,15 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	[Command]
-	private void CmdPlayerInvisible(uint _netId)
+
+	public void CmdPlayerInvisible(uint _netId)
 	{
 		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
 		{
 			if (identity != null)
 			{
 				identity.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
-
+				Debug.Log("SERVER - Player invisible");
 			}
 		}
 	}
@@ -217,6 +244,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		}
 	}
 
+	[ClientCallback]
 	// Manage end of game state.
 	private void HandleGameOver()
 	{
@@ -229,6 +257,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		outliner.enabled = false;
 
 		EscalatorManager.Instance.SetCurrentState(thirdPersonController, EscalatorManager.GameState.Defeat);
+		CmdDefeat(netId);
 		Debug.Log("CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(thirdPersonController));
 		// Access the EventSystem and set the selected GameObject
 		EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
@@ -240,6 +269,23 @@ public class PlayerDamageHandler : NetworkBehaviour
 		//Time.timeScale = DEFAULT_TIME_SCALE;
 	}
 
+	[Command]
+	private void CmdDefeat(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				ThirdPersonController controller = identity.GetComponent<ThirdPersonController>();
+				if (controller != null)
+				{
+					EscalatorManager.Instance.SetCurrentState(controller, EscalatorManager.GameState.Defeat);
+					Debug.Log("SERVER - CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(controller));
+
+				}
+			}
+		}
+	}
 
 	// Sequence of events after player takes damage.
 
@@ -259,7 +305,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		Debug.Log("Started damage sequence");
 	}
 
-	[Command]
+	[Command(requiresAuthority =false)]
 	private void CmdStopGuard(uint _netId)
 	{
 		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
@@ -274,7 +320,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 					emeraldAIEventsManager.SetIgnoredTarget(controller.transform);
 					controller.SetCapturedState(true);
 
-					Debug.Log("guard stop guard");
+					Debug.Log("SERVER - guard stop guard");
 				}
 			}
 		}
@@ -309,7 +355,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	{
 		thirdPersonController.StopMovement();
 		isInvincible = true;
-		gameObject.tag = "PlayerInvisible";		
+		gameObject.tag = "PlayerInvisible";
 		CmdSetInvincibleState(netId, true);
 		CapturedText.enabled = true;
 		promptUIManager.ShowNorthButtonUI();
@@ -324,7 +370,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 		ResumePlay();
 	}
 
-	bool bribed = false;
 
 	// Resume game after player's input.
 
@@ -385,17 +430,28 @@ public class PlayerDamageHandler : NetworkBehaviour
 		moneyGameObject.SetActive(false);
 		thirdPersonController.EnableMovement();
 		stopGuard = false;
-		CmdResumeGuardMovement();
+		CmdResumeGuardMovement(emeraldAIEventsManager.transform.GetComponent<NetworkIdentity>().netId);
 	}
 
-	[Command]
-	private void CmdResumeGuardMovement()
+	[Command(requiresAuthority =false)]
+	private void CmdResumeGuardMovement(uint _netId)
 	{
-		stopGuard = false;
-		emeraldAIEventsManager.ResumeMovement();
-		emeraldAIEventsManager.ClearIgnoredTarget(this.transform);
-		emeraldAIEventsManager = null;
-		Debug.Log("resume guard movement");
+
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				EmeraldAIEventsManager emerald = identity.transform.GetComponent<EmeraldAIEventsManager>();
+				if (emerald != null)
+				{
+					stopGuard = false;
+					identity.transform.GetComponent<NavMeshAgent>().isStopped = false;
+					emerald.ResumeMovement();
+					emerald.ClearIgnoredTarget(transform);
+					Debug.Log("SERVER - resume guard movement");
+				}
+			}
+		}
 
 	}
 	private void StopXPressCoroutine()
@@ -417,6 +473,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		gameObject.tag = "Player";
 		gameObject.layer = LayerMask.NameToLayer("PlayerVisible");
 		CmdSetInvincibleState(netId, false);
+		Debug.Log("CLIENT - Player Invincible");
+
 	}
 
 	// Toggle player's invincible state.
@@ -427,6 +485,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		{
 			if (identity != null)
 			{
+				Debug.Log("SERVER -Player Invincible");
+
 				isInvincible = state;
 				identity.gameObject.tag = state ? "PlayerInvisible" : "Player";
 				if (state == false)
