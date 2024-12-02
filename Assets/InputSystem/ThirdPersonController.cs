@@ -202,8 +202,8 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			gameObject.tag = INVISIBLE_TAG;
 			outlinable1.FrontParameters.Enabled = true;
-			escalatorManager.ClearTargetAll();
-			escalatorManager.SetExposed(false);
+			escalatorManager.ClearTargetAll(this);
+			escalatorManager.SetExposed(this, false);
 		}
 		else
 		{
@@ -344,7 +344,7 @@ public class ThirdPersonController : NetworkBehaviour
 		Pause();
 
 		// Check if there is no currently selected GameObject
-		if (EventSystem.current.currentSelectedGameObject == null && EscalatorManager.Instance.currentState == EscalatorManager.GameState.Pause)
+		if (EventSystem.current.currentSelectedGameObject == null && EscalatorManager.Instance.GetCurrentState(this) == EscalatorManager.GameState.Pause)
 		{
 			// If nothing is selected, select the resume button GameObject
 			EventSystem.current.SetSelectedGameObject(resumeButtonGameObject);
@@ -372,7 +372,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 		}
 
-		if ((EscalatorManager.Instance.currentState == EscalatorManager.GameState.Stealth || EscalatorManager.Instance.currentState == EscalatorManager.GameState.Chase) && !captured)
+		if ((EscalatorManager.Instance.GetCurrentState(this) == EscalatorManager.GameState.Stealth || EscalatorManager.Instance.GetCurrentState(this) == EscalatorManager.GameState.Chase) && !captured)
 		{
 			if (DialogueManager.Instance == null)
 			{
@@ -785,14 +785,14 @@ public class ThirdPersonController : NetworkBehaviour
 	bool isPaused = false;
 	private void Pause()
 	{
-		if (_input.pause && isPaused == false && escalatorManager.currentState != EscalatorManager.GameState.Defeat && escalatorManager.currentState != EscalatorManager.GameState.Victory)
+		if (_input.pause && isPaused == false && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Defeat && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Victory)
 		{
 			_input.pause = false;
 			outliner.enabled = false;
 			pauseMenuGameObject.SetActive(true);
 
-			lastGameState = EscalatorManager.Instance.currentState;
-			EscalatorManager.Instance.SetGameState(EscalatorManager.GameState.Pause);
+			lastGameState = EscalatorManager.Instance.GetCurrentState(this);
+			EscalatorManager.Instance.SetCurrentState(this,EscalatorManager.GameState.Pause);
 
 			// Access the EventSystem and set the selected GameObject
 			EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
@@ -813,7 +813,7 @@ public class ThirdPersonController : NetworkBehaviour
 		pauseMenuGameObject.SetActive(false);
 		isPaused = false;
 		outliner.enabled = true;
-		EscalatorManager.Instance.SetGameState(lastGameState);
+		EscalatorManager.Instance.SetCurrentState(this,lastGameState);
 		Debug.Log("Last gamestate is: " + lastGameState.ToString());
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;
@@ -1113,7 +1113,7 @@ public class ThirdPersonController : NetworkBehaviour
 		_animator.SetInteger(_animIDWeaponType, 0);
 		isThrowing = false; // To let the player throw again
 		isMelee = false;
-		if (EscalatorManager.Instance.currentState != EscalatorManager.GameState.Defeat && captured == false)
+		if (EscalatorManager.Instance.GetCurrentState(this) != EscalatorManager.GameState.Defeat && captured == false)
 			canMove = true; // Enabling the player to move
 	}
 
@@ -1123,7 +1123,7 @@ public class ThirdPersonController : NetworkBehaviour
 		_animator.SetInteger(_animIDWeaponType, 0);
 		isThrowing = false; // To let the player throw again
 		isMelee = false;
-		if (EscalatorManager.Instance.currentState != EscalatorManager.GameState.Defeat && captured == false)
+		if (EscalatorManager.Instance.GetCurrentState(this) != EscalatorManager.GameState.Defeat && captured == false)
 			canMove = true; // Enabling the player to move
 	}
 

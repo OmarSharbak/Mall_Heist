@@ -122,8 +122,8 @@ public class GrassDecorationStealth : MonoBehaviour
     private void EnterHiding()
     {
         hiding = true;
-        EscalatorManager.Instance.ClearTargetAll();
-        EscalatorManager.Instance.CheckExposed();
+        EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
+        EscalatorManager.Instance.CheckExposed(thirdPersonController);
         Debug.Log("Started Hiding playerTransform: " + thirdPersonController.transform.position);
         canEnterHiding = false; // Prevent immediate re-entering
         playerPositionHolder.enabled = false;

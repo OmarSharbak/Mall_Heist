@@ -201,8 +201,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		lostCanvas.SetActive(true);
 		outliner.enabled = false;
 
-		EscalatorManager.Instance.SetGameState(EscalatorManager.GameState.Defeat);
-		Debug.Log("CURRENT STATE IS: " + EscalatorManager.Instance.currentState);
+		EscalatorManager.Instance.SetCurrentState(thirdPersonController, EscalatorManager.GameState.Defeat);
+		Debug.Log("CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(thirdPersonController));
 		// Access the EventSystem and set the selected GameObject
 		EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
 		EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject); // Set new selection
@@ -221,7 +221,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private void StartDamageSequence()
 	{
 		OnPlayerCaught?.Invoke();
-		escalatorManager.ClearTargetAll();
+		escalatorManager.ClearTargetAll(thirdPersonController);
 		stopGuard = true;
 		emeraldAIEventsManager.SetIgnoredTarget(this.transform);
 		thirdPersonController.SetCapturedState(true);
@@ -372,7 +372,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	{
 		isInvincible = true;
 		gameObject.tag = "PlayerInvisible";
-		EscalatorManager.Instance.ClearTargetAll();
+		EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
 	}
 
 	public void ResetInvincible()

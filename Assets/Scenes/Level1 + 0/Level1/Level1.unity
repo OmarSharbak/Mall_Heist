@@ -66077,7 +66077,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -72945,7 +72945,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1765608914600995801}
-  - {fileID: 5963213284582448246}
   - {fileID: 2154564073623561574}
   - {fileID: 997221215}
   m_Father: {fileID: 0}
@@ -74160,12 +74159,12 @@ Transform:
   m_GameObject: {fileID: 8007759779185023576}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -48.82}
+  m_LocalPosition: {x: 5, y: 0, z: -33.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2047167414}
-  m_Father: {fileID: 4357414156937345580}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6307043142269111177
 MonoBehaviour:
@@ -75388,9 +75387,16 @@ MonoBehaviour:
   - {fileID: 411665039}
   - {fileID: 6891305653290352527}
   guardsToRemove: []
-  exposed: 0
   audioSource1: {fileID: 2067862392}
   audioSource2: {fileID: 2067862394}
+  player1:
+    exposed: 0
+    playerTransform: {fileID: 0}
+    thirdPersonController: {fileID: 0}
+  player2:
+    exposed: 0
+    playerTransform: {fileID: 0}
+    thirdPersonController: {fileID: 0}
   countDownText: {fileID: 1133373394}
   chaseMusic: {fileID: 8300000, guid: 569b0a283b043fb47b094ba990fdf8ff, type: 3}
   stealthMusic: {fileID: 8300000, guid: dee1898612a1527428dfe4ff0cbe64da, type: 3}
@@ -76912,3 +76918,4 @@ SceneRoots:
   - {fileID: 589441547}
   - {fileID: 1848165206}
   - {fileID: 995855011}
+  - {fileID: 5963213284582448246}

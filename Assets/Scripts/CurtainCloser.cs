@@ -34,8 +34,8 @@ public class CurtainCloser : MonoBehaviour
                 {
                     animator.SetBool("isOpen", false);
                     isOpen = false;
-                    EscalatorManager.Instance.ClearTargetAll();
-                    EscalatorManager.Instance.CheckExposed();
+                    EscalatorManager.Instance.ClearTargetAll(other.GetComponent<ThirdPersonController>());
+                    EscalatorManager.Instance.CheckExposed(other.GetComponent<ThirdPersonController>());
                     other.gameObject.tag = "PlayerInvisible";
                 }
             }

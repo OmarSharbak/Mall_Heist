@@ -22,7 +22,7 @@ public class RoomIdentifier : MonoBehaviour
             if (eventsManager != null)
             {
                 if(eventsManager.EmeraldComponent.CurrentTarget != null)
-                EscalatorManager.Instance.AlertOtherGuards(other.GetComponent<EmeraldAIEventsManager>());
+                EscalatorManager.Instance.AlertOtherGuards(eventsManager.EmeraldComponent.CurrentTarget.GetComponent<ThirdPersonController>() ,other.GetComponent<EmeraldAIEventsManager>());
             }
             else
             {

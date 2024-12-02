@@ -49,7 +49,7 @@ public class DialogueManager : MonoBehaviour
 	{
 		if (thirdPersonController!=null &&  dialogueUI.activeInHierarchy &&
 			EventSystem.current.currentSelectedGameObject != continueButton.gameObject &&
-			EscalatorManager.Instance.currentState != EscalatorManager.GameState.Pause)
+			EscalatorManager.Instance.GetCurrentState(thirdPersonController) != EscalatorManager.GameState.Pause)
 		{
 			EventSystem.current.SetSelectedGameObject(continueButton.gameObject);
 		}
@@ -62,8 +62,8 @@ public class DialogueManager : MonoBehaviour
 
 		thirdPersonController.StopPlayer();
 		playerDamageHandler.SetInvincible();
-		EscalatorManager.Instance.SetExposed(false);
-		EscalatorManager.Instance.ClearTargetAll();
+		EscalatorManager.Instance.SetExposed(thirdPersonController,false);
+		EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
 
 		dialogueUI.SetActive(true); // Activate dialogue UI
 
