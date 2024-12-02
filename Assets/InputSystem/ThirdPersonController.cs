@@ -144,9 +144,8 @@ public class ThirdPersonController : NetworkBehaviour
 
 	// Declare a static event
 	public static event Action<ThirdPersonController> OnLocalPlayerStarted;
-    // Declare a static event
-    public static event Action<ThirdPersonController> OnPlayerJoined;
-    private bool IsCurrentDeviceMouse
+
+	private bool IsCurrentDeviceMouse
 	{
 		get
 		{
@@ -266,15 +265,8 @@ public class ThirdPersonController : NetworkBehaviour
 		sceneScript.statusText = $"{playerName} joined.";
 	}
 
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
 
-        Debug.Log($"Player {gameObject.name} has spawned on the server!");
-		OnPlayerJoined?.Invoke(this);
-    }
-
-    public override void OnStartClient()
+	public override void OnStartClient()
 	{
 		base.OnStartClient();
 
@@ -305,7 +297,6 @@ public class ThirdPersonController : NetworkBehaviour
 			_input.enabled = false;
 			_playerInput.enabled = false;
 		}
-
 	}
 	private void Start()
 	{
@@ -338,8 +329,10 @@ public class ThirdPersonController : NetworkBehaviour
 	public Vector3 inputDirection;
 	private void Update()
 	{
-		if (!isLocalPlayer) {
-			return; }
+		if (!isLocalPlayer)
+		{
+			return;
+		}
 
 		Pause();
 
@@ -792,7 +785,7 @@ public class ThirdPersonController : NetworkBehaviour
 			pauseMenuGameObject.SetActive(true);
 
 			lastGameState = EscalatorManager.Instance.GetCurrentState(this);
-			EscalatorManager.Instance.SetCurrentState(this,EscalatorManager.GameState.Pause);
+			EscalatorManager.Instance.SetCurrentState(this, EscalatorManager.GameState.Pause);
 
 			// Access the EventSystem and set the selected GameObject
 			EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
@@ -813,7 +806,7 @@ public class ThirdPersonController : NetworkBehaviour
 		pauseMenuGameObject.SetActive(false);
 		isPaused = false;
 		outliner.enabled = true;
-		EscalatorManager.Instance.SetCurrentState(this,lastGameState);
+		EscalatorManager.Instance.SetCurrentState(this, lastGameState);
 		Debug.Log("Last gamestate is: " + lastGameState.ToString());
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;

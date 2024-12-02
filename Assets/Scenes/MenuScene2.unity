@@ -42706,7 +42706,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1765608914600995801}
-  - {fileID: 5963213284582448246}
   - {fileID: 2154564073623561574}
   - {fileID: 997221215}
   m_Father: {fileID: 0}
@@ -45092,7 +45091,7 @@ Transform:
   m_Children:
   - {fileID: 1718132818}
   - {fileID: 1190396269}
-  m_Father: {fileID: 4357414156937345580}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6003956090882505287
 PrefabInstance:
@@ -47019,9 +47018,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   guardsToRemove: []
-  exposed: 0
   audioSource1: {fileID: 2067862392}
   audioSource2: {fileID: 2067862394}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   countDownText: {fileID: 0}
   chaseMusic: {fileID: 8300000, guid: cf8067db866483846bd7198d4c4b5828, type: 3}
   stealthMusic: {fileID: 8300000, guid: 406d0427ede05dd4f94e909ad684c4a2, type: 3}
@@ -49592,3 +49592,4 @@ SceneRoots:
   - {fileID: 1962022778}
   - {fileID: 1475209688}
   - {fileID: 1286113914}
+  - {fileID: 5963213284582448246}

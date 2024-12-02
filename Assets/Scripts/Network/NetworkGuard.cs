@@ -36,7 +36,7 @@ public class NetworkGuard : NetworkBehaviour
         {
             playersJoined[count]= playerJoined;
             count++;
-			Debug.Log("plyer joined" + " ### " + playerJoined.name);
+			Debug.Log("plyer joined to guard" + " ### " + playerJoined.name);
 
 		}
 	}
@@ -80,13 +80,13 @@ public class NetworkGuard : NetworkBehaviour
 	private void OnEnable()
     {
         // Subscribe to the event
-        ThirdPersonController.OnPlayerJoined += HandlePlayerJoined;
+        GameManager.OnPlayerJoined += HandlePlayerJoined;
     }
 
     private void OnDisable()
     {
         // Unsubscribe from the event to avoid memory leaks
-        ThirdPersonController.OnPlayerJoined -= HandlePlayerJoined;
+        GameManager.OnPlayerJoined -= HandlePlayerJoined;
     }
 }
 

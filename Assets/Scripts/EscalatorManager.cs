@@ -12,97 +12,10 @@ using MoreMountains.Feedbacks;
 using System;
 using Unity.VisualScripting;
 using UnityEditor;
+using Mirror;
 
 public class EscalatorManager : MonoBehaviour
 {
-	[System.Serializable]
-	public class PlayerState
-	{
-		public bool exposed; // Whether this player is exposed
-		public Transform playerTransform; // Reference to the player's transform										  
-		public GameState currentState { get; set; }// Current game state
-
-		public ThirdPersonController thirdPersonController = null;
-
-		public PlayerState(ThirdPersonController _thirdPersonController)
-		{
-			thirdPersonController = _thirdPersonController;
-			playerTransform = _thirdPersonController.transform;
-			exposed = false;
-			currentState = GameState.WaitingToStart;
-		}
-		// Set the current game state and handle related behavior
-		public void SetGameState(GameState newState)
-		{
-			currentState = newState;
-
-			switch (currentState)
-			{
-				case GameState.WaitingToStart:
-					// Handle logic related to normal gameplay here, e.g., resume gameplay
-					Time.timeScale = 1.0f;
-					// ... any other logic
-					break;
-
-				case GameState.Pause:
-					// Handle game pause logic here, e.g., stop gameplay
-					Time.timeScale = 0.0f;
-					// ... any other logic
-					Instance.UpdateMusicState(this);
-					break;
-
-				case GameState.Defeat:
-					// Handle logic related to player's defeat here
-					// ... e.g., display defeat screen, play defeat music, etc.
-					//Cursor.visible = true;
-					//Cursor.lockState = CursorLockMode.None;
-					thirdPersonController.canMove = false;
-					thirdPersonController.StopMovement();
-					thirdPersonController.ToggleVisibility();
-					//Time.timeScale = 0.0f;
-					break;
-
-				case GameState.Victory:
-					// Handle logic related to player's defeat here
-					// ... e.g., display defeat screen, play defeat music, etc.
-					//Cursor.visible = true;
-					//Cursor.lockState = CursorLockMode.None;
-					thirdPersonController.canMove = false;
-					thirdPersonController.StopMovement();
-					Time.timeScale = 0.0f;
-					break;
-
-				case GameState.CountdownToStart:
-					// Handle logic related to player's victory here
-					// ... e.g., display victory screen, play victory music, etc.
-					Time.timeScale = 1.0f;
-					break;
-
-				case GameState.Stealth:
-					// Handle logic related to player's victory here
-					// ... e.g., display victory screen, play victory music, etc.
-					Time.timeScale = 1.0f;
-					Instance.UpdateMusicState(this);
-					break;
-
-				case GameState.Chase:
-					// Handle logic related to player's victory here
-					// ... e.g., display victory screen, play victory music, etc.
-					Time.timeScale = 1.0f;
-					Instance.UpdateMusicState(this);
-
-					break;
-
-				default:
-					Debug.LogWarning("Unknown game state set: " + newState);
-					break;
-			}
-		}
-
-	}
-
-
-
 	public static EscalatorManager Instance { get; private set; }
 
 	// List of doors that can be sealed by the player
@@ -223,7 +136,7 @@ public class EscalatorManager : MonoBehaviour
 	// Called when a guard detects a player, this alerts other guards in the same room
 	public void AlertOtherGuards(ThirdPersonController thirdPersonController, EmeraldAIEventsManager alertedGuard)
 	{
-		if(player1 != null && player1.thirdPersonController==thirdPersonController)
+		if (player1 != null && player1.thirdPersonController == thirdPersonController)
 			AlertOtherGuards(player1, alertedGuard);
 
 		if (player2 != null && player2.thirdPersonController == thirdPersonController)
@@ -309,36 +222,38 @@ public class EscalatorManager : MonoBehaviour
 	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
 	{
 
-		player1 = new PlayerState(localPlayer);
+		player1 = localPlayer.GetComponent<PlayerState>();
 
 		inventory = player1.playerTransform.GetComponent<Inventory>();
 
 
 		Initialize(player1);
+
+		Debug.Log("Player 1 State correct!");
 	}
 
 	private void HandlePlayerJoined(ThirdPersonController playerJoined)
 	{
-		if (player1 != null)
+		if (player1 != playerJoined.transform.GetComponent<PlayerState>())
 		{
-			if (player1.thirdPersonController != playerJoined)
-			{
-				player2 = new PlayerState(playerJoined);
 
-				inventory = player2.playerTransform.GetComponent<Inventory>();
+			player2 = playerJoined.transform.GetComponent<PlayerState>();
+
+			//inventory = player2.playerTransform.GetComponent<Inventory>();
 
 
-				Initialize(player2);
-			}
+			Initialize(player2);
+			Debug.Log("Player 2 State correct!");
+
+
 		}
 		else
 		{
-			Debug.Log("On joined 2: Player 1 State is still null!");
+			Debug.Log("On joined 2: Player 1 equals than player joined!");
 		}
 
 
 	}
-
 
 	private void Initialize(PlayerState player)
 	{
@@ -374,9 +289,9 @@ public class EscalatorManager : MonoBehaviour
 		StartCoroutine(ClearTextAfterDelay(1f));
 		StartTimer();
 
-		if (player1.thirdPersonController != null)
+		if (player1 != null && player1.thirdPersonController != null)
 			player1.thirdPersonController.canMove = true;
-		if (player2.thirdPersonController != null)
+		if (player2 != null && player2.thirdPersonController != null)
 			player2.thirdPersonController.canMove = true;
 
 		if (player1 != null)
@@ -871,13 +786,16 @@ public class EscalatorManager : MonoBehaviour
 	{
 		// Subscribe to the event
 		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
-		ThirdPersonController.OnPlayerJoined += HandlePlayerJoined;
+		GameManager.OnPlayerJoined += HandlePlayerJoined;
+		GameManager.OnPlayerExisting+= HandlePlayerJoined;
 	}
 
 	private void OnDisable()
 	{
 		// Unsubscribe from the event to avoid memory leaks
 		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-		ThirdPersonController.OnPlayerJoined -= HandlePlayerJoined;
+		GameManager.OnPlayerJoined -= HandlePlayerJoined;
+		GameManager.OnPlayerExisting -= HandlePlayerJoined;
+
 	}
 }

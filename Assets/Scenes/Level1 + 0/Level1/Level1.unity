@@ -75389,14 +75389,8 @@ MonoBehaviour:
   guardsToRemove: []
   audioSource1: {fileID: 2067862392}
   audioSource2: {fileID: 2067862394}
-  player1:
-    exposed: 0
-    playerTransform: {fileID: 0}
-    thirdPersonController: {fileID: 0}
-  player2:
-    exposed: 0
-    playerTransform: {fileID: 0}
-    thirdPersonController: {fileID: 0}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
   countDownText: {fileID: 1133373394}
   chaseMusic: {fileID: 8300000, guid: 569b0a283b043fb47b094ba990fdf8ff, type: 3}
   stealthMusic: {fileID: 8300000, guid: dee1898612a1527428dfe4ff0cbe64da, type: 3}

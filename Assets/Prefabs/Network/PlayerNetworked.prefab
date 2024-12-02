@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 4941393556369177707}
   - component: {fileID: 7494061015521378841}
   - component: {fileID: -1027611469794032877}
+  - component: {fileID: 7670993539292933659}
   m_Layer: 10
   m_Name: PlayerNetworked
   m_TagString: Player
@@ -1043,7 +1044,6 @@ MonoBehaviour:
   defeatClip: {fileID: 8300000, guid: 147351a3329993d4ebc729f83260e4a7, type: 3}
   isInvincible: 0
   InvincibilityTime: 5
-  playerStatus: 0
   moneyGameObject: {fileID: 8506112470358834129}
 --- !u!82 &8364247024231753398
 AudioSource:
@@ -1403,6 +1403,24 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   isReady: 0
+--- !u!114 &7670993539292933659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2173169219286557168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af4b0696d0d07944ae4b72bc66b7352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  exposed: 0
+  playerTransform: {fileID: 6163629171227806718}
+  thirdPersonController: {fileID: 5476788834179813785}
 --- !u!1 &2178468455213488965
 GameObject:
   m_ObjectHideFlags: 0
