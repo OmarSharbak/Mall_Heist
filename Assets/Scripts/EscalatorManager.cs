@@ -14,7 +14,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using Mirror;
 
-public class EscalatorManager : MonoBehaviour
+public class EscalatorManager : NetworkBehaviour
 {
 	public static EscalatorManager Instance { get; private set; }
 

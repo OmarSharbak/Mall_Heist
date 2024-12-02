@@ -36,10 +36,12 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	// Gameplay states and values
 	private const float DEFAULT_TIME_SCALE = 0.0f;
+	[SyncVar]
 	public bool isInvincible = false;
 	[SerializeField] private float InvincibilityTime = 3.0f;
 	private const float WaitToPressXTime = 10.0f;
 	private float currentWaitToPressXTime;
+	[SyncVar]
 	private bool isWaitingForX = false;
 
 	private Animator animator;
@@ -114,7 +116,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 			Debug.LogWarning("No AudioSource component found on this GameObject.");
 		}
 	}
-	[ClientCallback]
 	private void Update()
 	{
 		if (!isLocalPlayer)
@@ -124,10 +125,17 @@ public class PlayerDamageHandler : NetworkBehaviour
 			HandleTimer();
 		}
 
-		if (emeraldAIEventsManager != null && stopGuard == true)
+		if (isServer && emeraldAIEventsManager != null && stopGuard == true)
 		{
-			emeraldAIEventsManager.StopMovement();
+			GuardStop();
 		}
+	}
+	[ServerCallback]
+	private void GuardStop()
+	{
+		emeraldAIEventsManager.StopMovement();
+		Debug.Log("guard stop movement");
+
 	}
 	[ClientCallback]
 	void ResetAnimations()
@@ -213,17 +221,18 @@ public class PlayerDamageHandler : NetworkBehaviour
 		//Time.timeScale = DEFAULT_TIME_SCALE;
 	}
 
+	[SyncVar]
 	bool stopGuard = false;
 
 	public static event Action OnPlayerCaught;
 	// Sequence of events after player takes damage.
 
+	[ClientCallback]
 	private void StartDamageSequence()
 	{
 		OnPlayerCaught?.Invoke();
 		escalatorManager.ClearTargetAll(thirdPersonController);
-		stopGuard = true;
-		emeraldAIEventsManager.SetIgnoredTarget(this.transform);
+		CmdStopGuard();
 		thirdPersonController.SetCapturedState(true);
 		PlayerCinemachineCamera.Priority = 9;
 		Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Walls"));
@@ -232,8 +241,16 @@ public class PlayerDamageHandler : NetworkBehaviour
 		Debug.Log("Started damage sequence");
 	}
 
+	[Command]
+	private void CmdStopGuard() {
+		stopGuard = true;
+		emeraldAIEventsManager.SetIgnoredTarget(this.transform);
+		Debug.Log("guard stop guard");
+
+	}
+
 	// Start the countdown timer.
-	
+
 	private void StartTimer()
 	{
 		currentWaitToPressXTime = WaitToPressXTime;
@@ -242,7 +259,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	// Handle countdown for player's action.
-	
 	private void HandleTimer()
 	{
 		currentWaitToPressXTime -= Time.deltaTime;
@@ -331,9 +347,17 @@ public class PlayerDamageHandler : NetworkBehaviour
 		moneyGameObject.SetActive(false);
 		thirdPersonController.EnableMovement();
 		stopGuard = false;
+		CmdResumeGuardMovement();
+	}
+
+	[Command]
+	private void CmdResumeGuardMovement()
+	{
 		emeraldAIEventsManager.ResumeMovement();
 		emeraldAIEventsManager.ClearIgnoredTarget(this.transform);
 		emeraldAIEventsManager = null;
+		Debug.Log("resume guard movement");
+
 	}
 	private void StopXPressCoroutine()
 	{
