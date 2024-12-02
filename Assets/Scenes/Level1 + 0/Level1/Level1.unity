@@ -11598,6 +11598,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
@@ -11611,11 +11615,15 @@ PrefabInstance:
       objectReference: {fileID: 1711760579}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckExposed
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -11643,7 +11651,7 @@ PrefabInstance:
       objectReference: {fileID: 1006419100}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetExposed
+      value: SetExposedFalse
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
@@ -11658,6 +11666,10 @@ PrefabInstance:
       value: Level1Achievement3, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 411665039}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EscalatorManager, Assembly-CSharp
       objectReference: {fileID: 0}
@@ -11668,7 +11680,7 @@ PrefabInstance:
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 411665039}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
@@ -11678,12 +11690,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: EmeraldAI.EmeraldAIEventsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: EmeraldAI.EmeraldAIEventsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 465655446065087551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -74994,7 +75010,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
@@ -75010,6 +75034,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1711760579}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -75020,7 +75048,7 @@ PrefabInstance:
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7141619735437732399}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -75038,6 +75066,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1006419100}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetExposedFalse
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -75050,9 +75082,21 @@ PrefabInstance:
       value: Level1Achievement3, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6891305653290352527}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EscalatorManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: Level1Achievement1, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 6891305653290352527}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
@@ -75062,8 +75106,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: EmeraldAI.EmeraldAIEventsManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
+      propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: EmeraldAI.EmeraldAIEventsManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4491937752618161594, guid: 7940aeb0b1f95a34dbe32463756ecd5d, type: 3}
       propertyPath: OnDetectTargetEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

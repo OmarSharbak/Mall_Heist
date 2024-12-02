@@ -78,6 +78,24 @@ public class EscalatorManager : NetworkBehaviour
 	}
 
 
+	public void CheckExposed(EmeraldAIEventsManager alertedGuard)
+	{
+
+		EmeraldAISystem emeraldAISystem = alertedGuard.transform.GetComponent<EmeraldAISystem>();
+
+		Transform combatTarget = emeraldAISystem.PlayerDamageComponent.transform;
+
+		if (combatTarget != null)
+		{
+			CheckExposed(combatTarget.GetComponent<ThirdPersonController>());
+		}
+		else
+		{
+			Debug.Log("Warn! check exposed target null");
+
+		}
+	}
+
 	public void CheckExposed(ThirdPersonController thirdPersonController)
 	{
 		if (player1 != null && player1.thirdPersonController == thirdPersonController)
@@ -132,6 +150,21 @@ public class EscalatorManager : NetworkBehaviour
 		}
 	}
 
+	public void AlertOtherGuards(EmeraldAIEventsManager alertedGuard)
+	{
+		EmeraldAISystem emeraldAISystem = alertedGuard.transform.GetComponent<EmeraldAISystem>();
+
+		Transform combatTarget = emeraldAISystem.PlayerDamageComponent.transform;
+
+		if (combatTarget != null)
+		{
+			AlertOtherGuards(combatTarget.GetComponent<ThirdPersonController>(), alertedGuard);
+		}
+		else
+		{
+			Debug.Log("Warn! alert other guards target null");
+		}
+	}
 
 	// Called when a guard detects a player, this alerts other guards in the same room
 	public void AlertOtherGuards(ThirdPersonController thirdPersonController, EmeraldAIEventsManager alertedGuard)
@@ -168,6 +201,22 @@ public class EscalatorManager : NetworkBehaviour
 		}
 	}
 
+	public void SetExposedFalse(EmeraldAIEventsManager alertedGuard)
+	{
+		EmeraldAISystem emeraldAISystem = alertedGuard.transform.GetComponent<EmeraldAISystem>();
+
+		Transform combatTarget = emeraldAISystem.PlayerDamageComponent.transform;
+
+		if (combatTarget != null)
+		{
+			SetExposed(combatTarget.GetComponent<ThirdPersonController>(),false);
+		}
+		else
+		{
+			Debug.Log("Warn! check exposed target null");
+
+		}
+	}
 	public void SetExposed(ThirdPersonController thirdPersonController, bool input)
 	{
 		if (player1 != null && thirdPersonController == player1.thirdPersonController)
@@ -177,27 +226,70 @@ public class EscalatorManager : NetworkBehaviour
 			SetExposed(player2, input);
 	}
 
+	[ClientCallback]
 	// Setter function for the exposed state
 	public void SetExposed(PlayerState player, bool input)
 	{
-		player.exposed = input;
-		if (input)
+		//player.exposed = input;
+		//if (input)
+		//{
+		//	player.SetGameState(GameState.Chase);
+		//	UpdateMusicState(player);
+		//}
+		//else //NO OTHER GUARDS CHASING
+		//{
+		//	Debug.Log("SET NOT EXPOSED");
+		//	ClearTargetAll(player);
+		//	UpdateEscalatorOutLine(player);
+
+		//	Debug.Log(player.currentState);
+
+		//	if (player.currentState != GameState.Defeat)
+		//		player.SetGameState(GameState.Stealth);
+
+		//	UpdateMusicState(player);
+		//}
+		CmdSetExposed(player.thirdPersonController.netId, input);
+
+	}
+
+	[Command]
+	private void CmdSetExposed(uint netId,bool input)
+	{
+		Debug.Log(" SERVER set exposed called ");
+
+		if (NetworkClient.spawned.TryGetValue(netId, out NetworkIdentity identity))
 		{
-			player.SetGameState(GameState.Chase);
-			UpdateMusicState(player);
-		}
-		else //NO OTHER GUARDS CHASING
-		{
-			Debug.Log("SET NOT EXPOSED");
-			ClearTargetAll(player);
-			UpdateEscalatorOutLine(player);
+			if (identity != null)
+			{
+				PlayerState player= identity.transform.GetComponent<PlayerState>();
+				if (player != null)
+				{
 
-			Debug.Log(player.currentState);
+					player.exposed = input;
+					if (input)
+					{
+						player.SetGameState(GameState.Chase);
+						UpdateMusicState(player);
+						Debug.Log("SET EXPOSED - SERVER");
 
-			if (player.currentState != GameState.Defeat)
-				player.SetGameState(GameState.Stealth);
+					}
+					else //NO OTHER GUARDS CHASING
+					{
+						Debug.Log("SET NOT EXPOSED - SERVER");
+						ClearTargetAll(player);
+						UpdateEscalatorOutLine(player);
 
-			UpdateMusicState(player);
+						Debug.Log(player.currentState);
+
+						if (player.currentState != GameState.Defeat)
+							player.SetGameState(GameState.Stealth);
+
+						UpdateMusicState(player);
+					}
+
+				}
+			}
 		}
 	}
 
@@ -617,7 +709,7 @@ public class EscalatorManager : NetworkBehaviour
 			EmeraldAIDetection emeraldAIDetection = e.GetComponent<EmeraldAIDetection>();
 			if (emeraldAIDetection.EmeraldComponent.CurrentTarget == player.playerTransform)
 			{
-				Debug.Log("clear all - guard clear");
+				Debug.Log("clear all - guard clear" + player.transform.name);
 				e.ClearTarget();
 			}
 
@@ -790,7 +882,7 @@ public class EscalatorManager : NetworkBehaviour
 		// Subscribe to the event
 		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
 		GameManager.OnPlayerJoined += HandlePlayerJoined;
-		GameManager.OnPlayerExisting+= HandlePlayerJoined;
+		GameManager.OnPlayerExisting += HandlePlayerJoined;
 	}
 
 	private void OnDisable()

@@ -10,11 +10,13 @@ using MoreMountains.Feedbacks;
 using System;
 using MK.Toon;
 using Mirror;
+using UnityEngine.InputSystem.XR;
+using System.Security.Principal;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
 	[SerializeField] private int Lives = 1; // Player starts with 1 life
-	
+
 
 	// UI References
 	private GameObject regularCanvas;
@@ -36,12 +38,10 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	// Gameplay states and values
 	private const float DEFAULT_TIME_SCALE = 0.0f;
-	[SyncVar]
 	public bool isInvincible = false;
 	[SerializeField] private float InvincibilityTime = 3.0f;
 	private const float WaitToPressXTime = 10.0f;
-	private float currentWaitToPressXTime;
-	[SyncVar]
+	private float currentWaitToPressXTime;	
 	private bool isWaitingForX = false;
 
 	private Animator animator;
@@ -56,7 +56,17 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	InputPromptUIManager promptUIManager;
 
-	EmeraldAIEventsManager emeraldAIEventsManager=null;
+	EmeraldAIEventsManager emeraldAIEventsManager = null;
+
+
+	GameObject loseRestartButtonGameObject;
+	Outliner outliner;
+	[SerializeField] GameObject moneyGameObject;
+
+
+	bool stopGuard = false;
+
+	public static event Action OnPlayerCaught;
 
 	private void Initialize()
 	{
@@ -148,7 +158,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	[ClientRpc]
 	public void RpcSetNetworkGuard(NetworkIdentity networkIdentity)
 	{
-		var networkGuard= networkIdentity.GetComponent<NetworkGuard>();
+		var networkGuard = networkIdentity.GetComponent<NetworkGuard>();
 		emeraldAIEventsManager = networkGuard.GetComponent<EmeraldAIEventsManager>();
 
 		if (isInvincible || !isLocalPlayer) return;
@@ -165,8 +175,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		Debug.Log("PLayer Damaged");
 		PlayTakeDownSound();
 
-		this.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
-
+		gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
+		CmdPlayerInvisible(netId);
 
 		if (mmFeedbacksCaptured != null)
 			mmFeedbacksCaptured.PlayFeedbacks();
@@ -178,6 +188,19 @@ public class PlayerDamageHandler : NetworkBehaviour
 		else
 		{
 			HandleGameOver();
+		}
+	}
+
+	[Command]
+	private void CmdPlayerInvisible(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				identity.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
+
+			}
 		}
 	}
 
@@ -193,10 +216,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 			Debug.LogWarning("Missing AudioSource or TakeDown clip.");
 		}
 	}
-
-	GameObject loseRestartButtonGameObject;
-	Outliner outliner;
-	[SerializeField] GameObject moneyGameObject;
 
 	// Manage end of game state.
 	private void HandleGameOver()
@@ -221,16 +240,17 @@ public class PlayerDamageHandler : NetworkBehaviour
 		//Time.timeScale = DEFAULT_TIME_SCALE;
 	}
 
-	[SyncVar]
-	bool stopGuard = false;
 
-	public static event Action OnPlayerCaught;
 	// Sequence of events after player takes damage.
 
 	[ClientCallback]
 	private void StartDamageSequence()
 	{
 		OnPlayerCaught?.Invoke();
+		stopGuard = true;
+		thirdPersonController.SetCapturedState(true);
+		EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
+		emeraldAIEventsManager.SetIgnoredTarget(thirdPersonController.transform);
 		CmdStopGuard(netId);
 		PlayerCinemachineCamera.Priority = 9;
 		Camera.main.cullingMask &= ~(1 << LayerMask.NameToLayer("Walls"));
@@ -240,8 +260,9 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	[Command]
-	private void CmdStopGuard(uint netId) {
-		if (NetworkClient.spawned.TryGetValue(netId, out NetworkIdentity identity))
+	private void CmdStopGuard(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
 		{
 			if (identity != null)
 			{
@@ -283,13 +304,14 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	// Wait for player's input while immobile.
-	
+
 	private IEnumerator WaitForXPress()
 	{
 		thirdPersonController.StopMovement();
-		SetInvincibleState(true);
+		isInvincible = true;
+		gameObject.tag = "PlayerInvisible";		
+		CmdSetInvincibleState(netId, true);
 		CapturedText.enabled = true;
-		gameObject.tag = "PlayerInvisible";
 		promptUIManager.ShowNorthButtonUI();
 
 		float elapsedTime = 0f;
@@ -308,7 +330,12 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	public void ResumePlay()
 	{
-		if (!isInvincible || emeraldAIEventsManager == null || bribed) return;
+		if (!isInvincible || emeraldAIEventsManager == null || bribed)
+		{
+			Debug.Log("Warn! n resume play not working " + isInvincible);
+			return;
+
+		}
 
 		bribed = true;
 		// Rotate player to face the guard
@@ -331,7 +358,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	public void PlayBribeFeedback()
 	{
-		if (mmFeedbacksBribe != null && emeraldAIEventsManager!=null)
+		if (mmFeedbacksBribe != null && emeraldAIEventsManager != null)
 			mmFeedbacksBribe.PlayFeedbacks();
 	}
 	private IEnumerator ResumePlayAfterDelay()
@@ -352,7 +379,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	[ClientCallback]
 	public void DisableMoneyGameObject()
 	{
-		if (thirdPersonController == null || emeraldAIEventsManager==null)
+		if (thirdPersonController == null || emeraldAIEventsManager == null)
 			return;
 		//Play sfx (moneywithdrawin)
 		moneyGameObject.SetActive(false);
@@ -364,6 +391,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	[Command]
 	private void CmdResumeGuardMovement()
 	{
+		stopGuard = false;
 		emeraldAIEventsManager.ResumeMovement();
 		emeraldAIEventsManager.ClearIgnoredTarget(this.transform);
 		emeraldAIEventsManager = null;
@@ -385,16 +413,27 @@ public class PlayerDamageHandler : NetworkBehaviour
 		//animator.SetTrigger("Damage");
 		playerFlash.TriggerFlash();
 		yield return new WaitForSeconds(InvincibilityTime);
-		SetInvincibleState(false);
+		isInvincible = false;
+		gameObject.tag = "Player";
+		gameObject.layer = LayerMask.NameToLayer("PlayerVisible");
+		CmdSetInvincibleState(netId, false);
 	}
 
 	// Toggle player's invincible state.
-	private void SetInvincibleState(bool state)
+	[Command]
+	private void CmdSetInvincibleState(uint _netId, bool state)
 	{
-		isInvincible = state;
-		gameObject.tag = state ? "PlayerInvisible" : "Player";
-		if (state == false)
-			this.gameObject.layer = LayerMask.NameToLayer("PlayerVisible");
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				isInvincible = state;
+				identity.gameObject.tag = state ? "PlayerInvisible" : "Player";
+				if (state == false)
+					identity.gameObject.layer = LayerMask.NameToLayer("PlayerVisible");
+			}
+		}
+
 	}
 
 	// Update the player's remaining lives on UI.
@@ -416,7 +455,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		gameObject.tag = "Player";
 	}
 
-	
+
 
 	public void AddMoney(int amount)
 	{

@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerState: NetworkBehaviour
 {
 	[HideInInspector]
+	[SyncVar]
 	public bool exposed=false; // Whether this player is exposed
 
 	public Transform playerTransform; // Reference to the player's transform										  

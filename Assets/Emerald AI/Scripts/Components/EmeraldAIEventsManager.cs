@@ -836,6 +836,12 @@ namespace EmeraldAI
             if (!EmeraldAISystem.IgnoredTargetsList.Contains(TargetTransform))
             {
                 EmeraldAISystem.IgnoredTargetsList.Add(TargetTransform);
+				Debug.Log("emerald ai ignored the target");
+
+			}
+			else
+            {
+                Debug.Log("Warn! emerald ai doesn't contains the ignored target");
             }
         }
 
