@@ -63,7 +63,7 @@ public class UIButtonEventsSelector : MonoBehaviour
 
         if(inputSchemeChecker != null)
         {
-            Debug.Log(inputSchemeChecker.currentScheme);
+            //Debug.Log(inputSchemeChecker.currentScheme);
             if (inputSchemeChecker.currentScheme == "Keyboard&Mouse")
             {
                 Cursor.visible = true;

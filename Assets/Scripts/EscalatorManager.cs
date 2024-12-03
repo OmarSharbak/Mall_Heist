@@ -44,6 +44,7 @@ public class EscalatorManager : NetworkBehaviour
 	public List<TMP_Text> countObjectives;
 
 	int totalMoney;
+	[SyncVar]
 	public int moneyCollected = 0;
 
 	// Player's inventory system

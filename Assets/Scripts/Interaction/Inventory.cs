@@ -2,8 +2,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
+using Mirror;
+using System.Linq;
+using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
+using static UnityEditor.Progress;
 
-public class Inventory : MonoBehaviour
+public class Inventory : NetworkBehaviour
 {
     [Header("Audio")]
     private AudioManager audioManager;
@@ -26,13 +30,13 @@ public class Inventory : MonoBehaviour
     private string lastItemText = "";
 
     private Objectives objectives;
-	private void Start()
+    private void Start()
     {
         audioManager = FindObjectOfType<AudioManager>();
-		currentItemText = GameObject.Find("CurrentItem").GetComponent<TMP_Text>();
-		objectives = GameObject.Find("Objectives").GetComponent<Objectives>();
-		// Initialize the dictionary
-		for (int i = 0; i < objectives.objectiveItemNames.Count; i++)
+        currentItemText = GameObject.Find("CurrentItem").GetComponent<TMP_Text>();
+        objectives = GameObject.Find("Objectives").GetComponent<Objectives>();
+        // Initialize the dictionary
+        for (int i = 0; i < objectives.objectiveItemNames.Count; i++)
         {
             if (i < objectives.objectiveItemTexts.Count)
             {
@@ -90,6 +94,14 @@ public class Inventory : MonoBehaviour
 
         currentItemIndex = items.Count - 1;
         UpdateHeldItem();
+        CmdAddServerItem(item.itemName, 1);
+
+    }
+
+    [Command]
+    private void CmdAddServerItem(string itemName, int quantity)
+    {
+        GameManager.Instance.AddItem(itemName, quantity);
     }
 
     /// <summary>
@@ -168,7 +180,7 @@ public class Inventory : MonoBehaviour
             {
                 itemCounts.Remove(itemName);
                 RemoveItemFromList(itemComponent);
-                
+
             }
         }
         else
@@ -186,6 +198,7 @@ public class Inventory : MonoBehaviour
                 items.RemoveAt(i);
                 currentItemIndex = Mathf.Max(currentItemIndex - 1, 0);
                 UpdateHeldItem(false);
+                CmdRemoveServerItem(itemComponent.itemName, 1);
                 break;
             }
         }
@@ -200,11 +213,19 @@ public class Inventory : MonoBehaviour
                 items.RemoveAt(i);
                 currentItemIndex = Mathf.Max(currentItemIndex - 1, 0);
                 UpdateHeldItem(true);
+                CmdRemoveServerItem(itemName, 1);
                 break;
             }
         }
     }
 
+
+
+    [Command]
+    private void CmdRemoveServerItem(string itemName, int quantity)
+    {
+        GameManager.Instance.RemoveItem(itemName, quantity);
+    }
     /// <summary>
     /// Checks if the held item can be thrown.
     /// </summary>
@@ -233,27 +254,57 @@ public class Inventory : MonoBehaviour
     /// Determines if the inventory contains a specific objective item.
     /// </summary>
 
-    public bool HasObjectiveItem(string objectiveItem)
+    [Command]
+    public void CmdCheckServerHasObjectiveItem(string objectiveItem)
     {
-        return itemCounts.ContainsKey(objectiveItem) && itemCounts[objectiveItem] > 0;
+        // Check if the item exists and has a count greater than 0
+        bool hasItem = GameManager.Instance.inventory.Any(item => item.itemName == objectiveItem && item.quantity > 0);
+
+        if (hasItem)
+        
+        {
+            RpcObjectiveCompleted(objectiveItem);
+
+
+        }
+
     }
 
     public void UpdateObjectiveItemsUI()
     {
-        foreach (var item in objectiveItemsTextMap)
+        var matchingItems = GetMatchingServerItems();
+
+        foreach (var item in matchingItems)
         {
             string itemName = item.Key;
-            TMP_Text itemText = item.Value;
 
-            if (HasObjectiveItem(itemName))
-            {
-                itemText.text = "1/1";
-                RemoveItemFromList(itemName);
-                //UpdateHeldItem(false);
-            }
+            CmdCheckServerHasObjectiveItem(itemName);
+
 
         }
     }
+
+
+    [ClientRpc]
+    private void RpcObjectiveCompleted(string objectiveItem) {
+
+        var matchingItems = GetMatchingServerItems();
+
+        foreach (var item in matchingItems)
+        {
+            if (item.Key == objectiveItem)
+            {
+
+                TMP_Text itemText = item.Value;
+                itemText.text = "1/1";
+
+                break;
+            }
+        }
+        RemoveItemFromList(objectiveItem);
+
+    }
+
 
     public int CountTotalItems()
     {
@@ -265,4 +316,13 @@ public class Inventory : MonoBehaviour
         return total;
     }
 
+    public Dictionary<string, TMP_Text> GetMatchingServerItems()
+    {
+        // Get all matching items where the map key matches an inventory item name
+        var matchingItems = objectiveItemsTextMap
+            .Where(pair => GameManager.Instance.inventory.Any(item => item.itemName == pair.Key))
+            .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+        return matchingItems;
+    }
 }

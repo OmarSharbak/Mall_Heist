@@ -13,6 +13,7 @@ using Mirror;
 using UnityEngine.InputSystem.XR;
 using System.Security.Principal;
 using UnityEngine.AI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
@@ -391,7 +392,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		StopXPressCoroutine();
 
-		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney() - 10);
+		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney(), - 10);
 		PopupTextManager.Instance.ShowPopupText("-10");
 		moneyGameObject.SetActive(true);
 		animator.SetTrigger("GiveMoney");
@@ -519,24 +520,35 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	public void AddMoney(int amount)
 	{
-		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney() + amount);
+		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney(), amount);
 	}
 
 
-	public void TryUpdateMoney(int value)
+	public void TryUpdateMoney(int value,int amount)
 	{
 		if (isLocalPlayer)
 		{
-			CmdRequestMoneyUpdate(value); // Send request to server
+			CmdRequestMoneyUpdate(value,amount); // Send request to server
 		}
 	}
 
 	[Command]
-	private void CmdRequestMoneyUpdate(int value)
+	private void CmdRequestMoneyUpdate(int value,int amount)
 	{
 		// Ensure server validates or updates the shared variable
-		GameManager.Instance.UpdateGlobalMoney(value);
-	}
+		GameManager.Instance.UpdateGlobalMoney(value + amount);
 
+		RpcUpdateClientMoney(amount);
+    }
+
+	[ClientRpc]
+    private void RpcUpdateClientMoney(int amount)
+	{
+		if (amount > 0)
+		{
+			EscalatorManager.Instance.moneyCollected += amount;
+			PopupTextManager.Instance.ShowPopupText("+ " + amount);
+		}
+    }
 
 }

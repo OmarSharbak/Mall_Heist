@@ -61,8 +61,6 @@ public class Register : MonoBehaviour
                     mmFeedbacksSteal.PlayFeedbacks();
 
                 playerDamageHandler.AddMoney(moneyAmount);
-                EscalatorManager.Instance.moneyCollected += moneyAmount;
-                PopupTextManager.Instance.ShowPopupText("+ " + moneyAmount);
                 outlinable.enabled = false;
             }
         }
