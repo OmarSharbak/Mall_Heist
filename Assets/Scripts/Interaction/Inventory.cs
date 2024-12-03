@@ -301,10 +301,15 @@ public class Inventory : NetworkBehaviour
                 break;
             }
         }
-        RemoveItemFromList(objectiveItem);
+        StartCoroutine(DelayedRemoveItemFromList(objectiveItem));
+        
 
     }
-
+    System.Collections.IEnumerator DelayedRemoveItemFromList(string objectiveItem)
+    {
+        yield return new WaitForSeconds(1);
+        RemoveItemFromList(objectiveItem);
+    }
 
     public int CountTotalItems()
     {
