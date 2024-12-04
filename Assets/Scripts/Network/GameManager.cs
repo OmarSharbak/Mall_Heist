@@ -195,7 +195,9 @@ public class GameManager : NetworkBehaviour
         ServerItem existingItem = inventory.Find(item => item.itemName == itemName);
         if (existingItem != null)
         {
+
             existingItem.quantity += quantity;
+            Debug.Log("SERVER - Add Item increased quantity");
         }
         else
         {

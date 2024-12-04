@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 9136778394097596297}
   - component: {fileID: 2214624574370078166}
   - component: {fileID: 5251943304523657803}
+  - component: {fileID: 4682758950992249882}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -276,6 +277,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b93d9572eeb4a46a104a1d79dc4ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   sealProgressBar: {fileID: 7754304597293725740}
   fillImage: {fileID: 6209252371273657992}
   gradient:
@@ -352,6 +356,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.996517, y: 3.7519445, z: 0.15337943}
   m_Center: {x: -0.99825466, y: 1.8759723, z: 0.07668971}
+--- !u!114 &4682758950992249882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019663330106745794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 1071698164
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1 &5501936099717920258
 GameObject:
   m_ObjectHideFlags: 0

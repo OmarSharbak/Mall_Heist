@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: -1303097708548754683}
   - component: {fileID: 5997104070246488144}
   - component: {fileID: 8361547764548358437}
+  - component: {fileID: -8965560757291298685}
   m_Layer: 7
   m_Name: Fries
   m_TagString: ThrownItem
@@ -317,3 +318,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.27655792, y: 0.47183144, z: 0.118775845}
   m_Center: {x: 0, y: 0.23591572, z: 0}
+--- !u!114 &-8965560757291298685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114305269140579959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 3562976390
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0

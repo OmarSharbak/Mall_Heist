@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5997104070246488144}
   - component: {fileID: 5381182727000480074}
   - component: {fileID: 2607433173049597479}
+  - component: {fileID: -1578323418185193083}
   m_Layer: 7
   m_Name: Guitar
   m_TagString: ThrownItem
@@ -267,3 +268,20 @@ MonoBehaviour:
   stunningFXPrefab: {fileID: 109542, guid: 0160f8b4f49abf747928dd4b73ef21e1, type: 3}
   isMelee: 1
   canDamage: 0
+--- !u!114 &-1578323418185193083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4114305269140579959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  _assetId: 26198889
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
