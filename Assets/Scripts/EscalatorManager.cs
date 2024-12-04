@@ -83,11 +83,11 @@ public class EscalatorManager : NetworkBehaviour
 	public void CheckExposed(EmeraldAIEventsManager alertedGuard)
 	{
 
-		EmeraldAISystem emeraldAISystem = alertedGuard.transform.GetComponent<EmeraldAISystem>();
+		EmeraldAIDetection emeraldAIDetection = alertedGuard.GetComponent<EmeraldAIDetection>();
 
-		Transform combatTarget = emeraldAISystem.PlayerDamageComponent.transform;
+		Transform combatTarget = emeraldAIDetection.EmeraldComponent.CurrentTarget;
 
-		if (combatTarget != null)
+		if ( combatTarget != null)
 		{
 			CheckExposed(combatTarget.GetComponent<ThirdPersonController>());
 		}
