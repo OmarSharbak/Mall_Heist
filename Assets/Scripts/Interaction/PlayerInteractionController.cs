@@ -8,42 +8,38 @@ using MoreMountains.Feedbacks;
 public class PlayerInteractionController : MonoBehaviour
 {
 
-    // Reference to the player's inventory.
-    Inventory inventory;
+	// Reference to the player's inventory.
+	Inventory inventory;
 
-    MMFeedbacks mmFeedbacksPickup;
+	MMFeedbacks mmFeedbacksPickup;
 
-    // Called once at the beginning of the runtime.
-    private void Start()
-    {
-        // Get the Inventory component attached to the same GameObject as this script.
-        inventory = GetComponent<Inventory>();
+	// Called once at the beginning of the runtime.
+	private void Start()
+	{
+		// Get the Inventory component attached to the same GameObject as this script.
+		inventory = GetComponent<Inventory>();
 
-        mmFeedbacksPickup = GameObject.Find("MMFeedbacks(pickup)").GetComponent<MMFeedbacks>();
-    }
+		mmFeedbacksPickup = GameObject.Find("MMFeedbacks(pickup)").GetComponent<MMFeedbacks>();
+	}
 
-    // Public method to allow the player to interact with objects that can be added to the inventory.
-    public void InteractWith(InteractableObject addedObject)
-    {
-        // Attempt to get the InventoryItem component from the interactable object.
-        InventoryItem item = addedObject.GetComponent<InventoryItem>();
+	// Public method to allow the player to interact with objects that can be added to the inventory.
+	public void InteractWith(InteractableObject addedObject)
+	{
+		// Attempt to get the InventoryItem component from the interactable object.
+		InventoryItem item = addedObject.GetComponent<InventoryItem>();
 
-        if (item != null && !inventory.ItemExists(item))
-        {
-            if (addedObject.pickedUpTimes > 0)
-            {
-                if (mmFeedbacksPickup != null)
-                    mmFeedbacksPickup.PlayFeedbacks();
+		if (item != null && !inventory.ItemExists(item))
+		{
+			if (addedObject.pickedUpTimes > 0)
+			{
+				if (mmFeedbacksPickup != null)
+					mmFeedbacksPickup.PlayFeedbacks();
 
-                inventory.AddItem(item);
-                addedObject.pickedUpTimes--;
-                if (addedObject.pickedUpTimes == 0)
-                {
-                    addedObject.outlinable.enabled = false;
-                }
-            }
-            // If the InventoryItem component is found, add the item to the player's inventory.
-            
-        }
-    }
+				inventory.AddItem(item);
+				addedObject.CmdSetPickedUpTimes(addedObject.pickedUpTimes - 1);
+			}
+			// If the InventoryItem component is found, add the item to the player's inventory.
+
+		}
+	}
 }

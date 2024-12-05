@@ -24233,6 +24233,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 140930, guid: f15ecea0efed371439f282ddfe96f88f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1559712692}
+    - targetCorrespondingSourceObject: {fileID: 140930, guid: f15ecea0efed371439f282ddfe96f88f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1559712696}
   m_SourcePrefab: {fileID: 100100000, guid: f15ecea0efed371439f282ddfe96f88f, type: 3}
 --- !u!4 &848129045 stripped
 Transform:
@@ -27932,6 +27935,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 127328, guid: 435bbf94f0c16b842a13d18d0c5074b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 978667780}
+    - targetCorrespondingSourceObject: {fileID: 127328, guid: 435bbf94f0c16b842a13d18d0c5074b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 978667784}
   m_SourcePrefab: {fileID: 100100000, guid: 435bbf94f0c16b842a13d18d0c5074b5, type: 3}
 --- !u!4 &978667775 stripped
 Transform:
@@ -28004,6 +28010,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6979c0951396d40927f3fa2d0e4b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   pickedUpTimes: 3
   outlinable: {fileID: 0}
 --- !u!114 &978667782
@@ -28034,7 +28043,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -28075,6 +28084,23 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
+--- !u!114 &978667784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978667776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 4108773378
+  _assetId: 276434035
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!4 &981615501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 492130, guid: 059ffcfd8bce06444a13d0496b149bc0, type: 3}
@@ -46927,6 +46953,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6979c0951396d40927f3fa2d0e4b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   pickedUpTimes: 3
   outlinable: {fileID: 0}
 --- !u!114 &1559712694
@@ -46957,7 +46986,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -46998,6 +47027,23 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
+--- !u!114 &1559712696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559712686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3968799944
+  _assetId: 2486191498
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1001 &1560332529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67971,6 +68017,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 109734, guid: 1033ef213025dc349b6ed903c12758fb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2089497823}
+    - targetCorrespondingSourceObject: {fileID: 109734, guid: 1033ef213025dc349b6ed903c12758fb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2089497824}
   m_SourcePrefab: {fileID: 100100000, guid: 1033ef213025dc349b6ed903c12758fb, type: 3}
 --- !u!4 &2089497813 stripped
 Transform:
@@ -68020,6 +68069,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6979c0951396d40927f3fa2d0e4b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   pickedUpTimes: 3
   outlinable: {fileID: 0}
 --- !u!114 &2089497819
@@ -68417,6 +68469,23 @@ MonoBehaviour:
   dialogue:
     content: Use collected items to help you in your heists. Also you can carry a
       maximum of three items from a container.
+--- !u!114 &2089497824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089497814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3274946892
+  _assetId: 881235550
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!1001 &2089969265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75478,6 +75547,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7036813502637290222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266323098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3568972197
+  _assetId: 1901053821
+  serverOnly: 0
+  visibility: 0
+  hasSpawned: 0
 --- !u!114 &7141619735437732399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76646,11 +76732,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2032671679214609157, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
       propertyPath: outlineTargets.Array.data[0].IsVisible
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3467554410206124101, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467554410206124101, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
+      propertyPath: syncDirection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4063003777955551496, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -76711,6 +76801,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4797234315145173489, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7036813502637290221}
+    - targetCorrespondingSourceObject: {fileID: 4797234315145173489, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7036813502637290222}
   m_SourcePrefab: {fileID: 100100000, guid: 409ae8f7d32b7014a992209c086ee1dd, type: 3}
 --- !u!1 &8785327690774452786
 GameObject:
