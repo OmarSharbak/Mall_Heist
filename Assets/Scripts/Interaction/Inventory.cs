@@ -5,6 +5,7 @@ using Mirror;
 using System.Linq;
 using System;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 
 public class Inventory : NetworkBehaviour
 {
@@ -143,70 +144,38 @@ public class Inventory : NetworkBehaviour
 	{
 		if (heldItem && destroyExistingItem)
 		{
-			CmdDestroyHeldItem();
-			Debug.Log("CLIENT - Item held destroy");
-		}
 
+			CmdUpdateHeldItem("destroy");
+			
+		}
 		if (items.Count == 0)
 		{
-			CmdSetHeldItemNull();
-
-			Debug.Log("CLIENT - Item held null");
-			heldItem = null;
+			CmdUpdateHeldItem("null");
 			return;
 		}
 
 
-		Invoke(nameof(DelayedUpdateItem), 1);
+		Invoke(nameof(DelayedUpdateHeldItem), destroyExistingItem? 2f:0);
+		
+
+
+
 	}
 
-	private void DelayedUpdateItem()
+	private void DelayedUpdateHeldItem()
 	{
+
 		InventoryItem currentItem = items[currentItemIndex];
-
 		CmdUpdateHeldItem(currentItem.itemName);
-
 	}
-
-	[Command]
-	private void CmdSetHeldItemNull()
-	{
-
-		RpcSetItemNull();
-	}
-
-	[ClientRpc]
-	private void RpcSetItemNull()
-	{
-		heldItem = null;
-		equipedItemPrefabName = "";
-
-
-	}
-
-	[Command]
-	private void CmdDestroyHeldItem()
-	{
-		equipedItemPrefabName = "";
-		RpcDestroyItem();
-	}
-
-	[ClientRpc]
-	private void RpcDestroyItem()
-	{
-		Destroy(heldItem);
-
-	}
-
-
-
 
 	[Command]
 	private void CmdUpdateHeldItem(string itemName)
 	{
 		Debug.Log("SERVER -  update held item prefab");
 
-		equipedItemPrefabName = itemName;
+	
+			equipedItemPrefabName = itemName;
 
 	}
 
@@ -383,8 +352,22 @@ public class Inventory : NetworkBehaviour
 
 	private void OnItemPrefabChanged(string oldItem, string newItem)
 	{
-		if (newItem == "")
+		if(newItem=="")
 			return;
+		if (newItem == "null")
+		{
+			heldItem=null;
+			equipedItemPrefabName = "";
+			return;
+
+		}
+		if (newItem == "destroy")
+		{
+			Destroy(heldItem);
+			equipedItemPrefabName = "";
+			return;
+
+		}
 		Debug.Log("CLIENT - on item changed");
 
 		GameObject prefab = SearchItemPrefabByName(newItem);
