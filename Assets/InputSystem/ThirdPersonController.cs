@@ -1,16 +1,16 @@
 ﻿//DAD
 using EPOOutline;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
 using TMPro;
 using Cinemachine;
-using UnityEngine.Rendering;
 using Mirror;
 using System;
-using Unity.VisualScripting;
-using TMPro.EditorUtilities;
+
+
+
+
 
 
 
@@ -778,9 +778,44 @@ public class ThirdPersonController : NetworkBehaviour
 	bool isPaused = false;
 	private void Pause()
 	{
+
 		if (_input.pause && isPaused == false && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Defeat && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Victory)
+
 		{
 			_input.pause = false;
+			CmdPause();
+
+		}
+
+
+	}
+
+	[Command (requiresAuthority =false)]
+	private void CmdPause()
+	{
+
+		foreach (var player in CustomNetworkManager.connectedPlayers)
+		{
+			ThirdPersonController controller = player.GetComponent<ThirdPersonController>();
+			if (controller != null)
+			{
+				controller.RpcPause();
+				Debug.Log("SERVER - player paused" + controller.transform.name);
+			}
+
+		}
+		Debug.Log("SERVER - paused");
+
+	}
+
+	[ClientRpc]
+	private void RpcPause()
+	{
+		if (!isLocalPlayer)
+			return;
+
+		if (isPaused == false && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Defeat && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Victory)
+		{
 			outliner.enabled = false;
 			pauseMenuGameObject.SetActive(true);
 
@@ -796,18 +831,50 @@ public class ThirdPersonController : NetworkBehaviour
 
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-
-			//Time.timeScale = 0.0f;
+			Debug.Log("CLIENT - paused" + transform.name);
 		}
+		//Time.timeScale = 0.0f;
 	}
 
 	public void Resume()
 	{
+
+		CmdResume();
+		Debug.Log("CLIENT - cmd resume" + transform.name);
+
+
+	}
+
+	[Command(requiresAuthority =false)]
+	private void CmdResume()
+	{
+
+		foreach (var player in CustomNetworkManager.connectedPlayers)
+		{
+			ThirdPersonController controller = player.GetComponent<ThirdPersonController>();
+			if (controller != null)
+			{
+				controller.RpcResume();
+				Debug.Log("SERVER - player resumed" + controller.transform.name);
+			}
+
+		}
+		Debug.Log("SERVER - resumed");
+
+	}
+
+	[ClientRpc]
+	private void RpcResume()
+	{
+
+		if (!isLocalPlayer)
+			return;
 		pauseMenuGameObject.SetActive(false);
 		isPaused = false;
 		outliner.enabled = true;
 		EscalatorManager.Instance.SetCurrentState(this, lastGameState);
-		Debug.Log("Last gamestate is: " + lastGameState.ToString());
+
+		Debug.Log("CLIENT - resumed" + transform.name);
 		//Cursor.visible = false;
 		//Cursor.lockState = CursorLockMode.Locked;
 		//Time.timeScale = 1.0f;       

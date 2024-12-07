@@ -7,7 +7,7 @@ public class CustomNetworkManager : NetworkManager
 {
 
 	// A list to track connected players
-	private readonly List<NetworkIdentity> connectedPlayers = new List<NetworkIdentity>();
+	public static readonly List<NetworkIdentity> connectedPlayers = new List<NetworkIdentity>();
 
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)
 	{
