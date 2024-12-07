@@ -14,6 +14,8 @@ public class PlayerState : NetworkBehaviour
 
 	public ThirdPersonController thirdPersonController = null;
 
+	// Determines if player is near the escalator for interaction
+	public bool playerNearEscalator = false;
 
 	// Set the current game state and handle related behavior
 	public void SetGameState(EscalatorManager.GameState newState)

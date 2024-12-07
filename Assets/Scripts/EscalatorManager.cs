@@ -33,9 +33,6 @@ public class EscalatorManager : NetworkBehaviour
 	// Key for player interaction
 	public KeyCode interactionKey = KeyCode.E;
 
-	// Determines if player is near the escalator for interaction
-	private bool playerNearEscalator = false;
-
 	public List<Register> registers;
 
 	// UI texts for gameplay status
@@ -87,7 +84,7 @@ public class EscalatorManager : NetworkBehaviour
 
 		Transform combatTarget = emeraldAIDetection.EmeraldComponent.CurrentTarget;
 
-		if ( combatTarget != null)
+		if (combatTarget != null)
 		{
 			CheckExposed(combatTarget.GetComponent<ThirdPersonController>());
 		}
@@ -450,25 +447,23 @@ public class EscalatorManager : NetworkBehaviour
 			// Check if there is no currently selected GameObject
 			if (EventSystem.current.currentSelectedGameObject == null && player1.currentState == GameState.Victory)
 			{
-				// If nothing is selected, select the resume button GameObject
 				EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject);
 			}
 
 			if (EventSystem.current.currentSelectedGameObject == null && player1.currentState == GameState.Defeat)
 			{
-				// If nothing is selected, select the resume button GameObject
 				EventSystem.current.SetSelectedGameObject(loseRestartLevelButtonGameObject);
 			}
 
 
-			if (playerNearEscalator == false)
+			if (player1.playerNearEscalator == false)
 			{
 				if (promptUIManager != null)
 				{
 					promptUIManager.HideSouthButtonEscalatorUI();
 				}
 			}
-			else if (playerNearEscalator == true && promptUIManager != null && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			else if (player1.playerNearEscalator == true && promptUIManager != null && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 			{
 				if (!player1.exposed)
 					promptUIManager.ShowSouthButtonEscalatorUI();
@@ -523,25 +518,69 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		if (player1 != null)
 		{
-			if (playerNearEscalator && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			if (player1.playerNearEscalator && player2.playerNearEscalator && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 			{
-				if (!player1.exposed)
+				if (!player1.exposed && !player2.exposed)
 				{
-					OnLevelFinished?.Invoke();
-					LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
-					player1.SetGameState(GameState.Victory);
-					UpdateMusicState(player1);
-					StopTimer();
-					ShowFloorCompletedUI();
+					CmdVictory();
 				}
 
 			}
-			else if (playerNearEscalator)
+			else if (player1.playerNearEscalator)
 			{
 				Debug.Log("Not all objectives are complete or your exposed");
 			}
 		}
 	}
+
+	[Command(requiresAuthority = false)]
+	private void CmdVictory()
+	{
+
+
+		foreach (var player in CustomNetworkManager.connectedPlayers)
+		{
+			PlayerState state = player.transform.GetComponent<PlayerState>();
+			if (state != null)
+			{
+				RpcVictory(state.netId);
+				Debug.Log("SERVER - cmd victory");
+			}
+		}
+
+		Debug.Log("SERVER - victory");
+
+	}
+
+	[ClientRpc]
+	private void RpcVictory(uint _netId)
+	{
+		Debug.Log("CLIENT - called victory");
+
+		
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				PlayerState state = identity.transform.GetComponent<PlayerState>();
+				if (state != null)
+				{
+					if (!state.isLocalPlayer)
+						return;
+					Debug.Log("CLIENT - victory local");
+
+					OnLevelFinished?.Invoke();
+					LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
+					state.SetGameState(GameState.Victory);
+					UpdateMusicState(state);
+					Debug.Log("CLIENT - victory" + state.transform.name);
+					StopTimer();
+					ShowFloorCompletedUI();
+				}
+			}
+		}
+	}
+
 
 	// Reloads the current level
 	public void RestartLevel()
@@ -626,7 +665,7 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
 		{
-			playerNearEscalator = true;
+			other.GetComponent<PlayerState>().playerNearEscalator = true;
 
 		}
 	}
@@ -635,7 +674,7 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
 		{
-			playerNearEscalator = false;
+			other.GetComponent<PlayerState>().playerNearEscalator = false;
 			promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
 			promptUIManager.HideSouthButtonEscalatorUI();
 			promptUIManager = null;
@@ -886,7 +925,7 @@ public class EscalatorManager : NetworkBehaviour
 
 		NavMeshAgent agent = guard.transform.GetComponent<NavMeshAgent>();
 
-		if(agent != null)
+		if (agent != null)
 		{
 			agent.isStopped = true;
 			Debug.Log(" CLIENT stopped guard");
