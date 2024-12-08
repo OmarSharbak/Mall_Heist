@@ -214,7 +214,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		}
 		else
 		{
-			HandleGameOver();
+			CmdHandleGameOver(netId);
 		}
 	}
 
@@ -245,50 +245,146 @@ public class PlayerDamageHandler : NetworkBehaviour
 		}
 	}
 
-	[ClientCallback]
+	[Command(requiresAuthority = false)]
 	// Manage end of game state.
-	private void HandleGameOver()
+	private void CmdHandleGameOver(uint _netId)
 	{
-		if (!isLocalPlayer)
-		{
-			return;
-		}
-		regularCanvas.SetActive(false);
-		lostCanvas.SetActive(true);
-		outliner.enabled = false;
 
-		EscalatorManager.Instance.SetCurrentState(thirdPersonController, EscalatorManager.GameState.Defeat);
-		CmdDefeat(netId);
-		Debug.Log("CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(thirdPersonController));
-		// Access the EventSystem and set the selected GameObject
-		EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
-		EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject); // Set new selection
-																				//Cursor.visible = true;
-																				//Cursor.lockState = CursorLockMode.None;
-
-		//escalatorManager.UpdateMusicState();
-		//Time.timeScale = DEFAULT_TIME_SCALE;
-	}
-
-	[Command]
-	private void CmdDefeat(uint _netId)
-	{
+		bool allDefeat = true;
+		//Set camera follow the other player
 		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
 		{
 			if (identity != null)
 			{
-				ThirdPersonController controller = identity.GetComponent<ThirdPersonController>();
-				if (controller != null)
+				ThirdPersonController ownController = identity.transform.GetComponent<ThirdPersonController>();
+
+				foreach (var player in CustomNetworkManager.connectedPlayers)
 				{
-					EscalatorManager.Instance.SetCurrentState(controller, EscalatorManager.GameState.Defeat);
-					Debug.Log("SERVER - CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(controller));
+					ThirdPersonController otherController = player.transform.GetComponent<ThirdPersonController>();
+					if (otherController != null)
+					{
+						Debug.Log("CLIENT - own:" + ownController.transform.name + " other:" + otherController.transform.name);
+						if (otherController != ownController && EscalatorManager.Instance.GetCurrentState(otherController) != EscalatorManager.GameState.Defeat)
+						{
+							Defeat(ownController.netId, otherController.netId);
+							allDefeat = false;
+						}
+					}
+				}
+				if (allDefeat)
+				{
+
+					AllDefeat();
 
 				}
 			}
 		}
 	}
 
-	// Sequence of events after player takes damage.
+	[ServerCallback]
+	private void AllDefeat()
+	{
+		foreach (var player in CustomNetworkManager.connectedPlayers)
+		{
+			PlayerDamageHandler damage = player.transform.GetComponent<PlayerDamageHandler>();
+			if (damage != null)
+			{
+				damage.RpcAllDefeat();
+				Debug.Log("SERVER - all defeat" + damage.transform.name);
+			}
+
+		}
+	}
+
+	[ClientRpc]
+	private void RpcAllDefeat()
+	{
+		if (!isLocalPlayer)
+			return;
+		lostCanvas.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject);
+		Debug.Log("CLIENT - all defeat" + transform.name);
+		EscalatorManager.Instance.SetCurrentState(thirdPersonController, EscalatorManager.GameState.Defeat);
+		Debug.Log("CLIENT CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(thirdPersonController));
+
+	}
+
+	[ServerCallback]
+	private void Defeat(uint _netId, uint _otherNetId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				TargetDefeat(identity.connectionToClient, _otherNetId);
+				RpcDisableCollider(_netId);
+
+			}
+		}
+	}
+
+	[TargetRpc]
+	private void TargetDefeat(NetworkConnectionToClient target, uint _otherNetId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_otherNetId, out NetworkIdentity otherIdentity))
+		{
+			if (otherIdentity != null)
+			{
+				ThirdPersonController otherController = otherIdentity.transform.GetComponent<ThirdPersonController>();
+
+				//other player otherController
+				thirdPersonController.FullMapCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
+				thirdPersonController.FollowTopCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
+				thirdPersonController.FollowCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
+				thirdPersonController.FollowTopCinemachineCamera.Priority = 0;
+				thirdPersonController.FollowCinemachineCamera.Priority = 20;
+				thirdPersonController.FullMapCinemachineCamera.Priority = 0;
+				Debug.Log("CLIENT - camera " + transform.name + " follow other " + otherController.transform.name);
+
+				regularCanvas.SetActive(false);
+				outliner.enabled = false;
+
+				// Access the EventSystem and set the selected GameObject
+				EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
+
+					
+
+			}
+		}
+	}
+
+
+
+	[ClientRpc]
+	private void RpcDisableCollider(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		{
+			if (identity != null)
+			{
+				ThirdPersonController player = identity.transform.GetComponent<ThirdPersonController>();
+				if (player != null)
+				{
+					player.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
+					player.gameObject.tag = "PlayerInvisible";
+					player.ToggleVisibility();
+
+
+					CharacterController myCollider = player.GetComponent<CharacterController>();
+					// Disable the collider
+					if (myCollider != null)
+						myCollider.enabled = false;
+
+
+					EscalatorManager.Instance.SetCurrentState(player, EscalatorManager.GameState.Defeat);
+					Debug.Log("CLIENT CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(player));
+				}
+			}
+		}
+
+
+	}
+
 
 	[ClientCallback]
 	private void StartDamageSequence()
@@ -306,7 +402,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		Debug.Log("Started damage sequence");
 	}
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	private void CmdStopGuard(uint _netId)
 	{
 		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
@@ -392,7 +488,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		StopXPressCoroutine();
 
-		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney(), - 10);
+		TryUpdateMoney(GameManager.Instance.GetCurrentGlobalMoney(), -10);
 		PopupTextManager.Instance.ShowPopupText("-10");
 		moneyGameObject.SetActive(true);
 		animator.SetTrigger("GiveMoney");
@@ -434,7 +530,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		CmdResumeGuardMovement(emeraldAIEventsManager.transform.GetComponent<NetworkIdentity>().netId);
 	}
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	private void CmdResumeGuardMovement(uint _netId)
 	{
 
@@ -524,31 +620,31 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 
-	public void TryUpdateMoney(int value,int amount)
+	public void TryUpdateMoney(int value, int amount)
 	{
 		if (isLocalPlayer)
 		{
-			CmdRequestMoneyUpdate(value,amount); // Send request to server
+			CmdRequestMoneyUpdate(value, amount); // Send request to server
 		}
 	}
 
 	[Command]
-	private void CmdRequestMoneyUpdate(int value,int amount)
+	private void CmdRequestMoneyUpdate(int value, int amount)
 	{
 		// Ensure server validates or updates the shared variable
 		GameManager.Instance.UpdateGlobalMoney(value + amount);
 
 		RpcUpdateClientMoney(amount);
-    }
+	}
 
 	[ClientRpc]
-    private void RpcUpdateClientMoney(int amount)
+	private void RpcUpdateClientMoney(int amount)
 	{
 		if (amount > 0)
 		{
 			EscalatorManager.Instance.moneyCollected += amount;
 			PopupTextManager.Instance.ShowPopupText("+ " + amount);
 		}
-    }
+	}
 
 }

@@ -900,6 +900,9 @@ MonoBehaviour:
   _speed: 0
   canMove: 1
   captured: 0
+  FollowTopCinemachineCamera: {fileID: 0}
+  FollowCinemachineCamera: {fileID: 0}
+  FullMapCinemachineCamera: {fileID: 0}
   playerNameText: {fileID: 4094381768835946250}
   floatingInfo: {fileID: 4216991626666103818}
   playerName: 
@@ -1438,6 +1441,7 @@ MonoBehaviour:
   exposed: 0
   playerTransform: {fileID: 6163629171227806718}
   thirdPersonController: {fileID: 5476788834179813785}
+  playerNearEscalator: 0
 --- !u!1 &2178468455213488965
 GameObject:
   m_ObjectHideFlags: 0
@@ -3340,6 +3344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1756068951123164066}
   - component: {fileID: 2926975045382706152}
+  - component: {fileID: 313134051936440072}
   m_Layer: 0
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
@@ -3383,6 +3388,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.00001, y: 0.00001, z: 0.00001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &313134051936440072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8817092267319353013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1756068951123164066}
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  bufferResetMultiplier: 3
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
 --- !u!1 &8938208981348288983
 GameObject:
   m_ObjectHideFlags: 0

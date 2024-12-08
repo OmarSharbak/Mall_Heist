@@ -156,8 +156,9 @@ public class ThirdPersonController : NetworkBehaviour
 #endif
 		}
 	}
-	CinemachineVirtualCamera FollowTopCinemachineCamera;
-	CinemachineVirtualCamera FollowCinemachineCamera;
+	public CinemachineVirtualCamera FollowTopCinemachineCamera;
+	public CinemachineVirtualCamera FollowCinemachineCamera;
+	public CinemachineVirtualCamera FullMapCinemachineCamera;
 
 	public TMP_Text playerNameText;
 	public GameObject floatingInfo;
@@ -458,7 +459,6 @@ public class ThirdPersonController : NetworkBehaviour
 			_cinemachineTargetYaw, 0.0f);
 	}
 
-	private CinemachineVirtualCamera FullMapCinemachineCamera;
 	bool fullMap = false;
 	private void SwitchCamera()
 	{

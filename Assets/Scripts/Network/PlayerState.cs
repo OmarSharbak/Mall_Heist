@@ -44,8 +44,8 @@ public class PlayerState : NetworkBehaviour
 				//Cursor.lockState = CursorLockMode.None;
 				thirdPersonController.canMove = false;
 				thirdPersonController.StopMovement();
-				thirdPersonController.ToggleVisibility();
-				CmdSetGameStateDefeat(netId);
+				//thirdPersonController.ToggleVisibility();
+				//CmdSetGameStateDefeat(netId);
 				//Time.timeScale = 0.0f;
 				break;
 
@@ -86,46 +86,7 @@ public class PlayerState : NetworkBehaviour
 		}
 
 	}
-	[Command]
 
-	public void CmdSetGameStateDefeat(uint _netId)
-	{
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
-		{
-			if (identity != null)
-			{
-				PlayerState playerState = identity.GetComponent<PlayerState>();
-
-				Debug.LogWarning("Server game state set: defeat ");
-				
-				playerState.thirdPersonController.canMove = false;
-				playerState.thirdPersonController.StopMovement();
-				playerState.thirdPersonController.ToggleVisibility();
-
-
-			}
-		}
-
-	}
-	[Command]
-
-	public void CmdSetGameStateVictory(uint _netId)
-	{
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
-		{
-			if (identity != null)
-			{
-				PlayerState playerState = identity.GetComponent<PlayerState>();
-
-				Debug.LogWarning("Server game state set: victory ");
-
-				playerState.thirdPersonController.canMove = false;
-				playerState.thirdPersonController.StopMovement();
-
-			}
-		}
-
-	}
 }
 
 
