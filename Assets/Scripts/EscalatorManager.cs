@@ -557,7 +557,7 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		Debug.Log("CLIENT - called victory");
 
-		
+
 		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
 		{
 			if (identity != null)
@@ -570,7 +570,8 @@ public class EscalatorManager : NetworkBehaviour
 					Debug.Log("CLIENT - victory local");
 
 					OnLevelFinished?.Invoke();
-					LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
+					if (isLocalPlayer)
+						LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
 					state.SetGameState(GameState.Victory);
 					UpdateMusicState(state);
 					Debug.Log("CLIENT - victory" + state.transform.name);
