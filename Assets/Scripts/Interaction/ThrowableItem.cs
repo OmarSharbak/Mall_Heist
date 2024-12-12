@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using EmeraldAI;
 using MoreMountains.Feedbacks;
+using System;
 
 public class ThrowableItem : InventoryItem
 {
@@ -36,7 +37,10 @@ public class ThrowableItem : InventoryItem
     private GameObject noiseIndicator; // Instance of the noise indicator
 
     bool noiseShown = false;
-    private void ShowNoiseRadius()
+
+	public static event Action OnGuardHit;
+
+	private void ShowNoiseRadius()
     {
         noiseIndicator.SetActive(true);
         noiseIndicator.transform.position = transform.position;
@@ -179,8 +183,9 @@ public class ThrowableItem : InventoryItem
             eventsManager.ClearTarget();
             aiSystem.Damage(damageAmount, EmeraldAI.EmeraldAISystem.TargetType.Player, playerTransform, 1);
 
+            OnGuardHit?.Invoke();
 
-            eventsManager.CancelAttackAnimation();
+			eventsManager.CancelAttackAnimation();
 
             if (aiAnimator != null)
             {
