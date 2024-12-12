@@ -27,7 +27,13 @@ public class ArrowIndicator : NetworkBehaviour
 		Debug.Log("Arrows - local player started");
 
 		player = localPlayer.transform;
+		PlayerDamageHandler.OnPlayerCaught += PlayerDamageHandler_OnPlayerCaught;
 		CreateArrows();
+	}
+
+	private void PlayerDamageHandler_OnPlayerCaught()
+	{
+		CmdDisableArrows(player);
 	}
 
 	private void CreateArrows()
