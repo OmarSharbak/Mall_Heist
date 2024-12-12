@@ -152,7 +152,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 	public void GuardStop()
 	{
-		Debug.Log("CLIENT -guard stopMovement");
+		//Debug.Log("CLIENT -guard stopMovement");
 
 		emeraldAIEventsManager.StopMovement();
 		CmdStopGuardMovement(emeraldAIEventsManager.transform.GetComponent<NetworkIdentity>().netId);
@@ -167,7 +167,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 			{
 				EmeraldAIEventsManager emerald = identity.transform.GetComponent<EmeraldAIEventsManager>();
 				emerald.StopMovement();
-				Debug.Log("SERVER - guard stopMovement");
+				//Debug.Log("SERVER - guard stopMovement");
 
 			}
 
@@ -249,10 +249,12 @@ public class PlayerDamageHandler : NetworkBehaviour
 	// Manage end of game state.
 	private void CmdHandleGameOver(uint _netId)
 	{
-
-		bool allDefeat = true;
+		if (EscalatorManager.Instance.defeatedPlayers > 0)
+		{
+			AllDefeat();
+		}
 		//Set camera follow the other player
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		else if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
 		{
 			if (identity != null)
 			{
@@ -264,18 +266,12 @@ public class PlayerDamageHandler : NetworkBehaviour
 					if (otherController != null)
 					{
 						Debug.Log("CLIENT - own:" + ownController.transform.name + " other:" + otherController.transform.name);
-						if (otherController != ownController && EscalatorManager.Instance.GetCurrentState(otherController) != EscalatorManager.GameState.Defeat)
+						if ((otherController != ownController) && (EscalatorManager.Instance.GetCurrentState(otherController) != EscalatorManager.GameState.Defeat))
 						{
 							Defeat(ownController.netId, otherController.netId);
-							allDefeat = false;
+
 						}
 					}
-				}
-				if (allDefeat)
-				{
-
-					AllDefeat();
-
 				}
 			}
 		}
@@ -316,6 +312,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		{
 			if (identity != null)
 			{
+				EscalatorManager.Instance.defeatedPlayers++;
 				TargetDefeat(identity.connectionToClient, _otherNetId);
 				RpcDisableCollider(_netId);
 
@@ -347,7 +344,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 				// Access the EventSystem and set the selected GameObject
 				EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
 
-					
+
 
 			}
 		}

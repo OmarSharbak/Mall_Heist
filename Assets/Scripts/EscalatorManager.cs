@@ -64,6 +64,8 @@ public class EscalatorManager : NetworkBehaviour
 
 	public Material player2BlueMaterial; // Assign this in the inspector or dynamically via code
 
+	[SyncVar]
+	public int defeatedPlayers=0;
 	void CalculateTotalMoney()
 	{
 		foreach (var register in registers)
@@ -251,7 +253,7 @@ public class EscalatorManager : NetworkBehaviour
 
 	}
 
-	[Command]
+	[Command(requiresAuthority =false)]
 	private void CmdSetExposed(uint netId, bool input)
 	{
 		Debug.Log(" SERVER set exposed called ");
@@ -267,7 +269,7 @@ public class EscalatorManager : NetworkBehaviour
 					player.exposed = input;
 					if (input)
 					{
-						player.SetGameState(GameState.Chase);
+						player.RpcSetGameState(GameState.Chase);
 						UpdateMusicState(player);
 						Debug.Log("SET EXPOSED - SERVER");
 
@@ -281,7 +283,7 @@ public class EscalatorManager : NetworkBehaviour
 						Debug.Log(player.currentState);
 
 						if (player.currentState != GameState.Defeat)
-							player.SetGameState(GameState.Stealth);
+							player.RpcSetGameState(GameState.Stealth);
 
 						UpdateMusicState(player);
 					}
@@ -400,7 +402,7 @@ public class EscalatorManager : NetworkBehaviour
 
 		}
 		//Start animating 3 2 1 then start the game with coroutine
-		player.SetGameState(GameState.CountdownToStart);
+		player.CmdSetGameState(GameState.CountdownToStart);
 		// Initialize game settings on start
 
 
@@ -419,9 +421,9 @@ public class EscalatorManager : NetworkBehaviour
 			player2.thirdPersonController.canMove = true;
 
 		if (player1 != null)
-			player1.SetGameState(GameState.Stealth);
+			player1.CmdSetGameState(GameState.Stealth);
 		if (player2 != null)
-			player2.SetGameState(GameState.Stealth);
+			player2.CmdSetGameState(GameState.Stealth);
 
 	}
 
@@ -605,7 +607,7 @@ public class EscalatorManager : NetworkBehaviour
 					OnLevelFinished?.Invoke();
 					if (isLocalPlayer)
 						LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
-					state.SetGameState(GameState.Victory);
+					state.CmdSetGameState(GameState.Victory);
 					UpdateMusicState(state);
 					Debug.Log("CLIENT - victory" + state.transform.name);
 					StopTimer();
@@ -792,7 +794,7 @@ public class EscalatorManager : NetworkBehaviour
 
 		if (player.currentState != GameState.Defeat)
 		{
-			player.SetGameState(GameState.Stealth);
+			player.CmdSetGameState(GameState.Stealth);
 		}
 	}
 
@@ -947,10 +949,10 @@ public class EscalatorManager : NetworkBehaviour
 	public void SetCurrentState(ThirdPersonController thirdPersonController, GameState gameState)
 	{
 		if (player1 != null && thirdPersonController == player1.thirdPersonController)
-			player1.SetGameState(gameState);
+			player1.CmdSetGameState(gameState);
 
 		if (player2 != null && thirdPersonController == player2.thirdPersonController)
-			player2.SetGameState(gameState);
+			player2.CmdSetGameState(gameState);
 	}
 
 	[ClientCallback]

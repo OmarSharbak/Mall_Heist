@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class PlayerState : NetworkBehaviour
 {
-	[HideInInspector]
-	[SyncVar]
+
 	public bool exposed = false; // Whether this player is exposed
 
-	public Transform playerTransform; // Reference to the player's transform										  
+	public Transform playerTransform; // Reference to the player's transform	
+									  //
+
 	public EscalatorManager.GameState currentState { get; set; } = EscalatorManager.GameState.WaitingToStart;// Current game state
 
 	public ThirdPersonController thirdPersonController = null;
@@ -17,8 +18,14 @@ public class PlayerState : NetworkBehaviour
 	// Determines if player is near the escalator for interaction
 	public bool playerNearEscalator = false;
 
+	[Command(requiresAuthority =false)]
+	public void CmdSetGameState(EscalatorManager.GameState newState)
+	{
+		RpcSetGameState(newState);
+	}
 	// Set the current game state and handle related behavior
-	public void SetGameState(EscalatorManager.GameState newState)
+	[ClientRpc]
+	public void RpcSetGameState(EscalatorManager.GameState newState)
 	{
 		currentState = newState;
 
