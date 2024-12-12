@@ -255,7 +255,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	}
 
-	[Command]
+	[Command(requiresAuthority = false)]
 	public void CmdSetupPlayer(string _name, Color _col)
 	{
 		// player info sent to server, then server updates sync vars which handles it on all clients
@@ -887,11 +887,11 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			if (_input.interactDoor)
 			{
-				nearbyDoor.StartSealing();
+				nearbyDoor.CmdStartSealing();
 			}
 			else
 			{
-				nearbyDoor.StopSealing();
+				nearbyDoor.CmdStopSealing();
 			}
 		}
 	}
