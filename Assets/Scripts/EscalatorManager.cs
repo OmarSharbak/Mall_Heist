@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using EPOOutline;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -10,8 +9,6 @@ using EmeraldAI;
 using EmeraldAI.Utility;
 using MoreMountains.Feedbacks;
 using System;
-using Unity.VisualScripting;
-using UnityEditor;
 using Mirror;
 using UnityEngine.AI;
 

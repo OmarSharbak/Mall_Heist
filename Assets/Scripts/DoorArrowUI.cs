@@ -4,10 +4,18 @@ public class DoorArrowUI : MonoBehaviour
 {
     public RectTransform arrowUI; // UI element representing the arrow
     public Transform doorTransform; // Door's Transform in the world
-    public Transform playerTransform; // Player's Transform
+    private Transform playerTransform; // Player's Transform
     public float proximityThreshold = 3f; // Distance threshold to turn off the arrow
 
-    void Update()
+	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
+	{
+
+
+		playerTransform = localPlayer.transform;
+
+	}
+
+	void Update()
     {
         if (EscalatorManager.Instance != null && doorTransform != null && playerTransform != null)
         {
@@ -43,4 +51,16 @@ public class DoorArrowUI : MonoBehaviour
             arrowUI.gameObject.SetActive(true); // Ensure the arrow is visible
         }
     }
+
+	private void OnEnable()
+	{
+		// Subscribe to the event
+		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
+	}
+
+	private void OnDisable()
+	{
+		// Unsubscribe from the event to avoid memory leaks
+		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
+	}
 }
