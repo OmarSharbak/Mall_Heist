@@ -173,6 +173,7 @@ public class ThirdPersonController : NetworkBehaviour
 	[SyncVar(hook = nameof(OnColorChanged))]
 	public Color playerColor = Color.white;
 
+	public Renderer modelRenderer;
 	void OnNameChanged(string _Old, string _New)
 	{
 		playerNameText.text = playerName;
@@ -252,9 +253,6 @@ public class ThirdPersonController : NetworkBehaviour
 		// Trigger the event
 		OnLocalPlayerStarted?.Invoke(this);
 
-		string name = "Player" + UnityEngine.Random.Range(100, 999);
-		Color color = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f));
-		CmdSetupPlayer(name, color);
 	}
 
 	[Command]
@@ -264,9 +262,8 @@ public class ThirdPersonController : NetworkBehaviour
 		playerName = _name;
 		playerColor = _col;
 		sceneScript.statusText = $"{playerName} joined.";
+
 	}
-
-
 	public override void OnStartClient()
 	{
 		base.OnStartClient();

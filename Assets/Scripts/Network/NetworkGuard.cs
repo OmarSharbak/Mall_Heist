@@ -29,7 +29,7 @@ public class NetworkGuard : NetworkBehaviour
 			Debug.Log("PLayer Joined added to guards AI");
 		}
     }
-    private void HandlePlayerJoined(ThirdPersonController playerJoined)
+    private void HandlePlayerJoined(ThirdPersonController playerJoined, int _numPlayers)
     {
 
         if (isServer)

@@ -62,6 +62,8 @@ public class EscalatorManager : NetworkBehaviour
 	public PlayerState player1 = null;
 	public PlayerState player2 = null;
 
+	public Material player2BlueMaterial; // Assign this in the inspector or dynamically via code
+
 	void CalculateTotalMoney()
 	{
 		foreach (var register in registers)
@@ -320,7 +322,7 @@ public class EscalatorManager : NetworkBehaviour
 		Debug.Log("Player 1 State correct!");
 	}
 
-	private void HandlePlayerJoined(ThirdPersonController playerJoined)
+	private void HandlePlayerJoined(ThirdPersonController playerJoined, int numPlayers)
 	{
 		if (player1 != playerJoined.transform.GetComponent<PlayerState>())
 		{
@@ -333,13 +335,47 @@ public class EscalatorManager : NetworkBehaviour
 			Initialize(player2);
 			Debug.Log("Player 2 State correct!");
 
-
 		}
 		else
 		{
 			Debug.Log("On joined 2: Player 1 equals than player joined!");
 		}
 
+	}
+
+	private void HandlePlayer2Joined(ThirdPersonController playerJoined, int numPlayers)
+	{
+		string name="Player 2";
+		Color color =Color.blue;
+
+		if (numPlayers == 2)
+		{
+			if (player2BlueMaterial != null)
+			{
+				// Get the Renderer component of the object
+				Renderer renderer = playerJoined.modelRenderer;
+				if (renderer != null)
+				{
+					// Change the material
+					renderer.material = player2BlueMaterial;
+				}
+				else
+				{
+					Debug.LogError("No Renderer found on this GameObject.");
+				}
+			}
+			else
+			{
+				Debug.LogError("New material is not assigned.");
+			}
+		}
+		else
+		{
+
+			name = "Player 1";
+			color = Color.red;
+		}
+		playerJoined.CmdSetupPlayer(name, color);
 
 	}
 
@@ -958,6 +994,7 @@ public class EscalatorManager : NetworkBehaviour
 		// Subscribe to the event
 		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
 		GameManager.OnPlayerJoined += HandlePlayerJoined;
+		GameManager.OnPlayerJoined += HandlePlayer2Joined;
 		GameManager.OnPlayerExisting += HandlePlayerJoined;
 	}
 
@@ -966,6 +1003,7 @@ public class EscalatorManager : NetworkBehaviour
 		// Unsubscribe from the event to avoid memory leaks
 		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
 		GameManager.OnPlayerJoined -= HandlePlayerJoined;
+		GameManager.OnPlayerJoined -= HandlePlayer2Joined;
 		GameManager.OnPlayerExisting -= HandlePlayerJoined;
 
 	}

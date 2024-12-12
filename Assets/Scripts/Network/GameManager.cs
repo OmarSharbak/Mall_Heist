@@ -33,8 +33,8 @@ public class GameManager : NetworkBehaviour
     private TMP_Text moneyText; // Text to display money
 
     // Declare a static event
-    public static event Action<ThirdPersonController> OnPlayerJoined;
-    public static event Action<ThirdPersonController> OnPlayerExisting;
+    public static event Action<ThirdPersonController,int> OnPlayerJoined;
+    public static event Action<ThirdPersonController,int> OnPlayerExisting;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -141,7 +141,7 @@ public class GameManager : NetworkBehaviour
     }
 
     [ClientRpc]
-    public void RpcNotifyPlayerJoined(uint playerNetId, uint[] existingNetId)
+    public void RpcNotifyPlayerJoined(uint playerNetId, uint[] existingNetId,int numPlayers)
     {
         Debug.Log($"RpcNotifyPlayerJoined called on remote client for netId={playerNetId}");
 
@@ -153,7 +153,7 @@ public class GameManager : NetworkBehaviour
                 if (controller != null)
                 {
                     controller.transform.name = "Player_" + playerNetId.ToString();
-                    OnPlayerJoined?.Invoke(controller);
+                    OnPlayerJoined?.Invoke(controller, numPlayers);
                     Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
                     foreach (var netId in existingNetId)
                     {
@@ -165,7 +165,7 @@ public class GameManager : NetworkBehaviour
                                 if (controllerExisting != null)
                                 {
                                     controllerExisting.transform.name = "Player_" + netId.ToString();
-                                    OnPlayerExisting?.Invoke(controllerExisting);
+                                    OnPlayerExisting?.Invoke(controllerExisting, numPlayers);
                                     Debug.Log($"Existing Player {controllerExisting.gameObject.name} has spawned on the remote client!");
 
                                 }
