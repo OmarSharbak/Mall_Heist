@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
@@ -23,8 +24,10 @@ public class GrassDecorationStealth : MonoBehaviour
     private PlayerPositionHolder playerPositionHolder;
     private CharacterController characterController;
 
+	public static event Action OnPlayerHidePlants;
 
-    int exitLocationIndex = 0;
+
+	int exitLocationIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,8 @@ public class GrassDecorationStealth : MonoBehaviour
     Transform previousLocation;
     private void HandleExitSelection()
     {
+        if(thirdPersonController==null)
+            return;
         Vector3 inputDirection = thirdPersonController.inputDirection; // Accessing input direction
 
         
@@ -83,12 +88,15 @@ public class GrassDecorationStealth : MonoBehaviour
     {
         if ((other.CompareTag("Player") || other.CompareTag("PlayerInvisible")) && !hiding)
         {
-            Debug.Log("Player Entered");
+            if (!other.GetComponent<ThirdPersonController>().isLocalPlayer)
+                return;
+
+			Debug.Log("Player Entered");
             playerIsNear = true;
             playerDamageHandler = other.GetComponent<PlayerDamageHandler>();
-            thirdPersonController = other.GetComponent<ThirdPersonController>();
             playerPositionHolder = other.GetComponent<PlayerPositionHolder>();
-            thirdPersonController.SetNearbyGrass(this);
+			thirdPersonController = other.GetComponent<ThirdPersonController>();
+			thirdPersonController.SetNearbyGrass(this);
             positionYBeforeHiding = other.transform.position.y;
             characterController = other.GetComponent<CharacterController>();
         }
@@ -98,7 +106,9 @@ public class GrassDecorationStealth : MonoBehaviour
     {
         if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
         {
-            Debug.Log("Player Exited");
+			if (!other.GetComponent<ThirdPersonController>().isLocalPlayer)
+				return;
+			Debug.Log("Player Exited");
             playerIsNear = false;
             playerDamageHandler = null;
             thirdPersonController.ClearNearbyGrass();
@@ -121,7 +131,9 @@ public class GrassDecorationStealth : MonoBehaviour
     }
     private void EnterHiding()
     {
-        hiding = true;
+		if (thirdPersonController==null)
+			return;
+		hiding = true;
         EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
         EscalatorManager.Instance.CheckExposed(thirdPersonController);
         Debug.Log("Started Hiding playerTransform: " + thirdPersonController.transform.position);
@@ -132,11 +144,16 @@ public class GrassDecorationStealth : MonoBehaviour
         thirdPersonController.StopMovement();  
         StartCoroutine(EnableExitAfterDelay());
         characterController.enabled = false;
-        
-    }
+        OnPlayerHidePlants?.Invoke();
+
+
+	}
     public void StopHiding()
     {
-        if (hiding && canExitHiding)
+
+		if (thirdPersonController==null)
+			return;
+		if (hiding && canExitHiding)
         {
             Debug.Log("Stop Hiding");
             canExitHiding = false; // Reset exit flag

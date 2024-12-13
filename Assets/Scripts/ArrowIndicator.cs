@@ -28,6 +28,7 @@ public class ArrowIndicator : NetworkBehaviour
 
 		player = localPlayer.transform;
 		PlayerDamageHandler.OnPlayerCaught += PlayerDamageHandler_OnPlayerCaught;
+		GrassDecorationStealth.OnPlayerHidePlants+= PlayerDamageHandler_OnPlayerCaught;
 		ThrowableItem.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
 		CreateArrows();
 	}
