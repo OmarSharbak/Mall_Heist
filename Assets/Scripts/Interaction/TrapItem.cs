@@ -70,13 +70,6 @@ public class TrapItem : InventoryItem
     Transform healthBarCanvasTransform;
     void OnTriggerEnter(Collider other)
     {
-        // Check for invincibility status on other target
-        guardInvincibility = other.gameObject.GetComponent<GuardInvincibility>();
-
-        if (guardInvincibility != null && guardInvincibility.IsInvincible())
-        {
-            return; // Skip processing for invincible targets
-        }
 
         // Skip processing if item isn't throwable or has already hit its target
         if (!isPlaceable || hit || !isPlaced) 
@@ -85,7 +78,15 @@ public class TrapItem : InventoryItem
         // Check if collided object is an EmeraldAI system (i.e., AI opponent)
         if (other.gameObject.GetComponent<EmeraldAISystem>() != null)
         {
-            if (mmFeedbacks != null)
+			// Check for invincibility status on other target
+			guardInvincibility = other.gameObject.GetComponent<GuardInvincibility>();
+
+			if (guardInvincibility != null && guardInvincibility.IsInvincible())
+			{
+				return; // Skip processing for invincible targets
+			}
+
+			if (mmFeedbacks != null)
             {
                 Debug.Log("Feedbacks Played.");
                 mmFeedbacks.PlayFeedbacks();
@@ -174,7 +175,31 @@ public class TrapItem : InventoryItem
             // After a set delay, reset AI state post-hit
             StartCoroutine(WaitAndMove());
         }
-    }
+		else if (other.gameObject.GetComponent<ThirdPersonController>() != null)//collision other player
+		{
+			Debug.Log("Item - Player Hit");
+			mmFeedbacks.PlayFeedbacks();
+			hit = true;  // Flag hit to prevent repeat processing
+
+			ThirdPersonController controller = other.gameObject.GetComponent<ThirdPersonController>();
+			controller.canMove = false;
+
+			controller.animator.SetTrigger("Hit");
+
+			// If collision happens at head joint, trigger a stunning visual effect
+			Transform headJoint = other.transform.Find("Geometry/SimplePeople_Pimp_White/Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
+			if (headJoint != null)
+			{
+				StartCoroutine(SpawnEffectAfterDelayPlayer(headJoint));
+			}
+			StartCoroutine(MoveGuardAndBanana(other.transform));
+
+
+			// After a set delay, reset state post-hit
+			StartCoroutine(WaitAndMovePlayer(controller));
+
+		}
+	}
 
     // Coroutine to delay the spawning of a visual effect upon collision
     IEnumerator SpawnEffectAfterDelay(Transform headJoint)
@@ -197,9 +222,34 @@ public class TrapItem : InventoryItem
             }
         }
     }
+	// Coroutine to delay the spawning of a visual effect upon collision
+	IEnumerator SpawnEffectAfterDelayPlayer(Transform headJoint)
+	{
+		yield return new WaitForSeconds(1.7f);
 
-    // Coroutine to reset AI state after being hit
-    IEnumerator WaitAndMove()
+		if (headJoint != null)
+		{
+
+			GameObject spawnedFX = Instantiate(stunningFXPrefab, headJoint.position + new Vector3(0, 1.5f, 0), Quaternion.Euler(-90, 0, 0));
+
+			yield return new WaitForSeconds(0.2f);  // Delay for SFX
+
+			Destroy(spawnedFX, 4.6f); // Clean up the effect after its duration
+
+		}
+	}
+
+	// Coroutine to reset AI state after being hit
+	IEnumerator WaitAndMovePlayer(ThirdPersonController controller)
+	{
+		yield return new WaitForSeconds(7.7f);
+		controller.canMove = true;
+
+	}
+
+
+	// Coroutine to reset AI state after being hit
+	IEnumerator WaitAndMove()
     {
         eventsManager.ClearTarget();
         yield return new WaitForSeconds(7.7f);
