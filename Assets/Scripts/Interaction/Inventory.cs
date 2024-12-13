@@ -21,9 +21,6 @@ public class Inventory : NetworkBehaviour
 	[Header("Inventory Settings")]
 	[SerializeField] private int maxItemsPerType = 2;
 
-	[SyncVar(hook = nameof(OnItemPrefabChanged))]
-	public string equipedItemPrefabName;
-
 	public GameObject heldItem = null; // The item currently being held.
 
 	private int currentItemIndex = 0; // Tracks the current item in the inventory.
@@ -36,8 +33,6 @@ public class Inventory : NetworkBehaviour
 
 	private Objectives objectives;
 
-	[SerializeField]
-	private GameObject[] itemPrefabs=null;
 	private void Start()
 	{
 		audioManager = FindObjectOfType<AudioManager>();
@@ -140,45 +135,69 @@ public class Inventory : NetworkBehaviour
 		}
 	}
 
-	private void UpdateHeldItem(bool destroyExistingItem)
+	private void UpdateHeldItem(bool destroyExistingItem = true)
 	{
 		if (heldItem && destroyExistingItem)
 		{
-
-			CmdUpdateHeldItem("destroy");
-			
+			Destroy(heldItem);
 		}
+
 		if (items.Count == 0)
 		{
-			CmdUpdateHeldItem("null");
+			heldItem = null;
 			return;
 		}
 
-
-		Invoke(nameof(DelayedUpdateHeldItem), destroyExistingItem? 2f:0);
-		
-
-
-
-	}
-
-	private void DelayedUpdateHeldItem()
-	{
-
 		InventoryItem currentItem = items[currentItemIndex];
-		CmdUpdateHeldItem(currentItem.itemName);
+		CmdUpdateHeldItem(currentItem);
 	}
 
 	[Command]
-	private void CmdUpdateHeldItem(string itemName)
+	private void CmdUpdateHeldItem(InventoryItem item)
 	{
-		Debug.Log("SERVER -  update held item prefab");
+		Debug.Log("SERVER -  update held item");
 
-	
-			equipedItemPrefabName = itemName;
-
+		RpcUpdateHeldItem(item);
 	}
+	[ClientRpc]
+	private void RpcUpdateHeldItem(InventoryItem item)
+	{
+		Debug.Log("CLIENT -  update held item - rightHand"+ rightHand.name);
 
+		if (item == null)
+		{
+			Debug.LogWarning("CLIENT -  update held item - item null");
+			return;
+		}
+		Debug.Log("CLIENT -  update held item - itemprefab"+ item.prefab.name);
+
+		heldItem = Instantiate(item.prefab, rightHand.position, rightHand.rotation, rightHand);
+		heldItem.GetComponent<InventoryItem>().playerTransform = transform;
+		if (heldItem.GetComponent<InventoryItem>().itemName == "Guitar")
+		{
+			float posX = 0.206f;  // Change this value
+			float posY = 0.8f;  // Change this value
+			float posZ = 0.56f;  // Change this value
+
+			heldItem.transform.localPosition = new Vector3(posX, posY, posZ);
+
+			// Placeholder for rotation values
+			float rotX = 42.6f;  // Change this value
+			float rotY = 203f;  // Change this value
+			float rotZ = -135f;  // Change this value
+
+			heldItem.transform.localEulerAngles = new Vector3(rotX, rotY, rotZ);
+		}
+
+		//avoid collsiions between the current player and the item held
+		Collider playerCollider = transform.GetComponent<Collider>();
+		Collider itemCollider = heldItem.GetComponent<Collider>();
+		if (itemCollider != null)
+		{
+			Physics.IgnoreCollision(playerCollider, itemCollider);
+			Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
+		}
+	}
 	/// <summary>
 	/// Decreases the count of the currently held item.
 	/// </summary>
@@ -272,7 +291,7 @@ public class Inventory : NetworkBehaviour
 	/// Determines if the inventory contains a specific objective item.
 	/// </summary>
 
-	[Command]
+	[Command(requiresAuthority =false)]
 	public void CmdCheckServerHasObjectiveItem(string objectiveItem)
 	{
 		// Check if the item exists and has a count greater than 0
@@ -320,14 +339,10 @@ public class Inventory : NetworkBehaviour
 				break;
 			}
 		}
-		StartCoroutine(DelayedRemoveItemFromList(objectiveItem));
-
-
-	}
-	System.Collections.IEnumerator DelayedRemoveItemFromList(string objectiveItem)
-	{
-		yield return new WaitForSeconds(1);
 		RemoveItemFromList(objectiveItem);
+
+
+
 	}
 
 	public int CountTotalItems()
@@ -348,74 +363,5 @@ public class Inventory : NetworkBehaviour
 			.ToDictionary(pair => pair.Key, pair => pair.Value);
 
 		return matchingItems;
-	}
-
-	private void OnItemPrefabChanged(string oldItem, string newItem)
-	{
-		if (newItem == "")
-		{
-			Debug.Log("CLIENT - on item changed - void");
-			return;
-
-		}
-		if (newItem == "null")
-		{
-			Debug.Log("CLIENT - on item changed - null");
-
-			heldItem = null;
-			equipedItemPrefabName = "";
-			return;
-
-		}
-		if (newItem == "destroy")
-		{
-			Debug.Log("CLIENT - on item changed - destroy");
-
-			Destroy(heldItem);
-			equipedItemPrefabName = "";
-			return;
-
-		}
-		Debug.Log("CLIENT - on item changed");
-
-		GameObject prefab = SearchItemPrefabByName(newItem);
-		heldItem = Instantiate(prefab, rightHand.position, rightHand.rotation, rightHand);
-		heldItem.name = newItem;
-		heldItem.GetComponent<InventoryItem>().playerTransform = transform;
-		if (heldItem.GetComponent<InventoryItem>().itemName == "Guitar")
-		{
-			Debug.Log("CLIENT - on item changed - Guitar");
-
-			float posX = 0.206f;  // Change this value
-			float posY = 0.8f;  // Change this value
-			float posZ = 0.56f;  // Change this value
-
-			heldItem.transform.localPosition = new Vector3(posX, posY, posZ);
-
-			// Placeholder for rotation values
-			float rotX = 42.6f;  // Change this value
-			float rotY = 203f;  // Change this value
-			float rotZ = -135f;  // Change this value
-
-			heldItem.transform.localEulerAngles = new Vector3(rotX, rotY, rotZ);
-		}
-
-		//avoid collsiions between the current player and the item held
-		Collider playerCollider = transform.GetComponent<Collider>();
-		Collider itemCollider = heldItem.GetComponent<Collider>();
-
-		Physics.IgnoreCollision(playerCollider, itemCollider);
-		Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
-
-	}
-
-	private GameObject SearchItemPrefabByName(string newItem)
-	{
-		foreach(GameObject i in  itemPrefabs){
-			if (i.name == newItem)
-				return i;
-		}
-		Debug.Log("CLIENT - Error! item prefab not found by name: " +newItem);
-		return null;
 	}
 }
