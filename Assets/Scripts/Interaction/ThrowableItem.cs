@@ -237,6 +237,13 @@ public class ThrowableItem : InventoryItem
 
 			controller.animator.SetTrigger("Hit");
 
+			// If collision happens at head joint, trigger a stunning visual effect
+			Transform headJoint = collision.transform.Find("Geometry/SimplePeople_Pimp_White/Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
+			if (headJoint != null)
+			{
+				StartCoroutine(SpawnEffectAfterDelayPlayer(headJoint));
+			}
+
 			// After a set delay, reset state post-hit
 			StartCoroutine(WaitAndMovePlayer(controller));
 
@@ -266,7 +273,24 @@ public class ThrowableItem : InventoryItem
         }
     }
 
-    IEnumerator RemoveNoiseIndicator()
+	// Coroutine to delay the spawning of a visual effect upon collision
+	IEnumerator SpawnEffectAfterDelayPlayer(Transform headJoint)
+	{
+		yield return new WaitForSeconds(1.7f);
+
+		if (headJoint != null)
+		{
+
+				GameObject spawnedFX = Instantiate(stunningFXPrefab, headJoint.position + new Vector3(0, 1.5f, 0), Quaternion.Euler(-90, 0, 0));
+
+				yield return new WaitForSeconds(0.2f);  // Delay for SFX
+
+				Destroy(spawnedFX, 4.6f); // Clean up the effect after its duration
+			
+		}
+	}
+
+	IEnumerator RemoveNoiseIndicator()
     {
         float startTime = Time.time;  // Store the start time
         float duration = 2f;  // Set the desired duration
