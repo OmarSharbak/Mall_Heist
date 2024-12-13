@@ -261,6 +261,10 @@ public class SealableDoor : NetworkBehaviour
 		audioSource.Stop();
 		audioPlaying = false;
 
+		// Update the progress UI.
+		sealProgressBar.value = 1f;
+		fillImage.color = gradient.Evaluate(sealProgressBar.value);
+
 		// Use a coroutine to delay playing of the "ObjectiveComplete" sound
 		StartCoroutine(PlayObjectiveCompleteSound());
 	}
