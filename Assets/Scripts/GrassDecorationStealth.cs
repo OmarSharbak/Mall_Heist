@@ -163,7 +163,8 @@ public class GrassDecorationStealth : MonoBehaviour
             thirdPersonController.transform.position = getOutPosition;
             Debug.Log("After exiting playerTransform: " + thirdPersonController.transform.position + " getOut poisiton is: " + getOutPosition);
             thirdPersonController.gameObject.tag = "Player";
-            thirdPersonController.EnableMovement();
+            if(!thirdPersonController.captured)
+                thirdPersonController.EnableMovement();
             StartCoroutine(EnableEnterAfterDelay());
             characterController.enabled = true;
             playerPositionHolder.enabled = true;
