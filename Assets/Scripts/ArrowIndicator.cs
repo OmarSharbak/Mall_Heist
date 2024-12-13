@@ -89,12 +89,6 @@ public class ArrowIndicator : NetworkBehaviour
 			{
 				CmdEnableArrows(guards[i], _player);
 			}
-			else
-			{
-				CmdDisableArrows(player);
-
-
-			}
 
 		}
 
