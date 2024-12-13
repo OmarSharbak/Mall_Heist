@@ -415,7 +415,7 @@ public class Inventory : NetworkBehaviour
 			if (i.name == newItem)
 				return i;
 		}
-		Debug.Log("CLIENT - Error! item prefab not found by name");
+		Debug.Log("CLIENT - Error! item prefab not found by name: " +newItem);
 		return null;
 	}
 }

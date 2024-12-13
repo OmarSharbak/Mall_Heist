@@ -1046,6 +1046,7 @@ MonoBehaviour:
   - {fileID: 8806289644645661166, guid: 8b28909b65003da4fa50d78a18f7095d, type: 3}
   - {fileID: 4114305269140579959, guid: 85b599a4f8792ce4ca8b4451ef282700, type: 3}
   - {fileID: 3176145172186905438, guid: 19933b93f0b605848830504823d9442f, type: 3}
+  - {fileID: 7456710900530230693, guid: aff809ad411f7af4e9ebc26509ebf981, type: 3}
 --- !u!114 &9064374381481665709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,7 +1180,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
