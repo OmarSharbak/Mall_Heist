@@ -352,17 +352,25 @@ public class Inventory : NetworkBehaviour
 
 	private void OnItemPrefabChanged(string oldItem, string newItem)
 	{
-		if(newItem=="")
+		if (newItem == "")
+		{
+			Debug.Log("CLIENT - on item changed - void");
 			return;
+
+		}
 		if (newItem == "null")
 		{
-			heldItem=null;
+			Debug.Log("CLIENT - on item changed - null");
+
+			heldItem = null;
 			equipedItemPrefabName = "";
 			return;
 
 		}
 		if (newItem == "destroy")
 		{
+			Debug.Log("CLIENT - on item changed - destroy");
+
 			Destroy(heldItem);
 			equipedItemPrefabName = "";
 			return;
@@ -376,6 +384,8 @@ public class Inventory : NetworkBehaviour
 		heldItem.GetComponent<InventoryItem>().playerTransform = transform;
 		if (heldItem.GetComponent<InventoryItem>().itemName == "Guitar")
 		{
+			Debug.Log("CLIENT - on item changed - Guitar");
+
 			float posX = 0.206f;  // Change this value
 			float posY = 0.8f;  // Change this value
 			float posZ = 0.56f;  // Change this value
@@ -395,6 +405,7 @@ public class Inventory : NetworkBehaviour
 		Collider itemCollider = heldItem.GetComponent<Collider>();
 
 		Physics.IgnoreCollision(playerCollider, itemCollider);
+		Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
 
 	}
 

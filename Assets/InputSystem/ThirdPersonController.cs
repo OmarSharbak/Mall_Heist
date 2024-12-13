@@ -971,9 +971,6 @@ public class ThirdPersonController : NetworkBehaviour
 	{
 		if (_inventory.IsMelee())
 		{
-			Transform itemToThrow = rightArm.GetChild(0);
-
-			Rigidbody rb = itemToThrow.GetComponent<Rigidbody>();
 
 			if (isMelee == false)
 			{
@@ -982,6 +979,9 @@ public class ThirdPersonController : NetworkBehaviour
 					if (resetting)
 						return;
 
+					Transform itemToThrow = rightArm.GetChild(0);
+
+					Rigidbody rb = itemToThrow.GetComponent<Rigidbody>();
 
 					//canMove = false; // Restricting player from moving
 					//_speed = 0.0f; // Stopping the player

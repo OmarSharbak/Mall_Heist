@@ -152,7 +152,7 @@ public class GameManager : NetworkBehaviour
                 ThirdPersonController controller = identity.GetComponent<ThirdPersonController>();
                 if (controller != null)
                 {
-                    controller.transform.name = "Player_" + playerNetId.ToString();
+                    controller.transform.name = "Player_" + numPlayers;
                     OnPlayerJoined?.Invoke(controller, numPlayers);
                     Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
                     foreach (var netId in existingNetId)
@@ -164,7 +164,7 @@ public class GameManager : NetworkBehaviour
                                 ThirdPersonController controllerExisting = identityExisting.GetComponent<ThirdPersonController>();
                                 if (controllerExisting != null)
                                 {
-                                    controllerExisting.transform.name = "Player_" + netId.ToString();
+                                    controllerExisting.transform.name = "Player_1";
                                     OnPlayerExisting?.Invoke(controllerExisting, numPlayers);
                                     Debug.Log($"Existing Player {controllerExisting.gameObject.name} has spawned on the remote client!");
 

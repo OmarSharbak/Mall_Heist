@@ -5,6 +5,7 @@ using System.Collections;
 using UnityEngine.AI;
 using MoreMountains.Feedbacks;
 using System;
+using Mirror;
 
 public class MeleeWeapon : InventoryItem
 {
@@ -83,12 +84,15 @@ public class MeleeWeapon : InventoryItem
     Transform healthBarCanvasTransform;
     void OnCollisionEnter(Collision collision)
     {
-        if(canDamage == false || hit)
+		Debug.Log("Item - collision enter");
+
+		if (canDamage == false || hit)
         {
             return;
         }
+		Debug.Log("Item - collision passed");
 
-        if (collision.gameObject.GetComponent<EmeraldAISystem>() != null)
+		if (collision.gameObject.GetComponent<EmeraldAISystem>() != null)
         {
 			// Check for invincibility status on collision target
 			guardInvincibility = collision.gameObject.GetComponent<GuardInvincibility>();
@@ -166,16 +170,15 @@ public class MeleeWeapon : InventoryItem
             rb.constraints = RigidbodyConstraints.None;
             
             Transform topParent = FindTopParent(this.transform);
-            Transform playerArmatureTransform = topParent.Find("PlayerArmature");
-            if (playerArmatureTransform != null)
+            if (topParent != null)
             {
-                GameObject playerArmature = playerArmatureTransform.gameObject;
+                GameObject playerArmature = topParent.gameObject;
                 playerArmature.GetComponent<Inventory>().DecreaseHeldItem();
                 // Now you have the playerArmature GameObject
             }
             else
             {
-                Debug.LogError("PlayerArmature not found.");
+                Debug.LogError("Player Top Parent not found.");
             }
             this.transform.SetParent(null);
             //inventory.DecreaseHeldItem();
@@ -222,6 +225,17 @@ public class MeleeWeapon : InventoryItem
 			ThirdPersonController controller = collision.gameObject.GetComponent<ThirdPersonController>();
 			controller.canMove = false;
 
+			Transform topParent = FindTopParent(this.transform);
+			if (topParent != null)
+			{
+				GameObject playerArmature = topParent.gameObject;
+				playerArmature.GetComponent<Inventory>().DecreaseHeldItem();
+			}
+			else
+			{
+				Debug.LogError("Player Top Parent not found.");
+			}
+            
 			controller.animator.SetTrigger("Hit");
 
 			// If collision happens at head joint, trigger a stunning visual effect
@@ -234,11 +248,15 @@ public class MeleeWeapon : InventoryItem
 			// After a set delay, reset state post-hit
 			StartCoroutine(WaitAndMovePlayer(controller));
 
-		}
+            GetComponent<Collider>().isTrigger = true;
+            transform.SetParent(null);
+
+        }
 	}
 
-    // Coroutine to delay the spawning of a visual effect upon collision
-    IEnumerator SpawnEffectAfterDelay(Transform headJoint)
+
+	// Coroutine to delay the spawning of a visual effect upon collision
+	IEnumerator SpawnEffectAfterDelay(Transform headJoint)
     {
         yield return new WaitForSeconds(1.7f);
 
