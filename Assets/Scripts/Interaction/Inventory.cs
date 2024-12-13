@@ -390,6 +390,12 @@ public class Inventory : NetworkBehaviour
 			heldItem.transform.localEulerAngles = new Vector3(rotX, rotY, rotZ);
 		}
 
+		//avoid collsiions between the current player and the item held
+		Collider playerCollider = transform.GetComponent<Collider>();
+		Collider itemCollider = heldItem.GetComponent<Collider>();
+
+		Physics.IgnoreCollision(playerCollider, itemCollider);
+
 	}
 
 	private GameObject SearchItemPrefabByName(string newItem)

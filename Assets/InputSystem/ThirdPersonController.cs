@@ -131,7 +131,7 @@ public class ThirdPersonController : NetworkBehaviour
 #if ENABLE_INPUT_SYSTEM
 	private PlayerInput _playerInput;
 #endif
-	private Animator _animator;
+	public Animator animator;
 	private CharacterController _controller;
 	private InputSystem _input;
 	private GameObject _mainCamera;
@@ -309,7 +309,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 		_cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
-		_hasAnimator = TryGetComponent(out _animator);
+		_hasAnimator = TryGetComponent(out animator);
 		_controller = GetComponent<CharacterController>();
 		_inventory = GetComponent<Inventory>();
 		_playerDamageHandler = GetComponent<PlayerDamageHandler>();
@@ -538,8 +538,8 @@ public class ThirdPersonController : NetworkBehaviour
 		// update animator if using character
 		if (_hasAnimator)
 		{
-			_animator.SetFloat(_animIDSpeed, _animationBlend);
-			//_animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+			animator.SetFloat(_animIDSpeed, _animationBlend);
+			//animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
 		}
 	}
 
@@ -621,7 +621,7 @@ public class ThirdPersonController : NetworkBehaviour
 		// update animator if using character
 		if (_hasAnimator)
 		{
-			_animator.SetFloat(_animIDSpeed, _animationBlend);
+			animator.SetFloat(_animIDSpeed, _animationBlend);
 		}
 	}
 	private void ResumeAfterCapture()
@@ -787,7 +787,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	}
 
-	[Command (requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	private void CmdPause()
 	{
 
@@ -842,7 +842,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	}
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	private void CmdResume()
 	{
 
@@ -918,7 +918,7 @@ public class ThirdPersonController : NetworkBehaviour
 		_input.throwItem = false;
 		isMelee = false;
 		isThrowing = false;
-		_animator.SetInteger(_animIDWeaponType, 0);
+		animator.SetInteger(_animIDWeaponType, 0);
 		SetCantDamage();
 		StartCoroutine(AfterReset());
 	}
@@ -939,7 +939,7 @@ public class ThirdPersonController : NetworkBehaviour
 				{
 					if (_hasAnimator && !resetting)
 					{
-						_animator.SetInteger(_animIDWeaponType, 10);
+						animator.SetInteger(_animIDWeaponType, 10);
 						StartCoroutine(ResetWeaponType()); // Reset the weapontype after the animation plays
 					}
 
@@ -947,7 +947,7 @@ public class ThirdPersonController : NetworkBehaviour
 					_input.throwItem = false;// Disabling throwItem in Starter Assets Inputs
 					canMove = false; // Restricting player from moving
 					_speed = 0.0f; // Stopping the player
-					_animator.SetFloat(_animIDSpeed, 0.0f); // Setting animator speed value to 0 for states changing
+					animator.SetFloat(_animIDSpeed, 0.0f); // Setting animator speed value to 0 for states changing
 
 				}
 			}
@@ -962,7 +962,7 @@ public class ThirdPersonController : NetworkBehaviour
 	{
 		canMove = false; // Restricting player from moving
 		_speed = 0.0f; // Stopping the player
-		_animator.SetFloat(_animIDSpeed, 0.0f);
+		animator.SetFloat(_animIDSpeed, 0.0f);
 	}
 
 	bool isMelee = false;
@@ -985,7 +985,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 					//canMove = false; // Restricting player from moving
 					//_speed = 0.0f; // Stopping the player
-					//_animator.SetFloat(_animIDSpeed, 0.0f); // Setting animator speed value to 0 for states changing
+					//animator.SetFloat(_animIDSpeed, 0.0f); // Setting animator speed value to 0 for states changing
 
 
 
@@ -994,7 +994,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 					if (_hasAnimator)
 					{
-						_animator.SetInteger(_animIDWeaponType, 11);
+						animator.SetInteger(_animIDWeaponType, 11);
 						StartCoroutine(ResetWeaponTypeMelee()); // Reset the weapontype after the animation plays
 					}
 					if (rb != null)
@@ -1130,10 +1130,11 @@ public class ThirdPersonController : NetworkBehaviour
 	Vector3 AimAssist(Vector3 itemPosition)
 	{
 		float detectionRadius = 15f; // Or use a field to adjust the detection radius
-		LayerMask guardLayer = LayerMask.GetMask("Guards"); // Adjust the layer mask as needed
+		string[] layers = new string[] { "Guards", "PlayerVisible" };
+		LayerMask hitLayer = LayerMask.GetMask(layers); // Adjust the layer mask as needed
 		float aimAssistAngle = 35f; // Angle within which to assist aim
 
-		Collider[] hits = Physics.OverlapSphere(itemPosition, detectionRadius, guardLayer);
+		Collider[] hits = Physics.OverlapSphere(itemPosition, detectionRadius, hitLayer);
 		foreach (var hit in hits)
 		{
 			Debug.Log("FOUND IN RANGE");
@@ -1143,6 +1144,8 @@ public class ThirdPersonController : NetworkBehaviour
 
 		foreach (var hit in hits)
 		{
+			if (hit.transform == transform)
+				continue;//skip self
 			Vector3 directionToTarget = (hit.transform.position - itemPosition).normalized;
 			float angle = Vector3.Angle(playerTransform.forward, directionToTarget);
 
@@ -1167,7 +1170,7 @@ public class ThirdPersonController : NetworkBehaviour
 	private IEnumerator ResetWeaponType()
 	{
 		yield return new WaitForSeconds(0.3f); // Wait for the throw animation duration (you might need to adjust this time based on your animation duration)
-		_animator.SetInteger(_animIDWeaponType, 0);
+		animator.SetInteger(_animIDWeaponType, 0);
 		isThrowing = false; // To let the player throw again
 		isMelee = false;
 		if (EscalatorManager.Instance.GetCurrentState(this) != EscalatorManager.GameState.Defeat && captured == false)
@@ -1177,7 +1180,7 @@ public class ThirdPersonController : NetworkBehaviour
 	private IEnumerator ResetWeaponTypeMelee()
 	{
 		yield return new WaitForSeconds(0.8f); // Wait for the throw animation duration (you might need to adjust this time based on your animation duration)
-		_animator.SetInteger(_animIDWeaponType, 0);
+		animator.SetInteger(_animIDWeaponType, 0);
 		isThrowing = false; // To let the player throw again
 		isMelee = false;
 		if (EscalatorManager.Instance.GetCurrentState(this) != EscalatorManager.GameState.Defeat && captured == false)
@@ -1200,7 +1203,7 @@ public class ThirdPersonController : NetworkBehaviour
 	public void StopMovement()
 	{
 		canMove = false;
-		_animator.SetFloat(_animIDSpeed, 0);
+		animator.SetFloat(_animIDSpeed, 0);
 	}
 
 	private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

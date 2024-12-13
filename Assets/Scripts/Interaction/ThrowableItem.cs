@@ -107,14 +107,8 @@ public class ThrowableItem : InventoryItem
     [SerializeField] bool isContainer = false;
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("ITEM collision enter!");
         // Your existing OnCollisionEnter code here
-        // Check for invincibility status on collision target
-        guardInvincibility = collision.gameObject.GetComponent<GuardInvincibility>();
-        if (guardInvincibility != null && guardInvincibility.IsInvincible())
-        {
-            return; // Skip processing for invincible targets
-        }
-
         if (noiseIndicator != null && !isContainer && noiseShown == false)
         {
             ShowNoiseRadius();
@@ -127,15 +121,30 @@ public class ThrowableItem : InventoryItem
 
 
         // Skip processing if item isn't throwable or has already hit its target
-        if (!isThrowable || hit || rb.velocity.magnitude < 0.25f) 
-            return;
-
-        
-        
-        // Check if collided object is an EmeraldAI system (i.e., AI opponent)
-        if (collision.gameObject.GetComponent<EmeraldAISystem>() != null )
+        if (!isThrowable || hit || rb.velocity.magnitude < 0.25f)
         {
-            mmFeedbacks.PlayFeedbacks();
+			Debug.Log("ITEM collision returned" + collision.gameObject.name);
+
+			return;
+
+		}
+
+		Debug.Log("ITEM collision enter passed "+ collision.gameObject.name);
+
+
+		// Check if collided object is an EmeraldAI system (i.e., AI opponent)
+		if (collision.gameObject.GetComponent<EmeraldAISystem>() != null )
+        {
+			Debug.Log("ITEM collision guard hit");
+
+			// Check for invincibility status on collision target
+			guardInvincibility = collision.gameObject.GetComponent<GuardInvincibility>();
+			if (guardInvincibility != null && guardInvincibility.IsInvincible())
+			{
+				return; // Skip processing for invincible targets
+			}
+
+			mmFeedbacks.PlayFeedbacks();
             // Find the "AI Health Bar Canvas" within the "HealthBarParent" of the collided GameObject.
             healthBarCanvasTransform = collision.transform.Find("HealthBarParent/AI Health Bar Canvas");
 
@@ -217,7 +226,23 @@ public class ThrowableItem : InventoryItem
             // After a set delay, reset AI state post-hit
             StartCoroutine(WaitAndMove());
         }
-    }
+        else if (collision.gameObject.GetComponent<ThirdPersonController>() != null)//collision other player
+        {
+            Debug.Log("Item - Player Hit");
+			mmFeedbacks.PlayFeedbacks();
+			hit = true;  // Flag hit to prevent repeat processing
+
+            ThirdPersonController controller = collision.gameObject.GetComponent<ThirdPersonController>();
+            controller.canMove = false;
+
+			controller.animator.SetTrigger("Hit");
+
+			// After a set delay, reset state post-hit
+			StartCoroutine(WaitAndMovePlayer(controller));
+
+		}
+
+	}
     
     // Coroutine to delay the spawning of a visual effect upon collision
     IEnumerator SpawnEffectAfterDelay(Transform headJoint)
@@ -263,10 +288,17 @@ public class ThrowableItem : InventoryItem
         HideNoiseRadius();  // Hide the noise radius after the loop ends
     }
 
-
-
     // Coroutine to reset AI state after being hit
-    IEnumerator WaitAndMove()
+    IEnumerator WaitAndMovePlayer(ThirdPersonController controller)
+    {
+        yield return new WaitForSeconds(7.7f);
+        controller.canMove = true;
+
+	}
+
+
+		// Coroutine to reset AI state after being hit
+		IEnumerator WaitAndMove()
     {
         eventsManager.ClearTarget();
         yield return new WaitForSeconds(7.7f);
@@ -322,4 +354,5 @@ public class ThrowableItem : InventoryItem
             yield return null; // Pause until next frame
         }
     }
+
 }
