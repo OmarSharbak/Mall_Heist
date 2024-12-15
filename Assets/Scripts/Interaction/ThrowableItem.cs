@@ -121,7 +121,7 @@ public class ThrowableItem : InventoryItem
 
 
         // Skip processing if item isn't throwable or has already hit its target
-        if (!isThrowable || hit || rb.velocity.magnitude < 0.25f)
+        if (!isThrowable || hit || (rb!=null && rb.velocity.magnitude < 0.25f))
         {
 			Debug.Log("ITEM collision returned" + collision.gameObject.name);
 

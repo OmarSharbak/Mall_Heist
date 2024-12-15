@@ -35,7 +35,10 @@ public class GameManager : NetworkBehaviour
     // Declare a static event
     public static event Action<ThirdPersonController,int> OnPlayerJoined;
     public static event Action<ThirdPersonController,int> OnPlayerExisting;
-    private void Awake()
+
+	public Material playerRemoteBlueMaterial; // Assign this in the inspector 
+
+	private void Awake()
     {
         if (Instance != null && Instance != this)
         {
@@ -154,7 +157,32 @@ public class GameManager : NetworkBehaviour
                 {
                     controller.transform.name = "Player_" + numPlayers;
                     OnPlayerJoined?.Invoke(controller, numPlayers);
-                    Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
+
+                    //change name and color
+					if (numPlayers==2 && playerRemoteBlueMaterial != null)
+					{
+						string name = "Player 2";
+						Color color = Color.blue;
+						// Get the Renderer component of the object
+						Renderer renderer = controller.modelRenderer;
+						if (renderer != null)
+						{
+							// Change the material
+							renderer.material = playerRemoteBlueMaterial;
+
+						}
+						controller.SetupPlayer(name, color);
+                    }
+                    else
+                    {
+						string name = "Player 1";
+						Color color = Color.red;
+						
+						controller.SetupPlayer(name, color);
+
+					}
+
+					Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
                     foreach (var netId in existingNetId)
                     {
                         if (NetworkClient.spawned.TryGetValue(netId, out NetworkIdentity identityExisting))
@@ -168,7 +196,11 @@ public class GameManager : NetworkBehaviour
                                     OnPlayerExisting?.Invoke(controllerExisting, numPlayers);
                                     Debug.Log($"Existing Player {controllerExisting.gameObject.name} has spawned on the remote client!");
 
-                                }
+									string name = "Player 1";
+									Color color = Color.red;
+
+									controllerExisting.SetupPlayer(name, color);
+								}
                             }
                         }
 

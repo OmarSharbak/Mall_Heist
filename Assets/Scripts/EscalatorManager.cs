@@ -59,13 +59,12 @@ public class EscalatorManager : NetworkBehaviour
 	private const float FadeDuration = 1.0f;
 	private float originalVolume;
 
-	public PlayerState player1 = null;
-	public PlayerState player2 = null;
+	private PlayerState playerLocal = null;
+	private PlayerState playerRemote = null;
 
-	public Material player2BlueMaterial; // Assign this in the inspector or dynamically via code
 
 	[SyncVar]
-	public int defeatedPlayers=0;
+	public int defeatedPlayers = 0;
 	void CalculateTotalMoney()
 	{
 		foreach (var register in registers)
@@ -98,11 +97,11 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void CheckExposed(ThirdPersonController thirdPersonController)
 	{
-		if (player1 != null && player1.thirdPersonController == thirdPersonController)
-			CheckExposed(player1);
+		if (playerLocal != null && playerLocal.thirdPersonController == thirdPersonController)
+			CheckExposed(playerLocal);
 
-		if (player2 != null && player2.thirdPersonController == thirdPersonController)
-			CheckExposed(player2);
+		if (playerRemote != null && playerRemote.thirdPersonController == thirdPersonController)
+			CheckExposed(playerRemote);
 	}
 	// Function to mark a guard for removal
 	public void CheckExposed(PlayerState player)
@@ -169,11 +168,11 @@ public class EscalatorManager : NetworkBehaviour
 	// Called when a guard detects a player, this alerts other guards in the same room
 	public void AlertOtherGuards(ThirdPersonController thirdPersonController, EmeraldAIEventsManager alertedGuard)
 	{
-		if (player1 != null && player1.thirdPersonController == thirdPersonController)
-			AlertOtherGuards(player1, alertedGuard);
+		if (playerLocal != null && playerLocal.thirdPersonController == thirdPersonController)
+			AlertOtherGuards(playerLocal, alertedGuard);
 
-		if (player2 != null && player2.thirdPersonController == thirdPersonController)
-			AlertOtherGuards(player2, alertedGuard);
+		if (playerRemote != null && playerRemote.thirdPersonController == thirdPersonController)
+			AlertOtherGuards(playerRemote, alertedGuard);
 	}
 	// Called when a guard detects a player, this alerts other guards in the same room
 	public void AlertOtherGuards(PlayerState player, EmeraldAIEventsManager alertedGuard)
@@ -219,11 +218,11 @@ public class EscalatorManager : NetworkBehaviour
 	}
 	public void SetExposed(ThirdPersonController thirdPersonController, bool input)
 	{
-		if (player1 != null && thirdPersonController == player1.thirdPersonController)
-			SetExposed(player1, input);
+		if (playerLocal != null && thirdPersonController == playerLocal.thirdPersonController)
+			SetExposed(playerLocal, input);
 
-		if (player2 != null && thirdPersonController == player2.thirdPersonController)
-			SetExposed(player2, input);
+		if (playerRemote != null && thirdPersonController == playerRemote.thirdPersonController)
+			SetExposed(playerRemote, input);
 	}
 
 	[ClientCallback]
@@ -253,7 +252,7 @@ public class EscalatorManager : NetworkBehaviour
 
 	}
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	private void CmdSetExposed(uint netId, bool input)
 	{
 		Debug.Log(" SERVER set exposed called ");
@@ -314,80 +313,22 @@ public class EscalatorManager : NetworkBehaviour
 	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
 	{
 
-		player1 = localPlayer.GetComponent<PlayerState>();
+		playerLocal = localPlayer.GetComponent<PlayerState>();
 
-		inventory = player1.playerTransform.GetComponent<Inventory>();
+		inventory = playerLocal.playerTransform.GetComponent<Inventory>();
 
 
-		Initialize(player1);
+		Initialize(playerLocal);
 
-		Debug.Log("Player 1 State correct!");
+		Debug.Log("Player local State correct!");
 	}
-
-	private void HandlePlayerJoined(ThirdPersonController playerJoined, int numPlayers)
-	{
-		if (player1 != playerJoined.transform.GetComponent<PlayerState>())
-		{
-
-			player2 = playerJoined.transform.GetComponent<PlayerState>();
-
-			//inventory = player2.playerTransform.GetComponent<Inventory>();
-
-
-			Initialize(player2);
-			Debug.Log("Player 2 State correct!");
-
-		}
-		else
-		{
-			Debug.Log("On joined 2: Player 1 equals than player joined!");
-		}
-
-	}
-
-	private void HandlePlayer2Joined(ThirdPersonController playerJoined, int numPlayers)
-	{
-		string name="Player 2";
-		Color color =Color.blue;
-
-		if (numPlayers == 2)
-		{
-			if (player2BlueMaterial != null)
-			{
-				// Get the Renderer component of the object
-				Renderer renderer = playerJoined.modelRenderer;
-				if (renderer != null)
-				{
-					// Change the material
-					renderer.material = player2BlueMaterial;
-				}
-				else
-				{
-					Debug.LogError("No Renderer found on this GameObject.");
-				}
-			}
-			else
-			{
-				Debug.LogError("New material is not assigned.");
-			}
-		}
-		else
-		{
-
-			name = "Player 1";
-			color = Color.red;
-		}
-		playerJoined.CmdSetupPlayer(name, color);
-
-	}
-
 	private void Initialize(PlayerState player)
 	{
 		if (player.thirdPersonController != null)
 		{
 			player.thirdPersonController.canMove = false;
 		}
-		if (player == player1)
+		if (player == playerLocal)
 		{
 			CalculateTotalMoney();
 			//Cursor.visible = false;
@@ -415,15 +356,15 @@ public class EscalatorManager : NetworkBehaviour
 		StartCoroutine(ClearTextAfterDelay(1f));
 		StartTimer();
 
-		if (player1 != null && player1.thirdPersonController != null)
-			player1.thirdPersonController.canMove = true;
-		if (player2 != null && player2.thirdPersonController != null)
-			player2.thirdPersonController.canMove = true;
+		if (playerLocal != null && playerLocal.thirdPersonController != null)
+			playerLocal.thirdPersonController.canMove = true;
+		if (playerRemote != null && playerRemote.thirdPersonController != null)
+			playerRemote.thirdPersonController.canMove = true;
 
-		if (player1 != null)
-			player1.CmdSetGameState(GameState.Stealth);
-		if (player2 != null)
-			player2.CmdSetGameState(GameState.Stealth);
+		if (playerLocal != null)
+			playerLocal.CmdSetGameState(GameState.Stealth);
+		if (playerRemote != null)
+			playerRemote.CmdSetGameState(GameState.Stealth);
 
 	}
 
@@ -447,10 +388,10 @@ public class EscalatorManager : NetworkBehaviour
         }*/
 
 		// Main game loop for the manager
-		if (player1 != null)
-			UpdateEscalatorOutLine(player1);
-		if (player2 != null)
-			UpdateEscalatorOutLine(player2);
+		if (playerLocal != null)
+			UpdateEscalatorOutLine(playerLocal);
+		if (playerRemote != null)
+			UpdateEscalatorOutLine(playerRemote);
 
 		moneyText.text = moneyCollected.ToString() + "/" + totalMoney.ToString();
 
@@ -475,32 +416,32 @@ public class EscalatorManager : NetworkBehaviour
 		int sealedCount = doorsSealedCount();
 		systemsOverrideText.text = "Systems To Override: " + sealedCount + "/4";
 
-		if (player1 != null)
+		if (playerLocal != null)
 		{
-			UpdateMusicState(player1);
+			UpdateMusicState(playerLocal);
 
 			// Check if there is no currently selected GameObject
-			if (EventSystem.current.currentSelectedGameObject == null && player1.currentState == GameState.Victory)
+			if (EventSystem.current.currentSelectedGameObject == null && playerLocal.currentState == GameState.Victory)
 			{
 				EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject);
 			}
 
-			if (EventSystem.current.currentSelectedGameObject == null && player1.currentState == GameState.Defeat)
+			if (EventSystem.current.currentSelectedGameObject == null && playerLocal.currentState == GameState.Defeat)
 			{
 				EventSystem.current.SetSelectedGameObject(loseRestartLevelButtonGameObject);
 			}
 
 
-			if (player1.playerNearEscalator == false)
+			if (playerLocal.playerNearEscalator == false)
 			{
 				if (promptUIManager != null)
 				{
 					promptUIManager.HideSouthButtonEscalatorUI();
 				}
 			}
-			else if (player1.playerNearEscalator == true && promptUIManager != null && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			else if (playerLocal.playerNearEscalator == true && promptUIManager != null && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 			{
-				if (!player1.exposed)
+				if (!playerLocal.exposed)
 					promptUIManager.ShowSouthButtonEscalatorUI();
 			}
 		}
@@ -551,17 +492,17 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void InteractEscalator()
 	{
-		if (player1 != null)
+		if (playerLocal != null)
 		{
-			if (player1.playerNearEscalator && player2.playerNearEscalator && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			if (playerLocal.playerNearEscalator && playerRemote.playerNearEscalator && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 			{
-				if (!player1.exposed && !player2.exposed)
+				if (!playerLocal.exposed && !playerRemote.exposed)
 				{
 					CmdVictory();
 				}
 
 			}
-			else if (player1.playerNearEscalator)
+			else if (playerLocal.playerNearEscalator)
 			{
 				Debug.Log("Not all objectives are complete or your exposed");
 			}
@@ -772,11 +713,11 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void ClearTargetAll(ThirdPersonController thirdPersonController)
 	{
-		if (player1 != null && player1.thirdPersonController == thirdPersonController)
-			ClearTargetAll(player1);
+		if (playerLocal != null && playerLocal.thirdPersonController == thirdPersonController)
+			ClearTargetAll(playerLocal);
 
-		if (player2 != null && player2.thirdPersonController == thirdPersonController)
-			ClearTargetAll(player2);
+		if (playerRemote != null && playerRemote.thirdPersonController == thirdPersonController)
+			ClearTargetAll(playerRemote);
 	}
 	// Clears the target for all guards, useful to reset guard behavior
 	public void ClearTargetAll(PlayerState player)
@@ -850,7 +791,7 @@ public class EscalatorManager : NetworkBehaviour
 	}
 	public void UpdateMusicState(PlayerState player)
 	{
-		if (player != player1) //just player1 can play music
+		if (player != playerLocal) //just playerLocal can play music
 			return;
 		switch (player.currentState)
 		{
@@ -938,21 +879,21 @@ public class EscalatorManager : NetworkBehaviour
 
 	public GameState GetCurrentState(ThirdPersonController thirdPersonController)
 	{
-		if (player1 != null && thirdPersonController == player1.thirdPersonController)
-			return player1.currentState;
+		if (playerLocal != null && thirdPersonController == playerLocal.thirdPersonController)
+			return playerLocal.currentState;
 
-		if (player2 != null && thirdPersonController == player2.thirdPersonController)
-			return player2.currentState;
+		if (playerRemote != null && thirdPersonController == playerRemote.thirdPersonController)
+			return playerRemote.currentState;
 		return GameState.Stealth;
 	}
 
 	public void SetCurrentState(ThirdPersonController thirdPersonController, GameState gameState)
 	{
-		if (player1 != null && thirdPersonController == player1.thirdPersonController)
-			player1.CmdSetGameState(gameState);
+		if (playerLocal != null && thirdPersonController == playerLocal.thirdPersonController)
+			playerLocal.CmdSetGameState(gameState);
 
-		if (player2 != null && thirdPersonController == player2.thirdPersonController)
-			player2.CmdSetGameState(gameState);
+		if (playerRemote != null && thirdPersonController == playerRemote.thirdPersonController)
+			playerRemote.CmdSetGameState(gameState);
 	}
 
 	[ClientCallback]
@@ -995,18 +936,14 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		// Subscribe to the event
 		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
-		GameManager.OnPlayerJoined += HandlePlayerJoined;
-		GameManager.OnPlayerJoined += HandlePlayer2Joined;
-		GameManager.OnPlayerExisting += HandlePlayerJoined;
+
 	}
 
 	private void OnDisable()
 	{
 		// Unsubscribe from the event to avoid memory leaks
 		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-		GameManager.OnPlayerJoined -= HandlePlayerJoined;
-		GameManager.OnPlayerJoined -= HandlePlayer2Joined;
-		GameManager.OnPlayerExisting -= HandlePlayerJoined;
+
 
 	}
 }

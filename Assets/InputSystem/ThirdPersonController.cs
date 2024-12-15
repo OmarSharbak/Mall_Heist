@@ -167,25 +167,11 @@ public class ThirdPersonController : NetworkBehaviour
 
 	//private Material playerMaterialClone;
 
-	[SyncVar(hook = nameof(OnNameChanged))]
-	public string playerName;
+	public string playerName="";
 
-	[SyncVar(hook = nameof(OnColorChanged))]
 	public Color playerColor = Color.white;
 
 	public Renderer modelRenderer;
-	void OnNameChanged(string _Old, string _New)
-	{
-		playerNameText.text = playerName;
-	}
-
-	void OnColorChanged(Color _Old, Color _New)
-	{
-		playerNameText.color = _New;
-		//playerMaterialClone = new Material(GetComponent<Renderer>().material);
-		//playerMaterialClone.color = _New;
-		//GetComponent<Renderer>().material = playerMaterialClone;
-	}
 
 	//DAD
 
@@ -255,15 +241,13 @@ public class ThirdPersonController : NetworkBehaviour
 
 	}
 
-	[Command(requiresAuthority = false)]
-	public void CmdSetupPlayer(string _name, Color _col)
+	public void SetupPlayer(string _name, Color _col)
 	{
-		// player info sent to server, then server updates sync vars which handles it on all clients
-		playerName = _name;
-		playerColor = _col;
+		playerNameText.text = _name;
+		playerNameText.color = _col;
 		sceneScript.statusText = $"{playerName} joined.";
-
 	}
+
 	public override void OnStartClient()
 	{
 		base.OnStartClient();
