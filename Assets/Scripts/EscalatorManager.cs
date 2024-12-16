@@ -231,25 +231,7 @@ public class EscalatorManager : NetworkBehaviour
 	// Setter function for the exposed state
 	public void SetExposed(PlayerState player, bool input)
 	{
-		//player.exposed = input;
-		//if (input)
-		//{
-		//	player.SetGameState(GameState.Chase);
-		//	UpdateMusicState(player);
-		//}
-		//else //NO OTHER GUARDS CHASING
-		//{
-		//	Debug.Log("SET NOT EXPOSED");
-		//	ClearTargetAll(player);
-		//	UpdateEscalatorOutLine(player);
-
-		//	Debug.Log(player.currentState);
-
-		//	if (player.currentState != GameState.Defeat)
-		//		player.SetGameState(GameState.Stealth);
-
-		//	UpdateMusicState(player);
-		//}
+	
 		CmdSetExposed(player.thirdPersonController.netId, input);
 
 	}
@@ -270,6 +252,7 @@ public class EscalatorManager : NetworkBehaviour
 					player.exposed = input;
 					if (input)
 					{
+						player.SetState(GameState.Chase);
 						player.RpcSetGameState(GameState.Chase);
 						UpdateMusicState(player);
 						Debug.Log("SET EXPOSED - SERVER");
@@ -284,7 +267,13 @@ public class EscalatorManager : NetworkBehaviour
 						Debug.Log(player.currentState);
 
 						if (player.currentState != GameState.Defeat)
+						{
+
+							player.SetState(GameState.Stealth);
 							player.RpcSetGameState(GameState.Stealth);
+
+						}
+
 
 						UpdateMusicState(player);
 					}
@@ -434,18 +423,18 @@ public class EscalatorManager : NetworkBehaviour
 			}
 
 
-			if (playerLocal.playerNearEscalator == false)
-			{
-				if (promptUIManager != null)
-				{
-					promptUIManager.HideSouthButtonEscalatorUI();
-				}
-			}
-			else if (playerLocal.playerNearEscalator == true && promptUIManager != null && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
-			{
-				if (!playerLocal.exposed)
-					promptUIManager.ShowSouthButtonEscalatorUI();
-			}
+			//if (playerLocal.playerNearEscalator == false)
+			//{
+			//	if (promptUIManager != null)
+			//	{
+			//		promptUIManager.HideSouthButtonEscalatorUI();
+			//	}
+			//}
+			//else if (playerLocal.playerNearEscalator == true && promptUIManager != null && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			//{
+			//	if (!playerLocal.exposed)
+			//		promptUIManager.ShowSouthButtonEscalatorUI();
+			//}
 		}
 	}
 
@@ -502,15 +491,15 @@ public class EscalatorManager : NetworkBehaviour
 				{
 					if (playerLocal.playerNearEscalator && playerRemote.playerNearEscalator)
 					{
-						if (!playerLocal.exposed && !playerRemote.exposed)
-						{
+						//if (!playerLocal.exposed && !playerRemote.exposed)
+						//{
 							CmdVictory();
-						}
-						else
-						{
-							Debug.Log("GOAL - players exposed");
+						//}
+						//else
+						//{
+						//	Debug.Log("GOAL - players exposed");
 
-						}
+						//}
 					}
 					else
 					{
@@ -522,10 +511,10 @@ public class EscalatorManager : NetworkBehaviour
 					Debug.Log("GOAL - player remote null");
 					if (playerLocal.playerNearEscalator)
 					{
-						if (!playerLocal.exposed)
-						{
+						//if (!playerLocal.exposed)
+						//{
 							CmdVictory();
-						}
+						//}
 					}
 				}
 			}

@@ -1,6 +1,4 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerState : NetworkBehaviour
@@ -22,11 +20,18 @@ public class PlayerState : NetworkBehaviour
 	[Command(requiresAuthority =false)]
 	public void CmdSetGameState(EscalatorManager.GameState newState)
 	{
+		SetState(newState);
+
 		RpcSetGameState(newState);
 	}
 	// Set the current game state and handle related behavior
 	[ClientRpc]
 	public void RpcSetGameState(EscalatorManager.GameState newState)
+	{
+		SetState(newState);
+	}
+
+	public void SetState(EscalatorManager.GameState newState)
 	{
 		currentState = newState;
 
@@ -85,14 +90,12 @@ public class PlayerState : NetworkBehaviour
 				// ... e.g., display victory screen, play victory music, etc.
 				Time.timeScale = 1.0f;
 				EscalatorManager.Instance.UpdateMusicState(this);
-
 				break;
 
 			default:
 				Debug.LogWarning("Unknown game state set: " + newState);
 				break;
 		}
-
 	}
 
 }
