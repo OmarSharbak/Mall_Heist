@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using EmeraldAI;
 using MoreMountains.Feedbacks;
 using System;
+using Mirror;
 
 public class ThrowableItem : InventoryItem
 {
@@ -378,5 +379,40 @@ public class ThrowableItem : InventoryItem
             yield return null; // Pause until next frame
         }
     }
+
+	[Command]
+	public void CmdDeatach()
+	{
+		transform.SetParent(null); // Detach it from the player's hand
+
+		// Enable Rigidbody for physics-based throwing
+		Rigidbody rb = GetComponent<Rigidbody>();
+		if (rb != null)
+		{
+			rb.isKinematic = false;
+		}
+
+		// Update all clients
+		RpcDeatach(GetComponent<NetworkIdentity>().netId);
+	}
+	[ClientRpc]
+	void RpcDeatach(uint _netId)
+	{
+		if (NetworkClient.spawned.TryGetValue(_netId, out var item))
+		{
+			Transform itemTransform = item.transform;
+			itemTransform.SetParent(null); // Detach it on all clients
+
+			// Enable physics locally
+			Rigidbody rb = itemTransform.GetComponent<Rigidbody>();
+			if (rb != null)
+			{
+				rb.isKinematic = false;
+			}
+			Collider cd = itemTransform.GetComponent<Collider>();
+			if (cd != null)
+				cd.isTrigger = true;
+		}
+	}
 
 }

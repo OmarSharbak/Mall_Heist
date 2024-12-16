@@ -1043,6 +1043,8 @@ public class ThirdPersonController : NetworkBehaviour
 						return;
 
 					_inventory.heldItem.GetComponent<TrapItem>().isPlaced = true;
+					_inventory.heldItem.GetComponent<TrapItem>().CmdDeatach();
+
 
 					// Detach the item from the player
 					_inventory.DecreaseHeldItem();
@@ -1054,7 +1056,18 @@ public class ThirdPersonController : NetworkBehaviour
 						rb.isKinematic = false;
 					}
 
-					itemToThrow.SetParent(null);
+					if (isServer)
+					{
+						// Disable collision between trap and placer
+						foreach(Collider col in itemToThrow.GetComponents<Collider>())
+							Physics.IgnoreCollision(col, GetComponent<Collider>(), true);
+
+
+						// Call Rpc to sync this change to all clients
+						RpcIgnoreCollision(itemToThrow.gameObject,gameObject);
+
+					}
+
 				}
 			}
 		}
@@ -1065,6 +1078,16 @@ public class ThirdPersonController : NetworkBehaviour
 	}
 
 
+	[ClientRpc]
+	private void RpcIgnoreCollision(GameObject trapObject, GameObject placerObject)
+	{
+		if (placerObject.TryGetComponent(out Collider placerCollider))
+		{
+			foreach (Collider col in trapObject.GetComponents<Collider>())
+				Physics.IgnoreCollision(col, GetComponent<Collider>(), true);
+
+		}
+	}
 
 	public Transform rightArm;  // The transform where items to be thrown are held (typically, the right hand or similar)
 	public Transform playerTransform; // The transform of the player for the direction of the projectile

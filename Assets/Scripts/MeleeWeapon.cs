@@ -312,6 +312,9 @@ public class MeleeWeapon : InventoryItem
 		{
 			rb.isKinematic = false;
 		}
+		Collider cd = GetComponent<Collider>();
+		if (cd != null)
+			cd.isTrigger = true;
 
 		// Update all clients
 		RpcDeatach(GetComponent<NetworkIdentity>().netId);
