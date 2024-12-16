@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using Mirror;
 using System.Linq;
-using System;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 
 public class Inventory : NetworkBehaviour
 {
@@ -149,55 +146,86 @@ public class Inventory : NetworkBehaviour
 		}
 
 		InventoryItem currentItem = items[currentItemIndex];
-		CmdUpdateHeldItem(currentItem);
+		CmdSpawnItem(currentItem);
 	}
+
+
 
 	[Command]
-	private void CmdUpdateHeldItem(InventoryItem item)
+	void CmdSpawnItem(InventoryItem item)
 	{
-		Debug.Log("SERVER -  update held item");
+		if (item != null)
+		{
+			Debug.Log("SERVER -  update held item - rightHand" + rightHand.name);
 
-		RpcUpdateHeldItem(item);
+
+			if (item == null)
+			{
+				Debug.LogWarning("SERVER -  update held item - item null");
+				return;
+			}
+			GameObject itemGameObject = Instantiate(item.prefab, transform.position, Quaternion.identity);
+
+			// Spawn the guitar on the network and assign authority to the current player
+			NetworkServer.Spawn(itemGameObject, connectionToClient);
+
+			// Call a ClientRpc to parent the guitar to the player's hand
+			RpcParentToHand(itemGameObject.GetComponent<NetworkIdentity>().netId);
+		}
 	}
+
 	[ClientRpc]
-	private void RpcUpdateHeldItem(InventoryItem item)
+	void RpcParentToHand(uint _netId)
 	{
-		Debug.Log("CLIENT -  update held item - rightHand"+ rightHand.name);
-
-		if (item == null)
+		if (NetworkClient.spawned.TryGetValue(_netId, out var _identity))
 		{
-			Debug.LogWarning("CLIENT -  update held item - item null");
-			return;
-		}
-		Debug.Log("CLIENT -  update held item - itemprefab"+ item.prefab.name);
+			var item = _identity.GetComponent<InventoryItem>();
 
-		heldItem = Instantiate(item.prefab, rightHand.position, rightHand.rotation, rightHand);
-		heldItem.GetComponent<InventoryItem>().playerTransform = transform;
-		if (heldItem.GetComponent<InventoryItem>().itemName == "Guitar")
-		{
-			float posX = 0.206f;  // Change this value
-			float posY = 0.8f;  // Change this value
-			float posZ = 0.56f;  // Change this value
 
-			heldItem.transform.localPosition = new Vector3(posX, posY, posZ);
+			if (item != null)
+			{
+				Debug.Log("CLIENT -  update held item - item");
 
-			// Placeholder for rotation values
-			float rotX = 42.6f;  // Change this value
-			float rotY = 203f;  // Change this value
-			float rotZ = -135f;  // Change this value
+				heldItem = item.gameObject;
 
-			heldItem.transform.localEulerAngles = new Vector3(rotX, rotY, rotZ);
-		}
 
-		//avoid collsiions between the current player and the item held
-		Collider playerCollider = transform.GetComponent<Collider>();
-		Collider itemCollider = heldItem.GetComponent<Collider>();
-		if (itemCollider != null)
-		{
-			Physics.IgnoreCollision(playerCollider, itemCollider);
-			Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
+				heldItem.transform.SetParent(rightHand);
+				heldItem.transform.localPosition = Vector3.zero;
+				heldItem.transform.localRotation = Quaternion.identity;
+
+
+				heldItem.GetComponent<InventoryItem>().playerTransform = transform;
+
+
+
+				if (heldItem.GetComponent<InventoryItem>().itemName == "Guitar")
+				{
+					float posX = 0.206f;  // Change this value
+					float posY = 0.8f;  // Change this value
+					float posZ = 0.56f;  // Change this value
+
+					heldItem.transform.localPosition = new Vector3(posX, posY, posZ);
+
+					// Placeholder for rotation values
+					float rotX = 42.6f;  // Change this value
+					float rotY = 203f;  // Change this value
+					float rotZ = -135f;  // Change this value
+
+					heldItem.transform.localEulerAngles = new Vector3(rotX, rotY, rotZ);
+				}
+
+				//avoid collsiions between the current player and the item held
+				Collider playerCollider = transform.GetComponent<Collider>();
+				Collider itemCollider = heldItem.GetComponent<Collider>();
+				if (itemCollider != null)
+				{
+					Physics.IgnoreCollision(playerCollider, itemCollider);
+					Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
+				}
+			}
 		}
 	}
+
 	/// <summary>
 	/// Decreases the count of the currently held item.
 	/// </summary>
@@ -291,7 +319,7 @@ public class Inventory : NetworkBehaviour
 	/// Determines if the inventory contains a specific objective item.
 	/// </summary>
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	public void CmdCheckServerHasObjectiveItem(string objectiveItem)
 	{
 		// Check if the item exists and has a count greater than 0

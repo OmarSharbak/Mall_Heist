@@ -258,6 +258,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1b9a20d1b60094c990f27628ce8f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemName: Guitar
   prefab: {fileID: 4114305269140579959}
   playerTransform: {fileID: 0}
