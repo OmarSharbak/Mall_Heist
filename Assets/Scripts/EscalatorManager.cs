@@ -494,7 +494,7 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		if (playerLocal != null)
 		{
-			if (playerLocal.playerNearEscalator && playerRemote.playerNearEscalator && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			if (playerLocal.playerNearEscalator && ( (playerRemote.thirdPersonController!=null && playerRemote.playerNearEscalator) || playerRemote.thirdPersonController==null) && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 			{
 				if (!playerLocal.exposed && !playerRemote.exposed)
 				{

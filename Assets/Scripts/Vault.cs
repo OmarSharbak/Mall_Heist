@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class Vault : NetworkBehaviour
 {
-    [SerializeField] Inventory playerInventory; // Assign this from the inspector
-
     Animator animator; // Assign this from the inspector
 
     [SyncVar(hook =nameof(OnVaultOpened))]

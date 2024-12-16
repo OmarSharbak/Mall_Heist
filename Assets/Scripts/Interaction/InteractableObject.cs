@@ -21,7 +21,7 @@ public class InteractableObject : NetworkBehaviour
     {
         Debug.Log("CLIENT - picked up changed "+ _newValue);
 
-		if (pickedUpTimes == 0)
+		if (outlinable!=null && pickedUpTimes == 0)
 		{
 			outlinable.enabled = false;
 		}

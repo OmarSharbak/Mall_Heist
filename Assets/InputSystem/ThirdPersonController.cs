@@ -1078,6 +1078,8 @@ public class ThirdPersonController : NetworkBehaviour
 			Transform itemToThrow = rightArm.GetChild(0); // Get the first child. This assumes only one item is held at a time.
 			ThrowableItem throwableItemScript = itemToThrow.GetComponent<ThrowableItem>();
 
+			if (throwableItemScript==null)
+				return;
 			if (!throwableItemScript.isThrowable)
 				return;
 
