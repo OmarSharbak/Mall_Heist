@@ -53,7 +53,6 @@ public class Inventory : NetworkBehaviour
 			lastItemText = newText;
 		}
 
-		UpdateObjectiveItemsUI();
 	}
 
 
@@ -100,13 +99,15 @@ public class Inventory : NetworkBehaviour
 		UpdateHeldItem(true);
 		CmdAddServerItem(item.itemName, 1);
 
+
+
 	}
 
 	[Command]
 	private void CmdAddServerItem(string itemName, int quantity)
 	{
 		GameManager.Instance.AddItem(itemName, quantity);
-
+		UpdateObjectiveItemsUI();
 	}
 
 	/// <summary>
@@ -319,8 +320,8 @@ public class Inventory : NetworkBehaviour
 	/// Determines if the inventory contains a specific objective item.
 	/// </summary>
 
-	[Command(requiresAuthority = false)]
-	public void CmdCheckServerHasObjectiveItem(string objectiveItem)
+	[ServerCallback]
+	public void CheckServerHasObjectiveItem(string objectiveItem)
 	{
 		// Check if the item exists and has a count greater than 0
 		bool hasItem = GameManager.Instance.inventory.Any(item => item.itemName == objectiveItem && item.quantity > 0);
@@ -335,6 +336,7 @@ public class Inventory : NetworkBehaviour
 
 	}
 
+	[ServerCallback]
 	public void UpdateObjectiveItemsUI()
 	{
 		var matchingItems = GetMatchingServerItems();
@@ -343,7 +345,7 @@ public class Inventory : NetworkBehaviour
 		{
 			string itemName = item.Key;
 
-			CmdCheckServerHasObjectiveItem(itemName);
+			CheckServerHasObjectiveItem(itemName);
 
 
 		}
@@ -353,10 +355,7 @@ public class Inventory : NetworkBehaviour
 	[ClientRpc]
 	private void RpcObjectiveCompleted(string objectiveItem)
 	{
-
-		var matchingItems = GetMatchingServerItems();
-
-		foreach (var item in matchingItems)
+		foreach (var item in objectiveItemsTextMap)
 		{
 			if (item.Key == objectiveItem)
 			{
@@ -383,8 +382,11 @@ public class Inventory : NetworkBehaviour
 		return total;
 	}
 
+
+	[ServerCallback]	
 	public Dictionary<string, TMP_Text> GetMatchingServerItems()
 	{
+
 		// Get all matching items where the map key matches an inventory item name
 		var matchingItems = objectiveItemsTextMap
 			.Where(pair => GameManager.Instance.inventory.Any(item => item.itemName == pair.Key))

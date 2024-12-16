@@ -16,6 +16,7 @@ public class PlayerState : NetworkBehaviour
 	public ThirdPersonController thirdPersonController = null;
 
 	// Determines if player is near the escalator for interaction
+	[SyncVar]
 	public bool playerNearEscalator = false;
 
 	[Command(requiresAuthority =false)]

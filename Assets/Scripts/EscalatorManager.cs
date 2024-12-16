@@ -11,6 +11,7 @@ using MoreMountains.Feedbacks;
 using System;
 using Mirror;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class EscalatorManager : NetworkBehaviour
 {
@@ -60,11 +61,12 @@ public class EscalatorManager : NetworkBehaviour
 	private float originalVolume;
 
 	private PlayerState playerLocal = null;
-	private PlayerState playerRemote = null;
+	public PlayerState playerRemote = null;
 
 
 	[SyncVar]
 	public int defeatedPlayers = 0;
+
 	void CalculateTotalMoney()
 	{
 		foreach (var register in registers)
@@ -322,7 +324,7 @@ public class EscalatorManager : NetworkBehaviour
 
 		Debug.Log("Player local State correct!");
 	}
-	private void Initialize(PlayerState player)
+	public void Initialize(PlayerState player)
 	{
 		if (player.thirdPersonController != null)
 		{
@@ -492,21 +494,51 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void InteractEscalator()
 	{
-		if (playerLocal != null)
+		if (AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 		{
-			if (playerLocal.playerNearEscalator && ( (playerRemote.thirdPersonController!=null && playerRemote.playerNearEscalator) || playerRemote.thirdPersonController==null) && AreAllObjectivesComplete() && (totalMoney == moneyCollected))
+			if (playerLocal != null)
 			{
-				if (!playerLocal.exposed && !playerRemote.exposed)
+				if (playerRemote != null)
 				{
-					CmdVictory();
-				}
+					if (playerLocal.playerNearEscalator && playerRemote.playerNearEscalator)
+					{
+						if (!playerLocal.exposed && !playerRemote.exposed)
+						{
+							CmdVictory();
+						}
+						else
+						{
+							Debug.Log("GOAL - players exposed");
 
+						}
+					}
+					else
+					{
+						Debug.Log("GOAL - players not near the door");
+					}
+				}
+				else
+				{
+					Debug.Log("GOAL - player remote null");
+					if (playerLocal.playerNearEscalator)
+					{
+						if (!playerLocal.exposed)
+						{
+							CmdVictory();
+						}
+					}
+				}
 			}
-			else if (playerLocal.playerNearEscalator)
+			else
 			{
-				Debug.Log("Not all objectives are complete or your exposed");
+				Debug.Log("GOAL - player local null");
 			}
 		}
+		else
+		{
+			Debug.Log("Not all objectives are complete or not enought money");
+		}
+
 	}
 
 	[Command(requiresAuthority = false)]
@@ -637,13 +669,19 @@ public class EscalatorManager : NetworkBehaviour
 		}
 	}
 
-	// Update the state of player's proximity to the escalator for interactions
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
 		{
-			other.GetComponent<PlayerState>().playerNearEscalator = true;
+			NetworkIdentity playerIdentity = other.GetComponent<NetworkIdentity>();
 
+
+			if (isServer)
+			{
+				playerIdentity.GetComponent<PlayerState>().playerNearEscalator = true;
+
+				RpcUpdateUI(playerIdentity, true); // Sync UI
+			}
 		}
 	}
 
@@ -651,13 +689,36 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
 		{
-			other.GetComponent<PlayerState>().playerNearEscalator = false;
-			promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
-			promptUIManager.HideSouthButtonEscalatorUI();
-			promptUIManager = null;
+			NetworkIdentity playerIdentity = other.GetComponent<NetworkIdentity>();
+
+
+			if (isServer)
+			{
+				playerIdentity.GetComponent<PlayerState>().playerNearEscalator = false;
+			
+				RpcUpdateUI(playerIdentity, false); // Sync UI
+			}
 		}
 	}
 
+	// Sync UI updates for the relevant player
+	[ClientRpc]
+	private void RpcUpdateUI(NetworkIdentity player, bool isNear)
+	{
+		if (player.isLocalPlayer)
+		{
+			if (promptUIManager == null) return;
+
+			if (isNear)
+			{
+				promptUIManager.ShowSouthButtonEscalatorUI();
+			}
+			else
+			{
+				promptUIManager.HideSouthButtonEscalatorUI();
+			}
+		}
+	}
 	// Not yet implemented methods related to escalator camera
 	public GameObject escalatorCamera;
 

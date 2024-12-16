@@ -49,7 +49,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   moneyText: {fileID: 0}
-  playerRemoteBlueMaterial: {fileID: 2100000, guid: d264078e55847034f8e2f699050f5c7b, type: 2}
+  player2BlueMaterial: {fileID: 2100000, guid: d264078e55847034f8e2f699050f5c7b, type: 2}
 --- !u!114 &6786218868484792654
 MonoBehaviour:
   m_ObjectHideFlags: 0

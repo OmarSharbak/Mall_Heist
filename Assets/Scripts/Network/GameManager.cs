@@ -27,6 +27,7 @@ public class GameManager : NetworkBehaviour
     private int globalMoney;
 
     // Create a SyncList for the global inventory
+    
     public SyncList<ServerItem> inventory = new SyncList<ServerItem>();
 
     [SerializeField]
@@ -36,7 +37,7 @@ public class GameManager : NetworkBehaviour
     public static event Action<ThirdPersonController,int> OnPlayerJoined;
     public static event Action<ThirdPersonController,int> OnPlayerExisting;
 
-	public Material playerRemoteBlueMaterial; // Assign this in the inspector 
+	public Material player2BlueMaterial; // Assign this in the inspector 
 
 	private void Awake()
     {
@@ -159,7 +160,7 @@ public class GameManager : NetworkBehaviour
                     OnPlayerJoined?.Invoke(controller, numPlayers);
 
                     //change name and color
-					if (numPlayers==2 && playerRemoteBlueMaterial != null)
+					if (numPlayers==2 && player2BlueMaterial != null)
 					{
 						string name = "Player 2";
 						Color color = Color.blue;
@@ -168,7 +169,7 @@ public class GameManager : NetworkBehaviour
 						if (renderer != null)
 						{
 							// Change the material
-							renderer.material = playerRemoteBlueMaterial;
+							renderer.material = player2BlueMaterial;
 
 						}
 						controller.SetupPlayer(name, color);
@@ -180,6 +181,15 @@ public class GameManager : NetworkBehaviour
 						
 						controller.SetupPlayer(name, color);
 
+					}
+
+                    if (isServer && numPlayers==2)
+                    {
+						EscalatorManager.Instance.playerRemote = controller.GetComponent<PlayerState>();
+
+						EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerRemote);
+
+						Debug.Log("Player remote State correct!");
 					}
 
 					Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
@@ -200,6 +210,15 @@ public class GameManager : NetworkBehaviour
 									Color color = Color.red;
 
 									controllerExisting.SetupPlayer(name, color);
+
+									if (!isServer && numPlayers == 2)
+									{
+										EscalatorManager.Instance.playerRemote = controllerExisting.GetComponent<PlayerState>();
+
+										EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerRemote);
+
+										Debug.Log("Player remote State correct!");
+									}
 								}
                             }
                         }
