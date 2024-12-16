@@ -1056,17 +1056,9 @@ public class ThirdPersonController : NetworkBehaviour
 						rb.isKinematic = false;
 					}
 
-					if (isServer)
-					{
-						// Disable collision between trap and placer
-						foreach(Collider col in itemToThrow.GetComponents<Collider>())
-							Physics.IgnoreCollision(col, GetComponent<Collider>(), true);
+					CmdIgnoreCollision(itemToThrow.gameObject,gameObject);
 
-
-						// Call Rpc to sync this change to all clients
-						RpcIgnoreCollision(itemToThrow.gameObject,gameObject);
-
-					}
+					Debug.Log("CLIENT - ignore collision "+ itemToThrow.gameObject.name +" " + gameObject.name);
 
 				}
 			}
@@ -1078,13 +1070,31 @@ public class ThirdPersonController : NetworkBehaviour
 	}
 
 
+	[Command(requiresAuthority = false)]
+	private void CmdIgnoreCollision(GameObject trapObject, GameObject placerObject)
+	{
+		if (placerObject.TryGetComponent(out Collider placerCollider))
+		{
+			// Disable collision between trap and placer
+			foreach (Collider col in trapObject.GetComponents<Collider>())
+				Physics.IgnoreCollision(col, placerCollider, true);
+
+
+			// Call Rpc to sync this change to all clients
+			RpcIgnoreCollision(trapObject, placerObject);
+
+			Debug.Log("SERVER - ignore collision " + trapObject.name + " " + gameObject.name);
+
+		}
+	}
+
 	[ClientRpc]
 	private void RpcIgnoreCollision(GameObject trapObject, GameObject placerObject)
 	{
 		if (placerObject.TryGetComponent(out Collider placerCollider))
 		{
 			foreach (Collider col in trapObject.GetComponents<Collider>())
-				Physics.IgnoreCollision(col, GetComponent<Collider>(), true);
+				Physics.IgnoreCollision(col, placerCollider, true);
 
 		}
 	}

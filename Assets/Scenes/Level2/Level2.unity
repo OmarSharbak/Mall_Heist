@@ -8102,6 +8102,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -17
       objectReference: {fileID: 0}
+    - target: {fileID: 8713720327579167645, guid: 67ec1a3169a7dae458d9e5c1cf40107b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8713720327579191953, guid: 67ec1a3169a7dae458d9e5c1cf40107b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.189996
@@ -72639,7 +72643,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5

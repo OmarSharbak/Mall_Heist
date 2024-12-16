@@ -30,6 +30,8 @@ public class ArrowIndicator : NetworkBehaviour
 		PlayerDamageHandler.OnPlayerCaught += PlayerDamageHandler_OnPlayerCaught;
 		GrassDecorationStealth.OnPlayerHidePlants+= PlayerDamageHandler_OnPlayerCaught;
 		ThrowableItem.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
+		TrapItem.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
+		MeleeWeapon.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
 		CreateArrows();
 	}
 

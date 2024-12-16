@@ -34,6 +34,8 @@ public class TrapItem : InventoryItem
 	Outlinable outlinable;
 	private MMFeedbacks mmFeedbacks;
 
+	public static event Action OnGuardHit;
+
 	void Start()
 	{
 		outlinable = GetComponent<Outlinable>();
@@ -179,6 +181,8 @@ public class TrapItem : InventoryItem
 
 					// Invoke event 
 					OnHitBanana?.Invoke();
+					OnGuardHit?.Invoke();
+
 
 					if (aiAnimator != null)
 					{
