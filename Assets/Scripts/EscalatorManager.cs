@@ -485,9 +485,9 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		if (AreAllObjectivesComplete() && (totalMoney == moneyCollected))
 		{
-			if (playerLocal != null)
+			if (playerLocal != null && !playerLocal.GetComponent<ThirdPersonController>().defeated)
 			{
-				if (playerRemote != null)
+				if (playerRemote != null && !playerRemote.GetComponent<ThirdPersonController>().defeated)
 				{
 					if (playerLocal.playerNearEscalator && playerRemote.playerNearEscalator)
 					{

@@ -125,6 +125,8 @@ public class ThirdPersonController : NetworkBehaviour
 	private int _animIDBodyHorizontal;
 
 	public bool canMove = true;
+	[SyncVar]
+	public bool defeated = false;
 	public bool captured = false;
 	private bool isThrowing = false; // A flag to ensure the throw action happens once per button press
 

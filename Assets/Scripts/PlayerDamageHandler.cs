@@ -315,6 +315,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 				EscalatorManager.Instance.defeatedPlayers++;
 				TargetDefeat(identity.connectionToClient, _otherNetId);
 				RpcDisableCollider(_netId);
+				identity.GetComponent<ThirdPersonController>().defeated = true;
+
 
 			}
 		}
