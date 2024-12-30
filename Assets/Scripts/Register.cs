@@ -64,17 +64,22 @@ public class Register : NetworkBehaviour
 	{
 		Debug.Log("CLIENT - register interacted");
 
-		if (playerDamageHandler != null)
+		if (audioSource != null)
 		{
 			Debug.Log("Money added.");
 			audioSource.Play();
-
-			if (mmFeedbacksSteal != null)
-				mmFeedbacksSteal.PlayFeedbacks();
-
-			playerDamageHandler.AddMoney(moneyAmount);
-			outlinable.enabled = false;
 		}
+
+		if (mmFeedbacksSteal != null)
+			mmFeedbacksSteal.PlayFeedbacks();
+
+		if (playerDamageHandler != null)
+		{
+			playerDamageHandler.AddMoney(moneyAmount);
+		}
+		if (outlinable != null)
+			outlinable.enabled = false;
+
 	}
 
 	[Command(requiresAuthority = false)]
