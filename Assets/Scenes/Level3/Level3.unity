@@ -20605,7 +20605,7 @@ PrefabInstance:
     - target: {fileID: 2540584497875765584, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
       propertyPath: escalatorCamera
       value: 
-      objectReference: {fileID: 2044413743}
+      objectReference: {fileID: 0}
     - target: {fileID: 2540584497875765584, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
       propertyPath: systemsOverrideText
       value: 
