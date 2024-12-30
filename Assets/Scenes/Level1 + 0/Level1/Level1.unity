@@ -10751,7 +10751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8737363568552677807, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: outlineTargets.Array.data[4].IsVisible
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9084633969551016539, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
       propertyPath: detectionRadius
@@ -10764,14 +10764,22 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8604697894323619223, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1391939301}
   m_SourcePrefab: {fileID: 100100000, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+--- !u!1 &411665029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8604697894323619223, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
+  m_PrefabInstance: {fileID: 411665028}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &411665039 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6891305652554011551, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
   m_PrefabInstance: {fileID: 411665028}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 411665029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b1cc46fab57f14419470127d1595e04, type: 3}
@@ -24153,6 +24161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fffb40dbe485d48a18bf889278e56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemName: Boots
   prefab: {fileID: 4114305269140579959, guid: 6967bdab7e8e1c84a9be0686d0d3c045, type: 3}
   playerTransform: {fileID: 0}
@@ -35889,12 +35900,39 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8363328769589493701, guid: 63eb751496fac2042ae17a18a4198c09, type: 3}
   m_PrefabInstance: {fileID: 411665028}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 411665029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db06ac4e4a9215d45a8afec446edb66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1391939301
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 411665029}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1392735134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 141086, guid: 3798bf21f0f6cf843ab499dd63b27444, type: 3}
@@ -41231,6 +41269,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fffb40dbe485d48a18bf889278e56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemName: Fries
   prefab: {fileID: 4114305269140579959, guid: 5a7ff3b11344d0147975f2f80a21c7a6, type: 3}
   playerTransform: {fileID: 0}
@@ -59757,6 +59798,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fffb40dbe485d48a18bf889278e56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemName: Donut
   prefab: {fileID: 4114305269140579959, guid: 160e72ccfcaac45468d0787ff46eb874, type: 3}
   playerTransform: {fileID: 0}
