@@ -16,6 +16,7 @@ public class TrapItem : InventoryItem
 	public AudioClip guardHitClip;
 
 	public bool isPlaced = false; // Flag to check if the trap is placed down
+	public NetworkIdentity placedByPlayer = null;
 	private bool hit = false;
 
 	Quaternion initialPlayerRotation;          // Store initial rotation of AI for animation purposes
@@ -215,27 +216,30 @@ public class TrapItem : InventoryItem
 				}
 				else if (netIdentity.gameObject.GetComponent<ThirdPersonController>() != null)//collision other player
 				{
-					ThirdPersonController controller = netIdentity.gameObject.GetComponent<ThirdPersonController>();
-					Debug.Log("Item - Player Hit");
-					mmFeedbacks.PlayFeedbacks();
-					hit = true;  // Flag hit to prevent repeat processing
-
-					controller.canMove = false;
-
-					controller.animator.SetTrigger("Hit");
-
-					// If collision happens at head joint, trigger a stunning visual effect
-					Transform headJoint = netIdentity.transform.Find("Geometry/SimplePeople_Pimp_White/Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
-					if (headJoint != null)
+					if (netIdentity != placedByPlayer)
 					{
-						StartCoroutine(SpawnEffectAfterDelayPlayer(headJoint));
+						ThirdPersonController controller = netIdentity.gameObject.GetComponent<ThirdPersonController>();
+
+						Debug.Log("Item - Player Hit");
+						mmFeedbacks.PlayFeedbacks();
+						hit = true;  // Flag hit to prevent repeat processing
+
+						controller.canMove = false;
+
+						controller.animator.SetTrigger("Hit");
+
+						// If collision happens at head joint, trigger a stunning visual effect
+						Transform headJoint = netIdentity.transform.Find("Geometry/SimplePeople_Pimp_White/Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
+						if (headJoint != null)
+						{
+							StartCoroutine(SpawnEffectAfterDelayPlayer(headJoint));
+						}
+						StartCoroutine(MoveGuardAndBanana(netIdentity.transform));
+
+
+						// After a set delay, reset state post-hit
+						StartCoroutine(WaitAndMovePlayer(controller));
 					}
-					StartCoroutine(MoveGuardAndBanana(netIdentity.transform));
-
-
-					// After a set delay, reset state post-hit
-					StartCoroutine(WaitAndMovePlayer(controller));
-
 				}
 			}
 		}

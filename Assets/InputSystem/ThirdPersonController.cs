@@ -167,7 +167,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	//private Material playerMaterialClone;
 
-	public string playerName="";
+	public string playerName = "";
 
 	public Color playerColor = Color.white;
 
@@ -1043,6 +1043,7 @@ public class ThirdPersonController : NetworkBehaviour
 						return;
 
 					_inventory.heldItem.GetComponent<TrapItem>().isPlaced = true;
+					_inventory.heldItem.GetComponent<TrapItem>().placedByPlayer = GetComponent<NetworkIdentity>();
 					_inventory.heldItem.GetComponent<TrapItem>().CmdDeatach();
 
 
@@ -1056,9 +1057,9 @@ public class ThirdPersonController : NetworkBehaviour
 						rb.isKinematic = false;
 					}
 
-					CmdIgnoreCollision(itemToThrow.gameObject,gameObject);
+					CmdIgnoreCollision(itemToThrow.gameObject, gameObject);
 
-					Debug.Log("CLIENT - ignore collision "+ itemToThrow.gameObject.name +" " + gameObject.name);
+					Debug.Log("CLIENT - ignore collision " + itemToThrow.gameObject.name + " " + gameObject.name);
 
 				}
 			}
@@ -1111,7 +1112,7 @@ public class ThirdPersonController : NetworkBehaviour
 			Transform itemToThrow = rightArm.GetChild(0); // Get the first child. This assumes only one item is held at a time.
 			ThrowableItem throwableItemScript = itemToThrow.GetComponent<ThrowableItem>();
 
-			if (throwableItemScript==null)
+			if (throwableItemScript == null)
 				return;
 			if (!throwableItemScript.isThrowable)
 				return;
