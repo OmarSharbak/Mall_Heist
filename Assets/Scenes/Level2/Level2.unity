@@ -11350,7 +11350,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -26624,6 +26624,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0315819, y: 2.866259, z: 2.1904125}
   m_Center: {x: 0, y: 1.4331295, z: 0}
+--- !u!1 &704115768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4647785158587150702, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 178352493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &705498655 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 184588, guid: ce52012961e7a6248bce014891f37e8b, type: 3}
@@ -39353,6 +39358,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 126763595404837718, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
+      propertyPath: managedReferences[440195582748786690].TargetGameObject
+      value: 
+      objectReference: {fileID: 704115768}
+    - target: {fileID: 126763595404837718, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
+      propertyPath: managedReferences[440195582748786691].TargetGameObject
+      value: 
+      objectReference: {fileID: 704115768}
     - target: {fileID: 5175458187822499179, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.716642
@@ -53503,11 +53516,11 @@ PrefabInstance:
     - target: {fileID: 8872205446874323009, guid: 46e2010ab7026364baebefed39de0b00, type: 3}
       propertyPath: managedReferences[440195582748786690].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1911398473}
     - target: {fileID: 8872205446874323009, guid: 46e2010ab7026364baebefed39de0b00, type: 3}
       propertyPath: managedReferences[440195582748786691].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1911398473}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -62264,7 +62277,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2682635007432079860, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
   m_PrefabInstance: {fileID: 178352493}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 704115768}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -67267,6 +67280,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.000002, y: 9.099591, z: 0.05487466}
   m_Center: {x: -2.500001, y: 4.2791324, z: 0.02743733}
+--- !u!1 &1911398473 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4938787951544857717, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 178352493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1911963046
 PrefabInstance:
   m_ObjectHideFlags: 0

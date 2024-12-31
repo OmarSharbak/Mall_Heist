@@ -5765,7 +5765,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -13021,7 +13021,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -13394,6 +13394,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 126763595404837718, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
+      propertyPath: managedReferences[440195582748786690].TargetGameObject
+      value: 
+      objectReference: {fileID: 973277636}
+    - target: {fileID: 126763595404837718, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
+      propertyPath: managedReferences[440195582748786691].TargetGameObject
+      value: 
+      objectReference: {fileID: 973277636}
     - target: {fileID: 5175458187822499179, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.716642
@@ -33440,6 +33448,11 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &973277636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4647785158587150702, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 1029499504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &974030222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37186,7 +37199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -12.7, y: -4.7}
+  m_AnchoredPosition: {x: -12.699997, y: -4.7}
   m_SizeDelta: {x: 116.32, y: 10.7}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1043964420
@@ -52637,11 +52650,11 @@ PrefabInstance:
     - target: {fileID: 8872205446874323009, guid: 46e2010ab7026364baebefed39de0b00, type: 3}
       propertyPath: managedReferences[440195582748786690].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1504803408}
     - target: {fileID: 8872205446874323009, guid: 46e2010ab7026364baebefed39de0b00, type: 3}
       propertyPath: managedReferences[440195582748786691].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1504803408}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -54115,6 +54128,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 1
+--- !u!1 &1504803408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4938787951544857717, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 1029499504}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1508967056
 GameObject:
   m_ObjectHideFlags: 0
@@ -77357,7 +77375,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2682635007432079860, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
   m_PrefabInstance: {fileID: 1029499504}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 973277636}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}

@@ -11578,6 +11578,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 126763595404837718, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
+      propertyPath: managedReferences[440195582748786690].TargetGameObject
+      value: 
+      objectReference: {fileID: 335029619}
+    - target: {fileID: 126763595404837718, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
+      propertyPath: managedReferences[440195582748786691].TargetGameObject
+      value: 
+      objectReference: {fileID: 335029619}
     - target: {fileID: 5175458187822499179, guid: fca44b9d496e680449d1b4f6c1cecf12, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.716642
@@ -12169,6 +12177,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 0, z: 5}
   m_Center: {x: -2.5, y: 0, z: 2.5000005}
+--- !u!1 &335029619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4647785158587150702, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 2044413739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &342273529
 GameObject:
   m_ObjectHideFlags: 0
@@ -20281,7 +20294,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2682635007432079860, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
   m_PrefabInstance: {fileID: 2044413739}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 335029619}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -42201,6 +42214,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.9999995, y: 3.934621, z: 3.0779228}
   m_Center: {x: -1.9999988, y: 1.9673065, z: -1.5389576}
+--- !u!1 &1306684832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4938787951544857717, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 2044413739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1313691821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46282,11 +46300,11 @@ PrefabInstance:
     - target: {fileID: 8872205446874323009, guid: 46e2010ab7026364baebefed39de0b00, type: 3}
       propertyPath: managedReferences[440195582748786690].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1306684832}
     - target: {fileID: 8872205446874323009, guid: 46e2010ab7026364baebefed39de0b00, type: 3}
       propertyPath: managedReferences[440195582748786691].TargetGameObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1306684832}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -48662,7 +48680,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
