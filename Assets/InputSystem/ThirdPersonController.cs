@@ -642,7 +642,11 @@ public class ThirdPersonController : NetworkBehaviour
 	InputPromptUIManager promptUIManager;
 	private void Interact()
 	{
-		if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionRange, interactableLayer))
+		Vector3 loweredDirection = transform.forward + new Vector3(0, +0.02f, 0); // Adjust the Y-axis component
+																				  // Visualize the ray in the Scene view
+		//Debug.DrawRay(transform.position, loweredDirection * interactionRange, Color.red);
+
+		if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit, interactionRange, interactableLayer))
 		{
 			// Check if the ray hit an interactable object.
 			InventoryItem inventoryItem = hit.transform.GetComponent<InventoryItem>();
@@ -665,7 +669,7 @@ public class ThirdPersonController : NetworkBehaviour
 		if (_input.interact)
 		{
 			// Cast a ray forward from the player's position.
-			if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit1, interactionRange, interactableLayer))
+			if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit1, interactionRange, interactableLayer))
 			{
 				// Check if the ray hit an interactable object.
 				InteractableObject interactableObject = hit1.transform.GetComponent<InteractableObject>();
@@ -873,7 +877,7 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			if (_input.interactDoor)
 			{
-				if(!nearbyDoor.playerIsSealing)
+				if (!nearbyDoor.playerIsSealing)
 					nearbyDoor.CmdStartSealing();
 			}
 			else

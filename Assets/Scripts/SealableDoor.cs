@@ -95,7 +95,7 @@ public class SealableDoor : NetworkBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		Debug.Log("Client: Sealed door - On trigger enter");
+		//Debug.Log("Client: Sealed door - On trigger enter");
 
 		// Grab the ThirdPersonController component from the player.
 		thirdPersonController = other.GetComponent<ThirdPersonController>();
@@ -127,7 +127,7 @@ public class SealableDoor : NetworkBehaviour
 
 	private void CmdOnEnter(ThirdPersonController controller)
 	{
-		Debug.Log("Server: Sealed door - On enter");
+		//Debug.Log("Server: Sealed door - On enter");
 
 		RpcOnEnter(controller);
 	}
@@ -135,7 +135,7 @@ public class SealableDoor : NetworkBehaviour
 	[ClientRpc]
 	private void RpcOnEnter(ThirdPersonController controller)
 	{
-		Debug.Log("Client RPC: Sealed door - On enter");
+		//Debug.Log("Client RPC: Sealed door - On enter");
 
 
 		if (controller != null)
@@ -148,7 +148,7 @@ public class SealableDoor : NetworkBehaviour
 				promptUIManager.ShowSouthButtonUI();
 			}
 
-			Debug.Log("Client RPC: Sealed door - passed");
+			//Debug.Log("Client RPC: Sealed door - passed");
 
 
 			// Update player proximity status.
@@ -209,7 +209,7 @@ public class SealableDoor : NetworkBehaviour
 	[Command(requiresAuthority = false)]
 	public void CmdStartSealing()
 	{
-		Debug.Log("Server CMD: Sealed door - start sealing");
+		//Debug.Log("Server CMD: Sealed door - start sealing");
 
 		RpcStartSealing();
 	}
@@ -217,7 +217,7 @@ public class SealableDoor : NetworkBehaviour
 	[ClientRpc]
 	public void RpcStartSealing()
 	{
-		Debug.Log("Client RPC : Sealed door - start sealing");
+		//Debug.Log("Client RPC : Sealed door - start sealing");
 
 		if (thirdPersonController != null)
 		{
@@ -229,7 +229,7 @@ public class SealableDoor : NetworkBehaviour
 			}
 			else if (!playerNearby)
 			{
-				Debug.Log("Client RPC : Sealed door - start sealing - player not near")	;
+				//Debug.Log("Client RPC : Sealed door - start sealing - player not near")	;
 
 				StopSealing();
 
@@ -237,14 +237,14 @@ public class SealableDoor : NetworkBehaviour
 		}
 		else
 		{
-			Debug.Log("Client RPC : Sealed door - start sealing - controller null");
+			//Debug.Log("Client RPC : Sealed door - start sealing - controller null");
 		}
 	}
 
 	[Command(requiresAuthority = false)]
 	public void CmdSetSealing()
 	{
-		Debug.Log("Server CMD: Sealed door - set sealing");
+		//Debug.Log("Server CMD: Sealed door - set sealing");
 
 		playerIsSealing = true;
 	}

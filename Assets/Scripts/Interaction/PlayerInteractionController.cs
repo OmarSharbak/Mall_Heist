@@ -41,5 +41,9 @@ public class PlayerInteractionController : MonoBehaviour
 			// If the InventoryItem component is found, add the item to the player's inventory.
 
 		}
+		else
+		{
+			Debug.Log("Player interaction controller: item null or not in the inventory");
+		}
 	}
 }
