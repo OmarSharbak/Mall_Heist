@@ -33,7 +33,8 @@ public class SealableDoor : NetworkBehaviour
 
 	// Flags to determine player's proximity and action status.
 	bool playerNearby = false;
-	bool playerIsSealing = false;
+	[SyncVar]
+	public bool playerIsSealing = false;
 	bool audioPlaying = false;
 
 	// Reference to player's controller script.
@@ -66,6 +67,26 @@ public class SealableDoor : NetworkBehaviour
 			// Update the progress UI.
 			sealProgressBar.value = Mathf.Clamp01(currentSealTime / sealDuration);
 			fillImage.color = gradient.Evaluate(sealProgressBar.value);
+		}else if (!isSealed && playerIsSealing)
+		{
+			// Increment the seal timer.
+			currentSealTime += Time.deltaTime;
+
+			if (audioPlaying == false)
+			{
+				audioSource.Play();
+				audioPlaying = true;
+			}
+
+			// Update the progress UI.
+			sealProgressBar.value = Mathf.Clamp01(currentSealTime / sealDuration);
+			fillImage.color = gradient.Evaluate(sealProgressBar.value);
+
+			// If sealing is complete.
+			if (currentSealTime >= sealDuration)
+			{
+				CmdSealDoor();
+			}
 		}
 	}
 
@@ -74,6 +95,7 @@ public class SealableDoor : NetworkBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
+		Debug.Log("Client: Sealed door - On trigger enter");
 
 		// Grab the ThirdPersonController component from the player.
 		thirdPersonController = other.GetComponent<ThirdPersonController>();
@@ -105,28 +127,39 @@ public class SealableDoor : NetworkBehaviour
 
 	private void CmdOnEnter(ThirdPersonController controller)
 	{
+		Debug.Log("Server: Sealed door - On enter");
+
 		RpcOnEnter(controller);
 	}
 
 	[ClientRpc]
 	private void RpcOnEnter(ThirdPersonController controller)
 	{
-		if (thirdPersonController != null && thirdPersonController.isLocalPlayer)
+		Debug.Log("Client RPC: Sealed door - On enter");
+
+
+		if (controller != null)
 		{
-			promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
-			promptUIManager.ShowSouthButtonUI();
+			thirdPersonController = controller;
+
+			if (controller.isLocalPlayer)
+			{
+				promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+				promptUIManager.ShowSouthButtonUI();
+			}
+
+			Debug.Log("Client RPC: Sealed door - passed");
+
+
+			// Update player proximity status.
+			playerNearby = true;
+
+			// If the component exists, let the player's controller know about this door.
+			controller.SetNearbyDoor(this);
+
+			// Show the sealing progress UI.
+			sealProgressBar.gameObject.SetActive(true);
 		}
-
-
-
-		// Update player proximity status.
-		playerNearby = true;
-
-		// If the component exists, let the player's controller know about this door.
-		controller.SetNearbyDoor(this);
-
-		// Show the sealing progress UI.
-		sealProgressBar.gameObject.SetActive(true);
 	}
 
 	void OnTriggerExit(Collider other)
@@ -176,43 +209,44 @@ public class SealableDoor : NetworkBehaviour
 	[Command(requiresAuthority = false)]
 	public void CmdStartSealing()
 	{
+		Debug.Log("Server CMD: Sealed door - start sealing");
+
 		RpcStartSealing();
 	}
 
 	[ClientRpc]
 	public void RpcStartSealing()
 	{
+		Debug.Log("Client RPC : Sealed door - start sealing");
+
 		if (thirdPersonController != null)
 		{
 			// Check if the player is near and door isn't sealed.
 			if (playerNearby && !isSealed)
 			{
-				playerIsSealing = true;
-
-				// Increment the seal timer.
-				currentSealTime += Time.deltaTime;
-
-				if (audioPlaying == false)
-				{
-					audioSource.Play();
-					audioPlaying = true;
-				}
-
-				// Update the progress UI.
-				sealProgressBar.value = Mathf.Clamp01(currentSealTime / sealDuration);
-				fillImage.color = gradient.Evaluate(sealProgressBar.value);
-
-				// If sealing is complete.
-				if (currentSealTime >= sealDuration)
-				{
-					CmdSealDoor();
-				}
+				CmdSetSealing();
+				
 			}
 			else if (!playerNearby)
 			{
+				Debug.Log("Client RPC : Sealed door - start sealing - player not near")	;
+
 				StopSealing();
+
 			}
 		}
+		else
+		{
+			Debug.Log("Client RPC : Sealed door - start sealing - controller null");
+		}
+	}
+
+	[Command(requiresAuthority = false)]
+	public void CmdSetSealing()
+	{
+		Debug.Log("Server CMD: Sealed door - set sealing");
+
+		playerIsSealing = true;
 	}
 
 	[Command(requiresAuthority = false)]

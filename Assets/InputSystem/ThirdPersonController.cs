@@ -873,7 +873,8 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			if (_input.interactDoor)
 			{
-				nearbyDoor.CmdStartSealing();
+				if(!nearbyDoor.playerIsSealing)
+					nearbyDoor.CmdStartSealing();
 			}
 			else
 			{
