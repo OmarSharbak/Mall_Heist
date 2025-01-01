@@ -899,6 +899,7 @@ MonoBehaviour:
   LockCameraPosition: 1
   _speed: 0
   canMove: 1
+  defeated: 0
   captured: 0
   animator: {fileID: 0}
   FollowTopCinemachineCamera: {fileID: 0}
@@ -1031,22 +1032,7 @@ MonoBehaviour:
   syncInterval: 0
   rightHand: {fileID: 2845554260198848928}
   maxItemsPerType: 1
-  equipedItemPrefabName: 
   heldItem: {fileID: 0}
-  itemPrefabs:
-  - {fileID: 4114305269140579959, guid: c51a0204d7caec44dad95521fd36c4a7, type: 3}
-  - {fileID: 4114305269140579959, guid: 6967bdab7e8e1c84a9be0686d0d3c045, type: 3}
-  - {fileID: 4114305269140579959, guid: 986d520b15765ec47b3195aac4102b04, type: 3}
-  - {fileID: 4114305269140579959, guid: 1e77f5a8f9c2d1d4ebeee616259f741f, type: 3}
-  - {fileID: 4114305269140579959, guid: 160e72ccfcaac45468d0787ff46eb874, type: 3}
-  - {fileID: 4019663330106745794, guid: 66a9cfbca0a42e644b710c0da7ce217a, type: 3}
-  - {fileID: 4114305269140579959, guid: 5a7ff3b11344d0147975f2f80a21c7a6, type: 3}
-  - {fileID: 4114305269140579959, guid: 05552fb28551be243b2b040eb142fab4, type: 3}
-  - {fileID: 4114305269140579959, guid: 9457fdcefe57cd943942744f56e1a071, type: 3}
-  - {fileID: 8806289644645661166, guid: 8b28909b65003da4fa50d78a18f7095d, type: 3}
-  - {fileID: 4114305269140579959, guid: 85b599a4f8792ce4ca8b4451ef282700, type: 3}
-  - {fileID: 3176145172186905438, guid: 19933b93f0b605848830504823d9442f, type: 3}
-  - {fileID: 7456710900530230693, guid: aff809ad411f7af4e9ebc26509ebf981, type: 3}
 --- !u!114 &9064374381481665709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1366,7 +1352,7 @@ MonoBehaviour:
   compressRotation: 1
   interpolatePosition: 1
   interpolateRotation: 1
-  interpolateScale: 1
+  interpolateScale: 0
   coordinateSpace: 0
   timelineOffset: 1
   showGizmos: 0
@@ -3347,7 +3333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1756068951123164066}
   - component: {fileID: 2926975045382706152}
-  - component: {fileID: 313134051936440072}
+  - component: {fileID: 3080761843470216288}
   m_Layer: 0
   m_Name: PlayerCameraRoot
   m_TagString: CinemachineTarget
@@ -3391,7 +3377,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.00001, y: 0.00001, z: 0.00001}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &313134051936440072
+--- !u!114 &3080761843470216288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3415,7 +3401,7 @@ MonoBehaviour:
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 1
-  coordinateSpace: 0
+  coordinateSpace: 1
   timelineOffset: 1
   showGizmos: 0
   showOverlay: 0

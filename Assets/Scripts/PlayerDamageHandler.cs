@@ -332,8 +332,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 				ThirdPersonController otherController = otherIdentity.transform.GetComponent<ThirdPersonController>();
 
 				//other player otherController
-				thirdPersonController.FullMapCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
-				thirdPersonController.FollowTopCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
 				thirdPersonController.FollowCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
 				thirdPersonController.FollowTopCinemachineCamera.Priority = 0;
 				thirdPersonController.FollowCinemachineCamera.Priority = 20;
