@@ -315,10 +315,12 @@ public class MeleeWeapon : InventoryItem
 		if (rb != null)
 		{
 			rb.isKinematic = false;
+			rb.useGravity = true;
+			rb.constraints = RigidbodyConstraints.None;
 		}
-		Collider cd = GetComponent<Collider>();
-		if (cd != null)
-			cd.isTrigger = true;
+		//Collider cd = GetComponent<Collider>();
+		//if (cd != null)
+		//	cd.isTrigger = true;
 
 		// Update all clients
 		RpcDeatach(GetComponent<NetworkIdentity>().netId);
@@ -336,10 +338,12 @@ public class MeleeWeapon : InventoryItem
 			if (rb != null)
 			{
 				rb.isKinematic = false;
+				rb.useGravity = true;
+				rb.constraints = RigidbodyConstraints.None;
 			}
-			Collider cd = itemTransform.GetComponent<Collider>();
-			if (cd != null)
-				cd.isTrigger = true;
+			//Collider cd = itemTransform.GetComponent<Collider>();
+			//if (cd != null)
+			//	cd.isTrigger = true;
 		}
 	}
 

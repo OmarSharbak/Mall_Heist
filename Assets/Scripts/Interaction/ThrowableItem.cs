@@ -13,6 +13,7 @@ public class ThrowableItem : InventoryItem
 	public GameObject stunningFXPrefab;        // Visual effect shown when AI is stunned
 	MMFeedbacks mmFeedbacks;
 
+	[SyncVar]
 	private bool hit = false;                  // State flag indicating if the item has struck its target
 
 	public AudioClip guardHitClip;
@@ -37,6 +38,7 @@ public class ThrowableItem : InventoryItem
 
 	private GameObject noiseIndicator; // Instance of the noise indicator
 
+	[SyncVar]
 	bool noiseShown = false;
 
 	public static event Action OnGuardHit;
@@ -110,178 +112,194 @@ public class ThrowableItem : InventoryItem
 	{
 		if (collision.gameObject != null)
 		{
-			var _netIdentity = collision.gameObject.GetComponent<NetworkIdentity>();
-			if (_netIdentity != null)
+
+			Debug.Log("ITEM collision enter!");
+			// Your existing OnCollisionEnter code here
+			if (noiseIndicator != null && !isContainer && noiseShown == false)
 			{
-				Debug.Log("ITEM collision enter!");
-				// Your existing OnCollisionEnter code here
-				if (noiseIndicator != null && !isContainer && noiseShown == false)
-				{
-					ShowNoiseRadius();
-					noiseShown = true;
-					StartCoroutine(RemoveNoiseIndicator());
-				}
-
-				if (collision.gameObject.name == "Floor")
-					hit = true;
-
-
-				// Skip processing if item isn't throwable or has already hit its target
-				if (!isThrowable || hit || (rb != null && rb.velocity.magnitude < 0.25f))
-				{
-					Debug.Log("ITEM collision returned" + collision.gameObject.name);
-
-					return;
-
-				}
-
-				Debug.Log("ITEM collision enter passed " + collision.gameObject.name);
-
-				CmdCustomCollisionEnter(_netIdentity.netId);
-				Debug.Log("CLIENT - collision with network identity:" + _netIdentity.gameObject.name);
-
+				CmdShowNoiseRadius();
 			}
+
+			bool isFloor = (collision.gameObject.name == "Floor");
+			var _netIdentity = collision.gameObject.GetComponent<NetworkIdentity>();
+			CmdSetHit(_netIdentity, isFloor);
+
+
+
 		}
 	}
 
 	[Command(requiresAuthority = false)]
-	private void CmdCustomCollisionEnter(uint _netId)
+	private void CmdSetHit(NetworkIdentity _netIdentity, bool isFloor)
 	{
-		Debug.Log("SERVER - Item - collision enter - cmd called");
+		if (isFloor)
+			hit = true;
+		// Skip processing if item isn't throwable or has already hit its target
+		if (!isThrowable || hit || (rb != null && rb.velocity.magnitude < 0.25f))
+		{
+			Debug.Log("ITEM collision returned");
 
-		RpcCustomCollisionEnter(_netId);
+			return;
+
+		}
+
+		Debug.Log("ITEM collision enter passed ");
+
+		RpcCustomCollisionEnter(_netIdentity);
+
+	}
+
+	[Command(requiresAuthority = false)]
+	private void CmdShowNoiseRadius()
+	{
+		Debug.Log("SERVER - collision - noise show");
+
+		noiseShown = true;
+		RpcShowNoiseRadius();
 	}
 
 	[ClientRpc]
-	private void RpcCustomCollisionEnter(uint _netId)
+	private void RpcShowNoiseRadius()
+	{
+		Debug.Log("CLIENT - collision - noise show");
+
+		ShowNoiseRadius();
+		StartCoroutine(RemoveNoiseIndicator());
+	}
+
+
+	[ClientRpc]
+	private void RpcCustomCollisionEnter(NetworkIdentity netIdentity)
 	{
 		Debug.Log("CLIENT - Item - collision enter - rpc called");
 
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity netIdentity))
+		if (netIdentity != null)
 		{
-			if (netIdentity != null)
+			Debug.Log("CLIENT - Item - collision enter:" + netIdentity.gameObject.name);
+
+
+			// Check if collided object is an EmeraldAI system (i.e., AI opponent)
+			if (netIdentity.gameObject.GetComponent<EmeraldAISystem>() != null)
 			{
-				Debug.Log("CLIENT - Item - collision enter:" + netIdentity.gameObject.name);
+				Debug.Log("ITEM collision guard hit");
 
-
-				// Check if collided object is an EmeraldAI system (i.e., AI opponent)
-				if (netIdentity.gameObject.GetComponent<EmeraldAISystem>() != null)
+				// Check for invincibility status on netIdentity target
+				guardInvincibility = netIdentity.gameObject.GetComponent<GuardInvincibility>();
+				if (guardInvincibility != null && guardInvincibility.IsInvincible())
 				{
-					Debug.Log("ITEM collision guard hit");
-
-					// Check for invincibility status on netIdentity target
-					guardInvincibility = netIdentity.gameObject.GetComponent<GuardInvincibility>();
-					if (guardInvincibility != null && guardInvincibility.IsInvincible())
-					{
-						return; // Skip processing for invincible targets
-					}
-
-					mmFeedbacks.PlayFeedbacks();
-					// Find the "AI Health Bar Canvas" within the "HealthBarParent" of the collided GameObject.
-					healthBarCanvasTransform = netIdentity.transform.Find("HealthBarParent/AI Health Bar Canvas");
-
-					// Check if the "AI Health Bar Canvas" was found.
-					if (healthBarCanvasTransform != null)
-					{
-						// Ensure the health bar canvas GameObject is active.
-						healthBarCanvasTransform.gameObject.SetActive(true);
-					}
-					else
-					{
-						// Log an error if the "AI Health Bar Canvas" was not found.
-						Debug.LogError("AI Health Bar Canvas not found on the collided GameObject.");
-					}
-
-					hit = true;  // Flag hit to prevent repeat processing
-
-					// Play the guard hit sound
-					aiAudioSource = netIdentity.gameObject.GetComponent<AudioSource>();
-					if (aiAudioSource != null && guardHitClip != null)
-					{
-						aiAudioSource.PlayOneShot(guardHitClip);
-					}
-
-					// Start a coroutine to prevent AI rotation during the hit animation
-					StartCoroutine("HoldRotation");
-
-					// Cache initial AI rotation for animation reset
-					initialAIRotation = netIdentity.gameObject.transform.rotation;
-
-					// Temporarily set AI to invincible during hit animation
-					guardInvincibility.MakeInvincible();
-
-					// Fetch necessary AI components for subsequent interactions
-					aiSystem = netIdentity.gameObject.GetComponent<EmeraldAISystem>();
-					eventsManager = netIdentity.gameObject.GetComponent<EmeraldAIEventsManager>();
-					aiAnimator = netIdentity.gameObject.GetComponent<Animator>();
-					aiNavMeshAgent = netIdentity.gameObject.GetComponent<NavMeshAgent>();
-					boxCollider = netIdentity.gameObject.GetComponent<BoxCollider>();
-					guardCollision = netIdentity.gameObject.GetComponent<GuardOnCollision>();
-
-					// Apply damage and update AI state
-					guardCollision.canDetect = false;
-					aiSystem.DetectionRadius = 0;
-					eventsManager.ClearTarget();
-					aiSystem.Damage(damageAmount, EmeraldAI.EmeraldAISystem.TargetType.Player, playerTransform, 1);
-
-					OnGuardHit?.Invoke();
-
-					eventsManager.CancelAttackAnimation();
-
-					if (aiAnimator != null)
-					{
-						// Trigger hit animation for the AI
-						aiAnimator.SetTrigger("Hit");
-					}
-
-					// Debug code (can be omitted in production)
-					AnimatorStateInfo stateInfo = aiAnimator.GetCurrentAnimatorStateInfo(0);
-					if (stateInfo.IsName("Death_01(2)"))
-					{
-						Debug.Log("Hit animation is currently playing");
-					}
-					else
-					{
-						aiAnimator.SetTrigger("Hit");
-					}
-
-					// Temporarily disable AI's collider
-					boxCollider.enabled = false;
-
-					// If collision happens at head joint, trigger a stunning visual effect
-					Transform headJoint = netIdentity.transform.Find("Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
-					if (headJoint != null)
-					{
-						StartCoroutine(SpawnEffectAfterDelay(headJoint));
-					}
-
-					// After a set delay, reset AI state post-hit
-					StartCoroutine(WaitAndMove());
+					return; // Skip processing for invincible targets
 				}
-				else if (netIdentity.gameObject.GetComponent<ThirdPersonController>() != null)//collision other player
+
+				mmFeedbacks.PlayFeedbacks();
+				// Find the "AI Health Bar Canvas" within the "HealthBarParent" of the collided GameObject.
+				healthBarCanvasTransform = netIdentity.transform.Find("HealthBarParent/AI Health Bar Canvas");
+
+				// Check if the "AI Health Bar Canvas" was found.
+				if (healthBarCanvasTransform != null)
 				{
-					Debug.Log("Item - Player Hit");
-					mmFeedbacks.PlayFeedbacks();
-					hit = true;  // Flag hit to prevent repeat processing
-
-					ThirdPersonController controller = netIdentity.gameObject.GetComponent<ThirdPersonController>();
-					controller.canMove = false;
-
-					controller.animator.SetTrigger("Hit");
-
-					// If collision happens at head joint, trigger a stunning visual effect
-					Transform headJoint = netIdentity.transform.Find("Geometry/SimplePeople_Pimp_White/Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
-					if (headJoint != null)
-					{
-						StartCoroutine(SpawnEffectAfterDelayPlayer(headJoint));
-					}
-
-					// After a set delay, reset state post-hit
-					StartCoroutine(WaitAndMovePlayer(controller));
-
+					// Ensure the health bar canvas GameObject is active.
+					healthBarCanvasTransform.gameObject.SetActive(true);
 				}
+				else
+				{
+					// Log an error if the "AI Health Bar Canvas" was not found.
+					Debug.LogError("AI Health Bar Canvas not found on the collided GameObject.");
+				}
+
+				hit = true;  // Flag hit to prevent repeat processing
+
+				// Play the guard hit sound
+				aiAudioSource = netIdentity.gameObject.GetComponent<AudioSource>();
+				if (aiAudioSource != null && guardHitClip != null)
+				{
+					aiAudioSource.PlayOneShot(guardHitClip);
+				}
+
+				// Start a coroutine to prevent AI rotation during the hit animation
+				StartCoroutine("HoldRotation");
+
+				// Cache initial AI rotation for animation reset
+				initialAIRotation = netIdentity.gameObject.transform.rotation;
+
+				// Temporarily set AI to invincible during hit animation
+				guardInvincibility.MakeInvincible();
+
+				// Fetch necessary AI components for subsequent interactions
+				aiSystem = netIdentity.gameObject.GetComponent<EmeraldAISystem>();
+				eventsManager = netIdentity.gameObject.GetComponent<EmeraldAIEventsManager>();
+				aiAnimator = netIdentity.gameObject.GetComponent<Animator>();
+				aiNavMeshAgent = netIdentity.gameObject.GetComponent<NavMeshAgent>();
+				boxCollider = netIdentity.gameObject.GetComponent<BoxCollider>();
+				guardCollision = netIdentity.gameObject.GetComponent<GuardOnCollision>();
+
+				// Apply damage and update AI state
+				guardCollision.canDetect = false;
+				aiSystem.DetectionRadius = 0;
+				eventsManager.ClearTarget();
+				aiSystem.Damage(damageAmount, EmeraldAI.EmeraldAISystem.TargetType.Player, playerTransform, 1);
+
+				OnGuardHit?.Invoke();
+
+				eventsManager.CancelAttackAnimation();
+
+				if (aiAnimator != null)
+				{
+					// Trigger hit animation for the AI
+					aiAnimator.SetTrigger("Hit");
+				}
+
+				// Debug code (can be omitted in production)
+				AnimatorStateInfo stateInfo = aiAnimator.GetCurrentAnimatorStateInfo(0);
+				if (stateInfo.IsName("Death_01(2)"))
+				{
+					Debug.Log("Hit animation is currently playing");
+				}
+				else
+				{
+					aiAnimator.SetTrigger("Hit");
+				}
+
+				// Temporarily disable AI's collider
+				boxCollider.enabled = false;
+
+				// If collision happens at head joint, trigger a stunning visual effect
+				Transform headJoint = netIdentity.transform.Find("Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
+				if (headJoint != null)
+				{
+					StartCoroutine(SpawnEffectAfterDelay(headJoint));
+				}
+
+				// After a set delay, reset AI state post-hit
+				StartCoroutine(WaitAndMove());
+			}
+			else if (netIdentity.gameObject.GetComponent<ThirdPersonController>() != null)//collision other player
+			{
+				Debug.Log("Item - Player Hit");
+				mmFeedbacks.PlayFeedbacks();
+				hit = true;  // Flag hit to prevent repeat processing
+
+				ThirdPersonController controller = netIdentity.gameObject.GetComponent<ThirdPersonController>();
+				controller.canMove = false;
+
+				controller.animator.SetTrigger("Hit");
+
+				// If collision happens at head joint, trigger a stunning visual effect
+				Transform headJoint = netIdentity.transform.Find("Geometry/SimplePeople_Pimp_White/Hips_jnt/Spine_jnt/Spine_jnt 1/Chest_jnt/Neck_jnt/Head_jnt");
+				if (headJoint != null)
+				{
+					StartCoroutine(SpawnEffectAfterDelayPlayer(headJoint));
+				}
+
+				// After a set delay, reset state post-hit
+				StartCoroutine(WaitAndMovePlayer(controller));
+
 			}
 
+
+		}
+		else
+		{
+			Debug.Log("Item Collision Enter: Net Identity null!!!");
 		}
 	}
 
