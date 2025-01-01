@@ -345,9 +345,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 				// Access the EventSystem and set the selected GameObject
 				EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
-
-
-
 			}
 		}
 	}
@@ -368,11 +365,13 @@ public class PlayerDamageHandler : NetworkBehaviour
 					player.gameObject.tag = "PlayerInvisible";
 					player.ToggleVisibility();
 
-
-					CharacterController myCollider = player.GetComponent<CharacterController>();
-					// Disable the collider
-					if (myCollider != null)
-						myCollider.enabled = false;
+					player.GetComponent<Rigidbody>().isKinematic = true;
+					Transform[] ts = player.GetComponentsInChildren<Transform>();
+					for (int i = 0; i < ts.Length; i++)
+					{
+						Transform t = ts[i];
+						t.gameObject.SetActive(false);
+					}
 
 
 					EscalatorManager.Instance.SetCurrentState(player, EscalatorManager.GameState.Defeat);
