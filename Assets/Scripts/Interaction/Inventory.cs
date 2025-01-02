@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Mirror;
 using System.Linq;
+using System;
 
 public class Inventory : NetworkBehaviour
 {
@@ -110,10 +111,14 @@ public class Inventory : NetworkBehaviour
 		UpdateObjectiveItemsUI();
 	}
 
-	/// <summary>
-	/// Switches the current item in a given direction.
-	/// </summary>
-	public void SwitchItem(int direction)
+	[Command(requiresAuthority = false)]
+	public void CmdSwitchItem(int direction)
+	{
+		RpcSwitchItem(direction);
+	}
+
+	[ClientRpc]
+	public void RpcSwitchItem(int direction)
 	{
 		if (items.Count > 0)
 		{
@@ -137,7 +142,8 @@ public class Inventory : NetworkBehaviour
 	{
 		if (heldItem && destroyExistingItem)
 		{
-			Destroy(heldItem);
+
+			CmdDestroyHeldItem(heldItem.GetComponent<NetworkIdentity>());
 		}
 
 		if (items.Count == 0)
@@ -150,21 +156,29 @@ public class Inventory : NetworkBehaviour
 		CmdSpawnItem(currentItem);
 	}
 
+	[Command(requiresAuthority = false)]
+	public void CmdDestroyHeldItem(NetworkIdentity heldItem)
+	{
+		if (heldItem != null && heldItem.gameObject != null)
+			NetworkServer.Destroy(heldItem.gameObject);
+	}
 
 
 	[Command]
 	void CmdSpawnItem(InventoryItem item)
 	{
+
+		if (item == null)
+		{
+			Debug.LogWarning("SERVER -  update held item - item null");
+			return;
+		}
+
 		if (item != null)
 		{
-			Debug.Log("SERVER -  update held item - rightHand" + rightHand.name);
+			//Debug.Log("SERVER -  update held item - rightHand:" + rightHand.name+ " item:" + item.itemName);
 
 
-			if (item == null)
-			{
-				Debug.LogWarning("SERVER -  update held item - item null");
-				return;
-			}
 			GameObject itemGameObject = Instantiate(item.prefab, transform.position, Quaternion.identity);
 
 			// Spawn the guitar on the network and assign authority to the current player
@@ -185,7 +199,7 @@ public class Inventory : NetworkBehaviour
 
 			if (item != null)
 			{
-				Debug.Log("CLIENT -  update held item - item");
+				//Debug.Log("CLIENT -  update held item - item");
 
 				heldItem = item.gameObject;
 
@@ -217,11 +231,12 @@ public class Inventory : NetworkBehaviour
 
 				//avoid collsiions between the current player and the item held
 				Collider playerCollider = transform.GetComponent<Collider>();
-				Collider itemCollider = heldItem.GetComponent<Collider>();
-				if (itemCollider != null)
+				Collider[] itemColliders = heldItem.GetComponents<Collider>();
+				foreach (Collider collider in itemColliders)
 				{
-					Physics.IgnoreCollision(playerCollider, itemCollider);
-					Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
+
+					Physics.IgnoreCollision(playerCollider, collider, true);
+					//Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
 				}
 			}
 		}
@@ -383,7 +398,7 @@ public class Inventory : NetworkBehaviour
 	}
 
 
-	[ServerCallback]	
+	[ServerCallback]
 	public Dictionary<string, TMP_Text> GetMatchingServerItems()
 	{
 

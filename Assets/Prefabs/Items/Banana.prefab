@@ -262,6 +262,7 @@ MonoBehaviour:
   guardHitClip: {fileID: 8300000, guid: 0c92c80b278e96b4289d2042fd2c07c1, type: 3}
   isPlaced: 0
   placedByPlayer: {fileID: 0}
+  BoxCollider: {fileID: 6376715646735388574}
 --- !u!114 &-6434131256485798015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +349,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.36, y: 0.37, z: 0.62}
   m_Center: {x: -0.0000019073486, y: 0.13840717, z: 0.000000059604645}

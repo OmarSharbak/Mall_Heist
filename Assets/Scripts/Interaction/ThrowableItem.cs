@@ -121,38 +121,40 @@ public class ThrowableItem : InventoryItem
 			}
 
 			bool isFloor = (collision.gameObject.name == "Floor");
-			var _netIdentity = collision.gameObject.GetComponent<NetworkIdentity>();
-			CmdSetHit(_netIdentity, isFloor);
+			if (isFloor)
+				CmdSetHit();
+			// Skip processing if item isn't throwable or has already hit its target
+			if (!isThrowable || isFloor || (rb != null && rb.velocity.magnitude < 0.25f))
+			{
+				Debug.Log("ITEM collision returned hit:");
+				return;
 
+			}
+			var _netIdentity = collision.gameObject.GetComponent<NetworkIdentity>();
+
+			CmdCustomCollisionEnter(_netIdentity);
 
 
 		}
 	}
 
 	[Command(requiresAuthority = false)]
-	private void CmdSetHit(NetworkIdentity _netIdentity, bool isFloor)
+	private void CmdSetHit()
 	{
-		if (isFloor)
-			hit = true;
-		// Skip processing if item isn't throwable or has already hit its target
-		if (!isThrowable || hit || (rb != null && rb.velocity.magnitude < 0.25f))
-		{
-			Debug.Log("ITEM collision returned");
+		hit = true;
 
-			return;
-
-		}
-
+	}
+	[Command(requiresAuthority = false)]
+	private void CmdCustomCollisionEnter(NetworkIdentity _netIdentity)
+	{
 		Debug.Log("ITEM collision enter passed ");
 
 		RpcCustomCollisionEnter(_netIdentity);
-
 	}
-
 	[Command(requiresAuthority = false)]
 	private void CmdShowNoiseRadius()
 	{
-		Debug.Log("SERVER - collision - noise show");
+		//Debug.Log("SERVER - collision - noise show");
 
 		noiseShown = true;
 		RpcShowNoiseRadius();
@@ -206,7 +208,7 @@ public class ThrowableItem : InventoryItem
 					Debug.LogError("AI Health Bar Canvas not found on the collided GameObject.");
 				}
 
-				hit = true;  // Flag hit to prevent repeat processing
+				CmdSetHit();  // Flag hit to prevent repeat processing
 
 				// Play the guard hit sound
 				aiAudioSource = netIdentity.gameObject.GetComponent<AudioSource>();
@@ -276,7 +278,7 @@ public class ThrowableItem : InventoryItem
 			{
 				Debug.Log("Item - Player Hit");
 				mmFeedbacks.PlayFeedbacks();
-				hit = true;  // Flag hit to prevent repeat processing
+				CmdSetHit();  // Flag hit to prevent repeat processing
 
 				ThirdPersonController controller = netIdentity.gameObject.GetComponent<ThirdPersonController>();
 				controller.canMove = false;

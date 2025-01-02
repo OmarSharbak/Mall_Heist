@@ -14,12 +14,12 @@ public class InteractableObject : NetworkBehaviour
     public virtual void Interact(PlayerInteractionController playerInteractionController)
     {
         // This method is intended to be overridden by subclasses.
-        Debug.Log("Interacting with " + gameObject.name);
+        //Debug.Log("Interacting with " + gameObject.name);
     }
 
     private void OnPickedUpChanged(int _oldValue, int _newValue)
     {
-        Debug.Log("CLIENT - picked up changed "+ _newValue);
+        //Debug.Log("CLIENT - picked up changed "+ _newValue);
 
 		if (outlinable!=null && pickedUpTimes == 0)
 		{
@@ -29,7 +29,7 @@ public class InteractableObject : NetworkBehaviour
 	[Command(requiresAuthority =false)]
 	public void CmdSetPickedUpTimes(int _newValue)
 	{
-		Debug.Log("SERVER - picked up changed " + _newValue);
+		//Debug.Log("SERVER - picked up changed " + _newValue);
 
 		pickedUpTimes= _newValue;
 	}

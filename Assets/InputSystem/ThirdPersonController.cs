@@ -15,6 +15,7 @@ using System;
 
 
 
+
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -659,6 +660,7 @@ public class ThirdPersonController : NetworkBehaviour
 					if (interactableObject.pickedUpTimes >= 1)
 						promptUIManager.ShowSouthButtonObjectsUI();
 				}
+
 			}
 		}
 		else
@@ -668,8 +670,9 @@ public class ThirdPersonController : NetworkBehaviour
 
 		if (_input.interact)
 		{
+			
 			// Cast a ray forward from the player's position.
-			if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit1, interactionRange, interactableLayer))
+			if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit1, interactionRange, interactableLayer ))
 			{
 				// Check if the ray hit an interactable object.
 				InteractableObject interactableObject = hit1.transform.GetComponent<InteractableObject>();
@@ -679,7 +682,9 @@ public class ThirdPersonController : NetworkBehaviour
 					interactableObject.Interact(GetComponent<PlayerInteractionController>());
 					promptUIManager.HideSouthButtonObjectsUI();
 				}
+
 			}
+
 		}
 	}
 
@@ -892,12 +897,12 @@ public class ThirdPersonController : NetworkBehaviour
 		if (_input.switchUp)
 		{
 			_input.switchUp = false;
-			_inventory.SwitchItem(1);
+			_inventory.CmdSwitchItem(1);
 		}
 		else if (_input.switchDown)
 		{
 			_input.switchDown = false;
-			_inventory.SwitchItem(-1);
+			_inventory.CmdSwitchItem(-1);
 		}
 	}
 
@@ -1053,8 +1058,6 @@ public class ThirdPersonController : NetworkBehaviour
 					_inventory.heldItem.GetComponent<TrapItem>().placedByPlayer = GetComponent<NetworkIdentity>();
 					_inventory.heldItem.GetComponent<TrapItem>().CmdDeatach();
 
-
-					// Detach the item from the player
 					_inventory.DecreaseHeldItem();
 
 					Rigidbody rb = itemToThrow.GetComponent<Rigidbody>();
@@ -1085,7 +1088,9 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			// Disable collision between trap and placer
 			foreach (Collider col in trapObject.GetComponents<Collider>())
+			{
 				Physics.IgnoreCollision(col, placerCollider, true);
+			}
 
 
 			// Call Rpc to sync this change to all clients
@@ -1102,7 +1107,11 @@ public class ThirdPersonController : NetworkBehaviour
 		if (placerObject.TryGetComponent(out Collider placerCollider))
 		{
 			foreach (Collider col in trapObject.GetComponents<Collider>())
+			
+			{
 				Physics.IgnoreCollision(col, placerCollider, true);
+
+			}
 
 		}
 	}

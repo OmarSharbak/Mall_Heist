@@ -365,6 +365,11 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 					player.GetComponent<Rigidbody>().isKinematic = true;
 					Transform[] ts = player.GetComponentsInChildren<Transform>();
+
+
+					Inventory inventory = player.GetComponent<Inventory>();
+					inventory.CmdDestroyHeldItem(inventory.heldItem.GetComponent<NetworkIdentity>());
+
 					for (int i = 0; i < ts.Length; i++)
 					{
 						Transform t = ts[i];

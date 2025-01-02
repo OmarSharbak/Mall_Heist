@@ -7429,8 +7429,12 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4071466116824376313, guid: 2350780d0e33f6d40ad15845e61cde16, type: 3}
+      propertyPath: isContainer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071466116824376313, guid: 2350780d0e33f6d40ad15845e61cde16, type: 3}
       propertyPath: isThrowable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4334530345563625943, guid: 2350780d0e33f6d40ad15845e61cde16, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13021,7 +13025,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -13092,14 +13096,14 @@ MonoBehaviour:
   itemName: Carrot
   prefab: {fileID: 4114305269140579959, guid: 986d520b15765ec47b3195aac4102b04, type: 3}
   playerTransform: {fileID: 0}
-  isThrowable: 0
+  isThrowable: 1
   damageAmount: 2
   stunningFXPrefab: {fileID: 0}
   guardHitClip: {fileID: 0}
   guardStunClip: {fileID: 0}
   noiseRadius: 7
   noiseIndicatorPrefab: {fileID: 0}
-  isContainer: 0
+  isContainer: 1
 --- !u!114 &286551344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49052,6 +49056,10 @@ PrefabInstance:
       propertyPath: outlineTargets.Array.data[0].IsVisible
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1002584132564410111, guid: 571ebe096dbd767438b7788a0efa6149, type: 3}
+      propertyPath: isContainer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3405321144995204275, guid: 571ebe096dbd767438b7788a0efa6149, type: 3}
       propertyPath: m_Name
       value: ClothesBootCounter
@@ -56661,7 +56669,7 @@ MonoBehaviour:
   itemName: Fries
   prefab: {fileID: 4114305269140579959, guid: 5a7ff3b11344d0147975f2f80a21c7a6, type: 3}
   playerTransform: {fileID: 0}
-  isThrowable: 0
+  isThrowable: 1
   damageAmount: 2
   stunningFXPrefab: {fileID: 0}
   guardHitClip: {fileID: 0}

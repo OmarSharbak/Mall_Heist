@@ -276,13 +276,13 @@ public class GameManager : NetworkBehaviour
         switch (op)
         {
             case SyncList<ServerItem>.Operation.OP_ADD:
-                Debug.Log($"Item Added: {item.itemName} ({item.quantity})");
+                //Debug.Log($"Item Added: {item.itemName} ({item.quantity})");
                 break;
             case SyncList<ServerItem>.Operation.OP_REMOVEAT:
-                Debug.Log($"Item Removed: {item.itemName}");
+                //Debug.Log($"Item Removed: {item.itemName}");
                 break;
             case SyncList<ServerItem>.Operation.OP_SET:
-                Debug.Log($"Item Updated: {item.itemName} ({item.quantity})");
+                //Debug.Log($"Item Updated: {item.itemName} ({item.quantity})");
                 break;
         }
     }

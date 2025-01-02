@@ -523,10 +523,10 @@ public class EscalatorManager : NetworkBehaviour
 				Debug.Log("GOAL - player local null");
 			}
 		}
-		else
-		{
-			Debug.Log("Not all objectives are complete or not enought money");
-		}
+		//else
+		//{
+		//	Debug.Log("Not all objectives are complete or not enought money");
+		//}
 
 	}
 
