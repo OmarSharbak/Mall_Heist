@@ -249,7 +249,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	// Manage end of game state.
 	private void CmdHandleGameOver(uint _netId)
 	{
-		if (EscalatorManager.Instance.defeatedPlayers > 0)
+		if (EscalatorManager.Instance.defeatedPlayers > 0 || FindAnyObjectByType<MultiplayerMode>().isSinglePlayer)
 		{
 			AllDefeat();
 		}
@@ -368,7 +368,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 
 					Inventory inventory = player.GetComponent<Inventory>();
-					inventory.CmdDestroyHeldItem(inventory.heldItem.GetComponent<NetworkIdentity>());
+					if(inventory != null && inventory.heldItem!=null) 
+						inventory.CmdDestroyHeldItem(inventory.heldItem.GetComponent<NetworkIdentity>());
 
 					for (int i = 0; i < ts.Length; i++)
 					{
