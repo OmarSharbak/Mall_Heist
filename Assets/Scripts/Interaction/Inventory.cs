@@ -228,7 +228,6 @@ public class Inventory : NetworkBehaviour
 
 					heldItem.transform.localEulerAngles = new Vector3(rotX, rotY, rotZ);
 				}
-
 				//avoid collsiions between the current player and the item held
 				Collider playerCollider = transform.GetComponent<Collider>();
 				Collider[] itemColliders = heldItem.GetComponents<Collider>();
@@ -236,7 +235,9 @@ public class Inventory : NetworkBehaviour
 				{
 
 					Physics.IgnoreCollision(playerCollider, collider, true);
-					//Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
+					if (heldItem.GetComponent<InventoryItem>().itemName != "Guitar")
+						collider.enabled = false;
+					Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
 				}
 			}
 		}

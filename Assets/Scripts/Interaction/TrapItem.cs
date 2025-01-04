@@ -37,13 +37,11 @@ public class TrapItem : InventoryItem
 
 	public static event Action OnGuardHit;
 
-	private BoxCollider ownBoxCollider = null;
 
 	void Start()
 	{
 		outlinable = GetComponent<Outlinable>();
 		mmFeedbacks = GameObject.Find("MMFeedbacks(hit)").GetComponent<MMFeedbacks>();
-		ownBoxCollider= GetComponent<BoxCollider>();
 	}
 
 	void Update()
@@ -373,17 +371,6 @@ public class TrapItem : InventoryItem
 	[Command]
 	public void CmdDeatach()
 	{
-		transform.SetParent(null); // Detach it from the player's hand
-
-		// Enable Rigidbody for physics-based throwing
-		Rigidbody rb = GetComponent<Rigidbody>();
-		if (rb != null)
-		{
-			rb.isKinematic = false;
-		}
-		if(ownBoxCollider != null)
-			ownBoxCollider.enabled = true;
-
 		// Update all clients
 		RpcDeatach(GetComponent<NetworkIdentity>().netId);
 	}
@@ -402,9 +389,9 @@ public class TrapItem : InventoryItem
 				rb.isKinematic = false;
 			}
 
-			TrapItem ti = item.GetComponent<TrapItem>();
-			if(ti!=null && ti.ownBoxCollider != null)
-				ownBoxCollider.enabled = true;
+			foreach (Collider c in itemTransform.GetComponents<Collider>())
+				c.enabled = true;
+
 
 		}
 	}

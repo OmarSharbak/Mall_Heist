@@ -124,7 +124,7 @@ public class ThrowableItem : InventoryItem
 			if (isFloor)
 				CmdSetHit();
 			// Skip processing if item isn't throwable or has already hit its target
-			if (!isThrowable || isFloor || (rb != null && rb.velocity.magnitude < 0.25f))
+			if (!isThrowable || isFloor || hit || (rb != null && rb.velocity.magnitude < 0.25f))
 			{
 				Debug.Log("ITEM collision returned hit:");
 				return;
@@ -436,15 +436,6 @@ public class ThrowableItem : InventoryItem
 	[Command]
 	public void CmdDeatach()
 	{
-		transform.SetParent(null); // Detach it from the player's hand
-
-		// Enable Rigidbody for physics-based throwing
-		Rigidbody rb = GetComponent<Rigidbody>();
-		if (rb != null)
-		{
-			rb.isKinematic = false;
-		}
-
 		// Update all clients
 		RpcDeatach(GetComponent<NetworkIdentity>().netId);
 	}
@@ -462,9 +453,11 @@ public class ThrowableItem : InventoryItem
 			{
 				rb.isKinematic = false;
 			}
-			Collider cd = itemTransform.GetComponent<Collider>();
-			if (cd != null)
-				cd.isTrigger = true;
+
+			foreach (Collider c in itemTransform.GetComponents<Collider>())
+			{
+				c.enabled = true;
+			}
 		}
 	}
 

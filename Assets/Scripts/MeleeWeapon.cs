@@ -308,20 +308,6 @@ public class MeleeWeapon : InventoryItem
 	[Command]
 	void CmdDeatach()
 	{
-		transform.SetParent(null); // Detach it from the player's hand
-
-		// Enable Rigidbody for physics-based throwing
-		Rigidbody rb = GetComponent<Rigidbody>();
-		if (rb != null)
-		{
-			rb.isKinematic = false;
-			rb.useGravity = true;
-			rb.constraints = RigidbodyConstraints.None;
-		}
-		//Collider cd = GetComponent<Collider>();
-		//if (cd != null)
-		//	cd.isTrigger = true;
-
 		// Update all clients
 		RpcDeatach(GetComponent<NetworkIdentity>().netId);
 	}

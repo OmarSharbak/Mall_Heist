@@ -944,7 +944,6 @@ public class ThirdPersonController : NetworkBehaviour
 					canMove = false; // Restricting player from moving
 					_speed = 0.0f; // Stopping the player
 					animator.SetFloat(_animIDSpeed, 0.0f); // Setting animator speed value to 0 for states changing
-
 				}
 			}
 		}
@@ -1144,6 +1143,7 @@ public class ThirdPersonController : NetworkBehaviour
 				Debug.Log("Player forward then aim assst: " + playerTransform.forward.y + " SPACE " + aimAssistDirection.y);
 			}
 
+			throwableItemScript.CmdDeatach();
 			// Detach the item from the player
 			_inventory.DecreaseHeldItem();
 
