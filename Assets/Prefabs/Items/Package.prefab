@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4786320111763083620}
   - component: {fileID: 3744209163595723867}
   - component: {fileID: -6772851896936401545}
-  - component: {fileID: -8834374262323881528}
+  - component: {fileID: 9129520539713637126}
   m_Layer: 7
   m_Name: Package
   m_TagString: Untagged
@@ -142,7 +142,7 @@ MonoBehaviour:
   serverOnly: 0
   visibility: 0
   hasSpawned: 0
---- !u!114 &-8834374262323881528
+--- !u!114 &9129520539713637126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8806289644645661166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 1
@@ -171,7 +171,7 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  bufferResetMultiplier: 3
-  positionSensitivity: 0.01
+  onlySyncOnChangeCorrectionMultiplier: 2
   rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
