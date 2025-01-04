@@ -645,7 +645,7 @@ public class ThirdPersonController : NetworkBehaviour
 	{
 		Vector3 loweredDirection = transform.forward + new Vector3(0, +0.02f, 0); // Adjust the Y-axis component
 																				  // Visualize the ray in the Scene view
-		//Debug.DrawRay(transform.position, loweredDirection * interactionRange, Color.red);
+																				  //Debug.DrawRay(transform.position, loweredDirection * interactionRange, Color.red);
 
 		if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit, interactionRange, interactableLayer))
 		{
@@ -670,9 +670,9 @@ public class ThirdPersonController : NetworkBehaviour
 
 		if (_input.interact)
 		{
-			
+
 			// Cast a ray forward from the player's position.
-			if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit1, interactionRange, interactableLayer ))
+			if (Physics.Raycast(transform.position, loweredDirection, out RaycastHit hit1, interactionRange, interactableLayer))
 			{
 				// Check if the ray hit an interactable object.
 				InteractableObject interactableObject = hit1.transform.GetComponent<InteractableObject>();
@@ -1083,35 +1083,42 @@ public class ThirdPersonController : NetworkBehaviour
 	[Command(requiresAuthority = false)]
 	private void CmdIgnoreCollision(GameObject trapObject, GameObject placerObject)
 	{
-		if (placerObject.TryGetComponent(out Collider placerCollider))
+		if (trapObject != null && placerObject != null)
 		{
-			// Disable collision between trap and placer
-			foreach (Collider col in trapObject.GetComponents<Collider>())
+			if (placerObject.TryGetComponent(out Collider placerCollider))
 			{
-				Physics.IgnoreCollision(col, placerCollider, true);
+				// Disable collision between trap and placer
+
+				foreach (Collider col in trapObject.GetComponents<Collider>())
+				{
+					Physics.IgnoreCollision(col, placerCollider, true);
+				}
+
+
+				// Call Rpc to sync this change to all clients
+				RpcIgnoreCollision(trapObject, placerObject);
+
+				Debug.Log("SERVER - ignore collision " + trapObject.name + " " + gameObject.name);
+
 			}
-
-
-			// Call Rpc to sync this change to all clients
-			RpcIgnoreCollision(trapObject, placerObject);
-
-			Debug.Log("SERVER - ignore collision " + trapObject.name + " " + gameObject.name);
-
 		}
 	}
 
 	[ClientRpc]
 	private void RpcIgnoreCollision(GameObject trapObject, GameObject placerObject)
 	{
-		if (placerObject.TryGetComponent(out Collider placerCollider))
+		if (trapObject != null && placerObject != null)
 		{
-			foreach (Collider col in trapObject.GetComponents<Collider>())
-			
+			if (placerObject.TryGetComponent(out Collider placerCollider))
 			{
-				Physics.IgnoreCollision(col, placerCollider, true);
+				foreach (Collider col in trapObject.GetComponents<Collider>())
+
+				{
+					Physics.IgnoreCollision(col, placerCollider, true);
+
+				}
 
 			}
-
 		}
 	}
 
