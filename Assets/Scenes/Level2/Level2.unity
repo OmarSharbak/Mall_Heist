@@ -11362,7 +11362,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -56539,7 +56539,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -62974,6 +62974,18 @@ PrefabInstance:
     - target: {fileID: 5385001850578612005, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
       propertyPath: outlineTargets.Array.data[0].IsVisible
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519044052852904046, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
+      propertyPath: m_Size.x
+      value: 3.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519044052852904046, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
+      propertyPath: m_Center.x
+      value: -0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519044052852904046, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
+      propertyPath: m_Center.z
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 5519044052852904046, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}
       propertyPath: m_IncludeLayers.m_Bits
@@ -72684,7 +72696,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
