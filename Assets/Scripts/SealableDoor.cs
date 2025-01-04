@@ -67,7 +67,8 @@ public class SealableDoor : NetworkBehaviour
 			// Update the progress UI.
 			sealProgressBar.value = Mathf.Clamp01(currentSealTime / sealDuration);
 			fillImage.color = gradient.Evaluate(sealProgressBar.value);
-		}else if (!isSealed && playerIsSealing)
+		}
+		else if (!isSealed && playerIsSealing)
 		{
 			// Increment the seal timer.
 			currentSealTime += Time.deltaTime;
@@ -144,8 +145,13 @@ public class SealableDoor : NetworkBehaviour
 
 			if (controller.isLocalPlayer)
 			{
-				promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
-				promptUIManager.ShowSouthButtonUI();
+				var intP = GameObject.Find("InteractionPrompts");
+				if (intP != null)
+				{
+					promptUIManager = intP.GetComponent<InputPromptUIManager>();
+					if (promptUIManager != null)
+						promptUIManager.ShowSouthButtonUI();
+				}
 			}
 
 			//Debug.Log("Client RPC: Sealed door - passed");
@@ -186,7 +192,7 @@ public class SealableDoor : NetworkBehaviour
 	[ClientRpc]
 	private void RpcOnExit(ThirdPersonController controller)
 	{
-		if (thirdPersonController!=null && thirdPersonController.isLocalPlayer && promptUIManager != null)
+		if (thirdPersonController != null && thirdPersonController.isLocalPlayer && promptUIManager != null)
 		{
 			promptUIManager.HideSouthButtonUI();
 			promptUIManager = null;
@@ -225,7 +231,7 @@ public class SealableDoor : NetworkBehaviour
 			if (playerNearby && !isSealed)
 			{
 				CmdSetSealing();
-				
+
 			}
 			else if (!playerNearby)
 			{
