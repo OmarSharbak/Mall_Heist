@@ -41,6 +41,7 @@ MonoBehaviour:
     - FizzySteamworks
     - Heathen.Core
     - Heathen.Steamworks
+    - Heathen.Steamworks.Examples
     - kcp2k
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo

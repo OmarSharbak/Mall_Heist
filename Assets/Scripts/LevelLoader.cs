@@ -12,9 +12,9 @@ public class LevelLoader : MonoBehaviour
     {
         StartCoroutine(LoadLevelNumerator(lvlIndex));
     }
-	public void LoadMultiplayer()
+	public void LoadLobby()
 	{
-		SceneManager.LoadScene("MultiplayerScene");
+		SceneManager.LoadScene("LobbyScene");
 
 	}
 
