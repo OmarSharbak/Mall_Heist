@@ -38,6 +38,9 @@ MonoBehaviour:
     - Febucci.TextAnimator.Demo.Runtime
     - Febucci.TextAnimator.Runtime
     - Febucci.TextAnimator.TMP.Runtime
+    - FizzySteamworks
+    - Heathen.Core
+    - Heathen.Steamworks
     - kcp2k
     - Lofelt.NiceVibrations
     - Lofelt.NiceVibrations.Demo
