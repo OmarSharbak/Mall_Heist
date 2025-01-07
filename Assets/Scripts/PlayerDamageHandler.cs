@@ -14,6 +14,7 @@ using UnityEngine.InputSystem.XR;
 using System.Security.Principal;
 using UnityEngine.AI;
 using static UnityEngine.Rendering.DebugUI;
+using Unity.VisualScripting;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
@@ -249,7 +250,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 	// Manage end of game state.
 	private void CmdHandleGameOver(uint _netId)
 	{
-		if (EscalatorManager.Instance.defeatedPlayers > 0 || FindAnyObjectByType<MultiplayerMode>().isSinglePlayer)
+		MultiplayerMode mm = FindAnyObjectByType<MultiplayerMode>();
+		if (EscalatorManager.Instance.defeatedPlayers > 0 || (mm!=null && mm.isSinglePlayer))
 		{
 			AllDefeat();
 		}
