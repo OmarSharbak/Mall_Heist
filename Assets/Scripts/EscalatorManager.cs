@@ -60,7 +60,7 @@ public class EscalatorManager : NetworkBehaviour
 	private const float FadeDuration = 1.0f;
 	private float originalVolume;
 
-	private PlayerState playerLocal = null;
+	public  PlayerState playerLocal = null;
 	public PlayerState playerRemote = null;
 
 
@@ -309,7 +309,6 @@ public class EscalatorManager : NetworkBehaviour
 		inventory = playerLocal.playerTransform.GetComponent<Inventory>();
 
 
-		Initialize(playerLocal);
 
 		Debug.Log("Player local State correct!");
 	}
@@ -336,6 +335,8 @@ public class EscalatorManager : NetworkBehaviour
 		//Start animating 3 2 1 then start the game with coroutine
 		player.CmdSetGameState(GameState.CountdownToStart);
 		// Initialize game settings on start
+
+		player.CmdSetPlayerReady();
 
 
 	}
@@ -440,6 +441,7 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void UpdateCountdown(float countDown)
 	{
+		countDownText.GetComponent<Animator>().Play("CountDownAnimation");
 		countDownText.text = Mathf.Ceil(countDown).ToString();
 
 	}

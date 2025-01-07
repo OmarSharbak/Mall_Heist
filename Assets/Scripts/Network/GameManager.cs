@@ -58,13 +58,13 @@ public class GameManager : NetworkBehaviour
     }
 
 
-
-    public void CheckAllPlayersReady()
+    [Command(requiresAuthority =false)]
+    public void CmdCheckAllPlayersReady()
     {
-        if (!isServer || gameStarted) return;
+		if (gameStarted) return;
 
-        // Check if there are exactly two players connected
-        if (NetworkServer.connections.Count != requiredPlayers) return;
+        //// Check if there are exactly two players connected
+        //if (NetworkServer.connections.Count != requiredPlayers) return;
 
         // Ensure all players are ready
         bool allReady = true;
@@ -72,14 +72,14 @@ public class GameManager : NetworkBehaviour
         {
             if (conn.identity == null) continue;
 
-            PlayerReady player = conn.identity.GetComponent<PlayerReady>();
-            if (player == null || !player.isReady)
+            PlayerState player = conn.identity.GetComponent<PlayerState>();
+            if (player == null || !player.ready)
             {
                 allReady = false;
                 break;
             }
         }
-
+        Debug.Log("Server - all ready "+ allReady);
         // Start the countdown if all players are ready
         if (allReady)
         {
@@ -188,6 +188,8 @@ public class GameManager : NetworkBehaviour
 						EscalatorManager.Instance.playerRemote = controller.GetComponent<PlayerState>();
 
 						EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerRemote);
+						EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerLocal);
+
 
 						Debug.Log("Player remote State correct!");
 					}
@@ -216,6 +218,8 @@ public class GameManager : NetworkBehaviour
 										EscalatorManager.Instance.playerRemote = controllerExisting.GetComponent<PlayerState>();
 
 										EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerRemote);
+										EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerLocal);
+
 
 										Debug.Log("Player remote State correct!");
 									}

@@ -1,10 +1,15 @@
 using Mirror;
+using System;
 using UnityEngine;
 
 public class PlayerState : NetworkBehaviour
 {
 
 	public bool exposed = false; // Whether this player is exposed
+
+	[SyncVar(hook =nameof(OnPlayerReady))]
+	public bool ready = false; // Whether this player is exposed
+
 
 	public Transform playerTransform; // Reference to the player's transform	
 									  //
@@ -96,6 +101,20 @@ public class PlayerState : NetworkBehaviour
 				Debug.LogWarning("Unknown game state set: " + newState);
 				break;
 		}
+	}
+
+	[Command(requiresAuthority = false)]
+	public void CmdSetPlayerReady()
+	{
+		Debug.Log("Server - player ready");
+		ready = true;
+	}
+
+	private void OnPlayerReady(bool _oldValue,bool _newVAlue)
+	{
+		Debug.Log("client - on player ready");
+
+		GameManager.Instance.CmdCheckAllPlayersReady();
 	}
 
 }
