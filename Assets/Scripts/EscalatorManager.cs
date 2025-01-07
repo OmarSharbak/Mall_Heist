@@ -600,6 +600,19 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void LoadTitleScreen()
 	{
+		CmdLoadTitleScreen();
+
+	}
+
+	[Command(requiresAuthority = false)]
+	private void CmdLoadTitleScreen()
+	{
+		RpcLoadTitleScreen();
+	}
+
+	[ClientRpc]
+	private void RpcLoadTitleScreen()
+	{
 		if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
 		{
 			if (isServer)
@@ -607,8 +620,8 @@ public class EscalatorManager : NetworkBehaviour
 			else
 				NetworkManager.singleton.StopClient();
 		}
-
 		SceneManager.LoadScene(0);
+
 	}
 
 	bool completedOnce = false;
