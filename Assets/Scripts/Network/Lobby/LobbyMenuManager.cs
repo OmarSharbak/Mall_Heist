@@ -26,7 +26,7 @@ public class LobbyMenuManager : MonoBehaviour
 
 	private Dictionary<UserData, LobbyUserPanel> _lobbyUserPanels = new();
 
-	private string _hostHex;
+	private string _steamID64;
 
 	private void Awake()
 	{
@@ -42,11 +42,6 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenLobby();
 
 		SetupCard(UserData.Me);
-
-		var user = UserData.Get();
-		_hostHex = user.ToString();
-
-
 	}
 
 	public void OnLobbyJoined(LobbyData lobbyData)
@@ -64,7 +59,7 @@ public class LobbyMenuManager : MonoBehaviour
 			Debug.LogError("HostUser is not valid");
 			return;
 		}
-		_hostHex = hostUser.ToString();
+		_steamID64 = hostUser.SteamId.ToString();
 
 		if (lobbyManager.Full)
 		{
@@ -145,7 +140,7 @@ public class LobbyMenuManager : MonoBehaviour
 	private void StartClient()
 	{
 		//start mirror client
-		NetworkManager.singleton.networkAddress = _hostHex;
+		NetworkManager.singleton.networkAddress = _steamID64;
 		NetworkManager.singleton.StartClient();
 	}
 
