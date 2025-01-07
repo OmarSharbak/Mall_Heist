@@ -1,4 +1,7 @@
+using Edgegap;
 using HeathenEngineering.SteamworksIntegration;
+using HeathenEngineering.SteamworksIntegration.API;
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,6 +25,9 @@ public class LobbyMenuManager : MonoBehaviour
 
 
 	private Dictionary<UserData, LobbyUserPanel> _lobbyUserPanels = new();
+
+	private string _hostHex;
+
 	private void Awake()
 	{
 		OpenMainMenu();
@@ -37,6 +43,10 @@ public class LobbyMenuManager : MonoBehaviour
 
 		SetupCard(UserData.Me);
 
+		var user = UserData.Get();
+		_hostHex = user.ToString();
+
+
 	}
 
 	public void OnLobbyJoined(LobbyData lobbyData)
@@ -47,6 +57,16 @@ public class LobbyMenuManager : MonoBehaviour
 
 		foreach(var member in lobbyData.Members)
 			SetupCard(member.user);
+
+		var hostUser = lobbyData.Owner.user;
+		if (!hostUser.IsValid)
+		{
+			Debug.LogError("HostUser is not valid");
+			return;
+		}
+		_hostHex = hostUser.ToString();
+
+
 	}
 
 	private void OverlayJoinButton(LobbyData lobbyData, UserData userData)
@@ -69,6 +89,18 @@ public class LobbyMenuManager : MonoBehaviour
 	public void OnUserJoin(UserData userData)
 	{
 		SetupCard(userData);
+
+		if (lobbyManager.Full)
+		{
+			if (lobbyManager.IsPlayerOwner)
+			{
+				StartHost();
+			}
+			else
+			{
+				StartClient();
+			}
+		}
 	}
 	public void OnUserleft(UserLobbyLeaveData userLeaveData)
 	{
@@ -97,6 +129,19 @@ public class LobbyMenuManager : MonoBehaviour
 		var userPanel = Instantiate(lobbyUserPanel, lobbyUserHolder);
 		userPanel.Initialize(userData);
 		_lobbyUserPanels.TryAdd(userData,userPanel);
+	}
+
+	private void StartHost()
+	{
+		//start mirror host/server
+		NetworkManager.singleton.StartHost();
+	}
+
+	private void StartClient()
+	{
+		//start mirror client
+		NetworkManager.singleton.networkAddress = _hostHex;
+		NetworkManager.singleton.StartClient();
 	}
 
 }
