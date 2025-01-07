@@ -6577,7 +6577,7 @@ GameObject:
   - component: {fileID: 993105510623049435}
   - component: {fileID: 6236690528925056140}
   m_Layer: 5
-  m_Name: RestartButton
+  m_Name: RestartButtonPause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
