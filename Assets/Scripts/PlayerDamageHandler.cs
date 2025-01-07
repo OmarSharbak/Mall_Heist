@@ -97,7 +97,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
 
 
-		loseRestartButtonGameObject = GameObject.Find("RestartButton")?.GetComponent<GameObject>();
+		loseRestartButtonGameObject = GameObject.Find("RestartButton");
 		outliner = GameObject.Find("MainCamera")?.GetComponent<Outliner>();
 
 		thirdPersonController = GetComponent<ThirdPersonController>();
