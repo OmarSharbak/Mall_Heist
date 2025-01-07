@@ -37,8 +37,8 @@ public class LobbyMenuManager : MonoBehaviour
 	public void OnLobbyCreated(LobbyData lobbyData)
 	{
 		ClearCards();
-		lobbyData.Name= UserData.Me.Name+ "'s Lobby";
-		lobbyTitle.text= UserData.Me.Name+ "'s Lobby";
+		lobbyData.Name = UserData.Me.Name + "'s Lobby";
+		lobbyTitle.text = UserData.Me.Name + "'s Lobby";
 		OpenLobby();
 
 		SetupCard(UserData.Me);
@@ -55,7 +55,7 @@ public class LobbyMenuManager : MonoBehaviour
 		lobbyTitle.text = lobbyData.Name;
 		OpenLobby();
 
-		foreach(var member in lobbyData.Members)
+		foreach (var member in lobbyData.Members)
 			SetupCard(member.user);
 
 		var hostUser = lobbyData.Owner.user;
@@ -66,6 +66,14 @@ public class LobbyMenuManager : MonoBehaviour
 		}
 		_hostHex = hostUser.ToString();
 
+		if (lobbyManager.Full)
+		{
+			if (!lobbyManager.IsPlayerOwner)
+			{
+				Invoke(nameof(StartClient), 3f);
+			}
+
+		}
 
 	}
 
@@ -96,15 +104,12 @@ public class LobbyMenuManager : MonoBehaviour
 			{
 				StartHost();
 			}
-			else
-			{
-				StartClient();
-			}
+
 		}
 	}
 	public void OnUserleft(UserLobbyLeaveData userLeaveData)
 	{
-		if(!_lobbyUserPanels.TryGetValue(userLeaveData.user, out var panel))
+		if (!_lobbyUserPanels.TryGetValue(userLeaveData.user, out var panel))
 		{
 		}
 		Destroy(panel.gameObject);
@@ -119,7 +124,7 @@ public class LobbyMenuManager : MonoBehaviour
 
 	private void ClearCards()
 	{
-		foreach(Transform child in lobbyUserHolder)
+		foreach (Transform child in lobbyUserHolder)
 			Destroy(child.gameObject);
 
 		_lobbyUserPanels.Clear();
@@ -128,7 +133,7 @@ public class LobbyMenuManager : MonoBehaviour
 	{
 		var userPanel = Instantiate(lobbyUserPanel, lobbyUserHolder);
 		userPanel.Initialize(userData);
-		_lobbyUserPanels.TryAdd(userData,userPanel);
+		_lobbyUserPanels.TryAdd(userData, userPanel);
 	}
 
 	private void StartHost()
