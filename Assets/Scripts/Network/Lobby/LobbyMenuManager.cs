@@ -144,4 +144,9 @@ public class LobbyMenuManager : MonoBehaviour
 		NetworkManager.singleton.StartClient();
 	}
 
+	public void OnLevelSelected(int value)
+	{
+		NetworkManager.singleton.onlineScene = "Level" + (value + 1);
+		Debug.Log("changed online scene: "+NetworkManager.singleton.onlineScene);
+	}
 }
