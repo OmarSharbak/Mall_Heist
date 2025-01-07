@@ -11,7 +11,6 @@ using MoreMountains.Feedbacks;
 using System;
 using Mirror;
 using UnityEngine.AI;
-using Unity.VisualScripting;
 
 public class EscalatorManager : NetworkBehaviour
 {
@@ -415,12 +414,16 @@ public class EscalatorManager : NetworkBehaviour
 			// Check if there is no currently selected GameObject
 			if (EventSystem.current.currentSelectedGameObject == null && playerLocal.currentState == GameState.Victory)
 			{
-				EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject);
+				if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+
+					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject);
 			}
 
 			if (EventSystem.current.currentSelectedGameObject == null && playerLocal.currentState == GameState.Defeat)
 			{
-				EventSystem.current.SetSelectedGameObject(loseRestartLevelButtonGameObject);
+				if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+
+					EventSystem.current.SetSelectedGameObject(loseRestartLevelButtonGameObject);
 			}
 
 
@@ -597,6 +600,14 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void LoadTitleScreen()
 	{
+		if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
+		{
+			if (isServer)
+				NetworkManager.singleton.StopHost();
+			else
+				NetworkManager.singleton.StopClient();
+		}
+
 		SceneManager.LoadScene(0);
 	}
 
@@ -652,7 +663,11 @@ public class EscalatorManager : NetworkBehaviour
 			outliner.enabled = false;
 			// Access the EventSystem and set the selected GameObject
 			EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
-			EventSystem.current.SetSelectedGameObject(winRestartButtonGameObject); // Set new selection
+
+			if(MultiplayerMode.Instance!=null && !MultiplayerMode.Instance.isSinglePlayer)
+				winRestartButtonGameObject.SetActive(false);
+			else	
+				EventSystem.current.SetSelectedGameObject(winRestartButtonGameObject); // Set new selection
 																				   //Cursor.visible = true;
 																				   //Cursor.lockState = CursorLockMode.None;
 

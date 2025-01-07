@@ -48692,7 +48692,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -65541,6 +65541,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3394050071151150343, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 659263020}
+    - target: {fileID: 3394050071151150343, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTitleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786992273575493044, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 659263020}
+    - target: {fileID: 3786992273575493044, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTitleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624280401840372991, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 659263020}
+    - target: {fileID: 4624280401840372991, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915339786794651139, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 659263020}
+    - target: {fileID: 4915339786794651139, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTitleScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 5137273214561805800, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -14
@@ -65605,10 +65637,26 @@ PrefabInstance:
       propertyPath: guards.Array.data[13]
       value: 
       objectReference: {fileID: 751459777}
+    - target: {fileID: 5454033826583519112, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 659263020}
+    - target: {fileID: 5454033826583519112, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 5478964968256618624, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: doorTransform
       value: 
       objectReference: {fileID: 659263019}
+    - target: {fileID: 6116015861282172494, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 659263020}
+    - target: {fileID: 6116015861282172494, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 6330608687904160841, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: sceneId
       value: 2500204135

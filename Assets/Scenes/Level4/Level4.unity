@@ -36315,6 +36315,42 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3394050071151150343, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1112380279}
+    - target: {fileID: 3394050071151150343, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTitleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786992273575493044, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1112380279}
+    - target: {fileID: 3786992273575493044, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTitleScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971153833366950378, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_Name
+      value: RestartButtonPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4624280401840372991, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1112380279}
+    - target: {fileID: 4624280401840372991, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4915339786794651139, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1112380279}
+    - target: {fileID: 4915339786794651139, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTitleScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 4961392038794053370, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.03999901
@@ -36363,10 +36399,26 @@ PrefabInstance:
       propertyPath: guards.Array.data[8]
       value: 
       objectReference: {fileID: 2177370089082499002}
+    - target: {fileID: 5454033826583519112, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1112380279}
+    - target: {fileID: 5454033826583519112, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 5478964968256618624, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: doorTransform
       value: 
       objectReference: {fileID: 1112380278}
+    - target: {fileID: 6116015861282172494, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1112380279}
+    - target: {fileID: 6116015861282172494, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
     - target: {fileID: 6330608687904160841, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: sceneId
       value: 3380884015
@@ -43610,7 +43662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 1.2999878}
+  m_AnchoredPosition: {x: 0, y: 1.2999878}
   m_SizeDelta: {x: 0, y: -0.000061035156}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1230906642
@@ -56722,7 +56774,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5

@@ -270,6 +270,7 @@ public class ThirdPersonController : NetworkBehaviour
 			FollowTopCinemachineCamera = GameObject.Find("PlayerFollowCamera(Top)").GetComponent<CinemachineVirtualCamera>();
 			FollowCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)").GetComponent<CinemachineVirtualCamera>();
 			pauseMenuGameObject = GameObject.Find("PauseUI");
+			restartButtonPauseGameObject = GameObject.Find("RestartButtonPause");
 
 			FullMapCinemachineCamera.Follow = CinemachineCameraTarget.transform;
 			FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
@@ -763,6 +764,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	GameObject pauseMenuGameObject;
 	GameObject resumeButtonGameObject;
+	GameObject restartButtonPauseGameObject;
 	EventSystem eventSystem;
 	Outliner outliner;
 
@@ -810,6 +812,9 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			outliner.enabled = false;
 			pauseMenuGameObject.SetActive(true);
+
+			if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
+				restartButtonPauseGameObject.SetActive(false);
 
 			lastGameState = EscalatorManager.Instance.GetCurrentState(this);
 			EscalatorManager.Instance.SetCurrentState(this, EscalatorManager.GameState.Pause);

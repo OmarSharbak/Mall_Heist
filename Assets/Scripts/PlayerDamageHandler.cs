@@ -250,8 +250,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	// Manage end of game state.
 	private void CmdHandleGameOver(uint _netId)
 	{
-		MultiplayerMode mm = FindAnyObjectByType<MultiplayerMode>();
-		if (EscalatorManager.Instance.defeatedPlayers > 0 || (mm!=null && mm.isSinglePlayer))
+		if (EscalatorManager.Instance.defeatedPlayers > 0 || (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer))
 		{
 			AllDefeat();
 		}
@@ -300,7 +299,10 @@ public class PlayerDamageHandler : NetworkBehaviour
 		if (!isLocalPlayer)
 			return;
 		lostCanvas.SetActive(true);
-		EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject);
+		if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+			EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject);
+		else
+			loseRestartButtonGameObject.SetActive(false);
 		Debug.Log("CLIENT - all defeat" + transform.name);
 		EscalatorManager.Instance.SetCurrentState(thirdPersonController, EscalatorManager.GameState.Defeat);
 		Debug.Log("CLIENT CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(thirdPersonController));

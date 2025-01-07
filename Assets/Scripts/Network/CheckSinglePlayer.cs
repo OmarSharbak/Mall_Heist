@@ -8,10 +8,10 @@ public class CheckSinglePlayer : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
 	{
-		MultiplayerMode multiplayerMode = FindObjectOfType<MultiplayerMode>();
-		if ((multiplayerMode != null && multiplayerMode.isSinglePlayer) || multiplayerMode == null)
+		
+		if ((MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer) || MultiplayerMode.Instance == null)
 		{
-			string name = "Level" + multiplayerMode.lvlIndex;
+			string name = "Level" + MultiplayerMode.Instance.lvlIndex;
 			Debug.Log(name);
 			CustomNetworkManager customNetworkManager = GetComponent<CustomNetworkManager>();
 			customNetworkManager.onlineScene = name;

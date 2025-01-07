@@ -3,9 +3,6 @@ using Mirror;
 using System.Collections;
 using TMPro;
 using System;
-using System.Collections.Generic;
-using static UnityEditor.Timeline.Actions.MenuPriority;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class GameManager : NetworkBehaviour
 {
@@ -47,8 +44,8 @@ public class GameManager : NetworkBehaviour
             return;
         }
         Instance = this;
-        MultiplayerMode multiplayerMode = FindObjectOfType<MultiplayerMode>();
-        if ((multiplayerMode != null && multiplayerMode.isSinglePlayer) || multiplayerMode == null)
+
+        if ((MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer) || MultiplayerMode.Instance == null)
             requiredPlayers = 1;
 
         moneyText.text = GameManager.Instance.GetCurrentGlobalMoney().ToString(); // Initialize money text
