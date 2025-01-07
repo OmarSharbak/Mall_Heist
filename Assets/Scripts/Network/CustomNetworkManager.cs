@@ -8,7 +8,17 @@ public class CustomNetworkManager : NetworkManager
 
 	// A list to track connected players
 	public static readonly List<NetworkIdentity> connectedPlayers = new List<NetworkIdentity>();
-	private int numPlayers = 0;
+	private int _numPlayers = 0;
+
+
+	public override void OnStartServer()
+	{
+		base.OnStartServer();
+		connectedPlayers.Clear();
+
+	}
+
+
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)
 	{
 		base.OnServerAddPlayer(conn);
@@ -17,14 +27,16 @@ public class CustomNetworkManager : NetworkManager
 		// Track the new player
 		NetworkIdentity newPlayerIdentity = conn.identity;
 		connectedPlayers.Add(newPlayerIdentity);
-		numPlayers++;
+		_numPlayers++;
 
 		// Delay access to GameManager to ensure it has been initialized
-		StartCoroutine(NotifyPlayerJoined(conn,numPlayers)); // Call the method after 1 second
+		StartCoroutine(NotifyPlayerJoined(conn, _numPlayers)); // Call the method after 1 second
 
 
 
 	}
+
+
 	[ServerCallback]
 	IEnumerator NotifyPlayerJoined(NetworkConnectionToClient conn, int numPlayers)
 	{
