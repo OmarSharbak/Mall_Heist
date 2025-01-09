@@ -18,6 +18,11 @@ public class LevelLoader : MonoBehaviour
 
 	}
 
+	public void LoadSingleplayer()
+	{
+		SceneManager.LoadScene("MultiplayerScene");
+
+	}
 
 
 	IEnumerator LoadLevelNumerator(int levelIndex)

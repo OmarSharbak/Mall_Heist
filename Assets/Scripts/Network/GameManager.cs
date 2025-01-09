@@ -190,6 +190,10 @@ public class GameManager : NetworkBehaviour
 
 						Debug.Log("Player remote State correct!");
 					}
+                    if(MultiplayerMode.Instance!=null && MultiplayerMode.Instance.isSinglePlayer)
+                    {
+						EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerLocal);
+					}
 
 					Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
                     foreach (var netId in existingNetId)
