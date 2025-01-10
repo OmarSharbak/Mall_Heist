@@ -1036,7 +1036,12 @@ namespace HeathenEngineering.SteamworksIntegration.API
                 memberOfLobbies.Clear();
                 tempList = null;
             }
-        }
+
+			public static void PingServer(uint ipAddress, ushort port, object response)
+			{
+				throw new NotImplementedException();
+			}
+		}
     }
 }
 #endif

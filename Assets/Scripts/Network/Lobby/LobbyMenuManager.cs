@@ -1,7 +1,5 @@
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
-using Steamworks;
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -45,6 +43,8 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenLobby();
 
 		SetupCard(UserData.Me);
+
+		lobbyData.SetGameServer();
 	}
 
 	public void OnLobbyJoined(LobbyData lobbyData)
@@ -173,9 +173,7 @@ public class LobbyMenuManager : MonoBehaviour
 			LobbyEntryItem lei = createdItem.GetComponent<LobbyEntryItem>();
 			if (lei != null)
 			{
-				lei.lobbyData = lobbies[i];
-				lei.lobbyName = lobbies[i].Name;
-				lei.SetLobbyData();
+				lei.SetLobbyData(lobbies[i]);
 				lei.transform.SetParent(lobbyListContent.transform);
 				lei.transform.localScale = Vector3.one;
 			}
@@ -184,6 +182,8 @@ public class LobbyMenuManager : MonoBehaviour
 
 		}
 	}
+
+
 	private void DestroyListOfLobbies()
 	{
 		foreach (GameObject lobbyItem in _listOfLobbies)
@@ -195,6 +195,7 @@ public class LobbyMenuManager : MonoBehaviour
 
 	public void GetListOfLobbies()
 	{
+		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.AddRequestLobbyListResultCountFilter(60);
 		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.AddRequestLobbyListResultCountFilter(60);
 
 		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.RequestLobbyList(OnListRequested);
@@ -217,19 +218,7 @@ public class LobbyMenuManager : MonoBehaviour
 	public void JoinLobby(LobbyData lobbyData)
 	{
 		lobbyManager.Join(lobbyData);
-		//HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.JoinLobby(lobbyData, OnLobbyEntered);
 	}
 
-	//private void OnLobbyEntered(LobbyEnter lobbyEnter, bool error)
-	//{
-	//	if (error)
-	//	{
-	//		Debug.LogWarning(error.ToString());
-	//	}
-	//	else
-	//	{
-			
 
-	//	}
-	//}
 }
