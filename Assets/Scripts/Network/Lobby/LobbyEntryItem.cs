@@ -1,9 +1,4 @@
 using HeathenEngineering.SteamworksIntegration;
-using Steamworks;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net.NetworkInformation;
 using TMPro;
 using UnityEngine;
 
@@ -16,15 +11,14 @@ public class LobbyEntryItem : MonoBehaviour
 
 	private LobbyMenuManager lobbyMenuManager;
 
+	private UnityEngine.Ping ping;
 
 	private void Awake()
 	{
 		lobbyMenuManager= FindAnyObjectByType<LobbyMenuManager>();
 	}
 	public void SetLobbyData(LobbyData lobbyData)
-
 	{
-
 		this.lobbyData = lobbyData;
 		lobbyName = this.lobbyData.Name;
 
@@ -42,26 +36,9 @@ public class LobbyEntryItem : MonoBehaviour
 		if (ip != null)
 		{
 			Debug.Log("Game Server ip:" + ip);
-
-			// Create a handler instance
-			PingResponseHandler pingHandler = new PingResponseHandler(OnServerRespond, OnServerFailedToRespond);
-
-			HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.PingServer(ip, 80, pingHandler);
+			ping= new UnityEngine.Ping(ip);
 		}
 
-	}
-
-	private void OnServerFailedToRespond()
-	{
-		Debug.LogWarning("Ping Server failed to respond");
-	}
-
-	private void OnServerRespond(gameserveritem_t serverInfo)
-	{
-		if (serverInfo != null)
-		{
-			pingText.text = serverInfo.m_nPing + "ms";
-		}
 	}
 
 	public void JoinLobby()
@@ -71,45 +48,12 @@ public class LobbyEntryItem : MonoBehaviour
 
 	}
 
-
-//	lobbyData.GetMetadata().TryGetValue("P2PPING", out string value);
-//		if(value != null)
-//		{
-//			Debug.Log(value);
-
-//			int ping = ExtractPing(value, "mad");
-
-//	pingText.text = ping + "ms";
-
-//		}
-
-
-//public static int ExtractPing(string input, string location)
-//{
-//	// Split the input string by commas to get each location's data
-//	string[] locations = input.Split(',');
-
-//	foreach (var loc in locations)
-//	{
-//		// Split each location string by '=' to separate the location code and ping data
-//		string[] locData = loc.Split('=');
-//		if (locData[0] == location)
-//		{
-//			// Extract the ping value (before the first '+')
-//			string pingString = locData[1].Split('+')[0];
-//			if (int.TryParse(pingString, out int ping))
-//			{
-//				return ping;
-//			}
-//			else
-//			{
-//				Console.WriteLine("Error parsing ping.");
-//				return -1; // Return -1 if parsing fails
-//			}
-//		}
-//	}
-
-//	return -1; // Return -1 if location is not found
-//}
-
+	void Update()
+	{
+		if (ping !=null && ping.isDone)
+		{
+			pingText.text = ping.time + "ms";
+			ping = null; // Reset ping after it finishes
+		}
+	}
 }

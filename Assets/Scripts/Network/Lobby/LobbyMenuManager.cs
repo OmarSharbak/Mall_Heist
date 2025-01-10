@@ -1,6 +1,5 @@
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
-using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -75,8 +74,6 @@ public class LobbyMenuManager : MonoBehaviour
 
 		lobbyManager.SetLobbyData("HOSTIP", publicIP);
 
-		//ulong id = UserData.Me.SteamId;
-		//lobbyData.SetGameServer(publicIP,80);
 		Debug.Log("Public IP: " + publicIP);
 
 
