@@ -1,8 +1,10 @@
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class LobbyMenuManager : MonoBehaviour
@@ -29,11 +31,38 @@ public class LobbyMenuManager : MonoBehaviour
 
 	private List<GameObject> _listOfLobbies = new List<GameObject>();
 
+	private const string ipCheckUrl = "https://api.ipify.org";
+
+	private string publicIP=null;
+
 	private void Awake()
 	{
 		OpenMainMenu();
 		HeathenEngineering.SteamworksIntegration.API.Overlay.Client.EventGameLobbyJoinRequested.AddListener(OverlayJoinButton);
+		StartCoroutine(GetPublicIPAddress());
+
 	}
+
+
+	IEnumerator GetPublicIPAddress()
+	{
+		using (UnityWebRequest webRequest = UnityWebRequest.Get(ipCheckUrl))
+		{
+			yield return webRequest.SendWebRequest();
+
+			if (webRequest.result == UnityWebRequest.Result.ConnectionError || webRequest.result == UnityWebRequest.Result.ProtocolError)
+			{
+				Debug.LogError("Error: " + webRequest.error);
+			}
+			else
+			{
+				publicIP = webRequest.downloadHandler.text;
+				Debug.Log("Public IP: " + publicIP);
+
+			}
+		}
+	}
+
 
 	public void OnLobbyCreated(LobbyData lobbyData)
 	{
@@ -43,8 +72,9 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenLobby();
 
 		SetupCard(UserData.Me);
+		lobbyData.SetMemberMetadata("HOSTIP", publicIP);
 
-		lobbyData.SetGameServer();
+
 	}
 
 	public void OnLobbyJoined(LobbyData lobbyData)

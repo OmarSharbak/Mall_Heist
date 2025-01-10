@@ -37,12 +37,17 @@ public class LobbyEntryItem : MonoBehaviour
 
 		lobbyNameText.text = lobbyName;
 
-		// Create a handler instance
-		PingResponseHandler pingHandler = new PingResponseHandler(OnServerRespond,OnServerFailedToRespond);
+		string ip=lobbyData.GetMemberMetadata("HOSTIP");
 
-		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.PingServer(lobbyData.GameServer.ipAddress, lobbyData.GameServer.port, pingHandler);
+		if (ip != null)
+		{
+			// Create a handler instance
+			PingResponseHandler pingHandler = new PingResponseHandler(OnServerRespond, OnServerFailedToRespond);
 
+			HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.PingServer(ip, 80, pingHandler);
 
+			Debug.Log("Game Server ip:" + ip);
+		}
 
 	}
 
@@ -65,5 +70,46 @@ public class LobbyEntryItem : MonoBehaviour
 		lobbyMenuManager.OpenLobby();
 
 	}
+
+
+//	lobbyData.GetMetadata().TryGetValue("P2PPING", out string value);
+//		if(value != null)
+//		{
+//			Debug.Log(value);
+
+//			int ping = ExtractPing(value, "mad");
+
+//	pingText.text = ping + "ms";
+
+//		}
+
+
+//public static int ExtractPing(string input, string location)
+//{
+//	// Split the input string by commas to get each location's data
+//	string[] locations = input.Split(',');
+
+//	foreach (var loc in locations)
+//	{
+//		// Split each location string by '=' to separate the location code and ping data
+//		string[] locData = loc.Split('=');
+//		if (locData[0] == location)
+//		{
+//			// Extract the ping value (before the first '+')
+//			string pingString = locData[1].Split('+')[0];
+//			if (int.TryParse(pingString, out int ping))
+//			{
+//				return ping;
+//			}
+//			else
+//			{
+//				Console.WriteLine("Error parsing ping.");
+//				return -1; // Return -1 if parsing fails
+//			}
+//		}
+//	}
+
+//	return -1; // Return -1 if location is not found
+//}
 
 }
