@@ -1,5 +1,6 @@
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
+using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -72,7 +73,10 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenLobby();
 
 		SetupCard(UserData.Me);
-		lobbyData.SetMemberMetadata("HOSTIP", publicIP);
+		//lobbyData.Members[]("HOSTIP", publicIP);
+
+		ulong id = UserData.Me.SteamId;
+		lobbyData.SetGameServer(new CSteamID(id));
 
 
 	}
