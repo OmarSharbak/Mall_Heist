@@ -212,4 +212,22 @@ public class LobbyMenuManager : MonoBehaviour
 			DisplayLobbies(lobbyDatas);
 		}
 	}
+
+	public void JoinLobby(LobbyData lobbyData)
+	{
+		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.JoinLobby(lobbyData, OnLobbyEntered);
+	}
+
+	private void OnLobbyEntered(LobbyEnter lobbyEnter, bool error)
+	{
+		if (error)
+		{
+			Debug.LogWarning(error.ToString());
+		}
+		else
+		{
+			Debug.Log("Entered lobby correctly");
+
+		}
+	}
 }

@@ -32,7 +32,7 @@ public class LobbyEntryItem : MonoBehaviour
 	}
 	public void JoinLobby()
 	{
-		lobbyMenuManager.OnLobbyJoined(lobbyData);
+		lobbyMenuManager.JoinLobby(lobbyData);
 		lobbyMenuManager.OpenLobby();
 
 	}
