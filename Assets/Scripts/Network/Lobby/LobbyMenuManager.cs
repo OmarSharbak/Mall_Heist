@@ -226,7 +226,7 @@ public class LobbyMenuManager : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Entered lobby correctly");
+			OnLobbyJoined(lobbyEnter.Lobby);
 
 		}
 	}
