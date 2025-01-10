@@ -1,13 +1,10 @@
-using Edgegap;
 using HeathenEngineering.SteamworksIntegration;
-using HeathenEngineering.SteamworksIntegration.API;
 using Mirror;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
+using UnityEngine.SceneManagement;
 
 public class LobbyMenuManager : MonoBehaviour
 {
@@ -17,7 +14,10 @@ public class LobbyMenuManager : MonoBehaviour
 	[SerializeField] private GameObject lobbyObject;
 	[SerializeField] private TextMeshProUGUI lobbyTitle;
 	[SerializeField] private LobbyManager lobbyManager;
-
+	[Header("Lobbies")]
+	[SerializeField] private GameObject lobbiesMenuObject;
+	[SerializeField] private GameObject lobbyDataItemPrefab;
+	[SerializeField] private GameObject lobbyListContent;
 
 	[Header("User lobby setup")]
 	[SerializeField] private LobbyUserPanel lobbyUserPanel;
@@ -27,6 +27,8 @@ public class LobbyMenuManager : MonoBehaviour
 	private Dictionary<UserData, LobbyUserPanel> _lobbyUserPanels = new();
 
 	private string _steamID64;
+
+	private List<GameObject> _listOfLobbies = new List<GameObject>();
 
 	private void Awake()
 	{
@@ -82,7 +84,11 @@ public class LobbyMenuManager : MonoBehaviour
 		CloseScreens();
 		mainMenuObject.SetActive(true);
 	}
-
+	public void OpenLobbies()
+	{
+		CloseScreens();
+		lobbiesMenuObject.SetActive(true);
+	}
 	public void OpenLobby()
 	{
 		CloseScreens();
@@ -115,6 +121,7 @@ public class LobbyMenuManager : MonoBehaviour
 	{
 		mainMenuObject.SetActive(false);
 		lobbyObject.SetActive(false);
+		lobbiesMenuObject.SetActive(false);
 	}
 
 	private void ClearCards()
@@ -147,6 +154,62 @@ public class LobbyMenuManager : MonoBehaviour
 	public void OnLevelSelected(int value)
 	{
 		NetworkManager.singleton.onlineScene = "Level" + (value + 1);
-		Debug.Log("changed online scene: "+NetworkManager.singleton.onlineScene);
+		Debug.Log("changed online scene: " + NetworkManager.singleton.onlineScene);
+	}
+
+	public void BackToMenu()
+	{
+		Destroy(NetworkManager.singleton.gameObject);
+		SceneManager.LoadScene(0);
+	}
+
+	private void DisplayLobbies(LobbyData[] lobbies)
+	{
+		for (int i = 0; i < lobbies.Length; i++)
+		{
+
+			GameObject createdItem = Instantiate(lobbyDataItemPrefab);
+			LobbyEntryItem lei = createdItem.GetComponent<LobbyEntryItem>();
+			if (lei != null)
+			{
+				lei.lobbyData = lobbies[i];
+				lei.lobbyName = lobbies[i].Name;
+				lei.SetLobbyData();
+				lei.transform.SetParent(lobbyListContent.transform);
+				lei.transform.localScale = Vector3.one;
+			}
+
+			_listOfLobbies.Add(createdItem);
+
+		}
+	}
+	private void DestroyListOfLobbies()
+	{
+		foreach (GameObject lobbyItem in _listOfLobbies)
+		{
+			Destroy(lobbyItem);
+		}
+		_listOfLobbies.Clear();
+	}
+
+	public void GetListOfLobbies()
+	{
+		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.AddRequestLobbyListResultCountFilter(60);
+
+		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.RequestLobbyList(OnListRequested);
+
+	}
+
+	private void OnListRequested(LobbyData[] lobbyDatas, bool error)
+	{
+		if (error)
+		{
+			Debug.LogWarning(error.ToString());
+		}
+		else
+		{
+			DestroyListOfLobbies();
+			DisplayLobbies(lobbyDatas);
+		}
 	}
 }
