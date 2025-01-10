@@ -1,5 +1,6 @@
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
+using Steamworks;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -215,19 +216,20 @@ public class LobbyMenuManager : MonoBehaviour
 
 	public void JoinLobby(LobbyData lobbyData)
 	{
-		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.JoinLobby(lobbyData, OnLobbyEntered);
+		lobbyManager.Join(lobbyData);
+		//HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.JoinLobby(lobbyData, OnLobbyEntered);
 	}
 
-	private void OnLobbyEntered(LobbyEnter lobbyEnter, bool error)
-	{
-		if (error)
-		{
-			Debug.LogWarning(error.ToString());
-		}
-		else
-		{
-			lobbyManager.Join(lobbyEnter.Lobby);
+	//private void OnLobbyEntered(LobbyEnter lobbyEnter, bool error)
+	//{
+	//	if (error)
+	//	{
+	//		Debug.LogWarning(error.ToString());
+	//	}
+	//	else
+	//	{
+			
 
-		}
-	}
+	//	}
+	//}
 }
