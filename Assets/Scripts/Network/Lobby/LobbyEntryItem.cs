@@ -37,15 +37,16 @@ public class LobbyEntryItem : MonoBehaviour
 
 		lobbyNameText.text = lobbyName;
 
-		//string ip=lobbyData.GetMemberMetadata("HOSTIP");
+		string ip=lobbyData.GetMemberMetadata("HOSTIP");
+		
+		Debug.Log("Game Server ip:" + ip);
+		if (ip != null)
+		{
+			// Create a handler instance
+			PingResponseHandler pingHandler = new PingResponseHandler(OnServerRespond, OnServerFailedToRespond);
 
-
-		// Create a handler instance
-		PingResponseHandler pingHandler = new PingResponseHandler(OnServerRespond,OnServerFailedToRespond);
-
-		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.PingServer(lobbyData.GameServer.ipAddress, lobbyData.GameServer.port, pingHandler);
-
-		Debug.Log("Game Server ip:"+lobbyData.GameServer.ipAddress);
+			HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.PingServer(ip, 80, pingHandler);
+		}
 
 	}
 

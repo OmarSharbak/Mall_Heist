@@ -58,7 +58,6 @@ public class LobbyMenuManager : MonoBehaviour
 			else
 			{
 				publicIP = webRequest.downloadHandler.text;
-				Debug.Log("Public IP: " + publicIP);
 
 			}
 		}
@@ -73,10 +72,11 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenLobby();
 
 		SetupCard(UserData.Me);
-		//lobbyData.Members[]("HOSTIP", publicIP);
+		lobbyManager.SetMemberData("HOSTIP", publicIP);
 
-		ulong id = UserData.Me.SteamId;
-		lobbyData.SetGameServer(new CSteamID(id));
+		//ulong id = UserData.Me.SteamId;
+		//lobbyData.SetGameServer(publicIP,80);
+		Debug.Log("Public IP: " + publicIP);
 
 
 	}
