@@ -72,7 +72,8 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenLobby();
 
 		SetupCard(UserData.Me);
-		lobbyManager.SetMemberData("HOSTIP", publicIP);
+
+		lobbyManager.SetLobbyData("HOSTIP", publicIP);
 
 		//ulong id = UserData.Me.SteamId;
 		//lobbyData.SetGameServer(publicIP,80);

@@ -37,11 +37,12 @@ public class LobbyEntryItem : MonoBehaviour
 
 		lobbyNameText.text = lobbyName;
 
-		string ip=lobbyData.GetMemberMetadata("HOSTIP");
+		lobbyData.GetMetadata().TryGetValue("HOSTIP", out string ip);
 		
-		Debug.Log("Game Server ip:" + ip);
 		if (ip != null)
 		{
+			Debug.Log("Game Server ip:" + ip);
+
 			// Create a handler instance
 			PingResponseHandler pingHandler = new PingResponseHandler(OnServerRespond, OnServerFailedToRespond);
 
