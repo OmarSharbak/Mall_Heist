@@ -1,6 +1,7 @@
 using HeathenEngineering.SteamworksIntegration;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyEntryItem : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class LobbyEntryItem : MonoBehaviour
 	public string lobbyName;
 	public TextMeshProUGUI lobbyNameText;
 	public TextMeshProUGUI pingText;
+	public GameObject lockedIcon;
 
 	private LobbyMenuManager lobbyMenuManager;
 
@@ -42,6 +44,15 @@ public class LobbyEntryItem : MonoBehaviour
 		}
 
 		lobbyData.GetMetadata().TryGetValue("PASSWORD", out this.password);
+
+		lockedIcon.SetActive(false);
+
+		if (!string.IsNullOrEmpty(password))
+		{
+			Debug.Log("Password protected:" + password);
+
+			lockedIcon.SetActive(true);
+		}
 
 	}
 

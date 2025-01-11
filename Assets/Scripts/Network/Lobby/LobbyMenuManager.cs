@@ -19,7 +19,7 @@ public class LobbyMenuManager : MonoBehaviour
 	[Header("Lobbies")]
 	[SerializeField] private GameObject lobbiesMenuObject;
 	[SerializeField] private GameObject askPasswordObject;
-	[SerializeField] private TextMeshProUGUI passwordJoinObject;
+	[SerializeField] private TMP_InputField passwordJoinObject;
 	[SerializeField] private GameObject incorrectPasswordObject;
 	[SerializeField] private GameObject lobbyDataItemPrefab;
 	[SerializeField] private GameObject lobbyListContent;
@@ -38,6 +38,7 @@ public class LobbyMenuManager : MonoBehaviour
 	private const string ipCheckUrl = "https://api.ipify.org";
 
 	private string publicIP=null;
+	private string password=null;
 	private string tempPass=null;
 	private LobbyData tempLobbyData=null;
 
@@ -81,6 +82,10 @@ public class LobbyMenuManager : MonoBehaviour
 		lobbyManager.SetLobbyData("HOSTIP", publicIP);
 
 		Debug.Log("Public IP: " + publicIP);
+
+		lobbyManager.SetLobbyData("PASSWORD", password);
+
+		Debug.Log("Password: " + password);
 
 
 	}
@@ -264,9 +269,7 @@ public class LobbyMenuManager : MonoBehaviour
 	{
 		if (!string.IsNullOrEmpty(value))
 		{
-			lobbyManager.SetLobbyData("PASSWORD", value);
-
-			Debug.Log("Password: " + value);
+			password = value;
 		}
 
 	}

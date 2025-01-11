@@ -131,6 +131,7 @@ MonoBehaviour:
   lobbyName: 
   lobbyNameText: {fileID: 6110532108339804783}
   pingText: {fileID: 3140729750095854538}
+  lockedIcon: {fileID: 7709371440343796148}
 --- !u!1 &2792326528070465638
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,7 +551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6935615252469929281
 RectTransform:
   m_ObjectHideFlags: 0
