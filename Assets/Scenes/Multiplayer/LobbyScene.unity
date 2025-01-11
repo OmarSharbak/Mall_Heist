@@ -4693,7 +4693,7 @@ MonoBehaviour:
   lobbyManager: {fileID: 529990451}
   lobbiesMenuObject: {fileID: 510178114}
   askPasswordObject: {fileID: 1331439696}
-  passwordJoinObject: {fileID: 0}
+  passwordJoinObject: {fileID: 72178629}
   incorrectPasswordObject: {fileID: 1342190953}
   lobbyDataItemPrefab: {fileID: 2755533268306165829, guid: 81559f9c73a07b64dbd992cdf600a723, type: 3}
   lobbyListContent: {fileID: 1127339037}
