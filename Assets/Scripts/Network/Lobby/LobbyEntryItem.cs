@@ -13,6 +13,8 @@ public class LobbyEntryItem : MonoBehaviour
 
 	private UnityEngine.Ping ping;
 
+	private string password = null;
+
 	private void Awake()
 	{
 		lobbyMenuManager= FindAnyObjectByType<LobbyMenuManager>();
@@ -39,12 +41,21 @@ public class LobbyEntryItem : MonoBehaviour
 			ping= new UnityEngine.Ping(ip);
 		}
 
+		lobbyData.GetMetadata().TryGetValue("PASSWORD", out this.password);
+
 	}
 
 	public void JoinLobby()
 	{
-		lobbyMenuManager.JoinLobby(lobbyData);
-		lobbyMenuManager.OpenLobby();
+		if (!string.IsNullOrEmpty(this.password))
+		{
+			lobbyMenuManager.AskPassword(this.password,lobbyData);
+		}
+		else
+		{
+			lobbyMenuManager.JoinLobby(lobbyData);
+			lobbyMenuManager.OpenLobby();
+		}
 
 	}
 

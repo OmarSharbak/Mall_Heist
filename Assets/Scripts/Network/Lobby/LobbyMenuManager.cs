@@ -1,5 +1,6 @@
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,9 @@ public class LobbyMenuManager : MonoBehaviour
 	[SerializeField] private LobbyManager lobbyManager;
 	[Header("Lobbies")]
 	[SerializeField] private GameObject lobbiesMenuObject;
+	[SerializeField] private GameObject askPasswordObject;
+	[SerializeField] private TextMeshProUGUI passwordJoinObject;
+	[SerializeField] private GameObject incorrectPasswordObject;
 	[SerializeField] private GameObject lobbyDataItemPrefab;
 	[SerializeField] private GameObject lobbyListContent;
 
@@ -34,6 +38,8 @@ public class LobbyMenuManager : MonoBehaviour
 	private const string ipCheckUrl = "https://api.ipify.org";
 
 	private string publicIP=null;
+	private string tempPass=null;
+	private LobbyData tempLobbyData=null;
 
 	private void Awake()
 	{
@@ -121,6 +127,8 @@ public class LobbyMenuManager : MonoBehaviour
 	{
 		CloseScreens();
 		lobbiesMenuObject.SetActive(true);
+		askPasswordObject.SetActive(false);
+		incorrectPasswordObject.SetActive(false);
 	}
 	public void OpenLobby()
 	{
@@ -252,5 +260,37 @@ public class LobbyMenuManager : MonoBehaviour
 		lobbyManager.Join(lobbyData);
 	}
 
+	public void SetPassword(string value)
+	{
+		if (!string.IsNullOrEmpty(value))
+		{
+			lobbyManager.SetLobbyData("PASSWORD", value);
 
+			Debug.Log("Password: " + value);
+		}
+
+	}
+
+	public void AskPassword(string pass,LobbyData lobbyData)
+	{
+		this.tempPass = pass;
+		this.tempLobbyData= lobbyData;
+		askPasswordObject.SetActive(true);
+	}
+
+	public void OnEnterPassword() {
+		incorrectPasswordObject.SetActive(false);
+		string pass = passwordJoinObject.text;
+		if (!string.IsNullOrEmpty(pass))
+		{
+			if(pass == this.tempPass)
+			{
+				askPasswordObject.SetActive(false);
+				JoinLobby(this.tempLobbyData);
+				OpenLobby();
+				return;
+			}
+		}
+		incorrectPasswordObject.SetActive(true);
+	} 
 }
