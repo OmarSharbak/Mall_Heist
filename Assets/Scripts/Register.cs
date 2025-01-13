@@ -80,7 +80,7 @@ public class Register : NetworkBehaviour
 		}
 		else
 		{
-			Debug.LogError("Money not added because the playerDamageHandler is null");
+			Debug.LogWarning("Money not added because the playerDamageHandler is null");
 		}
 		if (outlinable != null)
 			outlinable.enabled = false;
