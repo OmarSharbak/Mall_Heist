@@ -545,6 +545,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
+    - target: {fileID: 9110650221951923079, guid: 87525b00716eb1d41aa79c2332ae3cc1, type: 3}
+      propertyPath: _assetId
+      value: 3743865353
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -701,6 +705,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6979c0951396d40927f3fa2d0e4b7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   pickedUpTimes: 3
   outlinable: {fileID: 0}
 --- !u!114 &1026520546698086799
@@ -715,6 +722,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45fffb40dbe485d48a18bf889278e56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   itemName: Chick
   prefab: {fileID: 4114305269140579959, guid: 1e77f5a8f9c2d1d4ebeee616259f741f, type: 3}
   playerTransform: {fileID: 0}
@@ -1724,6 +1734,10 @@ PrefabInstance:
     - target: {fileID: 448216, guid: 87525b00716eb1d41aa79c2332ae3cc1, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9110650221951923079, guid: 87525b00716eb1d41aa79c2332ae3cc1, type: 3}
+      propertyPath: _assetId
+      value: 3743865353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
