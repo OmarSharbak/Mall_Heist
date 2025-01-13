@@ -615,8 +615,11 @@ public class EscalatorManager : NetworkBehaviour
 		if (NetworkManager.singleton!=null)
 		{
 			NetworkManager.singleton.StopHost();
-			Destroy(NetworkManager.singleton);
+			Destroy(NetworkManager.singleton.gameObject);
 		}
+
+		if (MultiplayerMode.Instance != null)
+			Destroy(MultiplayerMode.Instance.gameObject);
 		SceneManager.LoadScene(0);
 
 	}

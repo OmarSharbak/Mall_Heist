@@ -205,7 +205,12 @@ public class LobbyMenuManager : MonoBehaviour
 
 	public void BackToMenu()
 	{
-		Destroy(NetworkManager.singleton.gameObject);
+		if (NetworkManager.singleton!= null)
+			Destroy(NetworkManager.singleton.gameObject);
+
+		if (MultiplayerMode.Instance != null)
+			Destroy(MultiplayerMode.Instance.gameObject);
+
 		SceneManager.LoadScene(0);
 	}
 
