@@ -20,7 +20,7 @@ public class LevelLoader : MonoBehaviour
 
 	public void LoadSingleplayer()
 	{
-		SceneManager.LoadScene("MultiplayerScene");
+		SceneManager.LoadScene("SingleplayerScene");
 
 	}
 
