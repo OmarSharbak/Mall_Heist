@@ -742,7 +742,7 @@ public class ThirdPersonController : NetworkBehaviour
 		}
 		if (_input.interact && grassDecoration != null)
 		{
-			grassDecoration.Interact();
+			grassDecoration.Interact(this.netIdentity);
 		}
 		_input.interact = false;
 	}
@@ -751,7 +751,7 @@ public class ThirdPersonController : NetworkBehaviour
 	{
 		if (_input.interact && grassDecoration.hiding == true)
 		{
-			grassDecoration.StopHiding();
+			grassDecoration.CmdStopHiding(this.netIdentity);
 		}
 	}
 	private void InteractEscalator()

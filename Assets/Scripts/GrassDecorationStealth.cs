@@ -1,10 +1,11 @@
+using Mirror;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
-public class GrassDecorationStealth : MonoBehaviour
+public class GrassDecorationStealth : NetworkBehaviour
 {
     public Collider collider;
     [SerializeField] List<Transform> locations = new List<Transform>();
@@ -92,86 +93,133 @@ public class GrassDecorationStealth : MonoBehaviour
                 return;
 
 			Debug.Log("Player Entered");
-            playerIsNear = true;
-            playerDamageHandler = other.GetComponent<PlayerDamageHandler>();
-            playerPositionHolder = other.GetComponent<PlayerPositionHolder>();
-			thirdPersonController = other.GetComponent<ThirdPersonController>();
-			thirdPersonController.SetNearbyGrass(this);
-            positionYBeforeHiding = other.transform.position.y;
-            characterController = other.GetComponent<CharacterController>();
+			CmdPlayerEntered(other.GetComponent<NetworkIdentity>());
+
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    [Command(requiresAuthority =false)]
+    public void CmdPlayerEntered(NetworkIdentity _networkIdentity)
+    {
+        RpcPlayerEntered(_networkIdentity);
+
+	}
+
+	[ClientRpc]
+	public void RpcPlayerEntered(NetworkIdentity _networkIdentity)
+	{
+		playerIsNear = true;
+		playerDamageHandler = _networkIdentity.GetComponent<PlayerDamageHandler>();
+		playerPositionHolder = _networkIdentity.GetComponent<PlayerPositionHolder>();
+		thirdPersonController = _networkIdentity.GetComponent<ThirdPersonController>();
+		thirdPersonController.SetNearbyGrass(this);
+		positionYBeforeHiding = _networkIdentity.transform.position.y;
+		characterController = _networkIdentity.GetComponent<CharacterController>();
+	}
+
+
+	private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
         {
 			if (!other.GetComponent<ThirdPersonController>().isLocalPlayer)
 				return;
 			Debug.Log("Player Exited");
+			CmdPlayerExited(other.GetComponent<NetworkIdentity>());
+
+        }
+    }
+
+	[Command(requiresAuthority = false)]
+	public void CmdPlayerExited(NetworkIdentity _networkIdentity)
+	{
+        RpcPlayerExited(_networkIdentity);
+	}
+
+    [ClientRpc]
+	public void RpcPlayerExited(NetworkIdentity _networkIdentity)
+    {
+        if (thirdPersonController!=null && _networkIdentity == thirdPersonController.netIdentity)
+        {
             playerIsNear = false;
             playerDamageHandler = null;
             thirdPersonController.ClearNearbyGrass();
             thirdPersonController = null;
         }
-    }
+	}
 
-    public void Interact()
+
+	public void Interact(NetworkIdentity _networkIdentity)
     {
         if (playerIsNear)
         {
             if (!hiding && canEnterHiding)
             {
-                EnterHiding();
+                CmdEnterHiding(_networkIdentity);
             }else if (hiding && canExitHiding)
             {
-                StopHiding();
+				CmdStopHiding(_networkIdentity);
             }
         }
     }
-    private void EnterHiding()
+    [Command(requiresAuthority =false)]
+    private void CmdEnterHiding(NetworkIdentity _networkIdentity)
     {
-		if (thirdPersonController==null)
-			return;
-		hiding = true;
-        EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
-        EscalatorManager.Instance.CheckExposed(thirdPersonController);
-        Debug.Log("Started Hiding playerTransform: " + thirdPersonController.transform.position);
-        canEnterHiding = false; // Prevent immediate re-entering
-        playerPositionHolder.enabled = false;
-        thirdPersonController.transform.position = hidingPosition;
-        thirdPersonController.gameObject.tag = "PlayerInvisible";
-        thirdPersonController.StopMovement();  
-        StartCoroutine(EnableExitAfterDelay());
-        characterController.enabled = false;
-        OnPlayerHidePlants?.Invoke();
 
+        RpcEnterHiding(_networkIdentity);
 
 	}
-    public void StopHiding()
+
+	[ClientRpc]
+	public void RpcEnterHiding(NetworkIdentity _networkIdentity)
+	{
+		if (thirdPersonController == null)
+			return;
+		hiding = true;
+		EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
+		EscalatorManager.Instance.CheckExposed(thirdPersonController);
+		Debug.Log("Started Hiding playerTransform: " + thirdPersonController.transform.position);
+		canEnterHiding = false; // Prevent immediate re-entering
+		playerPositionHolder.enabled = false;
+		thirdPersonController.transform.position = hidingPosition;
+		thirdPersonController.gameObject.tag = "PlayerInvisible";
+		thirdPersonController.StopMovement();
+		StartCoroutine(EnableExitAfterDelay());
+		characterController.enabled = false;
+		OnPlayerHidePlants?.Invoke();
+	}
+
+	[Command(requiresAuthority = false)]
+	public void CmdStopHiding(NetworkIdentity _networkIdentity)
     {
 
-		if (thirdPersonController==null)
-			return;
-		if (hiding && canExitHiding)
-        {
-            Debug.Log("Stop Hiding");
-            canExitHiding = false; // Reset exit flag
-            hiding = false;
-            DisableAllLocations();
-            Debug.Log("Before exiting playerTransform: " + thirdPersonController.transform.position + " getOut poisiton is: " + getOutPosition);
-            thirdPersonController.transform.position = getOutPosition;
-            Debug.Log("After exiting playerTransform: " + thirdPersonController.transform.position + " getOut poisiton is: " + getOutPosition);
-            thirdPersonController.gameObject.tag = "Player";
-            if(!thirdPersonController.captured)
-                thirdPersonController.EnableMovement();
-            StartCoroutine(EnableEnterAfterDelay());
-            characterController.enabled = true;
-            playerPositionHolder.enabled = true;
-        }
+        RpcStopHiding(_networkIdentity);
     }
 
-    void DisableAllLocations()
+	[ClientRpc]
+	public void RpcStopHiding(NetworkIdentity _networkIdentity)
+	{
+		if (thirdPersonController == null)
+			return;
+		if (hiding && canExitHiding)
+		{
+			Debug.Log("Stop Hiding");
+			canExitHiding = false; // Reset exit flag
+			hiding = false;
+			DisableAllLocations();
+			Debug.Log("Before exiting playerTransform: " + thirdPersonController.transform.position + " getOut poisiton is: " + getOutPosition);
+			thirdPersonController.transform.position = getOutPosition;
+			Debug.Log("After exiting playerTransform: " + thirdPersonController.transform.position + " getOut poisiton is: " + getOutPosition);
+			thirdPersonController.gameObject.tag = "Player";
+			if (!thirdPersonController.captured)
+				thirdPersonController.EnableMovement();
+			StartCoroutine(EnableEnterAfterDelay());
+			characterController.enabled = true;
+			playerPositionHolder.enabled = true;
+		}
+	}
+
+	void DisableAllLocations()
     {
         foreach (var location in locations)
         {

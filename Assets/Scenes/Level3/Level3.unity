@@ -21456,6 +21456,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 984841400}
     m_Modifications:
+    - target: {fileID: 2233942133744570006, guid: 3a32bb9c41308374f81311654753e632, type: 3}
+      propertyPath: sceneId
+      value: 3470652414
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233942133744570006, guid: 3a32bb9c41308374f81311654753e632, type: 3}
+      propertyPath: serverOnly
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4371684293786954187, guid: 3a32bb9c41308374f81311654753e632, type: 3}
       propertyPath: m_Name
       value: Plant (3)
@@ -71740,6 +71748,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 984841400}
     m_Modifications:
+    - target: {fileID: 2233942133744570006, guid: 3a32bb9c41308374f81311654753e632, type: 3}
+      propertyPath: sceneId
+      value: 633683932
+      objectReference: {fileID: 0}
+    - target: {fileID: 2233942133744570006, guid: 3a32bb9c41308374f81311654753e632, type: 3}
+      propertyPath: serverOnly
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4371684293786954187, guid: 3a32bb9c41308374f81311654753e632, type: 3}
       propertyPath: m_Name
       value: Plant
