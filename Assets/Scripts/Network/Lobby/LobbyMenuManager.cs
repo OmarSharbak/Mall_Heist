@@ -42,7 +42,7 @@ public class LobbyMenuManager : MonoBehaviour
 	private string tempPass=null;
 	private LobbyData tempLobbyData=null;
 
-	private void Awake()
+	public void OnInit()
 	{
 		OpenMainMenu();
 		HeathenEngineering.SteamworksIntegration.API.Overlay.Client.EventGameLobbyJoinRequested.AddListener(OverlayJoinButton);
