@@ -250,7 +250,14 @@ public class PlayerDamageHandler : NetworkBehaviour
 	// Manage end of game state.
 	private void CmdHandleGameOver(uint _netId)
 	{
-		if (EscalatorManager.Instance.defeatedPlayers > 0 || (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer))
+		//Debug.Log("Cmd Handle game over " + EscalatorManager.Instance.defeatedPlayersUids.Count);
+
+		if (!EscalatorManager.Instance.defeatedPlayersUids.Contains(_netId))
+		{
+			EscalatorManager.Instance.defeatedPlayersUids.Add(_netId);
+		}
+
+		if ((EscalatorManager.Instance.defeatedPlayersUids.Count == 2) || (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer))
 		{
 			AllDefeat();
 		}
@@ -316,7 +323,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 		{
 			if (identity != null)
 			{
-				EscalatorManager.Instance.defeatedPlayers++;
 				TargetDefeat(identity.connectionToClient, _otherNetId);
 				RpcDisableCollider(_netId);
 				identity.GetComponent<ThirdPersonController>().defeated = true;
@@ -384,6 +390,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 					EscalatorManager.Instance.SetCurrentState(player, EscalatorManager.GameState.Defeat);
 					Debug.Log("CLIENT CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(player));
+
 				}
 			}
 		}

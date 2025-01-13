@@ -63,8 +63,7 @@ public class EscalatorManager : NetworkBehaviour
 	public PlayerState playerRemote = null;
 
 
-	[SyncVar]
-	public int defeatedPlayers = 0;
+	public List<uint> defeatedPlayersUids = new List<uint>();
 
 	void CalculateTotalMoney()
 	{
