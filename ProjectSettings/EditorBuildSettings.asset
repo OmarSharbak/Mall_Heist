@@ -26,5 +26,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Multiplayer/LobbyScene.unity
     guid: f295d016b9db2ea44950ea3cdf4493e0
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer/OfflineScene.unity
+    guid: 86127bf202684d74995a2994a9affbb9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d358dff3bcf552d4784519fbe4159b60, type: 2}

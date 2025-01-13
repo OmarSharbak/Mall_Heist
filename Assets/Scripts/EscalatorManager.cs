@@ -612,12 +612,10 @@ public class EscalatorManager : NetworkBehaviour
 	[ClientRpc]
 	private void RpcLoadTitleScreen()
 	{
-		if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
+		if (NetworkManager.singleton!=null)
 		{
-			if (isServer)
-				NetworkManager.singleton.StopHost();
-			else
-				NetworkManager.singleton.StopClient();
+			NetworkManager.singleton.StopHost();
+			Destroy(NetworkManager.singleton);
 		}
 		SceneManager.LoadScene(0);
 
