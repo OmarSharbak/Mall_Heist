@@ -44,7 +44,6 @@ public class Register : NetworkBehaviour
 		if (other.CompareTag("Player") || other.CompareTag("PlayerInvisible"))
 		{
 			playerIsNear = false;
-			playerDamageHandler = null;
 			thirdPersonController.ClearNearbyRegister();
 			thirdPersonController = null;
 		}
@@ -76,6 +75,12 @@ public class Register : NetworkBehaviour
 		if (playerDamageHandler != null)
 		{
 			playerDamageHandler.AddMoney(moneyAmount);
+			playerDamageHandler = null;
+
+		}
+		else
+		{
+			Debug.LogError("Money not added because the playerDamageHandler is null");
 		}
 		if (outlinable != null)
 			outlinable.enabled = false;
