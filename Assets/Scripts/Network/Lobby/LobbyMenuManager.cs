@@ -317,8 +317,7 @@ public class LobbyMenuManager : MonoBehaviour
 
 	public void OnMetadataUpdated(LobbyDataUpdateEventData lobbyDataUpdateEventData)
 	{
-		Debug.Log("metadata updated");
-		lobbyDataUpdateEventData.lobby.GetMetadata().TryGetValue("READY", out string ready);
+		string ready = lobbyManager.GetLobbyData("READY");
 		if(ready!=null && ready == "true")
 		{
 			if (lobbyManager.IsPlayerOwner)
@@ -326,7 +325,7 @@ public class LobbyMenuManager : MonoBehaviour
 				lobbyStartButton.interactable = true;
 			}
 		}
-		lobbyDataUpdateEventData.lobby.GetMetadata().TryGetValue("STARTED", out string started);
+		string started = lobbyManager.GetLobbyData("STARTED");
 		if (started != null && started == "true")
 		{
 			if (!lobbyManager.IsPlayerOwner)
@@ -334,5 +333,7 @@ public class LobbyMenuManager : MonoBehaviour
 				StartClient();
 			}
 		}
+		Debug.Log("metadata updated ready:" + ready + " started:"+ started);
+
 	}
 }
