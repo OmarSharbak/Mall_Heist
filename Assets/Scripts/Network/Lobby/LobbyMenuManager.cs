@@ -50,8 +50,6 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenMainMenu();
 		HeathenEngineering.SteamworksIntegration.API.Overlay.Client.EventGameLobbyJoinRequested.AddListener(OverlayJoinButton);
 		StartCoroutine(GetPublicIPAddress());
-		lobbyStartButton.interactable = false;
-		lobbyReadyButton.interactable = false;
 
 
 	}
@@ -165,6 +163,9 @@ public class LobbyMenuManager : MonoBehaviour
 		mainMenuObject.SetActive(false);
 		lobbyObject.SetActive(false);
 		lobbiesMenuObject.SetActive(false);
+		lobbyStartButton.interactable = false;
+		lobbyReadyButton.interactable = false;
+
 	}
 
 	private void ClearCards()
@@ -316,6 +317,7 @@ public class LobbyMenuManager : MonoBehaviour
 
 	public void OnMetadataUpdated(LobbyDataUpdateEventData lobbyDataUpdateEventData)
 	{
+		Debug.Log("metadata updated");
 		lobbyDataUpdateEventData.lobby.GetMetadata().TryGetValue("READY", out string ready);
 		if(ready!=null && ready == "true")
 		{
