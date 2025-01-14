@@ -185,6 +185,14 @@ public class ThirdPersonController : NetworkBehaviour
 	private const string INVISIBLE_TAG = "PlayerInvisible"; // Custom tag when the player is invisible. Ensure you've added this tag in Unity.
 
 
+	[HideInInspector]
+	public float positionYBeforeHiding = 0;
+	[HideInInspector]
+	public bool hiding = false;
+	[HideInInspector]
+	public bool canEnterHiding = true;
+	[HideInInspector]
+	public bool canExitHiding = false;
 	public void ToggleVisibility()
 	{
 		var outlinable1 = GetComponent<Outlinable>();
@@ -224,6 +232,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 		sceneScript = GameObject.FindObjectOfType<SceneScript>();
 
+		canEnterHiding = true;
 	}
 
 	[Command]
@@ -384,7 +393,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 		ResumeAfterCapture();
 
-		if (grassDecoration != null && grassDecoration.hiding)
+		if (grassDecoration != null && hiding)
 		{
 			_input.throwItem = false;
 		}
@@ -719,13 +728,14 @@ public class ThirdPersonController : NetworkBehaviour
 
 	private GrassDecorationStealth grassDecoration;
 
-	public void SetNearbyGrass(GrassDecorationStealth newGrass)
+	public void SetNearbyGrass(GrassDecorationStealth newGrass, float posY)
 	{
 		if (newGrass != null)
 		{
 			grassDecoration = newGrass;
 			movementBounds = newGrass.collider.bounds;
 			Debug.Log("Grass is set nearby.");
+			positionYBeforeHiding = posY;
 		}
 	}
 
@@ -736,7 +746,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	private void InteractGrass()
 	{
-		if (grassDecoration != null && grassDecoration.hiding == false)
+		if (grassDecoration != null && hiding == false)
 		{
 			promptUIManager.ShowSouthButtonObjectsUI();
 		}
@@ -749,7 +759,7 @@ public class ThirdPersonController : NetworkBehaviour
 
 	private void StopGrassHiding()
 	{
-		if (_input.interact && grassDecoration.hiding == true)
+		if (_input.interact && hiding == true)
 		{
 			grassDecoration.CmdStopHiding(this.netIdentity);
 		}
@@ -1285,5 +1295,10 @@ public class ThirdPersonController : NetworkBehaviour
 				audioManager.PlayClipOnce(FootstepAudioClips[index], true);
 			}
 		}
+	}
+
+	public void EnablePlayerPositionHolder(bool value)
+	{
+		GetComponent<PlayerPositionHolder>().enabled=value;
 	}
 }
