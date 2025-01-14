@@ -161,6 +161,7 @@ public class GameManager : NetworkBehaviour
 					{
 						string name = "Player 2";
 						Color color = Color.blue;
+                        color.a = 0.3f;
 						// Get the Renderer component of the object
 						Renderer renderer = controller.modelRenderer;
 						if (renderer != null)
@@ -175,7 +176,9 @@ public class GameManager : NetworkBehaviour
                     {
 						string name = "Player 1";
 						Color color = Color.red;
-						
+						color.a = 0.3f;
+
+
 						controller.SetupPlayer(name, color);
 
 					}
@@ -211,6 +214,8 @@ public class GameManager : NetworkBehaviour
 
 									string name = "Player 1";
 									Color color = Color.red;
+									color.a = 0.3f;
+
 
 									controllerExisting.SetupPlayer(name, color);
 
