@@ -312,6 +312,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		if (!isLocalPlayer)
 			return;
 		lostCanvas.SetActive(true);
+		spectatingText.SetActive(false);
 		if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
 			EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject);
 		else
