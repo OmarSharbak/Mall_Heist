@@ -1,3 +1,4 @@
+using Edgegap;
 using HeathenEngineering.SteamworksIntegration;
 using Mirror;
 using System;
@@ -40,10 +41,10 @@ public class LobbyMenuManager : MonoBehaviour
 
 	private const string ipCheckUrl = "https://api.ipify.org";
 
-	private string publicIP=null;
-	private string password=null;
-	private string tempPass=null;
-	private LobbyData tempLobbyData=null;
+	private string publicIP = null;
+	private string password = null;
+	private string tempPass = null;
+	private LobbyData tempLobbyData = null;
 
 	public void OnInit()
 	{
@@ -90,7 +91,9 @@ public class LobbyMenuManager : MonoBehaviour
 		lobbyManager.SetLobbyData("PASSWORD", password);
 
 		Debug.Log("Password: " + password);
-
+		
+		var lobby = lobbyManager.Lobby;
+		lobby.IsReady = true;
 
 	}
 
@@ -208,7 +211,7 @@ public class LobbyMenuManager : MonoBehaviour
 
 	public void BackToMenu()
 	{
-		if (NetworkManager.singleton!= null)
+		if (NetworkManager.singleton != null)
 			Destroy(NetworkManager.singleton.gameObject);
 
 		if (MultiplayerMode.Instance != null)
@@ -282,19 +285,20 @@ public class LobbyMenuManager : MonoBehaviour
 
 	}
 
-	public void AskPassword(string pass,LobbyData lobbyData)
+	public void AskPassword(string pass, LobbyData lobbyData)
 	{
 		this.tempPass = pass;
-		this.tempLobbyData= lobbyData;
+		this.tempLobbyData = lobbyData;
 		askPasswordObject.SetActive(true);
 	}
 
-	public void OnEnterPassword() {
+	public void OnEnterPassword()
+	{
 		incorrectPasswordObject.SetActive(false);
 		string pass = passwordJoinObject.text;
 		if (!string.IsNullOrEmpty(pass))
 		{
-			if(pass == this.tempPass)
+			if (pass == this.tempPass)
 			{
 				askPasswordObject.SetActive(false);
 				JoinLobby(this.tempLobbyData);
@@ -303,37 +307,29 @@ public class LobbyMenuManager : MonoBehaviour
 			}
 		}
 		incorrectPasswordObject.SetActive(true);
-	} 
+	}
 
 	public void OnReady(bool value)
 	{
 		if (!lobbyManager.IsPlayerOwner)
 		{
 			lobbyReadyButton.interactable = false;
-			lobbyManager.SetLobbyData("READY", "true");
+			var lobby = lobbyManager.Lobby;
+			lobby.IsReady = true;			
 		}
-
 	}
-
-	public void OnMetadataUpdated(LobbyDataUpdateEventData lobbyDataUpdateEventData)
+	private void Update()
 	{
-		string ready = lobbyManager.GetLobbyData("READY");
-		if(ready!=null && ready == "true")
+		if (lobbyManager.IsPlayerOwner && lobbyManager.AllPlayersReady && lobbyManager.MemberCount==2)
 		{
-			if (lobbyManager.IsPlayerOwner)
-			{
-				lobbyStartButton.interactable = true;
-			}
-		}
-		string started = lobbyManager.GetLobbyData("STARTED");
-		if (started != null && started == "true")
+			lobbyStartButton.interactable = true;
+		}else if (!lobbyManager.IsPlayerOwner)
 		{
-			if (!lobbyManager.IsPlayerOwner)
+			string started = lobbyManager.GetLobbyData("STARTED");
+			if (started == "true")
 			{
 				StartClient();
 			}
 		}
-		Debug.Log("metadata updated ready:" + ready + " started:"+ started);
-
 	}
 }

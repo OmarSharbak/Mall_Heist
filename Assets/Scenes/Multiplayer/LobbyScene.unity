@@ -2295,7 +2295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f314bc6f3466b54da82e29cdd36fe44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Delegates: 0700000003000000060000000a0000000900000008000000
+  m_Delegates: 0700000003000000060000000a00000009000000
   searchArguments:
     slots: -1
     distance: 1
@@ -2360,19 +2360,7 @@ MonoBehaviour:
       m_Calls: []
   evtDataUpdated:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1475941336}
-        m_TargetAssemblyTypeName: LobbyMenuManager, Assembly-CSharp
-        m_MethodName: OnMetadataUpdated
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   evtLeave:
     m_PersistentCalls:
       m_Calls:
