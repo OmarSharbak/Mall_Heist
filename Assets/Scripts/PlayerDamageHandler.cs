@@ -79,6 +79,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	bool bribed = false;
 
+	private GameObject spectatingText=null;
+
 	private void Initialize()
 	{
 		// Dynamically find the UI elements (e.g., by name or tag)
@@ -106,6 +108,9 @@ public class PlayerDamageHandler : NetworkBehaviour
 		animator = GetComponent<Animator>();
 		playerFlash = GetComponent<PlayerFlash>();
 
+		spectatingText = GameObject.Find("SpectatingText");
+		 
+
 		InitializeComponents();
 
 		Debug.Log("canvas initialized!" + regularCanvas.name);
@@ -131,6 +136,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 			LivesText.gameObject.SetActive(false);
 		}
 
+		spectatingText.SetActive(false);
 
 		if (myAudioSource == null)
 		{
@@ -350,6 +356,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 				regularCanvas.SetActive(false);
 				outliner.enabled = false;
+
+				spectatingText.SetActive(true);
 
 				// Access the EventSystem and set the selected GameObject
 				EventSystem.current.SetSelectedGameObject(null); // Deselect current selection

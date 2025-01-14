@@ -5765,7 +5765,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -31638,6 +31638,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.2900269
       objectReference: {fileID: 0}
+    - target: {fileID: 6706022489824258162, guid: 4f8b867721bc76247a2ad012f5d0692c, type: 3}
+      propertyPath: sceneId
+      value: 2748701116
+      objectReference: {fileID: 0}
     - target: {fileID: 6757953332128987216, guid: 4f8b867721bc76247a2ad012f5d0692c, type: 3}
       propertyPath: outlineTargets.Array.data[0].IsVisible
       value: 1
@@ -31801,6 +31805,10 @@ PrefabInstance:
     - target: {fileID: 9128374385729487339, guid: 4f8b867721bc76247a2ad012f5d0692c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 9191026679049986487, guid: 4f8b867721bc76247a2ad012f5d0692c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9191360861304327825, guid: 4f8b867721bc76247a2ad012f5d0692c, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -54357,7 +54365,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -56782,7 +56790,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -60688,6 +60696,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 3392353134047143179, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3416635162067957297, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 54
@@ -61035,6 +61047,10 @@ PrefabInstance:
     - target: {fileID: 5277194491575571953, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5713016373273239648, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
+      propertyPath: sceneId
+      value: 3134628082
       objectReference: {fileID: 0}
     - target: {fileID: 5713777586494218250, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
       propertyPath: m_Layer
