@@ -307,15 +307,14 @@ public class EscalatorManager : NetworkBehaviour
 		inventory = playerLocal.playerTransform.GetComponent<Inventory>();
 
 
+		localPlayer.canMove = false;
+		
 
 		Debug.Log("Player local State correct!");
 	}
 	public void Initialize(PlayerState player)
 	{
-		if (player.thirdPersonController != null)
-		{
-			player.thirdPersonController.canMove = false;
-		}
+
 		if (player == playerLocal)
 		{
 			CalculateTotalMoney();
