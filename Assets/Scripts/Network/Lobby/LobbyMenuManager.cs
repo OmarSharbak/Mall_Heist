@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LobbyMenuManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class LobbyMenuManager : MonoBehaviour
 	[SerializeField] private GameObject lobbyObject;
 	[SerializeField] private TextMeshProUGUI lobbyTitle;
 	[SerializeField] private LobbyManager lobbyManager;
+	[SerializeField] private Button lobbyStartButton;
+	[SerializeField] private Toggle lobbyReadyButton;
 	[Header("Lobbies")]
 	[SerializeField] private GameObject lobbiesMenuObject;
 	[SerializeField] private GameObject askPasswordObject;
@@ -47,6 +50,9 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenMainMenu();
 		HeathenEngineering.SteamworksIntegration.API.Overlay.Client.EventGameLobbyJoinRequested.AddListener(OverlayJoinButton);
 		StartCoroutine(GetPublicIPAddress());
+		lobbyStartButton.interactable = false;
+		lobbyReadyButton.interactable = false;
+
 
 	}
 
@@ -111,7 +117,7 @@ public class LobbyMenuManager : MonoBehaviour
 		{
 			if (!lobbyManager.IsPlayerOwner)
 			{
-				Invoke(nameof(StartClient), 3f);
+				lobbyReadyButton.interactable = true;
 			}
 
 		}
@@ -144,15 +150,6 @@ public class LobbyMenuManager : MonoBehaviour
 	public void OnUserJoin(UserData userData)
 	{
 		SetupCard(userData);
-
-		if (lobbyManager.Full)
-		{
-			if (lobbyManager.IsPlayerOwner)
-			{
-				StartHost();
-			}
-
-		}
 	}
 	public void OnUserleft(UserLobbyLeaveData userLeaveData)
 	{
@@ -184,13 +181,18 @@ public class LobbyMenuManager : MonoBehaviour
 		_lobbyUserPanels.TryAdd(userData, userPanel);
 	}
 
-	private void StartHost()
+	public void StartHost()
 	{
 		//start mirror host/server
 		NetworkManager.singleton.StartHost();
+		lobbyManager.SetLobbyData("STARTED", "true");
+		lobbyStartButton.interactable = false;
+
+
+
 	}
 
-	private void StartClient()
+	public void StartClient()
 	{
 		//start mirror client
 		NetworkManager.singleton.networkAddress = _steamID64;
@@ -301,4 +303,34 @@ public class LobbyMenuManager : MonoBehaviour
 		}
 		incorrectPasswordObject.SetActive(true);
 	} 
+
+	public void OnReady(bool value)
+	{
+		if (!lobbyManager.IsPlayerOwner)
+		{
+			lobbyReadyButton.interactable = false;
+			lobbyManager.SetLobbyData("READY", "true");
+		}
+
+	}
+
+	public void OnMetadataUpdated(LobbyDataUpdateEventData lobbyDataUpdateEventData)
+	{
+		lobbyDataUpdateEventData.lobby.GetMetadata().TryGetValue("READY", out string ready);
+		if(ready!=null && ready == "true")
+		{
+			if (lobbyManager.IsPlayerOwner)
+			{
+				lobbyStartButton.interactable = true;
+			}
+		}
+		lobbyDataUpdateEventData.lobby.GetMetadata().TryGetValue("STARTED", out string started);
+		if (started != null && started == "true")
+		{
+			if (!lobbyManager.IsPlayerOwner)
+			{
+				StartClient();
+			}
+		}
+	}
 }
