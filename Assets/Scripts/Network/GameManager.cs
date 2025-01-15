@@ -3,6 +3,7 @@ using Mirror;
 using System.Collections;
 using TMPro;
 using System;
+using HeathenEngineering.SteamworksIntegration;
 
 public class GameManager : NetworkBehaviour
 {
@@ -159,7 +160,8 @@ public class GameManager : NetworkBehaviour
                     //change name and color
 					if (numPlayers==2 && player2BlueMaterial != null)
 					{
-						string name = "Player 2";
+                        CustomNetworkManager nm= FindAnyObjectByType<CustomNetworkManager>();
+						string name =nm!=null?nm.playerName2:"";
 						Color color = Color.blue;
                         color.a = 0.3f;
 						// Get the Renderer component of the object
@@ -174,7 +176,9 @@ public class GameManager : NetworkBehaviour
                     }
                     else
                     {
-						string name = "Player 1";
+						CustomNetworkManager nm = FindAnyObjectByType<CustomNetworkManager>();
+
+						string name = nm!=null?nm.playerName1:"";
 						Color color = Color.red;
 						color.a = 0.3f;
 
@@ -196,6 +200,7 @@ public class GameManager : NetworkBehaviour
                     if(MultiplayerMode.Instance!=null && MultiplayerMode.Instance.isSinglePlayer)
                     {
 						EscalatorManager.Instance.Initialize(EscalatorManager.Instance.playerLocal);
+						controller.SetupPlayer("", Color.black);
 					}
 
 					Debug.Log($"Player {controller.gameObject.name} has spawned on the remote client!");
@@ -212,7 +217,9 @@ public class GameManager : NetworkBehaviour
                                     OnPlayerExisting?.Invoke(controllerExisting, numPlayers);
                                     Debug.Log($"Existing Player {controllerExisting.gameObject.name} has spawned on the remote client!");
 
-									string name = "Player 1";
+									CustomNetworkManager nm = FindAnyObjectByType<CustomNetworkManager>();
+
+									string name = nm!=null?nm.playerName1:"";
 									Color color = Color.red;
 									color.a = 0.3f;
 

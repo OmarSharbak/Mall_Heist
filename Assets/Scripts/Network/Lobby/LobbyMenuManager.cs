@@ -94,6 +94,7 @@ public class LobbyMenuManager : MonoBehaviour
 		
 		var lobby = lobbyManager.Lobby;
 		lobby.IsReady = true;
+		FindAnyObjectByType<CustomNetworkManager>().playerName1 = UserData.Me.Nickname;
 
 	}
 
@@ -119,6 +120,13 @@ public class LobbyMenuManager : MonoBehaviour
 			if (!lobbyManager.IsPlayerOwner)
 			{
 				lobbyReadyButton.interactable = true;
+
+				FindAnyObjectByType<CustomNetworkManager>().playerName1 = lobbyManager.Lobby.Owner.user.Nickname;
+				FindAnyObjectByType<CustomNetworkManager>().playerName2 = UserData.Me.Nickname;
+			}
+			else if(lobbyData.Members.Length>1)
+			{
+				FindAnyObjectByType<CustomNetworkManager>().playerName2 = lobbyData.Members[1].user.Nickname;
 			}
 
 		}

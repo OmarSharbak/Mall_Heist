@@ -9,8 +9,11 @@ public class CustomNetworkManager : NetworkManager
 	// A list to track connected players
 	public static readonly List<NetworkIdentity> connectedPlayers = new List<NetworkIdentity>();
 	private int _numPlayers = 0;
-
-
+	[HideInInspector]
+	public string playerName1 = "";
+	[HideInInspector]
+	public string playerName2 = "";
+	
 	public override void OnStartServer()
 	{
 		base.OnStartServer();
