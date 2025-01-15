@@ -30,6 +30,9 @@ public class LockDoor : NetworkBehaviour
 		mmFeedbacksOpenDoor = GameObject.Find("MMFeedbacks(opendoor)").GetComponent<MMFeedbacks>();
 		totalSeals = sealableDoors.Count;
 		sealablesText.color = outlinable.FrontParameters.Color;
+		if(totalSeals==0)
+			sealablesText.text = "";
+
 
 	}
 

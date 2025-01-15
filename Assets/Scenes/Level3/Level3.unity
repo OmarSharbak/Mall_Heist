@@ -11334,7 +11334,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -24254,6 +24254,7 @@ PrefabInstance:
     - {fileID: 4973115770157168842, guid: d3d168abc50337e459202afa6d298280, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4396676396221812533, guid: d3d168abc50337e459202afa6d298280, type: 3}
+    - {fileID: 2325803871824410252, guid: d3d168abc50337e459202afa6d298280, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d168abc50337e459202afa6d298280, type: 3}
