@@ -193,5 +193,10 @@ public class ArrowIndicator : NetworkBehaviour
 	{
 		// Unsubscribe from the event to avoid memory leaks
 		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-	}
+        PlayerDamageHandler.OnPlayerCaught -= PlayerDamageHandler_OnPlayerCaught;
+        GrassDecorationStealth.OnPlayerHidePlants -= PlayerDamageHandler_OnPlayerCaught;
+        ThrowableItem.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
+        TrapItem.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
+        MeleeWeapon.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
+    }
 }

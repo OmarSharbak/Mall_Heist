@@ -586,17 +586,38 @@ public class EscalatorManager : NetworkBehaviour
 	// Reloads the current level
 	public void RestartLevel()
 	{
-		int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		SceneManager.LoadScene(activeSceneIndex);
-	}
+		Debug.Log("restart level");
 
-	public void NextLevel()
+		if (NetworkManager.singleton != null)
+		{
+			NetworkManager.singleton.StopHost();
+            Destroy(GameManager.Instance);
+            Destroy(Instance);
+            SceneManager.LoadScene("RestartSingleScene");
+        }
+        else
+		{
+			Debug.LogWarning("Restart - Network manager Not found ");
+		}
+
+    }
+
+    public void NextLevel()
 	{
 		int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		SceneManager.LoadScene(activeSceneIndex + 1);
-	}
 
-	public void LoadTitleScreen()
+		MultiplayerMode.Instance.SetLevelIndex(activeSceneIndex+1);
+
+		if (NetworkManager.singleton != null)
+		{
+            NetworkManager.singleton.StopHost();
+        }
+        
+		SceneManager.LoadScene("SingleplayerScene");
+
+    }
+
+    public void LoadTitleScreen()
 	{
 		CmdLoadTitleScreen();
 
@@ -611,6 +632,7 @@ public class EscalatorManager : NetworkBehaviour
 	[ClientRpc]
 	private void RpcLoadTitleScreen()
 	{
+		Debug.Log("Client - load title");
 		if (NetworkManager.singleton!=null)
 		{
 			NetworkManager.singleton.StopHost();

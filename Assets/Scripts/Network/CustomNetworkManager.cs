@@ -18,8 +18,9 @@ public class CustomNetworkManager : NetworkManager
 	{
 		base.OnStartServer();
 		connectedPlayers.Clear();
+        _numPlayers = 0;
 
-	}
+    }
 
 
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)

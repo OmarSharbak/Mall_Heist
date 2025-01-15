@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Multiplayer/OfflineScene.unity
     guid: 86127bf202684d74995a2994a9affbb9
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer/RestartSingleScene.unity
+    guid: 32c685c87fc6d4744b160e4ed67d948b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: d358dff3bcf552d4784519fbe4159b60, type: 2}

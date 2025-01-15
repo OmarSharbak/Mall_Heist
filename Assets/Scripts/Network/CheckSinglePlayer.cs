@@ -1,15 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEngine.SceneManagement;
 public class CheckSinglePlayer : MonoBehaviour
 {
 	// Start is called before the first frame update
 	void Start()
 	{
-		
-		if ((MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer) || MultiplayerMode.Instance == null)
+		if ((MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer))
 		{
 			string name = "Level" + MultiplayerMode.Instance.lvlIndex;
 			Debug.Log(name);
@@ -17,6 +13,10 @@ public class CheckSinglePlayer : MonoBehaviour
 			customNetworkManager.onlineScene = name;
 			NetworkServer.dontListen = true;
 			NetworkManager.singleton.StartHost();
+		}
+		else
+		{
+			Debug.LogWarning("CheckSingleplayer - MultiplayerMode is null");
 		}
 	}
 
