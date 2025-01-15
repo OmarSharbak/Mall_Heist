@@ -273,6 +273,8 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 1
+  playerName1: 
+  playerName2: 
 --- !u!114 &468644707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wrap: {fileID: 468644701}
-  latency: 100
+  latency: 400
   jitter: 0.02
   jitterSpeed: 1
   unreliableLoss: 2

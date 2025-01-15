@@ -79,17 +79,17 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	bool bribed = false;
 
-	private GameObject spectatingText=null;
+	private GameObject spectatingText = null;
+	private GameObject overlay = null;
 
 	private void Initialize()
 	{
 		// Dynamically find the UI elements (e.g., by name or tag)
 		regularCanvas = GameObject.Find("InGameUI");
-		if (isLocalPlayer)
-		{
-			lostCanvas = GameObject.Find("LostUI");
-			LivesText = GameObject.Find("LivesText")?.GetComponent<TMP_Text>();
-		}
+
+		lostCanvas = GameObject.Find("LostUI");
+		LivesText = GameObject.Find("LivesText")?.GetComponent<TMP_Text>();
+
 		CapturedText = GameObject.Find("CapturedText")?.GetComponent<TMP_Text>();
 		TimerText = GameObject.Find("WaitForXTimerText")?.GetComponent<TMP_Text>();
 		PlayerCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)")?.GetComponent<CinemachineVirtualCamera>();
@@ -109,7 +109,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		playerFlash = GetComponent<PlayerFlash>();
 
 		spectatingText = GameObject.Find("SpectatingText");
-		 
+		overlay = GameObject.Find("Overlay");
+
 
 		InitializeComponents();
 
@@ -129,14 +130,14 @@ public class PlayerDamageHandler : NetworkBehaviour
 	{
 		CapturedText.enabled = false;
 		TimerText.enabled = false;
-		if (isLocalPlayer)
-		{
-			lostCanvas.SetActive(false);
-			LivesText.text = Lives.ToString();
-			LivesText.gameObject.SetActive(false);
-		}
+
+		lostCanvas.SetActive(false);
+		LivesText.text = Lives.ToString();
+		LivesText.gameObject.SetActive(false);
+
 
 		spectatingText.SetActive(false);
+		overlay.SetActive(false);
 
 		if (myAudioSource == null)
 		{
@@ -387,7 +388,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 
 					Inventory inventory = player.GetComponent<Inventory>();
-					if(inventory != null && inventory.heldItem!=null) 
+					if (inventory != null && inventory.heldItem != null)
 						inventory.CmdDestroyHeldItem(inventory.heldItem.GetComponent<NetworkIdentity>());
 
 					for (int i = 0; i < ts.Length; i++)
