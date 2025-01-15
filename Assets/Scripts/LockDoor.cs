@@ -8,32 +8,52 @@ using UnityEngine;
 
 public class LockDoor : NetworkBehaviour
 {
-    [SerializeField] List<SealableDoor> sealableDoors;
-    [SerializeField] TMP_Text doorOpenedText;
+	[SerializeField] List<SealableDoor> sealableDoors;
+	[SerializeField] TMP_Text doorOpenedText;
+	[SerializeField] TMP_Text sealablesText;
 
-    Outlinable outlinable;
-    Animator animator;
-    MMFeedbacks mmFeedbacksOpenDoor;
+	Outlinable outlinable;
+	Animator animator;
+	MMFeedbacks mmFeedbacksOpenDoor;
 
 
 	[SyncVar(hook = nameof(OnDoorStateChanged))]
 	private bool isOpened = false;
 
-	private void Start()
-    {
-        outlinable = GetComponent<Outlinable>();
-        animator = GetComponent<Animator>();
-        doorOpenedText.enabled = false; // Ensure the text is initially disabled
-        mmFeedbacksOpenDoor = GameObject.Find("MMFeedbacks(opendoor)").GetComponent<MMFeedbacks>();
-    }
+	private int totalSeals = 0;
 
-    void Update()
-    {
-        if (!isOpened && AreAllDoorsSealed())
-        {
+	private void Start()
+	{
+		outlinable = GetComponent<Outlinable>();
+		animator = GetComponent<Animator>();
+		doorOpenedText.enabled = false; // Ensure the text is initially disabled
+		mmFeedbacksOpenDoor = GameObject.Find("MMFeedbacks(opendoor)").GetComponent<MMFeedbacks>();
+		totalSeals = sealableDoors.Count;
+		sealablesText.color = outlinable.FrontParameters.Color;
+
+	}
+
+	void Update()
+	{
+		if (!isOpened && AreAllDoorsSealed())
+		{
 			OpenDoor();
 		}
-    }
+		else if (!isOpened)
+		{
+			int sealedDoors = 0;
+			foreach (SealableDoor door in sealableDoors)
+			{
+				if (door.isSealed)
+					sealedDoors++;
+			}
+			sealablesText.text = sealedDoors + "/" + totalSeals;
+		}
+		else
+		{
+			sealablesText.text = "";
+		}
+	}
 	private void OnDoorStateChanged(bool oldState, bool newState)
 	{
 		if (newState)
@@ -42,7 +62,7 @@ public class LockDoor : NetworkBehaviour
 		}
 	}
 
-	[Client] 
+	[Client]
 	private void OpenDoor()
 	{
 		CmdOpenDoor();
@@ -69,22 +89,22 @@ public class LockDoor : NetworkBehaviour
 	}
 
 	IEnumerator ShowDoorOpenedText()
-    {
-        if (mmFeedbacksOpenDoor != null)
-            mmFeedbacksOpenDoor.PlayFeedbacks();
+	{
+		if (mmFeedbacksOpenDoor != null)
+			mmFeedbacksOpenDoor.PlayFeedbacks();
 
-        doorOpenedText.enabled = true; // Enable the text
-        yield return new WaitForSeconds(3); // Wait for 2 seconds
-        doorOpenedText.enabled = false; // Disable the text
-    }
+		doorOpenedText.enabled = true; // Enable the text
+		yield return new WaitForSeconds(3); // Wait for 2 seconds
+		doorOpenedText.enabled = false; // Disable the text
+	}
 
-    private bool AreAllDoorsSealed()
-    {
-        foreach (SealableDoor door in sealableDoors)
-        {
-            if (!door.isSealed)
-                return false;
-        }
-        return true;
-    }
+	private bool AreAllDoorsSealed()
+	{
+		foreach (SealableDoor door in sealableDoors)
+		{
+			if (!door.isSealed)
+				return false;
+		}
+		return true;
+	}
 }
