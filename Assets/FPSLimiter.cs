@@ -4,10 +4,19 @@ public class FPSLimiter : MonoBehaviour
 {
     public int maxFPS = 90;
 
-    [System.Obsolete]
+	public static FPSLimiter Instance { get; private set; }
+
+	[System.Obsolete]
     void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+		if (Instance != null && Instance != this)
+		{
+			Destroy(gameObject);
+			return;
+		}
+		Instance = this;
+
+		DontDestroyOnLoad(gameObject);
         Application.targetFrameRate = Screen.currentResolution.refreshRate * 2;
         QualitySettings.vSyncCount = 0;
     }
