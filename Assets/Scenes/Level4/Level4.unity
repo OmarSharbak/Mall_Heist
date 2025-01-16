@@ -5737,7 +5737,7 @@ MonoBehaviour:
   - {fileID: 1123564183}
   - {fileID: 28833687}
   doorOpenedText: {fileID: 2079659643}
-  sealablesText: {fileID: 0}
+  sealablesText: {fileID: 1363366668}
 --- !u!114 &144198485
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -5766,7 +5766,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -13026,7 +13026,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -19754,6 +19754,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4396676396221812533, guid: d3d168abc50337e459202afa6d298280, type: 3}
+    - {fileID: 2325803871824410252, guid: d3d168abc50337e459202afa6d298280, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 437587159498782631, guid: d3d168abc50337e459202afa6d298280, type: 3}
       insertIndex: -1
@@ -35046,6 +35047,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1228634217493383785, guid: d3d168abc50337e459202afa6d298280, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228634217493383785, guid: d3d168abc50337e459202afa6d298280, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228634217493383785, guid: d3d168abc50337e459202afa6d298280, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.77
+      objectReference: {fileID: 0}
     - target: {fileID: 2297036725364371822, guid: d3d168abc50337e459202afa6d298280, type: 3}
       propertyPath: doorOpenedText
       value: 
@@ -35212,6 +35225,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 437587159498782631, guid: d3d168abc50337e459202afa6d298280, type: 3}
   m_PrefabInstance: {fileID: 988984973}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &988984975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7039646851232284325, guid: d3d168abc50337e459202afa6d298280, type: 3}
+  m_PrefabInstance: {fileID: 988984973}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &991482428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -47757,6 +47781,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1228634217493383785, guid: d3d168abc50337e459202afa6d298280, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37
+      objectReference: {fileID: 0}
+    - target: {fileID: 1228634217493383785, guid: d3d168abc50337e459202afa6d298280, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9.51
+      objectReference: {fileID: 0}
     - target: {fileID: 2297036725364371822, guid: d3d168abc50337e459202afa6d298280, type: 3}
       propertyPath: doorOpenedText
       value: 
@@ -47918,6 +47950,17 @@ PrefabInstance:
       addedObject: {fileID: 144198481}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d168abc50337e459202afa6d298280, type: 3}
+--- !u!114 &1363366668 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7039646851232284325, guid: d3d168abc50337e459202afa6d298280, type: 3}
+  m_PrefabInstance: {fileID: 1363366667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1364614615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54339,7 +54382,7 @@ MonoBehaviour:
   - {fileID: 437913347}
   - {fileID: 1541671626}
   doorOpenedText: {fileID: 2079659643}
-  sealablesText: {fileID: 0}
+  sealablesText: {fileID: 988984975}
 --- !u!114 &1508967061
 MonoBehaviour:
   m_ObjectHideFlags: 2
