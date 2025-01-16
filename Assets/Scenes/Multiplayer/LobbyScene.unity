@@ -4041,19 +4041,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: c62130bc1ed3a63418e1319c33d38be2, type: 2}
   evtSteamInitialized:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1475941336}
-        m_TargetAssemblyTypeName: LobbyMenuManager, Assembly-CSharp
-        m_MethodName: OnInit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   evtSteamInitializationError:
     m_PersistentCalls:
       m_Calls:
@@ -6851,6 +6839,8 @@ MonoBehaviour:
   evaluationMethod: 0
   evaluationInterval: 3
   timeInterpolationGui: 1
+  playerName1: 
+  playerName2: 
 --- !u!114 &1821234489
 MonoBehaviour:
   m_ObjectHideFlags: 0

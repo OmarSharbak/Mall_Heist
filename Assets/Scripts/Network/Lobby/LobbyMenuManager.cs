@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -46,7 +47,7 @@ public class LobbyMenuManager : MonoBehaviour
 	private string tempPass = null;
 	private LobbyData tempLobbyData = null;
 
-	public void OnInit()
+	public void Start()
 	{
 		OpenMainMenu();
 		HeathenEngineering.SteamworksIntegration.API.Overlay.Client.EventGameLobbyJoinRequested.AddListener(OverlayJoinButton);
@@ -54,6 +55,8 @@ public class LobbyMenuManager : MonoBehaviour
 
 
 	}
+
+	
 
 
 	IEnumerator GetPublicIPAddress()
