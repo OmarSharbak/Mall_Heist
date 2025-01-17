@@ -82,6 +82,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private GameObject spectatingText = null;
 	private GameObject overlay = null;
 
+	private bool damageStarted=false;
+
 	private void Initialize()
 	{
 		// Dynamically find the UI elements (e.g., by name or tag)
@@ -207,6 +209,9 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	private void HandlePlayerDamage()
 	{
+		if (damageStarted)
+			return;
+		damageStarted = true;
 		Debug.Log("PLayer Damaged");
 		PlayTakeDownSound();
 
@@ -218,6 +223,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		if (GameManager.Instance.GetCurrentGlobalMoney() >= 10)
 		{
+			damageStarted = false;
 			StartDamageSequence();
 		}
 		else

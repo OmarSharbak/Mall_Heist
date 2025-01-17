@@ -1755,6 +1755,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4596593680740670138}
     m_Modifications:
+    - target: {fileID: -7437655110796295822, guid: 5ce194c2596166b40a0216222b5c2f72, type: 3}
+      propertyPath: _assetId
+      value: 118906180
+      objectReference: {fileID: 0}
     - target: {fileID: 169146, guid: 5ce194c2596166b40a0216222b5c2f72, type: 3}
       propertyPath: m_Name
       value: SI_Prop_ShoeShelf_11
@@ -4523,6 +4527,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4314090844587158226}
     m_Modifications:
+    - target: {fileID: -7437655110796295822, guid: 5ce194c2596166b40a0216222b5c2f72, type: 3}
+      propertyPath: _assetId
+      value: 118906180
+      objectReference: {fileID: 0}
     - target: {fileID: 169146, guid: 5ce194c2596166b40a0216222b5c2f72, type: 3}
       propertyPath: m_Name
       value: SI_Prop_ShoeShelf_10
@@ -5849,6 +5857,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4596593680740670138}
     m_Modifications:
+    - target: {fileID: -6830098346182997450, guid: 47b8fc3c99c21fe488ac37075e37e627, type: 3}
+      propertyPath: _assetId
+      value: 118906180
+      objectReference: {fileID: 0}
     - target: {fileID: 166582, guid: 47b8fc3c99c21fe488ac37075e37e627, type: 3}
       propertyPath: m_Name
       value: SI_Prop_ShoeShelf_09
@@ -6419,6 +6431,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4596593680740670138}
     m_Modifications:
+    - target: {fileID: -4778052604197244540, guid: 435bbf94f0c16b842a13d18d0c5074b5, type: 3}
+      propertyPath: _assetId
+      value: 118906180
+      objectReference: {fileID: 0}
     - target: {fileID: 127328, guid: 435bbf94f0c16b842a13d18d0c5074b5, type: 3}
       propertyPath: m_Name
       value: SI_Prop_ShoeShelf_12

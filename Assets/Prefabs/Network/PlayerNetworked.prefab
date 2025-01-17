@@ -664,7 +664,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Player Name
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 33.95
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -909,6 +909,10 @@ MonoBehaviour:
   playerName: 
   playerColor: {r: 1, g: 1, b: 1, a: 1}
   modelRenderer: {fileID: 2166707407626631107}
+  positionYBeforeHiding: 0
+  hiding: 0
+  canEnterHiding: 1
+  canExitHiding: 0
   inputDirection: {x: 0, y: 0, z: 0}
   interactionRange: 2.5
   interactableLayer:
@@ -1378,6 +1382,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   exposed: 0
+  ready: 0
   playerTransform: {fileID: 6163629171227806718}
   thirdPersonController: {fileID: 5476788834179813785}
   playerNearEscalator: 0
