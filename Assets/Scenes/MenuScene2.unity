@@ -3682,7 +3682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: '-'
+  mTerm: Add To Wishlist
   mTermSecondary: 
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
@@ -3729,9 +3729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Add To Wishlist
-
-'
+  m_text: "a\xF1adir a la lista de deseos"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 513a2b17ed8b8344bbe530edaa9b5469, type: 2}
@@ -3758,10 +3756,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 27
+  m_fontSize: 20.95
   m_fontSizeBase: 27
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -3794,7 +3792,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 22.186665, z: 0.00001524806, w: 21.04889}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8703,6 +8701,23 @@ RectTransform:
   m_AnchoredPosition: {x: -4.000122, y: -142}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &502001904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTarget: {fileID: 1154936969}
+  mAlignment_RTL: 258
+  mAlignment_LTR: 258
+  mAlignmentWasRTL: 0
+  mInitializeAlignment: 0
 --- !u!1 &505626774
 GameObject:
   m_ObjectHideFlags: 0
@@ -18363,6 +18378,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1154936972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154936962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTerm: Controls
+  mTermSecondary: 
+  PrimaryTermModifier: 0
+  SecondaryTermModifier: 0
+  TermPrefix: 
+  TermSuffix: 
+  LocalizeOnAwake: 1
+  IgnoreRTL: 0
+  MaxCharactersInRTL: 0
+  IgnoreNumbersInRTL: 1
+  CorrectAlignmentForRTL: 1
+  AddSpacesToJoinedLanguages: 0
+  AllowLocalizedParameters: 1
+  AllowParameters: 1
+  TranslatedObjects: []
+  LocalizeEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  AlwaysForceLocalize: 0
+  LocalizeCallBack:
+    Target: {fileID: 0}
+    MethodName: 
+  mGUI_ShowReferences: 0
+  mGUI_ShowTems: 1
+  mGUI_ShowCallback: 0
+  mLocalizeTarget: {fileID: 502001904}
+  mLocalizeTargetName: I2.Loc.LocalizeTarget_TextMeshPro_UGUI
 --- !u!1 &1169976708
 GameObject:
   m_ObjectHideFlags: 0
@@ -31571,7 +31625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: multiplayer
+  m_text: multijugador
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 513a2b17ed8b8344bbe530edaa9b5469, type: 2}
@@ -31598,10 +31652,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 41.15
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -31634,7 +31688,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 47.863518}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -31647,12 +31701,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950688885}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: '-'
+  mTerm: multiplayer
   mTermSecondary: 
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
@@ -31864,7 +31918,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 10774393015381927, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontSize
-      value: 48
+      value: 41.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 10774393015381927, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_margin.w
+      value: 47.855152
       objectReference: {fileID: 0}
     - target: {fileID: 10774393015381927, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontSizeBase
@@ -31874,6 +31932,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 513a2b17ed8b8344bbe530edaa9b5469, type: 2}
+    - target: {fileID: 10774393015381927, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 380635199597072585, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_Name
       value: OptionsButton
@@ -31904,7 +31966,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1415246028700908082, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontSize
-      value: 48
+      value: 42.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415246028700908082, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_margin.w
+      value: 46.822975
       objectReference: {fileID: 0}
     - target: {fileID: 1415246028700908082, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontSizeBase
@@ -31914,6 +31980,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 513a2b17ed8b8344bbe530edaa9b5469, type: 2}
+    - target: {fileID: 1415246028700908082, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1481521511137665102, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -32580,11 +32650,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_text
-      value: Start
+      value: iniciar
       objectReference: {fileID: 0}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontSize
-      value: 48
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_margin.w
+      value: 45.782482
       objectReference: {fileID: 0}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontStyle
@@ -32598,6 +32672,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 513a2b17ed8b8344bbe530edaa9b5469, type: 2}
+    - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7242130912073482198, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_Name
       value: ControlsButton
@@ -32682,6 +32760,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 380635199597072585, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 37872512}
+    - targetCorrespondingSourceObject: {fileID: 7242130912073482198, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1154936972}
   m_SourcePrefab: {fileID: 100100000, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
 --- !u!1 &1959467543 stripped
 GameObject:
@@ -35797,10 +35878,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 41.15
   m_fontSizeBase: 48
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -35833,7 +35914,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 47.85515}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -37459,7 +37540,7 @@ MonoBehaviour:
   audioSource2: {fileID: 5104110176215116055}
   playerLocal: {fileID: 0}
   playerRemote: {fileID: 0}
-  defeatedPlayers: 0
+  defeatedPlayersUids: 
   countDownText: {fileID: 0}
   chaseMusic: {fileID: 8300000, guid: cf8067db866483846bd7198d4c4b5828, type: 3}
   stealthMusic: {fileID: 8300000, guid: 406d0427ede05dd4f94e909ad684c4a2, type: 3}
@@ -43744,7 +43825,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &4973707416894215959
 GameObject:
   m_ObjectHideFlags: 0

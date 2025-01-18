@@ -24,7 +24,48 @@ MonoBehaviour:
 '
       Languages:
       - Apply
-      Flags: 00
+      - 
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: multiplayer
+      TermType: 0
+      Description: 
+      Languages:
+      - multiplayer
+      - multijugador
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Add To Wishlist
+      TermType: 0
+      Description: 
+      Languages:
+      - add to wishlist
+      - "a\xF1adir a la lista de deseos"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Controls
+      TermType: 0
+      Description: 
+      Languages:
+      - controls
+      - controles
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
@@ -32,6 +73,21 @@ MonoBehaviour:
     mLanguages:
     - Name: English
       Code: en
+      Flags: 0
+    - Name: Spanish
+      Code: es
+      Flags: 0
+    - Name: Chinese (Simplified)
+      Code: zh-CN
+      Flags: 0
+    - Name: Russian
+      Code: ru
+      Flags: 0
+    - Name: Arabic
+      Code: ar
+      Flags: 0
+    - Name: Portuguese
+      Code: pt
       Flags: 0
     IgnoreDeviceLanguage: 0
     _AllowUnloadingLanguages: 0
