@@ -17,11 +17,5 @@ public class SceneScript : NetworkBehaviour
 		//called from sync var hook, to update info on screen for all players
 		canvasStatusText.text = statusText;
 	}
-
-	public void ButtonSendMessage()
-	{
-		if (thirdPersonController != null)
-			thirdPersonController.CmdSendPlayerMessage();
-	}
 }
 

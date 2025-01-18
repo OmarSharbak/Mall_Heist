@@ -67,7 +67,883 @@ MonoBehaviour:
       - 
       Flags: 000000000000
       Languages_Touch: []
-    CaseInsensitiveTerms: 0
+    - Term: Back
+      TermType: 0
+      Description: 
+      Languages:
+      - Back
+      - Volver
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Full Map
+      TermType: 0
+      Description: 
+      Languages:
+      - full map
+      - mapa completo
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Movement
+      TermType: 0
+      Description: 
+      Languages:
+      - movement
+      - movimiento
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Interact
+      TermType: 0
+      Description: 
+      Languages:
+      - interact
+      - interactuar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Bribe
+      TermType: 0
+      Description: 
+      Languages:
+      - bribe
+      - sobornar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Attack
+      TermType: 0
+      Description: 
+      Languages:
+      - attack
+      - atacar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Switch Item
+      TermType: 0
+      Description: 
+      Languages:
+      - switch item
+      - cambiar item
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Pause
+      TermType: 0
+      Description: 
+      Languages:
+      - pause
+      - pausa
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Best Time
+      TermType: 0
+      Description: 
+      Languages:
+      - Best Time
+      - Mejor Tiempo
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: No Time Posted
+      TermType: 0
+      Description: 
+      Languages:
+      - No Time Posted
+      - No hay tiempo
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Level 1
+      TermType: 0
+      Description: 
+      Languages:
+      - Level 1
+      - Nivel 1
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Start Mission
+      TermType: 0
+      Description: 
+      Languages:
+      - Start Mission
+      - "Empezar Misi\xF3n"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Finish Previous Level with Bronze Tier First
+      TermType: 0
+      Description: 
+      Languages:
+      - Finish Previous Level with Bronze Tier First
+      - Termina el Nivel Anterior con Medalla de Bronce
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Level 3
+      TermType: 0
+      Description: 
+      Languages:
+      - Level 3
+      - Nivel 3
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Finish The level to unlock extra achievements!
+      TermType: 0
+      Description: 
+      Languages:
+      - Finish The level to unlock extra achievements!
+      - Termina el nivel para desbloquear logros extra!
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Start
+      TermType: 0
+      Description: 
+      Languages:
+      - Start
+      - Iniciar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Settings
+      TermType: 0
+      Description: 
+      Languages:
+      - Settings
+      - Opciones
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Quit
+      TermType: 0
+      Description: 
+      Languages:
+      - Quit
+      - Salir
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: apply
+      TermType: 0
+      Description: 
+      Languages:
+      - Apply
+      - Aplicar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Full Screen
+      TermType: 0
+      Description: 
+      Languages:
+      - Full Screen
+      - Pantalla Completa
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Music Volume
+      TermType: 0
+      Description: 
+      Languages:
+      - Music Volume
+      - "Volumen de la M\xFAsica"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: SFX Volume
+      TermType: 0
+      Description: 
+      Languages:
+      - SFX Volume
+      - Volumen de Efectos
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Sneak Master
+      TermType: 0
+      Description: 
+      Languages:
+      - Sneak Master
+      - Maestro del Sigilo
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Evasive Maneuvers
+      TermType: 0
+      Description: 
+      Languages:
+      - Evasive Maneuvers
+      - Maniobras Evasivas
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Non-Violent Tactics
+      TermType: 0
+      Description: 
+      Languages:
+      - Non-Violent Tactics
+      - "T\xE1cticas No Violentas"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Music Music Music
+      TermType: 0
+      Description: 
+      Languages:
+      - Music Music Music
+      - "Que Siga la M\xFAsica!"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Slippery Encounter
+      TermType: 0
+      Description: 
+      Languages:
+      - Slippery Encounter
+      - Encuentro Durmiente
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Oops! The guard fell.
+      TermType: 0
+      Description: 
+      Languages:
+      - Oops! The guard fell.
+      - "Ups! El guardia se cay\xF3."
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Multiplayer
+      TermType: 0
+      Description: 
+      Languages:
+      - Multiplayer
+      - Multijugador
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Start Lobby
+      TermType: 0
+      Description: 
+      Languages:
+      - Start Lobby
+      - Iniciar Lobby
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Enter password...
+      TermType: 0
+      Description: 
+      Languages:
+      - Enter password...
+      - "Introducir contrase\xF1a..."
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Lobbies
+      TermType: 0
+      Description: 
+      Languages:
+      - Lobbies
+      - Lobbies
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Leave
+      TermType: 0
+      Description: 
+      Languages:
+      - Leave
+      - Abandonar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Start Game
+      TermType: 0
+      Description: 
+      Languages:
+      - Start Game
+      - Iniciar Juego
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: I'm Ready
+      TermType: 0
+      Description: 
+      Languages:
+      - I'm Ready
+      - Estoy Preparado
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: List of Lobbies
+      TermType: 0
+      Description: 
+      Languages:
+      - List of Lobbies
+      - Lista de Lobbies
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Refresh
+      TermType: 0
+      Description: 
+      Languages:
+      - Refresh
+      - Actualizar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Waiting
+      TermType: 0
+      Description: 
+      Languages:
+      - Waiting
+      - Esperando
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Captured!
+      TermType: 0
+      Description: 
+      Languages:
+      - Captured!
+      - Capturado!
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Door Opened!
+      TermType: 0
+      Description: 
+      Languages:
+      - <wave> Door Opened! </wave>
+      - <wave> Puerta Abierta! </wave>
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Objectives Completed!
+      TermType: 0
+      Description: 
+      Languages:
+      - <wave> Objectives Completed! </wave>
+      - <wave> Objectivos Completados! </wave>
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: fries
+      TermType: 0
+      Description: 
+      Languages:
+      - fries
+      - patatas fritas
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: 'Money collected:'
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Money collected:'
+      - 'Dinero recaudado:'
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: get the package
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Get the Package:'
+      - 'Consigue el Paquete:'
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Get The Password
+      TermType: 0
+      Description: 
+      Languages:
+      - Get The Password
+      - "Consigue la Contrase\xF1a"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Continue
+      TermType: 0
+      Description: 
+      Languages:
+      - Continue
+      - Continuar
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: pause menu
+      TermType: 0
+      Description: 
+      Languages:
+      - Pause Menu
+      - Menu de Pausa
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Back to Game
+      TermType: 0
+      Description: 
+      Languages:
+      - <incr>Back to Game</incr>
+      - <incr>Volver al Juego</incr>
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Restart
+      TermType: 0
+      Description: 
+      Languages:
+      - <incr>Restart</incr>
+      - <incr>Reiniciar</incr>
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Quit to title
+      TermType: 0
+      Description: 
+      Languages:
+      - <incr>Quit to title</incr>
+      - <incr>Salir al Menu</incr>
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Current Time
+      TermType: 0
+      Description: 
+      Languages:
+      - Current Time
+      - Tiempo Actual
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Floor Completed!
+      TermType: 0
+      Description: 
+      Languages:
+      - Floor Completed!
+      - Nivel Completo!
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: You finished it with
+      TermType: 0
+      Description: 
+      Languages:
+      - You finished it with
+      - "T\xFA lo terminaste con"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Next
+      TermType: 0
+      Description: 
+      Languages:
+      - <incr>Next</incr>
+      - <incr>Siguiente</incr>
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: You Lost!
+      TermType: 0
+      Description: 
+      Languages:
+      - You Lost!
+      - "T\xFA Perdiste!"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: SPECTATING
+      TermType: 0
+      Description: 
+      Languages:
+      - SPECTATING
+      - ESPECTADOR
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Join
+      TermType: 0
+      Description: 
+      Languages:
+      - Join
+      - Unirse
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Bribed
+      TermType: 0
+      Description: 
+      Languages:
+      - Bribed
+      - Sobornado
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Hacked
+      TermType: 0
+      Description: 
+      Languages:
+      - Hacked
+      - Hackeado
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Banana
+      TermType: 0
+      Description: 
+      Languages:
+      - Banana
+      - Platano
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Boots
+      TermType: 0
+      Description: 
+      Languages:
+      - Boots
+      - Zapatos
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Carrot
+      TermType: 0
+      Description: 
+      Languages:
+      - Carrot
+      - Zanahoria
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Chick
+      TermType: 0
+      Description: 
+      Languages:
+      - Chick
+      - Pollo Frito
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Donut
+      TermType: 0
+      Description: 
+      Languages:
+      - Donut
+      - Donut
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Door
+      TermType: 0
+      Description: 
+      Languages:
+      - Door
+      - Puerta
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Fries
+      TermType: 0
+      Description: 
+      Languages:
+      - Fries
+      - Patatas Fritas
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Guitar
+      TermType: 0
+      Description: 
+      Languages:
+      - Guitar
+      - Guitarra
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Necklace
+      TermType: 0
+      Description: 
+      Languages:
+      - Necklace
+      - Collar de Perlas
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Package
+      TermType: 0
+      Description: 
+      Languages:
+      - Package
+      - Paquete
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Sausage
+      TermType: 0
+      Description: 
+      Languages:
+      - Sausage
+      - Salsa
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Wrench
+      TermType: 0
+      Description: 
+      Languages:
+      - Wrench
+      - Llave Inglesa
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: Password
+      TermType: 0
+      Description: 
+      Languages:
+      - Password
+      - "Contrase\xF1a"
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    - Term: No Items
+      TermType: 0
+      Description: 
+      Languages:
+      - No Items
+      - No Item
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000
+      Languages_Touch: []
+    CaseInsensitiveTerms: 1
     OnMissingTranslation: 1
     mTerm_AppName: 
     mLanguages:

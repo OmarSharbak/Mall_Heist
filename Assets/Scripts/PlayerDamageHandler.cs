@@ -15,6 +15,7 @@ using System.Security.Principal;
 using UnityEngine.AI;
 using static UnityEngine.Rendering.DebugUI;
 using Unity.VisualScripting;
+using I2.Loc;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
@@ -535,7 +536,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private IEnumerator ResumePlayAfterDelay()
 	{
 		yield return new WaitForSeconds(1f); // Wait for 1 second
-		PopupTextManager.Instance.ShowPopupText("Bribed");
+		LocalizedString locString = "Bribed";
+		PopupTextManager.Instance.ShowPopupText(locString);
 		bribed = false;
 		PlayerCinemachineCamera.Priority = 11;
 		Camera.main.cullingMask |= 1 << LayerMask.NameToLayer("Walls");

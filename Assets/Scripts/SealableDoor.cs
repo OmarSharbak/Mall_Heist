@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using EPOOutline;
 using Mirror;
+using I2.Loc;
+using static UnityEditor.Progress;
 
 public class SealableDoor : NetworkBehaviour
 {
@@ -293,7 +295,8 @@ public class SealableDoor : NetworkBehaviour
 			promptUIManager = null;
 		}
 
-		PopupTextManager.Instance.ShowPopupText("Hacked");
+		LocalizedString locString = "Hacked";
+		PopupTextManager.Instance.ShowPopupText(locString);
 
 		currentSealTime = 0;
 		fillImage.color = gradient.Evaluate(1f);

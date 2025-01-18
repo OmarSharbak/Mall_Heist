@@ -166,8 +166,6 @@ public class ThirdPersonController : NetworkBehaviour
 	public TMP_Text playerNameText;
 	public GameObject floatingInfo;
 
-	private SceneScript sceneScript;
-
 	//private Material playerMaterialClone;
 
 	public string playerName = "";
@@ -230,23 +228,14 @@ public class ThirdPersonController : NetworkBehaviour
 			}
 		}
 
-		sceneScript = GameObject.FindObjectOfType<SceneScript>();
-
 		canEnterHiding = true;
 	}
 
-	[Command]
-	public void CmdSendPlayerMessage()
-	{
-		if (sceneScript)
-			sceneScript.statusText = $"{playerName} says hello {UnityEngine.Random.Range(10, 99)}";
-	}
 
 	public override void OnStartLocalPlayer()
 	{
 		base.OnStartLocalPlayer();
 
-		sceneScript.thirdPersonController = this;
 
 		// Trigger the event
 		OnLocalPlayerStarted?.Invoke(this);
@@ -257,7 +246,6 @@ public class ThirdPersonController : NetworkBehaviour
 	{
 		playerNameText.text = _name;
 		playerNameText.color = _col;
-		sceneScript.statusText = $"{playerName} joined.";
 	}
 
 	public override void OnStartClient()

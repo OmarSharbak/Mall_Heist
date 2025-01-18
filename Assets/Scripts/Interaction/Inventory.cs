@@ -4,6 +4,7 @@ using TMPro;
 using Mirror;
 using System.Linq;
 using System;
+using I2.Loc;
 
 public class Inventory : NetworkBehaviour
 {
@@ -47,7 +48,9 @@ public class Inventory : NetworkBehaviour
 	}
 	private void Update()
 	{
-		string newText = items.Count > 0 ? items[currentItemIndex].itemName : "No items";
+		LocalizedString locNoItems = "No items";
+		LocalizedString locItem = items.Count > 0 ? items[currentItemIndex].itemName:"";
+		string newText = items.Count > 0 ? locItem: locNoItems;
 		if (newText != lastItemText)
 		{
 			currentItemText.text = newText;
@@ -84,7 +87,8 @@ public class Inventory : NetworkBehaviour
 
 		audioManager.PlayAudio("ItemPickup");
 
-		PopupTextManager.Instance.ShowPopupText("+ " + item.itemName);
+		LocalizedString locString = item.itemName;
+		PopupTextManager.Instance.ShowPopupText("+ " + locString);
 
 		if (itemCounts.ContainsKey(item.itemName))
 		{
