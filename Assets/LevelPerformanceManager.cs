@@ -134,4 +134,16 @@ public class LevelPerformanceManager : MonoBehaviour
             }
         }
     }
+    public bool IsNextLevelUnlocked(string currentLevelName)
+    {
+		var levels = SaveLoadManager.Instance.currentSaveData.levelsData;
+		for (int i = 0; i < levels.Count; i++)
+		{
+			if (levels[i].levelName == currentLevelName && i + 1 < levels.Count)
+			{
+				return levels[i + 1].isUnlocked;
+			}
+		}
+        return false;
+	}
 }

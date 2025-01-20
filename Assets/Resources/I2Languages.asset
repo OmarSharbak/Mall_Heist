@@ -1162,7 +1162,7 @@ MonoBehaviour:
       TermType: 9
       Description: 
       Languages:
-      - Fyodor-Bold SDF
+      - Fyodor-Bold 1 SDF
       - NotoSans-Black 1 SDF
       - NotoSansSC-Black 1 SDF
       - NotoSans-Black 1 SDF
@@ -1227,6 +1227,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1615439c3f850b44798315f3de40eb6f, type: 2}
     - {fileID: 11400000, guid: a36c0d0038f7b6d4ebad6ce97a8a007e, type: 2}
     - {fileID: 11400000, guid: 6c384239406a890478c520ef519b36db, type: 2}
+    - {fileID: 11400000, guid: 1bd6da5446a608145aeb20788c2c9da2, type: 2}
     Spreadsheet_LocalFileName: C:/Users/lugir/Downloads/Localization-final.csv
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8

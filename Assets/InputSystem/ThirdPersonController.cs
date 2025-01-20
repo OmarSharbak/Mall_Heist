@@ -660,6 +660,10 @@ public class ThirdPersonController : NetworkBehaviour
 				}
 
 			}
+			else if(hit.transform.name== "Door" && EscalatorManager.Instance.AreAllObjectivesComplete() && (EscalatorManager.Instance.totalMoney == EscalatorManager.Instance.moneyCollected))
+			{
+				promptUIManager.ShowSouthButtonObjectsUI();
+			}
 		}
 		else
 		{

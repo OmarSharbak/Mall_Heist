@@ -37,7 +37,7 @@ public class EscalatorManager : NetworkBehaviour
 	public TMP_Text systemsOverrideText;
 	public List<TMP_Text> countObjectives;
 
-	int totalMoney;
+	public int totalMoney;
 	[SyncVar]
 	public int moneyCollected = 0;
 
@@ -615,9 +615,12 @@ public class EscalatorManager : NetworkBehaviour
 		if (NetworkManager.singleton != null)
 		{
 			NetworkManager.singleton.StopHost();
+			Destroy(GameManager.Instance);
+			Destroy(Instance);
+			SceneManager.LoadScene("RestartSingleScene");
+
 		}
 
-		SceneManager.LoadScene("SingleplayerScene");
 
 	}
 
@@ -705,7 +708,16 @@ public class EscalatorManager : NetworkBehaviour
 			if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
 				winRestartButtonGameObject.SetActive(false);
 			else
+			{
 				EventSystem.current.SetSelectedGameObject(winRestartButtonGameObject); // Set new selection
+
+				if (LevelPerformanceManager.Instance.IsNextLevelUnlocked(levelName))
+				{
+					winNextLevelButtonGameObject.SetActive(true);
+
+					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject); // Set new selection
+				}
+			}
 																					   //Cursor.visible = true;
 																					   //Cursor.lockState = CursorLockMode.None;
 
@@ -894,7 +906,7 @@ public class EscalatorManager : NetworkBehaviour
 		}
 	}
 
-	private bool AreAllObjectivesComplete()
+	public bool AreAllObjectivesComplete()
 	{
 		foreach (TMP_Text objectiveText in countObjectives)
 		{
