@@ -28,7 +28,7 @@ public class Inventory : NetworkBehaviour
 
 	private Dictionary<string, TMP_Text> objectiveItemsTextMap = new Dictionary<string, TMP_Text>();
 
-	private string lastItemText = "";
+	private LocalizedString lastItemText = "";
 
 	private Objectives objectives;
 
@@ -49,12 +49,13 @@ public class Inventory : NetworkBehaviour
 	private void Update()
 	{
 		LocalizedString locNoItems = "No items";
-		LocalizedString locItem = items.Count > 0 ? items[currentItemIndex].itemName:"";
-		string newText = items.Count > 0 ? locItem: locNoItems;
-		if (newText != lastItemText)
+		LocalizedString locItem = items.Count > 0 ? items[currentItemIndex].itemName:locNoItems;
+		locItem.mRTL_IgnoreArabicFix = true;
+		if (locItem != lastItemText)
 		{
-			currentItemText.text = newText;
-			lastItemText = newText;
+			currentItemText.text = locItem;
+			lastItemText = currentItemText.text;
+
 		}
 
 	}
