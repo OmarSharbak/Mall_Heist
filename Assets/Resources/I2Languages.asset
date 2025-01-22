@@ -1173,6 +1173,21 @@ MonoBehaviour:
       - NotoSansJP-Black 1 SDF
       Flags: 000000000000000000
       Languages_Touch: []
+    - Term: Blocker SDF
+      TermType: 9
+      Description: 
+      Languages:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 1
     OnMissingTranslation: 1
     mTerm_AppName: 
