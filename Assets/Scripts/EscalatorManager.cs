@@ -301,7 +301,7 @@ public class EscalatorManager : NetworkBehaviour
 
 	}
 
-	[SerializeField] TMP_Text countDownText;
+	[SerializeField] public TMP_Text countDownText;
 
 	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
 	{

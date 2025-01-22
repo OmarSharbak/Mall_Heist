@@ -82,6 +82,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 	private GameObject spectatingText = null;
 	private GameObject overlay = null;
+	private GameObject RTTText = null;
 
 	private bool damageStarted=false;
 
@@ -114,6 +115,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		spectatingText = GameObject.Find("SpectatingText");
 		overlay = GameObject.Find("Overlay");
 
+		RTTText= GameObject.Find("RTTText");
+
 
 		InitializeComponents();
 
@@ -141,6 +144,11 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		spectatingText.SetActive(false);
 		overlay.SetActive(false);
+
+		if(MultiplayerMode.Instance!=null && MultiplayerMode.Instance.isSinglePlayer)
+		{
+			RTTText.SetActive(false);
+		}
 
 		if (myAudioSource == null)
 		{
