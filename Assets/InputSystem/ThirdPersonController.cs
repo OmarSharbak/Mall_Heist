@@ -273,6 +273,7 @@ public class ThirdPersonController : NetworkBehaviour
 			FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
 			FollowCinemachineCamera.Follow = CinemachineCameraTarget.transform;
 			pauseMenuGameObject.SetActive(false);
+			restartButtonPauseGameObject.SetActive(false);
 
 		}
 		else
@@ -815,8 +816,8 @@ public class ThirdPersonController : NetworkBehaviour
 			outliner.enabled = false;
 			pauseMenuGameObject.SetActive(true);
 
-			if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
-				restartButtonPauseGameObject.SetActive(false);
+			if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+				restartButtonPauseGameObject.SetActive(true);
 
 			lastGameState = EscalatorManager.Instance.GetCurrentState(this);
 			EscalatorManager.Instance.SetCurrentState(this, EscalatorManager.GameState.Pause);

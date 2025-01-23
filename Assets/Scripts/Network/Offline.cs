@@ -9,6 +9,7 @@ public class Offline : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
 		if (NetworkManager.singleton != null)
 		{
 			NetworkManager.singleton.StopHost();

@@ -63,4 +63,15 @@ public class CustomNetworkManager : NetworkManager
 
 	}
 
+	public override void OnServerDisconnect(NetworkConnectionToClient conn)
+	{
+
+		Debug.Log($"Player {conn.connectionId} disconnected. Stopping server...");
+
+		if (conn.connectionId != 0) // Typically, the host has connection ID 0
+			StopHost();
+
+
+		base.OnServerDisconnect(conn);
+	}
 }

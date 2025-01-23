@@ -314,6 +314,14 @@ public class EscalatorManager : NetworkBehaviour
 		localPlayer.canMove = false;
 
 
+		if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+		{
+
+		}
+		else
+		{
+			countDownText.text = "WAITING";
+		}
 		Debug.Log("Player local State correct!");
 	}
 	public void Initialize(PlayerState player)
@@ -591,19 +599,14 @@ public class EscalatorManager : NetworkBehaviour
 	public void RestartLevel()
 	{
 		Debug.Log("restart level");
-
 		if (NetworkManager.singleton != null)
 		{
-			NetworkManager.singleton.StopHost();
+
 			Destroy(GameManager.Instance);
 			Destroy(Instance);
-			SceneManager.LoadScene("RestartSingleScene");
+			NetworkManager.singleton.offlineScene = "RestartSingleScene";
+			NetworkManager.singleton.StopHost();
 		}
-		else
-		{
-			Debug.LogWarning("Restart - Network manager Not found ");
-		}
-
 	}
 
 	public void NextLevel()
@@ -614,11 +617,10 @@ public class EscalatorManager : NetworkBehaviour
 
 		if (NetworkManager.singleton != null)
 		{
-			NetworkManager.singleton.StopHost();
 			Destroy(GameManager.Instance);
 			Destroy(Instance);
-			SceneManager.LoadScene("RestartSingleScene");
-
+			NetworkManager.singleton.offlineScene = "RestartSingleScene";
+			NetworkManager.singleton.StopHost();
 		}
 
 
@@ -626,29 +628,19 @@ public class EscalatorManager : NetworkBehaviour
 
 	public void LoadTitleScreen()
 	{
-		CmdLoadTitleScreen();
-
-	}
-
-	[Command(requiresAuthority = false)]
-	private void CmdLoadTitleScreen()
-	{
-		RpcLoadTitleScreen();
-	}
-
-	[ClientRpc]
-	private void RpcLoadTitleScreen()
-	{
-		Debug.Log("Client - load title");
 		if (NetworkManager.singleton != null)
 		{
-			NetworkManager.singleton.StopHost();
-			Destroy(NetworkManager.singleton.gameObject);
-		}
+			Destroy(GameManager.Instance);
+			Destroy(Instance);
+			if(isServer)
+				NetworkManager.singleton.StopHost();
+			else
+			{
+				NetworkManager.singleton.StopClient();
 
-		if (MultiplayerMode.Instance != null)
-			Destroy(MultiplayerMode.Instance.gameObject);
-		SceneManager.LoadScene(0);
+			}
+
+		}
 
 	}
 
@@ -705,9 +697,7 @@ public class EscalatorManager : NetworkBehaviour
 			// Access the EventSystem and set the selected GameObject
 			EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
 
-			if (MultiplayerMode.Instance != null && !MultiplayerMode.Instance.isSinglePlayer)
-				winRestartButtonGameObject.SetActive(false);
-			else
+			if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
 			{
 				EventSystem.current.SetSelectedGameObject(winRestartButtonGameObject); // Set new selection
 
@@ -718,8 +708,13 @@ public class EscalatorManager : NetworkBehaviour
 					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject); // Set new selection
 				}
 			}
-																					   //Cursor.visible = true;
-																					   //Cursor.lockState = CursorLockMode.None;
+			else
+			{
+				winRestartButtonGameObject.SetActive(false);
+
+			}
+			//Cursor.visible = true;
+			//Cursor.lockState = CursorLockMode.None;
 
 			Time.timeScale = 0f;
 		}
@@ -842,7 +837,7 @@ public class EscalatorManager : NetworkBehaviour
 		foreach (var e in allGuards)
 		{
 			EmeraldAIDetection emeraldAIDetection = e.GetComponent<EmeraldAIDetection>();
-			if (emeraldAIDetection.EmeraldComponent.CurrentTarget!=null && (emeraldAIDetection.EmeraldComponent.CurrentTarget.transform == null || emeraldAIDetection.EmeraldComponent.CurrentTarget == player.playerTransform))
+			if (emeraldAIDetection.EmeraldComponent.CurrentTarget != null && (emeraldAIDetection.EmeraldComponent.CurrentTarget.transform == null || emeraldAIDetection.EmeraldComponent.CurrentTarget == player.playerTransform))
 			{
 				Debug.Log("clear all - guard clear");
 
@@ -857,13 +852,13 @@ public class EscalatorManager : NetworkBehaviour
 		}
 	}
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	public void CmdClearGuardTarget(NetworkIdentity _networkIdentity)
 	{
 		Debug.Log("server - guard clear" + _networkIdentity.name);
 
 		EmeraldAIEventsManager em = _networkIdentity.GetComponent<EmeraldAIEventsManager>();
-		if(em != null) 
+		if (em != null)
 			em.ClearTarget();
 	}
 
