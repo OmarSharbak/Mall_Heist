@@ -1144,7 +1144,7 @@ MonoBehaviour:
       Flags: 000000000000000000
       Languages_Touch: []
     - Term: Fonts
-      TermType: 9
+      TermType: 0
       Description: 
       Languages:
       - Fyodor-Bold SDF
@@ -1174,6 +1174,21 @@ MonoBehaviour:
       Flags: 000000000000000000
       Languages_Touch: []
     - Term: Blocker SDF
+      TermType: 9
+      Description: 
+      Languages:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: LiberationSans SDF
       TermType: 9
       Description: 
       Languages:
