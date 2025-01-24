@@ -27,6 +27,7 @@ public class ResetPosition : MonoBehaviour
     // Call this function to reset the AI's position and rotation
     public void ResetToOriginalState()
     {
+        Debug.Log("RESET GUARD");
         if (aiSystem != null && navMeshAgent != null)
         {
             // Stop the AI's current actions
@@ -34,7 +35,9 @@ public class ResetPosition : MonoBehaviour
             // Reset the AI's destination
             navMeshAgent.SetDestination(originalPosition);
 
-            if (emeraldAIDetection.EmeraldComponent.CurrentTarget == null)
+			Debug.Log("RESET GUARD - set destination");
+
+			if (emeraldAIDetection.EmeraldComponent.CurrentTarget == null)
             {
                 // Once the agent reaches the destination, reset the rotation
                 StartCoroutine(ResetRotationWhenClose());

@@ -924,7 +924,8 @@ public class ThirdPersonController : NetworkBehaviour
 		isThrowing = false;
 		animator.SetInteger(_animIDWeaponType, 0);
 		SetCantDamage();
-		StartCoroutine(AfterReset());
+		if(isActiveAndEnabled)
+			StartCoroutine(AfterReset());
 	}
 
 	private IEnumerator AfterReset()

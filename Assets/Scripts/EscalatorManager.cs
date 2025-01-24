@@ -326,7 +326,8 @@ public class EscalatorManager : NetworkBehaviour
 	}
 	public void Initialize(PlayerState player)
 	{
-
+		if (player == null)
+			return;
 		if (player == playerLocal)
 		{
 			CalculateTotalMoney();
@@ -424,14 +425,14 @@ public class EscalatorManager : NetworkBehaviour
 			// Check if there is no currently selected GameObject
 			if (EventSystem.current.currentSelectedGameObject == null && playerLocal.currentState == GameState.Victory)
 			{
-				if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+				if (winNextLevelButtonGameObject.activeInHierarchy)
 
 					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject);
 			}
 
 			if (EventSystem.current.currentSelectedGameObject == null && playerLocal.currentState == GameState.Defeat)
 			{
-				if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+				if (loseRestartLevelButtonGameObject.activeInHierarchy)
 
 					EventSystem.current.SetSelectedGameObject(loseRestartLevelButtonGameObject);
 			}
@@ -598,32 +599,61 @@ public class EscalatorManager : NetworkBehaviour
 	// Reloads the current level
 	public void RestartLevel()
 	{
+		int currentLevel = SceneManager.GetActiveScene().buildIndex;
+
 		Debug.Log("restart level");
 		if (NetworkManager.singleton != null)
 		{
+			if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+			{
+				Destroy(GameManager.Instance);
+				Destroy(Instance);
+				NetworkManager.singleton.offlineScene = "RestartSingleScene";
+				NetworkManager.singleton.StopHost();
 
-			Destroy(GameManager.Instance);
-			Destroy(Instance);
-			NetworkManager.singleton.offlineScene = "RestartSingleScene";
-			NetworkManager.singleton.StopHost();
+			}
+			else if (isServer)//multiplayer
+			{
+				Debug.Log("Server restart");
+				Destroy(GameManager.Instance);
+				Destroy(Instance);
+				CustomNetworkManager.ClearServer();
+				NetworkManager.singleton.ServerChangeScene("Level" + currentLevel);
+				Time.timeScale = 1f;
+
+			}
+
 		}
 	}
 
 	public void NextLevel()
 	{
-		int activeSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-		MultiplayerMode.Instance.SetLevelIndex(activeSceneIndex + 1);
+		if (nextSceneIndex > 4)
+			nextSceneIndex = 1;
+		if (MultiplayerMode.Instance != null)
+			MultiplayerMode.Instance.SetLevelIndex(nextSceneIndex);
 
 		if (NetworkManager.singleton != null)
 		{
-			Destroy(GameManager.Instance);
-			Destroy(Instance);
-			NetworkManager.singleton.offlineScene = "RestartSingleScene";
-			NetworkManager.singleton.StopHost();
+			if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
+			{
+				Destroy(GameManager.Instance);
+				Destroy(Instance);
+				NetworkManager.singleton.offlineScene = "RestartSingleScene";
+				NetworkManager.singleton.StopHost();
+			}
+			else if (isServer)//multiplayer
+			{
+				Debug.Log("Server next level");
+				Destroy(GameManager.Instance);
+				Destroy(Instance);
+				CustomNetworkManager.ClearServer();
+				NetworkManager.singleton.ServerChangeScene("Level" + nextSceneIndex);
+				Time.timeScale = 1f;
+			}
 		}
-
-
 	}
 
 	public void LoadTitleScreen()
@@ -632,7 +662,7 @@ public class EscalatorManager : NetworkBehaviour
 		{
 			Destroy(GameManager.Instance);
 			Destroy(Instance);
-			if(isServer)
+			if (isServer)
 				NetworkManager.singleton.StopHost();
 			else
 			{
@@ -708,10 +738,16 @@ public class EscalatorManager : NetworkBehaviour
 					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject); // Set new selection
 				}
 			}
-			else
+			else if (!isServer)
 			{
 				winRestartButtonGameObject.SetActive(false);
+				winNextLevelButtonGameObject.SetActive(false);
 
+			}
+			else if (isServer)
+			{
+				winRestartButtonGameObject.SetActive(true);
+				winNextLevelButtonGameObject.SetActive(true);
 			}
 			//Cursor.visible = true;
 			//Cursor.lockState = CursorLockMode.None;
@@ -842,6 +878,7 @@ public class EscalatorManager : NetworkBehaviour
 				Debug.Log("clear all - guard clear");
 
 				CmdClearGuardTarget(e.GetComponent<NetworkIdentity>());
+				player.GetComponent<PlayerDamageHandler>().CmdResumeGuardMovement();
 			}
 
 		}
@@ -1050,7 +1087,6 @@ public class EscalatorManager : NetworkBehaviour
 				{
 					guard.isStopped = true;
 					Debug.Log(" SERVER stopped guard");
-
 				}
 			}
 		}

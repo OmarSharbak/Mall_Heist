@@ -8,7 +8,7 @@ public class CustomNetworkManager : NetworkManager
 
 	// A list to track connected players
 	public static readonly List<NetworkIdentity> connectedPlayers = new List<NetworkIdentity>();
-	private int _numPlayers = 0;
+	private static int _numPlayers = 0;
 	[HideInInspector]
 	public string playerName1 = "";
 	[HideInInspector]
@@ -17,10 +17,15 @@ public class CustomNetworkManager : NetworkManager
 	public override void OnStartServer()
 	{
 		base.OnStartServer();
-		connectedPlayers.Clear();
-        _numPlayers = 0;
+		ClearServer();
 
     }
+
+	public static void ClearServer()
+	{
+		connectedPlayers.Clear();
+		_numPlayers = 0;
+	}
 
 
 	public override void OnServerAddPlayer(NetworkConnectionToClient conn)

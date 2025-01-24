@@ -78,7 +78,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private GameObject overlay = null;
 	private GameObject RTTText = null;
 
-	private bool damageStarted=false;
+	private bool damageStarted = false;
 
 	private void Initialize()
 	{
@@ -109,7 +109,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		spectatingText = GameObject.Find("SpectatingText");
 		overlay = GameObject.Find("Overlay");
 
-		RTTText= GameObject.Find("RTTText");
+		RTTText = GameObject.Find("RTTText");
 
 
 		InitializeComponents();
@@ -139,7 +139,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		spectatingText.SetActive(false);
 		overlay.SetActive(false);
 
-		if(MultiplayerMode.Instance!=null && MultiplayerMode.Instance.isSinglePlayer)
+		if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
 		{
 			RTTText.SetActive(false);
 		}
@@ -292,7 +292,10 @@ public class PlayerDamageHandler : NetworkBehaviour
 						Debug.Log("CLIENT - own:" + ownController.transform.name + " other:" + otherController.transform.name);
 						if ((otherController != ownController) && (EscalatorManager.Instance.GetCurrentState(otherController) != EscalatorManager.GameState.Defeat))
 						{
+							stopGuard = false;
+							CmdResumeGuardMovement();
 							Defeat(ownController.netId, otherController.netId);
+
 
 						}
 					}
@@ -323,10 +326,11 @@ public class PlayerDamageHandler : NetworkBehaviour
 			return;
 		lostCanvas.SetActive(true);
 		spectatingText.SetActive(false);
-		if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
-			EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject);
-		else
+
+		if (!isServer)
 			loseRestartButtonGameObject.SetActive(false);
+		else if (loseRestartButtonGameObject.activeInHierarchy)
+			EventSystem.current.SetSelectedGameObject(loseRestartButtonGameObject);
 		Debug.Log("CLIENT - all defeat" + transform.name);
 		EscalatorManager.Instance.SetCurrentState(thirdPersonController, EscalatorManager.GameState.Defeat);
 		Debug.Log("CLIENT CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(thirdPersonController));
@@ -560,28 +564,28 @@ public class PlayerDamageHandler : NetworkBehaviour
 		moneyGameObject.SetActive(false);
 		thirdPersonController.EnableMovement();
 		stopGuard = false;
-		CmdResumeGuardMovement(emeraldAIEventsManager.transform.GetComponent<NetworkIdentity>().netId);
+		CmdResumeGuardMovement();
 	}
 
 	[Command(requiresAuthority = false)]
-	private void CmdResumeGuardMovement(uint _netId)
+	public void CmdResumeGuardMovement()
 	{
 
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		if (emeraldAIEventsManager != null)
 		{
-			if (identity != null)
-			{
-				EmeraldAIEventsManager emerald = identity.transform.GetComponent<EmeraldAIEventsManager>();
-				if (emerald != null)
-				{
-					stopGuard = false;
-					identity.transform.GetComponent<NavMeshAgent>().isStopped = false;
-					emerald.ResumeMovement();
-					emerald.ClearIgnoredTarget(transform);
-					Debug.Log("SERVER - resume guard movement");
-				}
-			}
+			stopGuard = false;
+			emeraldAIEventsManager.transform.GetComponent<NavMeshAgent>().isStopped = false;
+			emeraldAIEventsManager.ResumeMovement();
+			emeraldAIEventsManager.ClearIgnoredTarget(transform);
+
+			ResetPosition resetPosition = emeraldAIEventsManager.GetComponent<ResetPosition>();
+			if (resetPosition != null)
+				resetPosition.ResetToOriginalState();
+
+			Debug.Log("SERVER - resume guard movement");
 		}
+
+
 
 	}
 	private void StopXPressCoroutine()
