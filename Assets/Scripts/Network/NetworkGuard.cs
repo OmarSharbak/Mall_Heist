@@ -64,8 +64,8 @@ public class NetworkGuard : NetworkBehaviour
                 {
 					PlayerDamageHandler playerDamageHandler = player.GetComponent<PlayerDamageHandler>();
 
-					playerDamageHandler.RpcSetNetworkGuard(GetComponent<NetworkIdentity>());
-
+                    playerDamageHandler.RpcSetNetworkGuard(GetComponent<NetworkIdentity>());
+                    
 
 					//Debug.LogError("COMBAT MATCH! " + combatTarget.name + " ### " + player.name);
 					return;

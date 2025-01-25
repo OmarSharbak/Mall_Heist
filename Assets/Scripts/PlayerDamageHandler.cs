@@ -10,6 +10,7 @@ using System;
 using Mirror;
 using UnityEngine.AI;
 using I2.Loc;
+using Mirror.BouncyCastle.Utilities.Zlib;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
@@ -292,9 +293,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 						Debug.Log("CLIENT - own:" + ownController.transform.name + " other:" + otherController.transform.name);
 						if ((otherController != ownController) && (EscalatorManager.Instance.GetCurrentState(otherController) != EscalatorManager.GameState.Defeat))
 						{
-							stopGuard = false;
-							CmdResumeGuardMovement();
-							Defeat(ownController.netId, otherController.netId);
+							Defeat(ownController.netIdentity, otherController.netIdentity);
+							ResumeGuardMovement();
 
 
 						}
@@ -338,84 +338,73 @@ public class PlayerDamageHandler : NetworkBehaviour
 	}
 
 	[ServerCallback]
-	private void Defeat(uint _netId, uint _otherNetId)
+	private void Defeat(NetworkIdentity identity, NetworkIdentity otherIdentity)
 	{
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
-		{
-			if (identity != null)
-			{
-				TargetDefeat(identity.connectionToClient, _otherNetId);
-				RpcDisableCollider(_netId);
-				identity.GetComponent<ThirdPersonController>().defeated = true;
 
+		TargetDefeat(identity.connectionToClient, otherIdentity);
+		RpcDisableCollider(identity);		
 
-			}
-		}
 	}
 
 	[TargetRpc]
-	private void TargetDefeat(NetworkConnectionToClient target, uint _otherNetId)
+	private void TargetDefeat(NetworkConnectionToClient target, NetworkIdentity otherIdentity)
 	{
-		if (NetworkClient.spawned.TryGetValue(_otherNetId, out NetworkIdentity otherIdentity))
-		{
-			if (otherIdentity != null)
-			{
-				ThirdPersonController otherController = otherIdentity.transform.GetComponent<ThirdPersonController>();
 
-				//other player otherController
-				thirdPersonController.FollowCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
-				thirdPersonController.FollowTopCinemachineCamera.Priority = 0;
-				thirdPersonController.FollowCinemachineCamera.Priority = 20;
-				thirdPersonController.FullMapCinemachineCamera.Priority = 0;
-				Debug.Log("CLIENT - camera " + transform.name + " follow other " + otherController.transform.name);
+		ThirdPersonController otherController = otherIdentity.transform.GetComponent<ThirdPersonController>();
 
-				regularCanvas.SetActive(false);
-				outliner.enabled = false;
+		//other player otherController
+		thirdPersonController.FollowCinemachineCamera.Follow = otherController.CinemachineCameraTarget.transform;
+		thirdPersonController.FollowTopCinemachineCamera.Priority = 0;
+		thirdPersonController.FollowCinemachineCamera.Priority = 20;
+		thirdPersonController.FullMapCinemachineCamera.Priority = 0;
+		Debug.Log("CLIENT - camera " + transform.name + " follow other " + otherController.transform.name);
 
-				spectatingText.SetActive(true);
+		regularCanvas.SetActive(false);
+		outliner.enabled = false;
 
-				// Access the EventSystem and set the selected GameObject
-				EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
-			}
-		}
+		spectatingText.SetActive(true);
+
+		// Access the EventSystem and set the selected GameObject
+		EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
+
 	}
 
 
 
 	[ClientRpc]
-	private void RpcDisableCollider(uint _netId)
+	private void RpcDisableCollider(NetworkIdentity identity)
 	{
-		if (NetworkClient.spawned.TryGetValue(_netId, out NetworkIdentity identity))
+		ThirdPersonController player = identity.transform.GetComponent<ThirdPersonController>();
+		if (player != null)
 		{
-			if (identity != null)
+			player.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
+			player.gameObject.tag = "PlayerInvisible";
+			player.ToggleVisibility();
+
+			player.GetComponent<Rigidbody>().isKinematic = true;
+			Transform[] ts = player.GetComponentsInChildren<Transform>();
+
+
+			Inventory inventory = player.GetComponent<Inventory>();
+			if (inventory != null && inventory.heldItem != null)
+				inventory.CmdDestroyHeldItem(inventory.heldItem.GetComponent<NetworkIdentity>());
+
+			player.defeated = true;
+			stopGuard = false;
+			emeraldAIEventsManager = null;
+
+			EscalatorManager.Instance.SetCurrentState(player.GetComponent<ThirdPersonController>(), EscalatorManager.GameState.Defeat);
+			Debug.Log("CLIENT CURRENT STATE IS: Defeat");
+
+
+			for (int i = 0; i < ts.Length; i++)
 			{
-				ThirdPersonController player = identity.transform.GetComponent<ThirdPersonController>();
-				if (player != null)
-				{
-					player.gameObject.layer = LayerMask.NameToLayer("PlayerInvisible");
-					player.gameObject.tag = "PlayerInvisible";
-					player.ToggleVisibility();
-
-					player.GetComponent<Rigidbody>().isKinematic = true;
-					Transform[] ts = player.GetComponentsInChildren<Transform>();
-
-
-					Inventory inventory = player.GetComponent<Inventory>();
-					if (inventory != null && inventory.heldItem != null)
-						inventory.CmdDestroyHeldItem(inventory.heldItem.GetComponent<NetworkIdentity>());
-
-					for (int i = 0; i < ts.Length; i++)
-					{
-						Transform t = ts[i];
-						t.gameObject.SetActive(false);
-					}
-
-
-					EscalatorManager.Instance.SetCurrentState(player, EscalatorManager.GameState.Defeat);
-					Debug.Log("CLIENT CURRENT STATE IS: " + EscalatorManager.Instance.GetCurrentState(player));
-
-				}
+				Transform t = ts[i];
+				t.gameObject.SetActive(false);
 			}
+
+
+
 		}
 
 
@@ -570,7 +559,12 @@ public class PlayerDamageHandler : NetworkBehaviour
 	[Command(requiresAuthority = false)]
 	public void CmdResumeGuardMovement()
 	{
+		ResumeGuardMovement();
+	}
 
+	[ServerCallback]
+	public void ResumeGuardMovement()
+	{
 		if (emeraldAIEventsManager != null)
 		{
 			stopGuard = false;
@@ -584,9 +578,6 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 			Debug.Log("SERVER - resume guard movement");
 		}
-
-
-
 	}
 	private void StopXPressCoroutine()
 	{
