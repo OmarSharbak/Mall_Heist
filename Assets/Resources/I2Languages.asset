@@ -1248,6 +1248,243 @@ MonoBehaviour:
       - "\u6765\u3066"
       Flags: 000000000000000000
       Languages_Touch: []
+    - Term: Stay stealthy around the patrolling guard. Use a bakery donut to knock
+        him out temporarily. If spotted, a timely hit will make him forget he saw
+        you.
+      TermType: 0
+      Description: 
+      Languages:
+      - Stay stealthy around the patrolling guard. Use a bakery donut to knock him
+        out temporarily. If spotted, a timely hit will make him forget he saw you.
+      - "Mantente sigiloso alrededor del guardia patrullando. Usa un donut de panader\xEDa
+        para dejarlo inconsciente temporalmente. Si te descubre, un golpe a tiempo
+        har\xE1 que olvide que te vio."
+      - "\u5728\u5DE1\u903B\u7684\u5B88\u536B\u5468\u56F4\u4FDD\u6301\u9690\u79D8\u3002\u7528\u4E00\u4E2A\u9762\u5305\u5E97\u7684\u751C\u751C\u5708\u6682\u65F6\u51FB\u6655\u4ED6\u3002\u5982\u679C\u88AB\u53D1\u73B0\uFF0C\u53CA\u65F6\u4E00\u51FB\u4F1A\u8BA9\u4ED6\u5FD8\u8BB0\u770B\u5230\u4F60"
+      - "\u0411\u0443\u0434\u044C\u0442\u0435 \u0441\u043A\u0440\u044B\u0442\u043D\u044B
+        \u0432\u043E\u0437\u043B\u0435 \u043F\u0430\u0442\u0440\u0443\u043B\u0438\u0440\u0443\u044E\u0449\u0435\u0433\u043E
+        \u043E\u0445\u0440\u0430\u043D\u043D\u0438\u043A\u0430. \u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435
+        \u043F\u043E\u043D\u0447\u0438\u043A \u0438\u0437 \u043F\u0435\u043A\u0430\u0440\u043D\u0438,
+        \u0447\u0442\u043E\u0431\u044B \u0432\u0440\u0435\u043C\u0435\u043D\u043D\u043E
+        \u0432\u044B\u0440\u0443\u0431\u0438\u0442\u044C \u0435\u0433\u043E. \u0415\u0441\u043B\u0438
+        \u0432\u0430\u0441 \u0437\u0430\u043C\u0435\u0442\u0438\u043B\u0438, \u0441\u0432\u043E\u0435\u0432\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u0439
+        \u0443\u0434\u0430\u0440 \u0437\u0430\u0441\u0442\u0430\u0432\u0438\u0442
+        \u0435\u0433\u043E \u0437\u0430\u0431\u044B\u0442\u044C, \u0447\u0442\u043E
+        \u043E\u043D \u0432\u0430\u0441 \u0432\u0438\u0434\u0435\u043B"
+      - "\u0627\u0628\u0642\u064E \u0645\u062A\u062E\u0641\u064A\u064B\u0627 \u062D\u0648\u0644
+        \u0627\u0644\u062D\u0627\u0631\u0633 \u0627\u0644\u0630\u064A \u064A\u0642\u0648\u0645
+        \u0628\u0627\u0644\u062F\u0648\u0631\u064A\u0629. \u0627\u0633\u062A\u062E\u062F\u0645
+        \u0643\u0639\u0643\u0629 \u0627\u0644\u062F\u0648\u0646\u0627\u062A \u0645\u0646
+        \u0627\u0644\u0645\u062E\u0628\u0632 \u0644\u0625\u0641\u0642\u0627\u062F\u0647
+        \u0627\u0644\u0648\u0639\u064A \u0645\u0624\u0642\u062A\u064B\u0627. \u0625\u0630\u0627
+        \u0627\u0643\u062A\u0634\u0641\u0643\u060C \u0641\u0625\u0646 \u0636\u0631\u0628\u0629
+        \u0641\u064A \u0627\u0644\u0648\u0642\u062A \u0627\u0644\u0645\u0646\u0627\u0633\u0628
+        \u0633\u062A\u062C\u0639\u0644\u0647 \u064A\u0646\u0633\u0649 \u0623\u0646\u0647
+        \u0631\u0623\u0649\u0643"
+      - "Mantenha-se furtivo perto do guarda em patrulha. Use um donut da padaria
+        para nocaute\xE1-lo temporariamente. Se for descoberto, um golpe no momento
+        certo far\xE1 com que ele esque\xE7a que viu voc\xEA"
+      - "Bleib unauff\xE4llig in der N\xE4he des patrouillierenden W\xE4chters. Nutze
+        einen Donut aus der B\xE4ckerei, um ihn vor\xFCbergehend au\xDFer Gefecht
+        zu setzen. Wenn du entdeckt wirst, sorgt ein rechtzeitiger Schlag daf\xFCr,
+        dass er vergisst, dich gesehen zu haben"
+      - "Reste discret autour du garde en patrouille. Utilise un donut de la boulangerie
+        pour l\u2019assommer temporairement. Si tu es rep\xE9r\xE9, un coup bien
+        plac\xE9 lui fera oublier qu\u2019il t\u2019a vu"
+      - "\u5DE1\u56DE\u4E2D\u306E\u8B66\u5099\u54E1\u306E\u5468\u308A\u3067\u614E\u91CD\u306B\u884C\u52D5\u3057\u307E\u3057\u3087\u3046\u3002\u30D1\u30F3\u5C4B\u306E\u30C9\u30FC\u30CA\u30C4\u3092\u4F7F\u3063\u3066\u4E00\u6642\u7684\u306B\u6C17\u7D76\u3055\u305B\u3066\u304F\u3060\u3055\u3044\u3002\u898B\u3064\u304B\u3063\u305F\u5834\u5408\u3001\u30BF\u30A4\u30DF\u30F3\u30B0\u3088\u304F\u4E00\u6483\u3092\u52A0\u3048\u308B\u3068\u3001\u3042\u306A\u305F\u3092\u898B\u305F\u3053\u3068\u3092\u5FD8\u308C\u3055\u305B\u308B\u3053\u3068\u304C\u3067\u304D\u307E\u3059"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Retrieve a special package hidden in the mall. Complete the objectives
+        above and exit unnoticed.
+      TermType: 0
+      Description: 
+      Languages:
+      - Retrieve a special package hidden in the mall. Complete the objectives above
+        and exit unnoticed.
+      - Recupera un paquete especial escondido en el centro comercial. Completa los
+        objetivos anteriores y sal sin ser visto.
+      - "\u53D6\u56DE\u9690\u85CF\u5728\u5546\u573A\u91CC\u7684\u7279\u6B8A\u5305\u88F9\u3002\u5B8C\u6210\u4EE5\u4E0A\u76EE\u6807\u5E76\u6084\u6084\u79BB\u5F00"
+      - "\u0417\u0430\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u043F\u0435\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0439
+        \u043F\u0430\u043A\u0435\u0442, \u0441\u043F\u0440\u044F\u0442\u0430\u043D\u043D\u044B\u0439
+        \u0432 \u0442\u043E\u0440\u0433\u043E\u0432\u043E\u043C \u0446\u0435\u043D\u0442\u0440\u0435.
+        \u0412\u044B\u043F\u043E\u043B\u043D\u0438\u0442\u0435 \u0432\u044B\u0448\u0435\u0443\u043A\u0430\u0437\u0430\u043D\u043D\u044B\u0435
+        \u0437\u0430\u0434\u0430\u0447\u0438 \u0438 \u0432\u044B\u0439\u0434\u0438\u0442\u0435
+        \u043D\u0435\u0437\u0430\u043C\u0435\u0442\u043D\u043E."
+      - "\u0627\u0633\u062A\u0631\u062C\u0639 \u0627\u0644\u0637\u0631\u062F \u0627\u0644\u062E\u0627\u0635
+        \u0627\u0644\u0645\u062E\u0641\u064A \u0641\u064A \u0627\u0644\u0645\u0631\u0643\u0632
+        \u0627\u0644\u062A\u062C\u0627\u0631\u064A. \u0623\u0643\u0645\u0644 \u0627\u0644\u0623\u0647\u062F\u0627\u0641
+        \u0623\u0639\u0644\u0627\u0647 \u0648\u0627\u062E\u0631\u062C \u062F\u0648\u0646
+        \u0623\u0646 \u064A\u0644\u0627\u062D\u0638\u0643 \u0623\u062D\u062F"
+      - Recupere um pacote especial escondido no shopping. Complete os objetivos
+        acima e saia despercebido.
+      - "Bergt ein spezielles Paket, das im Einkaufszentrum versteckt ist. Erf\xFCllt
+        die oben genannten Ziele und verlasst den Ort unbemerkt."
+      - "R\xE9cup\xE8re un colis sp\xE9cial cach\xE9 dans le centre commercial. Accomplis
+        les objectifs ci-dessus et sors sans te faire remarquer."
+      - "\u30B7\u30E7\u30C3\u30D4\u30F3\u30B0\u30E2\u30FC\u30EB\u306B\u96A0\u3055\u308C\u305F\u7279\u5225\u306A\u8377\u7269\u3092\u56DE\u53CE\u3057\u3066\u304F\u3060\u3055\u3044\u3002\u4E0A\u8A18\u306E\u76EE\u6A19\u3092\u9054\u6210\u3057\u3001\u6C17\u3065\u304B\u308C\u305A\u306B\u9000\u51FA\u3057\u3066\u304F\u3060\u3055\u3044"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: The door is locked. Hack the system to unlock it!
+      TermType: 0
+      Description: 
+      Languages:
+      - The door is locked. Hack the system to unlock it!
+      - "La puerta est\xE1 cerrada. \xA1Hackea el sistema para desbloquearla!"
+      - "\u95E8\u88AB\u9501\u4F4F\u4E86\u3002\u9ED1\u5165\u7CFB\u7EDF\u89E3\u9501\u5B83\uFF01"
+      - "\u0414\u0432\u0435\u0440\u044C \u0437\u0430\u043F\u0435\u0440\u0442\u0430.
+        \u0412\u0437\u043B\u043E\u043C\u0430\u0439\u0442\u0435 \u0441\u0438\u0441\u0442\u0435\u043C\u0443,
+        \u0447\u0442\u043E\u0431\u044B \u043E\u0442\u043A\u0440\u044B\u0442\u044C
+        \u0435\u0451!"
+      - "\u0627\u0644\u0628\u0627\u0628 \u0645\u0642\u0641\u0644. \u0627\u062E\u062A\u0631\u0642
+        \u0627\u0644\u0646\u0638\u0627\u0645 \u0644\u0641\u062A\u062D\u0647!"
+      - "A porta est\xE1 trancada. Hackeie o sistema para destrav\xE1-la!"
+      - "Die T\xFCr ist verschlossen. Hacke das System, um sie zu \xF6ffnen!"
+      - "La porte est verrouill\xE9e. Pirate le syst\xE8me pour la d\xE9verrouiller\u202F!"
+      - "\u30C9\u30A2\u304C\u30ED\u30C3\u30AF\u3055\u308C\u3066\u3044\u307E\u3059\u3002\u30B7\u30B9\u30C6\u30E0\u3092\u30CF\u30C3\u30AD\u30F3\u30B0\u3057\u3066\u89E3\u9664\u3057\u3066\u304F\u3060\u3055\u3044\uFF01"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Throw an object to distract the guard, but remember he'll return to his
+        post. Combine distraction with an attack for more time to act!
+      TermType: 0
+      Description: 
+      Languages:
+      - Throw an object to distract the guard, but remember he'll return to his post.
+        Combine distraction with an attack for more time to act!
+      - "Lanza un objeto para distraer al guardia, pero recuerda que volver\xE1 a
+        su puesto. \xA1Combina la distracci\xF3n con un ataque para ganar m\xE1s
+        tiempo para actuar!"
+      - "\u6254\u4E00\u4E2A\u7269\u4F53\u6765\u5206\u6563\u5B88\u536B\u7684\u6CE8\u610F\u529B\uFF0C\u4F46\u8BB0\u4F4F\u4ED6\u4F1A\u56DE\u5230\u5C97\u4F4D\u3002\u7ED3\u5408\u5206\u6563\u6CE8\u610F\u529B\u548C\u653B\u51FB\u53EF\u4EE5\u4E89\u53D6\u66F4\u591A\u884C\u52A8\u65F6\u95F4\uFF01"
+      - "\u0411\u0440\u043E\u0441\u044C\u0442\u0435 \u043F\u0440\u0435\u0434\u043C\u0435\u0442,
+        \u0447\u0442\u043E\u0431\u044B \u043E\u0442\u0432\u043B\u0435\u0447\u044C
+        \u043E\u0445\u0440\u0430\u043D\u043D\u0438\u043A\u0430, \u043D\u043E \u043F\u043E\u043C\u043D\u0438\u0442\u0435,
+        \u0447\u0442\u043E \u043E\u043D \u0432\u0435\u0440\u043D\u0451\u0442\u0441\u044F
+        \u043D\u0430 \u043F\u043E\u0441\u0442. \u0421\u043E\u0432\u043C\u0435\u0441\u0442\u0438\u0442\u0435
+        \u043E\u0442\u0432\u043B\u0435\u0447\u0435\u043D\u0438\u0435 \u0441 \u0430\u0442\u0430\u043A\u043E\u0439,
+        \u0447\u0442\u043E\u0431\u044B \u043F\u043E\u043B\u0443\u0447\u0438\u0442\u044C
+        \u0431\u043E\u043B\u044C\u0448\u0435 \u0432\u0440\u0435\u043C\u0435\u043D\u0438
+        \u0434\u043B\u044F \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0439!"
+      - "\u0627\u0631\u0645\u0650 \u0634\u064A\u0626\u064B\u0627 \u0644\u062A\u0634\u062A\u064A\u062A
+        \u0627\u0646\u062A\u0628\u0627\u0647 \u0627\u0644\u062D\u0627\u0631\u0633\u060C
+        \u0644\u0643\u0646 \u062A\u0630\u0643\u0631 \u0623\u0646\u0647 \u0633\u064A\u0639\u0648\u062F
+        \u0625\u0644\u0649 \u0645\u0648\u0642\u0639\u0647. \u0627\u062C\u0645\u0639
+        \u0628\u064A\u0646 \u0627\u0644\u0625\u0644\u0647\u0627\u0621 \u0648\u0627\u0644\u0647\u062C\u0648\u0645
+        \u0644\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u0627\u0644\u0645\u0632\u064A\u062F
+        \u0645\u0646 \u0627\u0644\u0648\u0642\u062A \u0644\u0644\u062A\u0635\u0631\u0641!"
+      - "Jogue um objeto para distrair o guarda, mas lembre-se que ele voltar\xE1
+        ao posto. Combine a distra\xE7\xE3o com um ataque para ganhar mais tempo
+        para agir!"
+      - "Wirf einen Gegenstand, um den W\xE4chter abzulenken, aber denk daran, dass
+        er zu seinem Posten zur\xFCckkehren wird. Kombiniere die Ablenkung mit einem
+        Angriff, um mehr Zeit zum Handeln zu haben!"
+      - "Lance un objet pour distraire le garde, mais souviens-toi qu\u2019il retournera
+        \xE0 son poste. Combine la distraction avec une attaque pour avoir plus de
+        temps pour agir\u202F!"
+      - "\u7269\u3092\u6295\u3052\u3066\u8B66\u5099\u54E1\u306E\u6CE8\u610F\u3092\u305D\u3089\u3057\u3066\u304F\u3060\u3055\u3044\u3002\u305F\u3060\u3057\u3001\u5F7C\u306F\u6301\u3061\u5834\u306B\u623B\u308B\u3053\u3068\u3092\u5FD8\u308C\u306A\u3044\u3067\u304F\u3060\u3055\u3044\u3002\u6C17\u3092\u305D\u3089\u3059\u3053\u3068\u3068\u653B\u6483\u3092\u7D44\u307F\u5408\u308F\u305B\u308B\u3053\u3068\u3067\u3001\u884C\u52D5\u3059\u308B\u6642\u9593\u3092\u7A3C\u3052\u307E\u3059\uFF01"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Watch out! There's a new guard patrolling the store at random. Stay alert!
+      TermType: 0
+      Description: 
+      Languages:
+      - Watch out! There's a new guard patrolling the store at random. Stay alert!
+      - "\xA1Cuidado! Hay un nuevo guardia patrullando la tienda al azar. \xA1Mantente
+        alerta!"
+      - "\u5C0F\u5FC3\uFF01\u6709\u4E00\u4E2A\u65B0\u7684\u5B88\u536B\u5728\u5546\u5E97\u91CC\u968F\u673A\u5DE1\u903B\u3002\u4FDD\u6301\u8B66\u60D5\uFF01"
+      - "\u041E\u0441\u0442\u043E\u0440\u043E\u0436\u043D\u043E! \u041D\u043E\u0432\u044B\u0439
+        \u043E\u0445\u0440\u0430\u043D\u043D\u0438\u043A \u043F\u0430\u0442\u0440\u0443\u043B\u0438\u0440\u0443\u0435\u0442
+        \u043C\u0430\u0433\u0430\u0437\u0438\u043D \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u044B\u043C
+        \u043E\u0431\u0440\u0430\u0437\u043E\u043C. \u0411\u0443\u0434\u044C\u0442\u0435
+        \u043D\u0430\u0447\u0435\u043A\u0443!"
+      - "\u0627\u062D\u062A\u0631\u0633! \u0647\u0646\u0627\u0643 \u062D\u0627\u0631\u0633
+        \u062C\u062F\u064A\u062F \u064A\u0642\u0648\u0645 \u0628\u062F\u0648\u0631\u064A\u0629
+        \u0639\u0634\u0648\u0627\u0626\u064A\u0629 \u0641\u064A \u0627\u0644\u0645\u062A\u062C\u0631.
+        \u0627\u0628\u0642\u064E \u0645\u062A\u064A\u0642\u0638\u064B\u0627!"
+      - "Cuidado! H\xE1 um novo guarda patrulhando a loja de forma aleat\xF3ria.
+        Fique alerta!"
+      - "Achtung! Ein neuer W\xE4chter patrouilliert zuf\xE4llig im Laden. Bleib
+        wachsam!"
+      - "Attention\u202F! Un nouveau garde patrouille dans le magasin de mani\xE8re
+        al\xE9atoire. Reste vigilant\u202F!"
+      - "\u6CE8\u610F\u3057\u3066\u304F\u3060\u3055\u3044\uFF01\u65B0\u3057\u3044\u8B66\u5099\u54E1\u304C\u5E97\u5185\u3092\u30E9\u30F3\u30C0\u30E0\u306B\u5DE1\u56DE\u3057\u3066\u3044\u307E\u3059\u3002\u8B66\u6212\u3092\u6020\u3089\u306A\u3044\u3067\u304F\u3060\u3055\u3044\uFF01"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Use collected items to help you in your heists. Also you can carry a
+        maximum of three items from a container.
+      TermType: 0
+      Description: 
+      Languages:
+      - Use collected items to help you in your heists. Also you can carry a maximum
+        of three items from a container.
+      - "Usa los objetos recolectados para ayudarte en tus robos. Adem\xE1s, puedes
+        llevar un m\xE1ximo de tres objetos de un contenedor."
+      - "\u4F7F\u7528\u6536\u96C6\u7684\u7269\u54C1\u6765\u5E2E\u52A9\u4F60\u5B8C\u6210\u76D7\u7A83\u3002\u6B64\u5916\uFF0C\u4F60\u6700\u591A\u53EF\u4EE5\u4ECE\u4E00\u4E2A\u5BB9\u5668\u4E2D\u643A\u5E26\u4E09\u4EF6\u7269\u54C1"
+      - "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0441\u043E\u0431\u0440\u0430\u043D\u043D\u044B\u0435
+        \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u044B, \u0447\u0442\u043E\u0431\u044B
+        \u043F\u043E\u043C\u043E\u0447\u044C \u0432\u0430\u043C \u0432 \u043E\u0433\u0440\u0430\u0431\u043B\u0435\u043D\u0438\u044F\u0445.
+        \u041A\u0440\u043E\u043C\u0435 \u0442\u043E\u0433\u043E, \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435
+        \u043D\u0435\u0441\u0442\u0438 \u043C\u0430\u043A\u0441\u0438\u043C\u0443\u043C
+        \u0442\u0440\u0438 \u043F\u0440\u0435\u0434\u043C\u0435\u0442\u0430 \u0438\u0437
+        \u043E\u0434\u043D\u043E\u0433\u043E \u043A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440\u0430."
+      - "\u0627\u0633\u062A\u062E\u062F\u0645 \u0627\u0644\u0639\u0646\u0627\u0635\u0631
+        \u0627\u0644\u062A\u064A \u062C\u0645\u0639\u062A\u0647\u0627 \u0644\u0645\u0633\u0627\u0639\u062F\u062A\u0643
+        \u0641\u064A \u0639\u0645\u0644\u064A\u0627\u062A \u0627\u0644\u0633\u0637\u0648.
+        \u064A\u0645\u0643\u0646\u0643 \u0623\u064A\u0636\u064B\u0627 \u062D\u0645\u0644
+        \u062B\u0644\u0627\u062B\u0629 \u0639\u0646\u0627\u0635\u0631 \u0643\u062D\u062F
+        \u0623\u0642\u0635\u0649 \u0645\u0646 \u0623\u064A \u062D\u0627\u0648\u064A\u0629"
+      - "Use os itens coletados para ajud\xE1-lo em seus assaltos. Al\xE9m disso,
+        voc\xEA pode carregar no m\xE1ximo tr\xEAs itens de um cont\xEAiner."
+      - "Nutze gesammelte Gegenst\xE4nde, um dir bei deinen Raubz\xFCgen zu helfen.
+        Au\xDFerdem kannst du maximal drei Gegenst\xE4nde aus einem Beh\xE4lter tragen."
+      - "Utilise les objets collect\xE9s pour t\u2019aider dans tes braquages. Tu
+        peux \xE9galement transporter un maximum de trois objets par conteneur."
+      - "\u96C6\u3081\u305F\u30A2\u30A4\u30C6\u30E0\u3092\u4F7F\u3063\u3066\u3001\u5F37\u76D7\u3092\u30B5\u30DD\u30FC\u30C8\u3057\u307E\u3057\u3087\u3046\u3002\u307E\u305F\u3001\u30B3\u30F3\u30C6\u30CA\u304B\u3089\u6301\u3061\u904B\u3079\u308B\u30A2\u30A4\u30C6\u30E0\u306F\u6700\u59273\u3064\u307E\u3067\u3067\u3059"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Grab the donut from here, it will be useful later. Remember, you can
+        only carry one donut at a time.
+      TermType: 0
+      Description: 
+      Languages:
+      - Grab the donut from here, it will be useful later. Remember, you can only
+        carry one donut at a time.
+      - "Toma el donut de aqu\xED, ser\xE1 \xFAtil m\xE1s adelante. Recuerda, solo
+        puedes llevar un donut a la vez."
+      - "\u4ECE\u8FD9\u91CC\u62FF\u751C\u751C\u5708,\u4EE5\u540E\u4F1A\u6D3E\u4E0A\u7528\u573A\u3002\u8BB0\u4F4F\uFF0C\u4F60\u4E00\u6B21\u53EA\u80FD\u643A\u5E26\u4E00\u4E2A\u751C\u751C\u5708"
+      - "\u0412\u043E\u0437\u044C\u043C\u0438\u0442\u0435 \u043F\u043E\u043D\u0447\u0438\u043A
+        \u043E\u0442\u0441\u044E\u0434\u0430, \u043E\u043D \u043F\u0440\u0438\u0433\u043E\u0434\u0438\u0442\u0441\u044F
+        \u043F\u043E\u0437\u0436\u0435. \u041F\u043E\u043C\u043D\u0438\u0442\u0435,
+        \u0432\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u043D\u0435\u0441\u0442\u0438
+        \u0442\u043E\u043B\u044C\u043A\u043E \u043E\u0434\u0438\u043D \u043F\u043E\u043D\u0447\u0438\u043A
+        \u0437\u0430 \u0440\u0430\u0437."
+      - "\u062E\u0630 \u0627\u0644\u062F\u0648\u0646\u0627\u062A \u0645\u0646 \u0647\u0646\u0627\u061B
+        \u0633\u064A\u0643\u0648\u0646 \u0645\u0641\u064A\u062F\u064B\u0627 \u0644\u0627\u062D\u0642\u064B\u0627.
+        \u062A\u0630\u0643\u0631\u060C \u064A\u0645\u0643\u0646\u0643 \u062D\u0645\u0644
+        \u062F\u0648\u0646\u0627\u062A \u0648\u0627\u062D\u062F\u0629 \u0641\u0642\u0637
+        \u0641\u064A \u0643\u0644 \u0645\u0631\u0629"
+      - "Pegue o donut daqui, ele ser\xE1 \xFAtil mais tarde. Lembre-se, voc\xEA
+        s\xF3 pode carregar um donut por vez."
+      - "Nimm den Donut von hier, er wird sp\xE4ter n\xFCtzlich sein. Denke daran,
+        du kannst immer nur einen Donut gleichzeitig tragen."
+      - "Prends le donut ici , il te sera utile plus tard. N\u2019oublie pas, tu
+        ne peux porter qu\u2019un seul donut \xE0 la fois."
+      - "\u3053\u3053\u304B\u3089\u30C9\u30FC\u30CA\u30C4\u3092\u53D6\u3063\u3066\u304F\u3060\u3055\u3044\u3002\u5F8C\u3067\u5F79\u306B\u7ACB\u3061\u307E\u3059\u3002\u899A\u3048\u3066\u304A\u3044\u3066\u304F\u3060\u3055\u3044\u3001\u4E00\u5EA6\u306B\u6301\u3061\u904B\u3079\u308B\u30C9\u30FC\u30CA\u30C4\u306F1\u3064\u3060\u3051\u3067\u3059"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Switch items using Z or X (keyboard) and Left Shoulder or Right Shoulder
+        (gamepad).
+      TermType: 0
+      Description: 
+      Languages:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      Flags: 000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 1
     OnMissingTranslation: 1
     mTerm_AppName: 

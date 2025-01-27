@@ -1324,14 +1324,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2173169219286557168}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5138fc9bd9e6c774b9dcc5524c13d04a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogue:
     content: Switch items using Z or X (keyboard) and Left Shoulder or Right Shoulder
-      (gamepad).</size>
+      (gamepad).
 --- !u!114 &4941393556369177707
 MonoBehaviour:
   m_ObjectHideFlags: 0

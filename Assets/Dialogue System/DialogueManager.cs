@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement; // Needed to get the current scene name or index
+using UnityEngine.SceneManagement;
+using I2.Loc; // Needed to get the current scene name or index
 
 public class DialogueManager : MonoBehaviour
 {
@@ -69,8 +70,12 @@ public class DialogueManager : MonoBehaviour
 
 		currentDialogue = dialogue;
 
+		LocalizedString localizedString = dialogue.content;
+		Debug.Log(localizedString);
+		contentText.text = localizedString;
+
 		animator.SetBool("IsOpen", true);
-		contentText.text = dialogue.content;
+
 
 		EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
 		EventSystem.current.SetSelectedGameObject(continueButton.gameObject); // Set new selection

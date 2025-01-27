@@ -603,8 +603,6 @@ public class EscalatorManager : NetworkBehaviour
 					Debug.Log("CLIENT - victory local");
 
 					OnLevelFinished?.Invoke();
-					if (isLocalPlayer)
-						LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
 					state.CmdSetGameState(GameState.Victory);
 					UpdateMusicState(state);
 					Debug.Log("CLIENT - victory" + state.transform.name);
@@ -751,6 +749,8 @@ public class EscalatorManager : NetworkBehaviour
 			{
 				EventSystem.current.SetSelectedGameObject(winRestartButtonGameObject); // Set new selection
 
+				LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
+
 				if (LevelPerformanceManager.Instance.IsNextLevelUnlocked(levelName))
 				{
 					winNextLevelButtonGameObject.SetActive(true);
@@ -766,8 +766,15 @@ public class EscalatorManager : NetworkBehaviour
 			}
 			else if (isServer)
 			{
-				winRestartButtonGameObject.SetActive(true);
-				winNextLevelButtonGameObject.SetActive(true);
+				LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
+
+				if (LevelPerformanceManager.Instance.IsNextLevelUnlocked(levelName))
+				{
+					winRestartButtonGameObject.SetActive(true);
+					winNextLevelButtonGameObject.SetActive(true);
+					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject); // Set new selection
+
+				}
 			}
 			//Cursor.visible = true;
 			//Cursor.lockState = CursorLockMode.None;

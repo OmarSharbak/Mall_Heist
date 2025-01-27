@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InventorySwitchTutorial : MonoBehaviour
 {
@@ -18,10 +19,14 @@ public class InventorySwitchTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hasInteracted == false && inventory.CountTotalItems() >= 2)
+		if (hasInteracted == false && inventory.CountTotalItems() >= 2)
         {
+			string currentLevelName = SceneManager.GetActiveScene().name;
+            
             hasInteracted = true;
-            DialogueManager.Instance.StartDialogue(dialogue);
+            if (currentLevelName == "Level1")
+				DialogueManager.Instance.StartDialogue(dialogue);
+            
         }
     }
 }

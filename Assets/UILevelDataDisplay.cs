@@ -61,13 +61,15 @@ public class UILevelDataDisplay : MonoBehaviour
         {
             achievementsOnGO.SetActive(false);
             achievementsOffGO.SetActive(true);
-            levelLockedGO.SetActive(false);
+			if (levelLockedGO != null)
+				levelLockedGO.SetActive(false);
         }
         else if(levelData.isUnlocked == false)
         {
             achievementsOnGO.SetActive(false);
             achievementsOffGO.SetActive(false);
-            levelLockedGO.SetActive(true);
+			if (levelLockedGO != null)
+				levelLockedGO.SetActive(true);
             goldClockGO.SetActive(false);
             silverClockGO.SetActive(false);
             bronzeClockGO.SetActive(false);
