@@ -5825,15 +5825,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Level 1
-      m_Image: {fileID: 0}
-    - m_Text: Level 2
-      m_Image: {fileID: 0}
-    - m_Text: Level 3
-      m_Image: {fileID: 0}
-    - m_Text: Level 4
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6187,6 +6179,7 @@ MonoBehaviour:
   lobbyManager: {fileID: 529990451}
   lobbyStartButton: {fileID: 205839805}
   lobbyReadyButton: {fileID: 93570847}
+  lobbyDropdown: {fileID: 1395011345}
   lobbiesMenuObject: {fileID: 510178114}
   askPasswordObject: {fileID: 1331439696}
   passwordJoinObject: {fileID: 72178629}

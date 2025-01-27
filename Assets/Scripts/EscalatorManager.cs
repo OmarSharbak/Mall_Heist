@@ -11,6 +11,7 @@ using MoreMountains.Feedbacks;
 using System;
 using Mirror;
 using UnityEngine.AI;
+using I2.Loc;
 
 public class EscalatorManager : NetworkBehaviour
 {
@@ -372,7 +373,8 @@ public class EscalatorManager : NetworkBehaviour
 	public void InitiateGameStart()
 	{
 		Time.timeScale = 1f;
-		countDownText.text = "GO!";
+		LocalizedString localizedString = "GO!";
+		countDownText.text = localizedString;
 		StartCoroutine(ClearTextAfterDelay(1f));
 		StartTimer();
 

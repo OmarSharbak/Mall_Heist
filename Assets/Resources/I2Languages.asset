@@ -1233,6 +1233,21 @@ MonoBehaviour:
       - "\u30EC\u30D9\u30EB4"
       Flags: 000000000000000000
       Languages_Touch: []
+    - Term: Go!
+      TermType: 0
+      Description: 
+      Languages:
+      - Go!
+      - Vamos!
+      - "\u53BB\uFF01"
+      - "\u0418\u0434\u0442\u0438!"
+      - "\u064A\u0630\u0647\u0628!"
+      - Ir!
+      - Gehen!
+      - Aller!
+      - "\u6765\u3066"
+      Flags: 000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 1
     OnMissingTranslation: 1
     mTerm_AppName: 
@@ -1289,6 +1304,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 6c384239406a890478c520ef519b36db, type: 2}
     - {fileID: 11400000, guid: 1bd6da5446a608145aeb20788c2c9da2, type: 2}
     - {fileID: 12800000, guid: 9a7eb8ee597682a4c9a10310a0937b29, type: 3}
+    - {fileID: 11400000, guid: 3bd21f304e77db54eb98a1f35f6a2680, type: 2}
+    - {fileID: 11400000, guid: 13ba65f67b2c8c04082eed84b8b96372, type: 2}
     Spreadsheet_LocalFileName: C:/Users/lugir/Downloads/Localization-final.csv
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8

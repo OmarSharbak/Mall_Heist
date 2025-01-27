@@ -1,5 +1,6 @@
 using Edgegap;
 using HeathenEngineering.SteamworksIntegration;
+using I2.Loc;
 using Mirror;
 using System;
 using System.Collections;
@@ -21,6 +22,8 @@ public class LobbyMenuManager : MonoBehaviour
 	[SerializeField] private LobbyManager lobbyManager;
 	[SerializeField] private Button lobbyStartButton;
 	[SerializeField] private Toggle lobbyReadyButton;
+	[SerializeField] private TMP_Dropdown lobbyDropdown;
+
 	[Header("Lobbies")]
 	[SerializeField] private GameObject lobbiesMenuObject;
 	[SerializeField] private GameObject askPasswordObject;
@@ -52,8 +55,6 @@ public class LobbyMenuManager : MonoBehaviour
 		OpenMainMenu();
 		HeathenEngineering.SteamworksIntegration.API.Overlay.Client.EventGameLobbyJoinRequested.AddListener(OverlayJoinButton);
 		StartCoroutine(GetPublicIPAddress());
-
-
 	}
 
 	
@@ -140,6 +141,13 @@ public class LobbyMenuManager : MonoBehaviour
 	{
 		CloseScreens();
 		mainMenuObject.SetActive(true);
+
+		lobbyDropdown.options.Clear();
+		for (int i = 1; i <= 4; i++)
+		{
+			LocalizedString level = "Level " + i;
+			lobbyDropdown.options.Add(new TMP_Dropdown.OptionData(level));
+		}
 	}
 	public void OpenLobbies()
 	{
@@ -213,7 +221,7 @@ public class LobbyMenuManager : MonoBehaviour
 	}
 
 	public void OnLevelSelected(int value)
-	{
+	{		
 		NetworkManager.singleton.onlineScene = "Level" + (value + 1);
 		Debug.Log("changed online scene: " + NetworkManager.singleton.onlineScene);
 	}
