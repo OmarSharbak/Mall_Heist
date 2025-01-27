@@ -1144,7 +1144,7 @@ MonoBehaviour:
       Flags: 000000000000000000
       Languages_Touch: []
     - Term: Fonts
-      TermType: 0
+      TermType: 9
       Description: 
       Languages:
       - Fyodor-Bold SDF
@@ -1203,6 +1203,36 @@ MonoBehaviour:
       - 
       Flags: 000000000000000000
       Languages_Touch: []
+    - Term: Level 2
+      TermType: 0
+      Description: 
+      Languages:
+      - Level 2
+      - Nivel 2
+      - "\u7B49\u7EA7 2"
+      - "\u0443\u0440\u043E\u0432\u0435\u043D\u044C 2"
+      - "2 \u0645\u0633\u062A\u0648\u0649"
+      - "N\xEDvel 2"
+      - Stufe 2
+      - Niveau 2
+      - "\u30EC\u30D9\u30EB2"
+      Flags: 000000000000000000
+      Languages_Touch: []
+    - Term: Level 4
+      TermType: 0
+      Description: 
+      Languages:
+      - Level 4
+      - Nivel 4
+      - "4\u7EA7"
+      - "\u0443\u0440\u043E\u0432\u0435\u043D\u044C 4"
+      - "4 \u0645\u0633\u062A\u0648\u0649"
+      - "N\xEDvel 4"
+      - Stufe 4
+      - Niveau 4
+      - "\u30EC\u30D9\u30EB4"
+      Flags: 000000000000000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 1
     OnMissingTranslation: 1
     mTerm_AppName: 
@@ -1258,6 +1288,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a36c0d0038f7b6d4ebad6ce97a8a007e, type: 2}
     - {fileID: 11400000, guid: 6c384239406a890478c520ef519b36db, type: 2}
     - {fileID: 11400000, guid: 1bd6da5446a608145aeb20788c2c9da2, type: 2}
+    - {fileID: 12800000, guid: 9a7eb8ee597682a4c9a10310a0937b29, type: 3}
     Spreadsheet_LocalFileName: C:/Users/lugir/Downloads/Localization-final.csv
     Spreadsheet_LocalCSVSeparator: ','
     Spreadsheet_LocalCSVEncoding: utf-8

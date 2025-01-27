@@ -548,6 +548,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1224,6 +1225,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1894,8 +1896,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Finish The level to unlock extra achievements!
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -1908,10 +1910,11 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
-  AlwaysForceLocalize: 0
+  AlwaysForceLocalize: 1
   LocalizeCallBack:
     Target: {fileID: 0}
     MethodName: 
@@ -2254,7 +2257,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uFEE3\uFEDE\u0621 \u0627\uFEDF\uFEB8\uFE8E\uFEB7\uFE94"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_fontSharedMaterials: []
@@ -2350,6 +2353,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2655,8 +2659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Sneak Master
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -2669,6 +2673,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -2844,6 +2849,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3998,6 +4004,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4030,10 +4037,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0623\uFEBF\uFED2 \u0625\uFEDF\uFBFD \uFED7\uFE8E\uFE8B\uFEE4\uFE94 \u0627\uFEF7\uFEE3\uFEE8\uFEF4\uFE8E\u062A"
-  m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
-  m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
+  m_text: "\u30A6\u30A3\u30C3\u30B7\u30E5\u30EA\u30B9\u30C8\u306B\u5165\u308C\u308B"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
+  m_sharedMaterial: {fileID: 5449453956234719703, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4057,14 +4064,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 19.7
   m_fontSizeBase: 27
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 4
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -4336,6 +4343,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -4824,6 +4832,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -5284,6 +5293,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -6205,8 +6215,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Music Music Music
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -6219,6 +6229,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -7870,8 +7881,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Sneak Master
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -7884,6 +7895,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -8554,6 +8566,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -9412,7 +9425,7 @@ MonoBehaviour:
   mTarget: {fileID: 1154936969}
   mAlignment_RTL: 258
   mAlignment_LTR: 258
-  mAlignmentWasRTL: 1
+  mAlignmentWasRTL: 0
   mInitializeAlignment: 0
 --- !u!1 &505626774
 GameObject:
@@ -9923,7 +9936,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uFE97\uFED8\uFEAA\uFEF3\uFEE2 \uFEC3\uFEE0\uFE90"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_fontSharedMaterials: []
@@ -10071,6 +10084,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10232,8 +10246,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: 
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -10335,7 +10349,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uFEE3\uFEB4\uFE98\uFEEE\u0649 \uFEBB\uFEEE\u062A \u0627\uFEDF\uFEE4\uFE86\uFE9B\uFEAE\u0627\u062A
     \u0627\uFEDF\uFEBC\uFEEE\uFE97\uFEF4\uFE94"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_fontSharedMaterials: []
@@ -10439,6 +10453,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -11210,8 +11225,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Finish The level to unlock extra achievements!
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -11224,6 +11239,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -11666,6 +11682,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -11992,6 +12009,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12262,7 +12280,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -12337,6 +12355,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12648,8 +12667,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Finish The level to unlock extra achievements!
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -12662,6 +12681,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -12846,7 +12866,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uFECB\uFEEE\u062F\u0629"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_fontSharedMaterials: []
@@ -13030,6 +13050,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -13405,8 +13426,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Non-Violent Tactics
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -13419,6 +13440,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -14408,6 +14430,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -15129,7 +15152,7 @@ MonoBehaviour:
   mTarget: {fileID: 2141913645}
   mAlignment_RTL: 258
   mAlignment_LTR: 258
-  mAlignmentWasRTL: 1
+  mAlignmentWasRTL: 0
   mInitializeAlignment: 0
 --- !u!1 &873112464
 GameObject:
@@ -15278,7 +15301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: 
+  mTerm: Level 2
   mTermSecondary: Fonts
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
@@ -15294,6 +15317,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -15732,8 +15756,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Evasive Maneuvers
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -15746,6 +15770,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18165,6 +18190,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18692,7 +18718,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uFEE3\uFEB4\uFE98\uFEEE\u0649 \uFEBB\uFEEE\u062A \u0627\uFEDF\uFEE4\uFEEE\uFEB3\uFEF4\uFED8\uFBFD"
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
   m_fontSharedMaterials: []
@@ -18796,6 +18822,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -19739,6 +19766,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -20228,6 +20256,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -21353,6 +21382,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -21474,10 +21504,11 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
-  AlwaysForceLocalize: 0
+  AlwaysForceLocalize: 1
   LocalizeCallBack:
     Target: {fileID: 0}
     MethodName: 
@@ -21495,6 +21526,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1262581670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+  m_PrefabInstance: {fileID: 1959467541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262581663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1262600028 stripped
@@ -23086,8 +23128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Sneak Master
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -23100,6 +23142,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -23437,6 +23480,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -23847,8 +23891,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Music Music Music
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -23861,6 +23905,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -25023,7 +25068,8 @@ MonoBehaviour:
   AddSpacesToJoinedLanguages: 0
   AllowLocalizedParameters: 1
   AllowParameters: 1
-  TranslatedObjects: []
+  TranslatedObjects:
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -25199,6 +25245,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -25802,6 +25849,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -26547,8 +26595,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Sneak Master
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -26561,6 +26609,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -27011,8 +27060,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Slippery Encounter
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -27025,6 +27074,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -27263,8 +27313,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Oops! The guard fell.
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -27277,6 +27327,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -29504,6 +29555,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -30494,6 +30546,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -31489,8 +31542,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Finish The level to unlock extra achievements!
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -31503,6 +31556,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -32058,7 +32112,8 @@ MonoBehaviour:
   AddSpacesToJoinedLanguages: 0
   AllowLocalizedParameters: 1
   AllowParameters: 1
-  TranslatedObjects: []
+  TranslatedObjects:
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -32906,6 +32961,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -33497,10 +33553,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTarget: {fileID: 1950688886}
+  mTarget: {fileID: 1262581670}
   mAlignment_RTL: 258
   mAlignment_LTR: 258
-  mAlignmentWasRTL: 1
+  mAlignmentWasRTL: 0
   mInitializeAlignment: 0
 --- !u!1 &1928756949
 GameObject:
@@ -33825,7 +33881,7 @@ MonoBehaviour:
   mTarget: {fileID: 37872509}
   mAlignment_RTL: 258
   mAlignment_LTR: 258
-  mAlignmentWasRTL: 1
+  mAlignmentWasRTL: 0
   mInitializeAlignment: 0
 --- !u!1 &1939828264
 GameObject:
@@ -34035,10 +34091,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uFEE3\uFE98\uFECC\uFEAA\u062F \u0627\uFEDF\uFEFC\uFECB\uFE92\uFEF4\uFEE6"
-  m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
-  m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
+  m_text: "\u30DE\u30EB\u30C1\u30D7\u30EC\u30A4\u30E4\u30FC"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
+  m_sharedMaterial: {fileID: 5449453956234719703, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -34062,7 +34118,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.6
+  m_fontSize: 30.6
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -34116,7 +34172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: multiplayer
+  mTerm: Multiplayer
   mTermSecondary: Fonts
   PrimaryTermModifier: 1
   SecondaryTermModifier: 0
@@ -34132,6 +34188,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -35061,16 +35118,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_text
-      value: Iniciar
+      value: "\u30B9\u30BF\u30FC\u30C8"
       objectReference: {fileID: 0}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontSize
-      value: 18
+      value: 34.2
       objectReference: {fileID: 0}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_margin.w
       value: 45.782482
       objectReference: {fileID: 0}
+    - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_fontStyle
       value: 0
@@ -35082,10 +35143,14 @@ PrefabInstance:
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: 2100000, guid: 513a2b17ed8b8344bbe530edaa9b5469, type: 2}
+      objectReference: {fileID: 5449453956234719703, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
     - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6564122902711611466, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7242130912073482198, guid: 30e1d3ed0e9c475488af75f435c5168e, type: 3}
       propertyPath: m_Name
@@ -35786,6 +35851,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -36064,7 +36130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: 
+  mTerm: Level 4
   mTermSecondary: Fonts
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
@@ -36080,6 +36146,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -37168,8 +37235,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTerm: Music Music Music
   mTermSecondary: Fonts
-  PrimaryTermModifier: 0
-  SecondaryTermModifier: 0
+  PrimaryTermModifier: 3
+  SecondaryTermModifier: 3
   TermPrefix: 
   TermSuffix: 
   LocalizeOnAwake: 1
@@ -37182,6 +37249,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -37570,7 +37638,8 @@ MonoBehaviour:
   AddSpacesToJoinedLanguages: 0
   AllowLocalizedParameters: 1
   AllowParameters: 1
-  TranslatedObjects: []
+  TranslatedObjects:
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -38140,6 +38209,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -38172,10 +38242,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0627\uFEDF\uFEA8\uFEAE\u0648\u062C"
-  m_isRightToLeft: 1
-  m_fontAsset: {fileID: 11400000, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
-  m_sharedMaterial: {fileID: 2466948050243189657, guid: cafa63983e2135a43b3192badb4ab0a1, type: 2}
+  m_text: "\u3084\u3081\u308B"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
+  m_sharedMaterial: {fileID: 5449453956234719703, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -38199,7 +38269,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.6
+  m_fontSize: 32.7
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -43108,6 +43178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSinglePlayer: 1
   lvlIndex: 1
+  isHost: 1
 --- !u!1001 &3183180264077570643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45841,6 +45912,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -46327,6 +46399,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -47837,6 +47910,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -48417,6 +48491,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -48727,6 +48802,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -49023,6 +49099,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -49773,6 +49850,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -50259,6 +50337,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -50433,6 +50512,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -50492,6 +50572,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -51461,6 +51542,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -51644,6 +51726,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -51763,6 +51846,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52018,6 +52102,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52336,6 +52421,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52422,6 +52508,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52557,6 +52644,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52686,6 +52774,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52794,6 +52883,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -52991,6 +53081,7 @@ MonoBehaviour:
   AllowParameters: 1
   TranslatedObjects:
   - {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  - {fileID: 11400000, guid: af29aa84628dac042aacfe8e3e7a4a1e, type: 2}
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
