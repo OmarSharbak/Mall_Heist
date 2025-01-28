@@ -7,7 +7,7 @@ public class CheckSinglePlayer : MonoBehaviour
     {
         if ((MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer))
         {
-            string name = "TestingLevel" + MultiplayerMode.Instance.lvlIndex;
+            string name = "Level" + MultiplayerMode.Instance.lvlIndex;
             Debug.Log(name);
             CustomNetworkManager customNetworkManager = GetComponent<CustomNetworkManager>();
             customNetworkManager.onlineScene = name;
