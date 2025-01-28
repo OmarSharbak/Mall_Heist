@@ -11,6 +11,7 @@ TagManager:
   - UIGuardEnabler
   - Ignore
   - Missile
+  - PlayerEyes
   layers:
   - Default
   - TransparentFX
@@ -34,7 +35,7 @@ TagManager:
   - Computer
   - Outside
   - Walls2
-  - 
+  - Breakable
   - 
   - 
   - 
