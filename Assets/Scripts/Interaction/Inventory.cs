@@ -244,6 +244,12 @@ public class Inventory : NetworkBehaviour
 						collider.enabled = false;
 					Debug.Log("CLIENT - on item changed - Ignored " + playerCollider.transform.name);
 				}
+
+				if (heldItem.GetComponent<InventoryItem>().itemName == "Necklace")
+				{
+					Destroy(heldItem);
+
+				}
 			}
 		}
 	}

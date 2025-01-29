@@ -11049,23 +11049,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 740485640955958623, guid: 13e98bcec5475c6479ec4996c3e5ee5d, type: 3}
   m_PrefabInstance: {fileID: 229776685}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &233286218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mTarget: {fileID: 1648798292}
-  mAlignment_RTL: 514
-  mAlignment_LTR: 514
-  mAlignmentWasRTL: 0
-  mInitializeAlignment: 0
 --- !u!1001 &233344894
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18603,6 +18586,10 @@ PrefabInstance:
       value: Necklace
       objectReference: {fileID: 0}
     - target: {fileID: 4218232342129299816, guid: 136c531349396c848aa63d1de693d1ee, type: 3}
+      propertyPath: doNotAdd
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4218232342129299816, guid: 136c531349396c848aa63d1de693d1ee, type: 3}
       propertyPath: outlinable
       value: 
       objectReference: {fileID: 1149610800}
@@ -18624,7 +18611,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4227038526579103280, guid: 136c531349396c848aa63d1de693d1ee, type: 3}
       propertyPath: outlineTargets.Array.data[0].IsVisible
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5567189283977195290, guid: 136c531349396c848aa63d1de693d1ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58411,17 +58398,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1029499504}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029499507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1648798292 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3322624310216684284, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
-  m_PrefabInstance: {fileID: 1029499504}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
