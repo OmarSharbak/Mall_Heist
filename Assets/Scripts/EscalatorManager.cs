@@ -374,6 +374,7 @@ public class EscalatorManager : NetworkBehaviour
 	{
 		Time.timeScale = 1f;
 		LocalizedString localizedString = "GO!";
+		localizedString.mRTL_IgnoreArabicFix = true;
 		countDownText.text = localizedString;
 		StartCoroutine(ClearTextAfterDelay(1f));
 		StartTimer();

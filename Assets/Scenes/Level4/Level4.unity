@@ -5705,7 +5705,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -36109,9 +36109,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2154245140747920930, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: objectiveItemTexts.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2154245140747920930, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: objectiveItemNames.Array.data[1]
       value: Necklace
       objectReference: {fileID: 0}
+    - target: {fileID: 2154245140747920930, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: objectiveItemTexts.Array.data[1]
+      value: 
+      objectReference: {fileID: 666307160}
     - target: {fileID: 2484802570248328729, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: mLocalizeTarget
       value: 
@@ -54044,7 +54052,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5

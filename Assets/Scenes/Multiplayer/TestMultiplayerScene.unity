@@ -272,7 +272,7 @@ MonoBehaviour:
     deliveryTimeEmaDuration: 2
   evaluationMethod: 0
   evaluationInterval: 3
-  timeInterpolationGui: 1
+  timeInterpolationGui: 0
   playerName1: 
   playerName2: 
 --- !u!114 &468644707
