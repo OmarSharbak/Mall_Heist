@@ -146,6 +146,7 @@ public class LobbyMenuManager : MonoBehaviour
 		for (int i = 1; i <= 4; i++)
 		{
 			LocalizedString level = "Level " + i;
+			level.mRTL_IgnoreArabicFix = true;
 			lobbyDropdown.options.Add(new TMP_Dropdown.OptionData(level));
 		}
 	}
