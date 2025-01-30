@@ -63190,6 +63190,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4310909068042514432, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      propertyPath: outlineTargets.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310909068042514432, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      propertyPath: outlineTargets.Array.data[0].IsVisible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984710585224331302, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      propertyPath: _sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984710585224331302, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      propertyPath: _sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 2de7daa07d961c04aa96981a354032bb, type: 3}
+    - target: {fileID: 5984710585224331302, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      propertyPath: _keySequence.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5984710585224331302, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      propertyPath: _keySequence.Array.data[3]
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6945705246419566001, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.478
@@ -63244,21 +63268,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7963997725800938872, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7963997725800938872, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7963997725800938872, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1881493691184476918, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4847719464084084704}
   m_SourcePrefab: {fileID: 100100000, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+--- !u!1 &4847719464084084703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1881493691184476918, guid: c72e1a7b0c2644535a78701cc04c1099, type: 3}
+  m_PrefabInstance: {fileID: 4847719464084084701}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4847719464084084704
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4847719464084084703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4912049928621786723 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8208481867318043687, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
@@ -64932,10 +64976,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractableItem
       objectReference: {fileID: 0}
-    - target: {fileID: 586235413316537585, guid: bdbec0858085c40eea9424704c18958c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1158846815858667407, guid: bdbec0858085c40eea9424704c18958c, type: 3}
       propertyPath: sceneId
       value: 750469138
@@ -64991,6 +65031,10 @@ PrefabInstance:
     - target: {fileID: 5108725833842090069, guid: bdbec0858085c40eea9424704c18958c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5878703295568195812, guid: bdbec0858085c40eea9424704c18958c, type: 3}
+      propertyPath: _lastStartAt
+      value: -3.402823e+38
       objectReference: {fileID: 0}
     - target: {fileID: 5878703295568195812, guid: bdbec0858085c40eea9424704c18958c, type: 3}
       propertyPath: managedReferences[4339049560838242305].Sfx

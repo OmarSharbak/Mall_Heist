@@ -4,6 +4,8 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using System;
+using UnityEngine.InputSystem.LowLevel;
 
 public class HackableATM : NetworkBehaviour
 {
@@ -11,37 +13,46 @@ public class HackableATM : NetworkBehaviour
     [SerializeField] private Slider _slider;
     [SerializeField] private Image _fillImage;
     [SerializeField] private Gradient _gradient;
-    [SerializeField] private float _maxHackingDuration = 5;
     [SerializeField] private float shortKeyPressTime = 2;
+    //[SerializeField] private float waitBeforeNewKey = 1.5f;
+    public float progressSmoothTime = 0.2f;
+
 
     [SerializeField] private int _moneyAmount;
     [SerializeField] private int _cashCount;
     [SerializeField] private Transform _cashEndPoint;
     [SerializeField] private List<Key> _keySequence;
+    [SerializeField] private List<GamepadButton> _padSequence;
     [SerializeField] private List<Sprite> _sprites;
     [SerializeField] private AudioSource _hackingAudio;
     [SerializeField] private AudioSource _cashWidrawAudio;
     [SerializeField] private AudioSource _cashAddAudio;
 
+
     private int _totalSegments;
     private int _currentSegmant;
-    private float _currenDuration;
-    private float timePerSegmant;
+    private float _progressPerSegmant;
+    private float progressVelocity;
+    //private float _currenDuration;
+    //private float timePerSegmant;
     private float keyPressTimer;
 
     private bool _isHacking;
     private bool _isHacked;
     private bool _isholding;
+    private bool _isCanTakeInput;
 
     private bool _isSegmantCompleted;
     private Key _currentKey;
     private ThirdPersonController _thirdPersonController;
     private InputPromptUIManager _inputPromptUIManager;
+    PlayerInput input;
 
     private void Start()
     {
+        _isCanTakeInput = true;
         _totalSegments = _keySequence.Count;
-        timePerSegmant = _maxHackingDuration / _totalSegments;
+        _progressPerSegmant = _slider.maxValue / _totalSegments;
         _currentSegmant = 0;
         _currentKey = _keySequence[_currentSegmant];
 
@@ -50,104 +61,95 @@ public class HackableATM : NetworkBehaviour
         if (intP != null)
         {
             _inputPromptUIManager = intP.GetComponent<InputPromptUIManager>();
-
         }
     }
 
     private void Update()
     {
+
         if (_isHacked)
         {
             return;
         }
 
-        if (_isHacking)
+        EvaluateProgress();
+
+        if (Mathf.Approximately(_slider.value, _slider.maxValue))
         {
-            if (Keyboard.current.anyKey.wasPressedThisFrame && _isholding == false)
-            {
-                Key[] keys = (Key[])System.Enum.GetValues(typeof(Key));
-                int startIndex = (int)Key.A;
-                int lastIndex = (int)Key.Z;
+            _slider.value = _slider.maxValue;
+            EvaluateProgress();
+            HackATM();
+        }
 
-                for (int i = startIndex; i <= lastIndex; i++)
+        if (!_isHacking)
+        {
+            return;
+        }
+
+        if (Keyboard.current.anyKey.wasPressedThisFrame && _isholding == false && _isCanTakeInput)
+        {
+            Key[] keys = (Key[])Enum.GetValues(typeof(Key));
+            int startIndex = (int)Key.A;
+            int lastIndex = (int)Key.Z;
+
+            for (int i = startIndex; i <= lastIndex; i++)
+            {
+                var key = keys[i];
+
+                if (!Keyboard.current[key].wasPressedThisFrame)
                 {
-                    var key = keys[i];
-                    if (Keyboard.current[key].wasPressedThisFrame)
-                    {
-                        if (key >= Key.A && key <= Key.Z)
-                        {
-                            hasPressedCorrectKey = key == _currentKey;
-                            if (hasPressedCorrectKey)
-                            {
-                                _isholding = true;
-                                _hackingAudio.Play();
-                            }
-                            _isSegmantCompleted = false;
-                            keyPressTimer = 0;
-                        }
-                    }
+                    continue;
                 }
-            }
 
-            if (hasPressedCorrectKey && Keyboard.current[_currentKey].isPressed && _isSegmantCompleted == false)
-            {
-                _currenDuration += Time.deltaTime;
-                if (_currenDuration >= ((_currentSegmant + 1) * timePerSegmant))
+                if (key < Key.A || key > Key.Z)
                 {
-                    _currentSegmant++;
-                    _isSegmantCompleted = true;
-                    _isholding = false;
+                    continue;
+                }
 
-                    if (_currentSegmant < _totalSegments)
-                    {
-                        _currentKey = _keySequence[_currentSegmant];
-                        Sprite sprite = _sprites[_currentSegmant];
-                        _inputPromptUIManager.SetInteractionImage(sprite);
-                    }
+                hasPressedCorrectKey = key == _currentKey;
+
+                if (hasPressedCorrectKey)
+                {
+                    _isholding = true;
+                    _hackingAudio.Play();
+                    _currentSegmant++;
+                    _isholding = false;
 
                     if (_currentSegmant >= _totalSegments)
                     {
-                        _hackingAudio.Stop();
+                        _isCanTakeInput = false;
                         _inputPromptUIManager.HideInteractionImage();
-                        _slider.gameObject.SetActive(false);
-                        HackATM();
+                        return;
                     }
-                }
-            }
-            else if (hasPressedCorrectKey == false && _currenDuration > (_currentSegmant * timePerSegmant))
-            {
-                _currenDuration -= Time.deltaTime;
 
-                if (_currenDuration <= (_currentSegmant * timePerSegmant))
-                {
-                    _currentSegmant = Mathf.Clamp(_currentSegmant - 1, 0, _totalSegments);
-                }
-
-            }
-            else if (_currenDuration > 0)
-            {
-                if (keyPressTimer >= shortKeyPressTime && _currenDuration > (_currentSegmant * timePerSegmant))
-                {
-                    _currenDuration -= Time.deltaTime;
-                    if (_currenDuration <= (_currentSegmant * timePerSegmant))
-                    {
-                        keyPressTimer = 0;
-                        _currentSegmant = Mathf.Clamp(_currentSegmant - 1, 0, _totalSegments);
-                    }
+                    StartCoroutine(WaitAndAssignNewKey());
                 }
                 else
                 {
-                    keyPressTimer += Time.deltaTime;
+                    _currentSegmant = Mathf.Clamp(_currentSegmant - 1, 0, _totalSegments);
+                    StartCoroutine(WaitAndAssignNewKey());
+
                 }
+                keyPressTimer = 0;
             }
-
-            if (Keyboard.current[_currentKey].wasReleasedThisFrame)
+        }
+        else if (_slider.value > 0 && _isCanTakeInput)
+        {
+            if (keyPressTimer >= shortKeyPressTime)
             {
-                _isholding = false;
-                _hackingAudio.Stop();
+                keyPressTimer = 0;
+                _currentSegmant = Mathf.Clamp(_currentSegmant - 1, 0, _totalSegments);
+                StartCoroutine(WaitAndAssignNewKey());
             }
+            else
+            {
+                keyPressTimer += Time.deltaTime;
+            }
+        }
 
-            EvaluateProgress();
+        if (Keyboard.current[_currentKey].wasReleasedThisFrame)
+        {
+            _isholding = false;
         }
     }
 
@@ -161,7 +163,11 @@ public class HackableATM : NetworkBehaviour
         if ((other.CompareTag("Player") || other.CompareTag("PlayerInvisible")))
         {
             _thirdPersonController = other.GetComponent<ThirdPersonController>();
+
             _isHacking = true;
+            _isholding = false;
+            keyPressTimer = 0;
+            _currentKey = _keySequence[_currentSegmant];
             Sprite sprite = _sprites[_currentSegmant];
             _slider.gameObject.SetActive(true);
             _inputPromptUIManager.SetInteractionImage(sprite);
@@ -182,19 +188,42 @@ public class HackableATM : NetworkBehaviour
 
             if (_thirdPersonController == thirdPersonController)
             {
+                _currentSegmant = 0;
+                _slider.value = 0;
                 _thirdPersonController = null;
                 _isHacking = false;
+                _isholding = false;
+                _hackingAudio.Stop();
                 _slider.gameObject.SetActive(false);
+                _inputPromptUIManager.HideInteractionImage();
+                _isCanTakeInput = true;
+                StopAllCoroutines();
             }
         }
+    }
+
+    private IEnumerator WaitAndAssignNewKey()
+    {
+        _isCanTakeInput = false;
+        _inputPromptUIManager.HideInteractionImage();
+        yield return new WaitForSeconds(progressSmoothTime + .2f);
+        AssignNewKey();
+    }
+
+    private void AssignNewKey()
+    {
+        _currentKey = _keySequence[_currentSegmant];
+        Sprite sprite = _sprites[_currentSegmant];
+        _inputPromptUIManager.SetInteractionImage(sprite);
+        _inputPromptUIManager.ShowInteractionImage();
+        _isCanTakeInput = true;
     }
 
     bool hasPressedCorrectKey = false;
 
     private void EvaluateProgress()
     {
-        _currenDuration = Mathf.Clamp(_currenDuration, 0, _maxHackingDuration);
-        _slider.value = Mathf.Clamp01(_currenDuration / _maxHackingDuration);
+        _slider.value = Mathf.SmoothDamp(_slider.value, (_progressPerSegmant * _currentSegmant), ref progressVelocity, progressSmoothTime);
         _fillImage.color = _gradient.Evaluate(_slider.value);
     }
 
@@ -206,6 +235,8 @@ public class HackableATM : NetworkBehaviour
         }
 
         _isHacked = true;
+        _hackingAudio.Stop();
+        _slider.gameObject.SetActive(false);
         StartCoroutine(WidrawCash());
     }
 
