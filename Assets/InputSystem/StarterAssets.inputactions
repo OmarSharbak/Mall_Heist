@@ -139,6 +139,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SafeInteraction",
+                    "type": "Value",
+                    "id": "abfc8b93-bdec-4d75-8a6d-5a73d85bc0ad",
+                    "expectedControlType": "Integer",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -614,6 +623,39 @@
                     "action": "ATMInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "7d520d8f-21aa-4d9e-b437-487cc9952e87",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SafeInteraction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "3ce39936-1c3d-4507-b603-20cfe10251fa",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SafeInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "9146f9ff-fbea-4b92-8472-01806531446d",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SafeInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

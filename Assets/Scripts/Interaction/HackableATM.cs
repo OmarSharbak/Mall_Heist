@@ -25,6 +25,7 @@ public class HackableATM : NetworkBehaviour
     [SerializeField] private List<Key> _keySequence;
     [SerializeField] private List<GamepadButton> _padSequence;
     [SerializeField] private List<Sprite> _sprites;
+    [SerializeField] private List<Sprite> _padSprites;
     [SerializeField] private AudioSource _hackingAudio;
     [SerializeField] private AudioSource _cashWidrawAudio;
     [SerializeField] private AudioSource _cashAddAudio;
@@ -120,10 +121,8 @@ public class HackableATM : NetworkBehaviour
             _isHacking = true;
             _isholding = false;
             keyPressTimer = 0;
-            _currentKey = _keySequence[_currentSegmant];
-            Sprite sprite = _sprites[_currentSegmant];
             _slider.gameObject.SetActive(true);
-            _inputPromptUIManager.SetInteractionImage(sprite);
+            UpdateSprite();
             _inputPromptUIManager.ShowInteractionImage();
         }
     }
@@ -225,6 +224,22 @@ public class HackableATM : NetworkBehaviour
         }
     }
 
+    private void UpdateSprite()
+    {
+        if (_schemeChecker.currentScheme == "KeyboardMouse")
+        {
+            _currentKey = _keySequence[_currentSegmant];
+            Sprite sprite = _sprites[_currentSegmant];
+            _inputPromptUIManager.SetInteractionImage(sprite);
+        }
+        else
+        {
+            _currentKey = _keySequence[_currentSegmant];
+            Sprite sprite = _padSprites[_currentSegmant];
+            _inputPromptUIManager.SetInteractionImage(sprite);
+        }
+    }
+
     private IEnumerator WaitAndAssignNewKey()
     {
         _isCanTakeInput = false;
@@ -235,9 +250,7 @@ public class HackableATM : NetworkBehaviour
 
     private void AssignNewKey()
     {
-        _currentKey = _keySequence[_currentSegmant];
-        Sprite sprite = _sprites[_currentSegmant];
-        _inputPromptUIManager.SetInteractionImage(sprite);
+        UpdateSprite();
         _inputPromptUIManager.ShowInteractionImage();
         _isCanTakeInput = true;
     }
