@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using System;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.Controls;
 
 public class HackableATM : NetworkBehaviour
 {
@@ -46,7 +47,7 @@ public class HackableATM : NetworkBehaviour
     private Key _currentKey;
     private ThirdPersonController _thirdPersonController;
     private InputPromptUIManager _inputPromptUIManager;
-    PlayerInput input;
+    private InputSchemeChecker _schemeChecker;
 
     private void Start()
     {
@@ -66,7 +67,6 @@ public class HackableATM : NetworkBehaviour
 
     private void Update()
     {
-
         if (_isHacked)
         {
             return;
@@ -86,54 +86,7 @@ public class HackableATM : NetworkBehaviour
             return;
         }
 
-        if (Keyboard.current.anyKey.wasPressedThisFrame && _isholding == false && _isCanTakeInput)
-        {
-            Key[] keys = (Key[])Enum.GetValues(typeof(Key));
-            int startIndex = (int)Key.A;
-            int lastIndex = (int)Key.Z;
-
-            for (int i = startIndex; i <= lastIndex; i++)
-            {
-                var key = keys[i];
-
-                if (!Keyboard.current[key].wasPressedThisFrame)
-                {
-                    continue;
-                }
-
-                if (key < Key.A || key > Key.Z)
-                {
-                    continue;
-                }
-
-                hasPressedCorrectKey = key == _currentKey;
-
-                if (hasPressedCorrectKey)
-                {
-                    _isholding = true;
-                    _hackingAudio.Play();
-                    _currentSegmant++;
-                    _isholding = false;
-
-                    if (_currentSegmant >= _totalSegments)
-                    {
-                        _isCanTakeInput = false;
-                        _inputPromptUIManager.HideInteractionImage();
-                        return;
-                    }
-
-                    StartCoroutine(WaitAndAssignNewKey());
-                }
-                else
-                {
-                    _currentSegmant = Mathf.Clamp(_currentSegmant - 1, 0, _totalSegments);
-                    StartCoroutine(WaitAndAssignNewKey());
-
-                }
-                keyPressTimer = 0;
-            }
-        }
-        else if (_slider.value > 0 && _isCanTakeInput)
+        if (_slider.value > 0 && _isCanTakeInput)
         {
             if (keyPressTimer >= shortKeyPressTime)
             {
@@ -145,11 +98,6 @@ public class HackableATM : NetworkBehaviour
             {
                 keyPressTimer += Time.deltaTime;
             }
-        }
-
-        if (Keyboard.current[_currentKey].wasReleasedThisFrame)
-        {
-            _isholding = false;
         }
     }
 
@@ -163,6 +111,11 @@ public class HackableATM : NetworkBehaviour
         if ((other.CompareTag("Player") || other.CompareTag("PlayerInvisible")))
         {
             _thirdPersonController = other.GetComponent<ThirdPersonController>();
+            _schemeChecker = other.GetComponent<InputSchemeChecker>();
+
+            var input = other.GetComponent<PlayerInput>();
+            input.actions["ATMInteraction"].Enable();
+            input.actions["ATMInteraction"].started += HackableATM_performed;
 
             _isHacking = true;
             _isholding = false;
@@ -173,6 +126,73 @@ public class HackableATM : NetworkBehaviour
             _inputPromptUIManager.SetInteractionImage(sprite);
             _inputPromptUIManager.ShowInteractionImage();
         }
+    }
+
+    private void HackableATM_performed(InputAction.CallbackContext context)
+    {
+        if (!_isHacking || _isHacked)
+        {
+            return;
+        }
+
+        if (CheckCorrectKeyPressed(context, out bool isKeyValid))
+        {
+            if (isKeyValid == false)
+                return;
+
+            keyPressTimer = 0;
+            _isholding = true;
+            _hackingAudio.Play();
+            _currentSegmant++;
+            _isholding = false;
+
+            if (_currentSegmant >= _totalSegments)
+            {
+                _isCanTakeInput = false;
+                _inputPromptUIManager.HideInteractionImage();
+                return;
+            }
+
+            StartCoroutine(WaitAndAssignNewKey());
+        }
+        else
+        {
+            keyPressTimer = 0;
+            _currentSegmant = Mathf.Clamp(_currentSegmant - 1, 0, _totalSegments);
+            StartCoroutine(WaitAndAssignNewKey());
+        }
+    }
+
+    private bool CheckCorrectKeyPressed(InputAction.CallbackContext context, out bool keyIsValid)
+    {
+        keyIsValid = false;
+        if (_schemeChecker.currentScheme == "KeyboardMouse")
+        {
+            foreach (var item in Keyboard.current.allKeys)
+            {
+                if (item.keyCode < Key.A || item.keyCode > Key.Z)
+                {
+                    continue;
+                }
+
+                keyIsValid = true;
+                if (Keyboard.current[item.keyCode].wasPressedThisFrame && item.keyCode == _keySequence[_currentSegmant])
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        keyIsValid = true;
+        string buttonName = _padSequence[_currentSegmant].ToString().ToLower();
+        if (context.control.name.ToLower() == buttonName || context.control.displayName.ToLower() == buttonName)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnTriggerExit(Collider other)
@@ -188,6 +208,9 @@ public class HackableATM : NetworkBehaviour
 
             if (_thirdPersonController == thirdPersonController)
             {
+                var input = other.GetComponent<PlayerInput>();
+                input.actions["ATMInteraction"].started -= HackableATM_performed;
+                input.actions["ATMInteraction"].Disable();
                 _currentSegmant = 0;
                 _slider.value = 0;
                 _thirdPersonController = null;
