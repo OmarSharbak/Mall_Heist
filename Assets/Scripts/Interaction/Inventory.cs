@@ -5,6 +5,7 @@ using Mirror;
 using System.Linq;
 using System;
 using I2.Loc;
+using kcp2k;
 
 public class Inventory : NetworkBehaviour
 {
@@ -43,21 +44,25 @@ public class Inventory : NetworkBehaviour
 			if (i < objectives.objectiveItemTexts.Count)
 			{
 				objectiveItemsTextMap[objectives.objectiveItemNames[i]] = objectives.objectiveItemTexts[i];
+
+				Debug.Log(objectives.objectiveItemNames[i].ToString());
 			}
 		}
 	}
 	private void Update()
 	{
-		LocalizedString locNoItems = "No items";
-		LocalizedString locItem = items.Count > 0 ? items[currentItemIndex].itemName:locNoItems;
-		locItem.mRTL_IgnoreArabicFix = true;
-		if (locItem != lastItemText)
+		if (isLocalPlayer)
 		{
-			currentItemText.text = locItem;
-			lastItemText = currentItemText.text;
+			LocalizedString locNoItems = "No items";
+			LocalizedString locItem = items.Count > 0 ? items[currentItemIndex].itemName : locNoItems;
+			locItem.mRTL_IgnoreArabicFix = true;
+			if (locItem.ToString() != lastItemText.ToString())
+			{
+				currentItemText.text = locItem;
+				lastItemText = currentItemText.text;
 
+			}
 		}
-
 	}
 
 
@@ -75,6 +80,16 @@ public class Inventory : NetworkBehaviour
 
 	public void AddItem(InventoryItem item)
 	{
+
+
+		bool isNecklace = item.itemName == "Necklace";
+
+		if (isNecklace)
+		{
+			CmdObjectiveCompleted(item.itemName);
+			return;
+		}
+
 		Debug.Log("CLIENT - Item Added" + item.itemName);
 		// Do not add the item if at max capacity for this type.
 		if (itemCounts.ContainsKey(item.itemName) && itemCounts[item.itemName] >= maxItemsPerType)
@@ -350,7 +365,7 @@ public class Inventory : NetworkBehaviour
 		if (hasItem)
 
 		{
-			RpcObjectiveCompleted(objectiveItem);
+			RpcObjectiveCompleted(objectiveItem, true);
 
 
 		}
@@ -374,10 +389,27 @@ public class Inventory : NetworkBehaviour
 
 
 	[ClientRpc]
-	private void RpcObjectiveCompleted(string objectiveItem)
+	private void RpcObjectiveCompleted(string objectiveItem, bool remove)
+	{
+		ObjectiveCompleted(objectiveItem);
+		if(remove)
+			RemoveItemFromList(objectiveItem);
+
+	}
+
+	[Command(requiresAuthority = false)]
+	private void CmdObjectiveCompleted(string objectiveItem)
+	{
+		RpcObjectiveCompleted(objectiveItem,false);
+
+	}
+
+	private void ObjectiveCompleted(string objectiveItem)
 	{
 		foreach (var item in objectiveItemsTextMap)
 		{
+			Debug.Log(item.Key);
+
 			if (item.Key == objectiveItem)
 			{
 
@@ -387,10 +419,6 @@ public class Inventory : NetworkBehaviour
 				break;
 			}
 		}
-		RemoveItemFromList(objectiveItem);
-
-
-
 	}
 
 	public int CountTotalItems()

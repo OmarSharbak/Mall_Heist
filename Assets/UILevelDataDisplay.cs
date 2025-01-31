@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI; // For Image component
 using TMPro;
+using I2.Loc;
 
 public class UILevelDataDisplay : MonoBehaviour
 {
@@ -40,11 +41,12 @@ public class UILevelDataDisplay : MonoBehaviour
 
         if (levelData == null)
         {
-            Debug.LogError("Level data not found for: " + levelName);
+			Debug.LogError("Level data not found for: " + levelName);
             return;
         }
 
-        // Update the best time display
+		// Update the best time display
+		
         bestTimeText.text = FormatTime(levelData.bestTime);
 
         // Update the current tier display and clock image
@@ -127,7 +129,7 @@ public class UILevelDataDisplay : MonoBehaviour
     {
         if (timeInSeconds > 3600 || timeInSeconds < 0) // 3600 seconds = 60 minutes
         {
-            return "No Time Posted";
+            return "---";
         }
         else
         {

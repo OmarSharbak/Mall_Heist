@@ -79,6 +79,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private GameObject overlay = null;
 	private GameObject RTTText = null;
 
+	[SyncVar(hook =nameof(OnDamageStarted))]
 	private bool damageStarted = false;
 
 	private void Initialize()
@@ -204,18 +205,24 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		if (isInvincible || !isLocalPlayer) return;
 		ResetAnimations();
-		HandlePlayerDamage();
+		damageStarted = true;		
 	}
 
 
+	private void OnDamageStarted(bool _oldValue, bool _newValue)
+	{
+		if (!_oldValue && _newValue)
+		{
+			Debug.Log("Damage Started");
+			HandlePlayerDamage();
+
+		}
+	}
+
 
 	[ClientCallback]
-
 	private void HandlePlayerDamage()
 	{
-		if (damageStarted)
-			return;
-		damageStarted = true;
 		Debug.Log("PLayer Damaged");
 		PlayTakeDownSound();
 
@@ -541,6 +548,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		CapturedText.enabled = false;
 		isWaitingForX = false;
 		TimerText.enabled = false;
+		damageStarted = false;
 		StartCoroutine(HandleInvincibility());
 	}
 
