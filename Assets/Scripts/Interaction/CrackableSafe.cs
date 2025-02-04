@@ -104,7 +104,8 @@ public class CrackableSafe : NetworkBehaviour
 
             if (currentIndex >= _combination.Length)
             {
-                UnlockSafe();
+                isUnlocked = true;
+                Invoke(nameof(UnlockSafe), 2);
             }
         }
         else
@@ -116,7 +117,6 @@ public class CrackableSafe : NetworkBehaviour
 
     void UnlockSafe()
     {
-        isUnlocked = true;
         _crackableSafePanel.SetGameObjectActive(false);
         _animator.SetTrigger("Open");
         _doorOpenAudio.Play();
