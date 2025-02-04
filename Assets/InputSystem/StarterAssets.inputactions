@@ -636,23 +636,56 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
+                    "name": "positive",
                     "id": "3ce39936-1c3d-4507-b603-20cfe10251fa",
                     "path": "<Keyboard>/z",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "KeyboardMouse",
                     "action": "SafeInteraction",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
+                    "name": "negative",
                     "id": "9146f9ff-fbea-4b92-8472-01806531446d",
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "SafeInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "d173d84b-9697-49c2-b08c-4c746d73210e",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
                     "groups": "",
+                    "action": "SafeInteraction",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "67c8f5ad-42f7-40a5-b825-9b51a3fb0999",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "SafeInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "d1b40504-9c92-4e69-b4b7-56849beb5c69",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "SafeInteraction",
                     "isComposite": false,
                     "isPartOfComposite": true
