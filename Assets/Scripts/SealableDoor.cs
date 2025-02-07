@@ -5,8 +5,6 @@ using UnityEngine.UI;
 using EPOOutline;
 using Mirror;
 using I2.Loc;
-using static UnityEditor.Progress;
-
 public class SealableDoor : NetworkBehaviour
 {
 	[SerializeField]
