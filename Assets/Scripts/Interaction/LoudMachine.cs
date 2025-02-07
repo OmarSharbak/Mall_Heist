@@ -38,10 +38,10 @@ public class LoudMachine : NetworkBehaviour
             return;
         }
 
-        if (Keyboard.current.mKey.wasPressedThisFrame)
-        {
-            MakeNoise();
-        }
+        //if (Keyboard.current.mKey.wasPressedThisFrame)
+        //{
+        //    MakeNoise();
+        //}
 
         if (_isMakingNoise)
         {
@@ -175,6 +175,7 @@ public class LoudMachine : NetworkBehaviour
 
     private void Interaction_performed(InputAction.CallbackContext context)
     {
+        _inputPromptUIManager.HideInteractionImage();
         MakeNoise();
     }
 
