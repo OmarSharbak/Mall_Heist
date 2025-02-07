@@ -45,7 +45,7 @@ namespace EmeraldAI.SoundDetection
         //Private variables
         float DelayUnawareTimer = 0;
         float CheckIncrementTimer = 0;
-        EmeraldAISystem EmeraldComponent;
+        public EmeraldAISystem EmeraldComponent { get; private set; }
         bool ArrivedAtDestination;
         Coroutine CurrentReactionCoroutine;
         Coroutine CalculateMovementCoroutine;
@@ -63,7 +63,7 @@ namespace EmeraldAI.SoundDetection
             public float Distance;
             public float NoiseLevel;
 
-            public TargetDataClass (Transform m_Target, Vector3 m_LastPosition, float m_Velocty, float m_Distance, float m_NoiseLevel)
+            public TargetDataClass(Transform m_Target, Vector3 m_LastPosition, float m_Velocty, float m_Distance, float m_NoiseLevel)
             {
                 Target = m_Target;
                 LastPosition = m_LastPosition;
@@ -83,7 +83,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Allows the Sound Detector to run after already having called DisableSoundDetector as all Sound Detectors are enabled by default.
         /// </summary>
-        public void EnableSoundDetector ()
+        public void EnableSoundDetector()
         {
             SoundDetectorEnabled = true;
         }
@@ -100,7 +100,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Checks for sounds levels for each LineOfSightTargets (targets detected within the AI's detection radius, but have not been seen).
         /// </summary>
-        void CheckForSounds ()
+        void CheckForSounds()
         {
             //If the AI enters combat or there are no EmeraldComponent.LineOfSightTargets, return as nothing further needs to be done.
             if (EmeraldComponent.CombatStateRef == EmeraldAISystem.CombatState.Active || EmeraldComponent.LineOfSightTargets.Count == 0)
@@ -146,7 +146,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Updates all info for each target and stores it in CurrentTargetData.
         /// </summary>
-        void UpdateTargetData ()
+        void UpdateTargetData()
         {
             for (int i = 0; i < CurrentTargetData.Count; i++)
             {
@@ -171,7 +171,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Simply increases or descreases the CurrentThreatLevel depending on whether or not detected targets are moving. 
         /// </summary>
-        void CalculateThreatLevel ()
+        void CalculateThreatLevel()
         {
             if (MovingTargetDetected)
             {
@@ -188,7 +188,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Cancels all sound detection fuctionality and reactions.
         /// </summary>
-        void CancelAll ()
+        void CancelAll()
         {
             StopAllCoroutines();
             CurrentTargetData.Clear();
@@ -259,7 +259,7 @@ namespace EmeraldAI.SoundDetection
             }
         }
 
-        void ClearThreats ()
+        void ClearThreats()
         {
             CurrentThreatLevel = ThreatLevels.Unaware;
             CurrentThreatAmount = 0;
@@ -279,7 +279,7 @@ namespace EmeraldAI.SoundDetection
             if (EmeraldComponent.LineOfSightTargets.Count == 0) CurrentTargetData.Clear();
         }
 
-        public void InvokeReactionList (ReactionObject SentReactionObject, bool SentByAttractModifier = false)
+        public void InvokeReactionList(ReactionObject SentReactionObject, bool SentByAttractModifier = false)
         {
             //Only allow reactions to be invoked if the AI is not in combat as combat logic is handled separately.
             if (EmeraldComponent.CombatStateRef == EmeraldAISystem.CombatState.Active || TimeSinceLastAttractModifier < AttractModifierCooldown)
@@ -299,7 +299,7 @@ namespace EmeraldAI.SoundDetection
             CurrentReactionCoroutine = StartCoroutine(InvokeReactionListInternal(SentReactionObject, SentByAttractModifier));
         }
 
-        IEnumerator InvokeReactionListInternal (ReactionObject SentReactionObject, bool SentByAttractModifier)
+        IEnumerator InvokeReactionListInternal(ReactionObject SentReactionObject, bool SentByAttractModifier)
         {
             //Add a slight random delay before initializing the reactions list so no two AI reactions play exactly at the same time.
             float RandomDelay = Random.Range(0f, 0.15f);
@@ -451,7 +451,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Clears the AI's current Look At Target.
         /// </summary>
-        public void ClearLookAtTarget ()
+        public void ClearLookAtTarget()
         {
             if (CurrentTargetData.Exists(x => x.Target == EmeraldComponent.LookAtTarget))
             {
@@ -462,7 +462,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Sets the AI's Look At Target to the loudest detected target.
         /// </summary>
-        public void LookAtLoudestTarget ()
+        public void LookAtLoudestTarget()
         {
             if (CurrentTargetData.Count == 0)
                 return;
@@ -490,7 +490,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Changes the AI's movement type.
         /// </summary>
-        public void SetMovementState (EmeraldAISystem.MovementState MovementState)
+        public void SetMovementState(EmeraldAISystem.MovementState MovementState)
         {
             EmeraldComponent.CurrentMovementState = MovementState;
         }
@@ -498,7 +498,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Resets the AI's Detection Distance to its default/starting value.
         /// </summary>
-        void ResetDetectionDistance ()
+        void ResetDetectionDistance()
         {
             EmeraldComponent.DetectionRadius = EmeraldComponent.StartingDetectionRadius;
         }
@@ -518,7 +518,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Resets all modified values back to their default values (Look At Position, Detection Distance, Movement State, and Combat State).
         /// </summary>
-        void ResetAllToDefault ()
+        void ResetAllToDefault()
         {
             EmeraldComponent.DetectionRadius = EmeraldComponent.StartingDetectionRadius;
             EmeraldComponent.LookAtTarget = null;
@@ -551,7 +551,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Sets the combat state. If true, this allows the AI to use its combat state animations. If false, returns the AI to its default state using non-combat animations.
         /// </summary>
-        public void SetCombatState (bool State)
+        public void SetCombatState(bool State)
         {
             EmeraldComponent.m_NavMeshAgent.ResetPath();
             EmeraldComponent.AIAnimator.SetBool("Idle Active", false);
@@ -561,7 +561,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Generates the proper waypoint based on the reaction passed.
         /// </summary>
-        void GenerateWaypointInternal (int Radius, ReactionTypes ReactionType, AttractModifierReactionTypes AttractModifierReaction)
+        void GenerateWaypointInternal(int Radius, ReactionTypes ReactionType, AttractModifierReactionTypes AttractModifierReaction)
         {
             if (CurrentTargetData.Count > 0 && ReactionType == ReactionTypes.MoveAroundLoudestTarget || CurrentTargetData.Count > 0 && ReactionType == ReactionTypes.MoveToLoudestTarget)
             {
@@ -580,7 +580,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Calulates the AI's next series of moves triggered by a reaction.
         /// </summary>
-        void CalculateMovement (int TotalWaypoints, int Radius, float WaitTime, ReactionTypes ReactionType, AttractModifierReactionTypes AttractModifierReaction)
+        void CalculateMovement(int TotalWaypoints, int Radius, float WaitTime, ReactionTypes ReactionType, AttractModifierReactionTypes AttractModifierReaction)
         {
             if (CalculateMovementCoroutine != null) StopCoroutine(CalculateMovementCoroutine);
             CalculateMovementCoroutine = StartCoroutine(CalculateMovementInternal(TotalWaypoints, Radius, WaitTime, ReactionType, AttractModifierReaction));
@@ -651,7 +651,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Returns the loudest detected target.
         /// </summary>
-        Transform GetLoudestTarget ()
+        Transform GetLoudestTarget()
         {
             //Return null of there's no current targets.
             if (CurrentTargetData.Count == 0)
@@ -665,7 +665,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Clears the AI's internal turning values.
         /// </summary>
-        void ClearTurningValues ()
+        void ClearTurningValues()
         {
             EmeraldComponent.IsTurning = false;
             EmeraldComponent.LockTurning = false;
