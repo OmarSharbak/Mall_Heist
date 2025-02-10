@@ -46,31 +46,6 @@ public class LoudMachine : NetworkBehaviour
         if (_isMakingNoise)
         {
             GetTargets();
-
-            // Collider[] m_DetectedTargets = Physics.OverlapSphere(transform.position, _attractModifier.Radius, _attractModifier.EmeraldAILayer);
-
-            //if (m_DetectedTargets.Length == 0)
-            //    return;
-
-            //for (int i = 0; i < m_DetectedTargets.Length; i++)
-            //{
-            //    Collider collider = m_DetectedTargets[i];
-
-            //    if (_guards.ContainsKey(collider.gameObject))
-            //    {
-            //        continue;
-            //    }
-
-            //    var soundDetector = collider.GetComponent<SoundDetector>();
-            //    soundDetector.EmeraldComponent.OnDetectTargetEvent.RemoveListener(OnDetectTarget);
-            //    soundDetector.EmeraldComponent.OnDetectTargetEvent.AddListener(OnDetectTarget);
-            //    soundDetector.EmeraldComponent.ReachedDestinationEvent.RemoveListener(OnGuardReached);
-            //    soundDetector.EmeraldComponent.ReachedDestinationEvent.AddListener(OnGuardReached);
-            //    if (soundDetector.DetectedAttractModifier == gameObject)
-            //    {
-            //        _guards.Add(collider.gameObject, soundDetector);
-            //    }
-            //}
         }
     }
 
@@ -137,9 +112,16 @@ public class LoudMachine : NetworkBehaviour
 
         foreach (var item in _guards)
         {
+            item.Value.DisableSoundDetector();
             item.Value.EmeraldComponent.OnDetectTargetEvent.RemoveListener(OnDetectTarget);
             item.Value.EmeraldComponent.ReachedDestinationEvent.RemoveListener(OnGuardReached);
             _attractModifier.AudioSource.Stop();
+
+            if (item.Value.EmeraldComponent.CombatStateRef != EmeraldAISystem.CombatState.Active)
+            {
+                item.Value.ReturnToDefaultPosition();
+            }
+            item.Value.EnableSoundDetector();
         }
 
         _guards.Clear();
