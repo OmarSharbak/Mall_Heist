@@ -13,17 +13,18 @@ public class InputPromptUIManager : MonoBehaviour
 
     [SerializeField] private GameObject xKeyboardUI; // Assign in inspector
     [SerializeField] private GameObject northPadUI;  // Assign in inspector
+    [SerializeField] private UnityEngine.UI.Image _atmInteractionImage;
 
     InputSchemeChecker schemeChecker;
 
 
-	private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
-	{
-		schemeChecker = localPlayer.transform.GetComponent<InputSchemeChecker>();
+    private void HandleLocalPlayerStarted(ThirdPersonController localPlayer)
+    {
+        schemeChecker = localPlayer.transform.GetComponent<InputSchemeChecker>();
 
-	}
+    }
 
-	public void ShowSouthButtonUI()
+    public void ShowSouthButtonUI()
     {
         string currentScheme = schemeChecker.currentScheme;
 
@@ -39,7 +40,7 @@ public class InputPromptUIManager : MonoBehaviour
 
     public void ShowSouthButtonObjectsUI(bool show = true)
     {
-        
+
         string currentScheme = schemeChecker.currentScheme;
 
         if (eKeyboardObjectsUI != null && currentScheme == "KeyboardMouse")
@@ -108,15 +109,30 @@ public class InputPromptUIManager : MonoBehaviour
         if (southPadUI != null) southPadUI.SetActive(false);
     }
 
-	private void OnEnable()
-	{
-		// Subscribe to the event
-		ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
-	}
+    public void SetInteractionImage(Sprite sprite)
+    {
+        _atmInteractionImage.sprite = sprite;
+    }
 
-	private void OnDisable()
-	{
-		// Unsubscribe from the event to avoid memory leaks
-		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-	}
+    public void ShowInteractionImage()
+    {
+        _atmInteractionImage.gameObject.SetActive(true);
+    }
+
+    public void HideInteractionImage()
+    {
+        _atmInteractionImage.gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        // Subscribe to the event
+        ThirdPersonController.OnLocalPlayerStarted += HandleLocalPlayerStarted;
+    }
+
+    private void OnDisable()
+    {
+        // Unsubscribe from the event to avoid memory leaks
+        ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
+    }
 }

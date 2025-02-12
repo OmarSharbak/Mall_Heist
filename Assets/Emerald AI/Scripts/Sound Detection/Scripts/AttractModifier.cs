@@ -23,6 +23,8 @@ namespace EmeraldAI.SoundDetection
         bool SoundTriggered;
         Rigidbody m_Rigidbody;
 
+        public AudioSource AudioSource { get => m_AudioSource; }
+
         void Start()
         {
             m_Rigidbody = GetComponent<Rigidbody>();
@@ -50,7 +52,7 @@ namespace EmeraldAI.SoundDetection
         /// </summary>
         private void OnCollisionEnter(Collision collision)
         {
-            
+
             if (TriggerType == TriggerTypes.OnCollision && collision.relativeVelocity.magnitude >= MinVelocity)
             {
                 GetTargets(((1 << collision.gameObject.layer) & TriggerLayers) != 0);
@@ -60,7 +62,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Invokes the specified reaction when called (Requries the OnCustomCall TriggerType).
         /// </summary>
-        public void ActivateAttraction ()
+        public void ActivateAttraction()
         {
             if (TriggerType == TriggerTypes.OnCustomCall)
             {
@@ -71,7 +73,7 @@ namespace EmeraldAI.SoundDetection
         /// <summary>
         /// Find all Emerald AI targets within the specified radius and invoke the AttractReaction.
         /// </summary>
-        void GetTargets (bool HasTriggerLayer = true)
+        void GetTargets(bool HasTriggerLayer = true)
         {
             PlayTriggerSound();
 
@@ -109,7 +111,7 @@ namespace EmeraldAI.SoundDetection
             Invoke("ReactionCooldown", ReactionCooldownSeconds);
         }
 
-        void PlayTriggerSound ()
+        public void PlayTriggerSound()
         {
             if (SoundTriggered || Time.time < 0.5f)
                 return;
@@ -121,12 +123,12 @@ namespace EmeraldAI.SoundDetection
             Invoke("SoundCooldown", SoundCooldownSeconds);
         }
 
-        void SoundCooldown()
+        public void SoundCooldown()
         {
             SoundTriggered = false;
         }
 
-        void ReactionCooldown ()
+        void ReactionCooldown()
         {
             ReactionTriggered = false;
         }
