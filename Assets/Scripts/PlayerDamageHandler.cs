@@ -10,7 +10,6 @@ using System;
 using Mirror;
 using UnityEngine.AI;
 using I2.Loc;
-using Mirror.BouncyCastle.Utilities.Zlib;
 
 public class PlayerDamageHandler : NetworkBehaviour
 {
@@ -205,15 +204,22 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		if (isInvincible || !isLocalPlayer) return;
 		ResetAnimations();
-		damageStarted = true;		
+		CmdSetDamageStarted(true);		
 	}
 
+	[Command(requiresAuthority =false)]
+	private void CmdSetDamageStarted(bool value)
+	{
+		damageStarted = value;
+	}
 
 	private void OnDamageStarted(bool _oldValue, bool _newValue)
 	{
+		Debug.Log("Damage Started called on " + gameObject.name);
+
 		if (!_oldValue && _newValue)
 		{
-			Debug.Log("Damage Started");
+			Debug.Log("Damage Started passed on " + gameObject.name);
 			HandlePlayerDamage();
 
 		}
@@ -223,6 +229,9 @@ public class PlayerDamageHandler : NetworkBehaviour
 	[ClientCallback]
 	private void HandlePlayerDamage()
 	{
+		if (thirdPersonController == null)
+			return;
+		
 		Debug.Log("PLayer Damaged");
 		PlayTakeDownSound();
 
@@ -234,7 +243,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 
 		if (GameManager.Instance.GetCurrentGlobalMoney() >= 10)
 		{
-			damageStarted = false;
+			CmdSetDamageStarted( false);
 			StartDamageSequence();
 		}
 		else
@@ -422,7 +431,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	private void StartDamageSequence()
 	{
 		OnPlayerCaught?.Invoke();
-		stopGuard = true;
+		stopGuard = true;		
 		thirdPersonController.SetCapturedState(true);
 		EscalatorManager.Instance.ClearTargetAll(thirdPersonController);
 		emeraldAIEventsManager.SetIgnoredTarget(thirdPersonController.transform);
@@ -548,7 +557,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 		CapturedText.enabled = false;
 		isWaitingForX = false;
 		TimerText.enabled = false;
-		damageStarted = false;
+		CmdSetDamageStarted(false);
 		StartCoroutine(HandleInvincibility());
 	}
 
