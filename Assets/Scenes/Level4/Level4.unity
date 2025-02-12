@@ -5705,7 +5705,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -13002,7 +13002,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -61565,6 +61565,7 @@ PrefabInstance:
     - {fileID: 6072482288202798469, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
     - {fileID: 6962616616844752870, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
     - {fileID: 8076678317696443050, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
+    - {fileID: 3000310829039697352, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5648132879768793810, guid: 925354d44dabfa045a5eff7fa67927bb, type: 3}
       insertIndex: 2
