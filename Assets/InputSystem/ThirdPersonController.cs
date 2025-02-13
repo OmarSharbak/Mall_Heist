@@ -7,6 +7,8 @@ using TMPro;
 using Cinemachine;
 using Mirror;
 using System;
+using UnityEngine.UI;
+
 
 
 
@@ -268,6 +270,8 @@ public class ThirdPersonController : NetworkBehaviour
 			FollowCinemachineCamera = GameObject.Find("PlayerFollowCamera(Regular)").GetComponent<CinemachineVirtualCamera>();
 			pauseMenuGameObject = GameObject.Find("PauseUI");
 			restartButtonPauseGameObject = GameObject.Find("RestartButtonPause");
+			resumeButtonGameObject = GameObject.Find("ResumeButton");
+
 
 			FullMapCinemachineCamera.Follow = CinemachineCameraTarget.transform;
 			FollowTopCinemachineCamera.Follow = CinemachineCameraTarget.transform;
@@ -287,7 +291,6 @@ public class ThirdPersonController : NetworkBehaviour
 
 
 
-		resumeButtonGameObject = GameObject.Find("ResumeButton");
 		eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
 		outliner = GameObject.Find("MainCamera").GetComponent<Outliner>();
 		audioManager = GameObject.Find("Sounds").GetComponent<AudioManager>();
@@ -661,7 +664,7 @@ public class ThirdPersonController : NetworkBehaviour
 				}
 
 			}
-			else if(hit.transform.name== "Door" && EscalatorManager.Instance.AreAllObjectivesComplete() && (EscalatorManager.Instance.totalMoney == EscalatorManager.Instance.moneyCollected))
+			else if (hit.transform.name == "Door" && EscalatorManager.Instance.AreAllObjectivesComplete() && (EscalatorManager.Instance.totalMoney == EscalatorManager.Instance.moneyCollected))
 			{
 				promptUIManager.ShowSouthButtonObjectsUI();
 			}
@@ -783,9 +786,49 @@ public class ThirdPersonController : NetworkBehaviour
 			CmdPause();
 
 		}
+		else if (isPaused && _input.pause && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Defeat && escalatorManager.GetCurrentState(this) != EscalatorManager.GameState.Victory)
+
+		{
+			_input.pause = false;
+			CmdResume();
+		}
 
 
 	}
+
+	//private IEnumerator SelectNext(bool isNext)
+	//{
+
+	//	// Check if any UI element is selected
+	//	if (eventSystem.currentSelectedGameObject == null)
+	//	{
+	//		Debug.LogWarning("No UI element is currently selected. Setting default selection.");
+	//		Selectable defaultElement = FindObjectOfType<Selectable>(); // Finds any UI element
+	//		if (defaultElement != null)
+	//		{
+	//			defaultElement.Select();
+	//		}
+	//		yield return null;
+	//	}
+
+	//	GameObject current = eventSystem.currentSelectedGameObject;
+	//	if (current == null) yield return null;
+
+	//	Selectable currentSelectable = current.GetComponent<Selectable>();
+	//	if (currentSelectable == null) yield return null;
+
+	//	Selectable nextSelectable = isNext
+	//		? currentSelectable.FindSelectableOnDown()  // Next element
+	//		: currentSelectable.FindSelectableOnUp();   // Previous element
+
+	//	if (nextSelectable != null)
+	//	{
+	//		nextSelectable.Select();
+	//		Debug.Log("Pause select");
+	//	}
+
+	//	yield return new WaitForSeconds(0.3f);
+	//}
 
 	[Command(requiresAuthority = false)]
 	private void CmdPause()
@@ -823,8 +866,19 @@ public class ThirdPersonController : NetworkBehaviour
 			EscalatorManager.Instance.SetCurrentState(this, EscalatorManager.GameState.Pause);
 
 			// Access the EventSystem and set the selected GameObject
-			EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
-			EventSystem.current.SetSelectedGameObject(resumeButtonGameObject); // Set new selection
+			eventSystem.SetSelectedGameObject(null); // Deselect current selection
+			eventSystem.SetSelectedGameObject(resumeButtonGameObject); // Set new selection
+
+			//Check if any UI element is selected
+			if (eventSystem.currentSelectedGameObject == null)
+			{
+				Debug.LogWarning("No UI element is currently selected. Setting default selection.");
+				Selectable defaultElement = FindObjectOfType<Selectable>(); // Finds any UI element
+				if (defaultElement != null)
+				{
+					defaultElement.Select();
+				}
+			}
 
 
 			isPaused = true;
@@ -924,7 +978,7 @@ public class ThirdPersonController : NetworkBehaviour
 		isThrowing = false;
 		animator.SetInteger(_animIDWeaponType, 0);
 		SetCantDamage();
-		if(isActiveAndEnabled)
+		if (isActiveAndEnabled)
 			StartCoroutine(AfterReset());
 	}
 
@@ -1293,6 +1347,6 @@ public class ThirdPersonController : NetworkBehaviour
 
 	public void EnablePlayerPositionHolder(bool value)
 	{
-		GetComponent<PlayerPositionHolder>().enabled=value;
+		GetComponent<PlayerPositionHolder>().enabled = value;
 	}
 }
