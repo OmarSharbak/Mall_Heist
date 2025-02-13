@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,8 +17,10 @@ public class LobbyMenuManager : MonoBehaviour
 {
 	[Header("Main")]
 	[SerializeField] private GameObject mainMenuObject;
+	[SerializeField] private GameObject mainMenuHostObject;
 	[Header("Lobby")]
 	[SerializeField] private GameObject lobbyObject;
+	[SerializeField] private GameObject lobbyLeaveObject;
 	[SerializeField] private TextMeshProUGUI lobbyTitle;
 	[SerializeField] private LobbyManager lobbyManager;
 	[SerializeField] private Button lobbyStartButton;
@@ -31,6 +34,8 @@ public class LobbyMenuManager : MonoBehaviour
 	[SerializeField] private GameObject incorrectPasswordObject;
 	[SerializeField] private GameObject lobbyDataItemPrefab;
 	[SerializeField] private GameObject lobbyListContent;
+	[SerializeField] private GameObject lobbiesBackObject;
+
 
 	[Header("User lobby setup")]
 	[SerializeField] private LobbyUserPanel lobbyUserPanel;
@@ -141,6 +146,8 @@ public class LobbyMenuManager : MonoBehaviour
 	{
 		CloseScreens();
 		mainMenuObject.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(mainMenuHostObject);
+
 
 		lobbyDropdown.options.Clear();
 		for (int i = 1; i <= 4; i++)
@@ -156,11 +163,15 @@ public class LobbyMenuManager : MonoBehaviour
 		lobbiesMenuObject.SetActive(true);
 		askPasswordObject.SetActive(false);
 		incorrectPasswordObject.SetActive(false);
+		EventSystem.current.SetSelectedGameObject(lobbiesBackObject);
+
+
 	}
 	public void OpenLobby()
 	{
 		CloseScreens();
 		lobbyObject.SetActive(true);
+		EventSystem.current.SetSelectedGameObject(lobbyLeaveObject);
 	}
 
 	public void OnUserJoin(UserData userData)
