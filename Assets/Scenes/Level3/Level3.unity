@@ -48663,7 +48663,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -65760,6 +65760,14 @@ PrefabInstance:
     - target: {fileID: 6629475791386098314, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_LocalPosition.z
       value: 22.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6649226543893215550, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813156022725870802, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8935846135186050182, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_LocalPosition.x
