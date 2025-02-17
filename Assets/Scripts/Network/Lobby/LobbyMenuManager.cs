@@ -122,6 +122,7 @@ public class LobbyMenuManager : MonoBehaviour
 			Debug.LogError("HostUser is not valid");
 			return;
 		}
+
 		_steamID64 = hostUser.SteamId.ToString();
 
 		if (lobbyManager.Full)
@@ -284,7 +285,6 @@ public class LobbyMenuManager : MonoBehaviour
 		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.AddRequestLobbyListResultCountFilter(60);
 
 		HeathenEngineering.SteamworksIntegration.API.Matchmaking.Client.RequestLobbyList(OnListRequested);
-
 	}
 
 	private void OnListRequested(LobbyData[] lobbyDatas, bool error)

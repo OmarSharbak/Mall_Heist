@@ -17,7 +17,7 @@ public class FPSLimiter : MonoBehaviour
 		Instance = this;
 
 		DontDestroyOnLoad(gameObject);
-        Application.targetFrameRate = Screen.currentResolution.refreshRate * 2;
+        Application.targetFrameRate = Screen.currentResolution.refreshRate;
         QualitySettings.vSyncCount = 0;
     }
 }
