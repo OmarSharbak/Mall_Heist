@@ -71,14 +71,14 @@ public class SaveLoadManager : MonoBehaviour
     {
         currentSaveData.levelsData = new List<LevelData>();
 
-        string[] levelNames = new string[] { "Level1", "Level2", "Level3", "Level4" };
+        string[] levelNames = new string[] { "Level1", "Level2", "Level3", "Level4", "Level5" };
 
         for (int i = 0; i < levelNames.Length; i++)
         {
             LevelData newLevel = new LevelData()
             {
                 levelName = levelNames[i],
-                isUnlocked = i == 0,
+                isUnlocked = true,
                 bestTime = float.MaxValue,
                 bestTier = "None",
                 achievements = new List<bool> { false, false, false },

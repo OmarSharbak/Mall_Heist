@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using System;
 using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.InputSystem.Controls;
+using EPOOutline;
 
 public class HackableATM : NetworkBehaviour
 {
@@ -17,7 +18,6 @@ public class HackableATM : NetworkBehaviour
     [SerializeField] private float shortKeyPressTime = 2;
     //[SerializeField] private float waitBeforeNewKey = 1.5f;
     public float progressSmoothTime = 0.2f;
-
 
     [SerializeField] private int _moneyAmount;
     [SerializeField] private int _cashCount;
@@ -30,13 +30,12 @@ public class HackableATM : NetworkBehaviour
     [SerializeField] private AudioSource _cashWidrawAudio;
     [SerializeField] private AudioSource _cashAddAudio;
 
+    private Outlinable _outlinable;
 
     private int _totalSegments;
     private int _currentSegmant;
     private float _progressPerSegmant;
     private float progressVelocity;
-    //private float _currenDuration;
-    //private float timePerSegmant;
     private float keyPressTimer;
 
     private bool _isHacking;
@@ -50,6 +49,10 @@ public class HackableATM : NetworkBehaviour
     private InputPromptUIManager _inputPromptUIManager;
     private InputSchemeChecker _schemeChecker;
 
+    private bool hasPressedCorrectKey = false;
+
+    public int MoneyAmount { get => _moneyAmount; }
+
     private void Start()
     {
         _isCanTakeInput = true;
@@ -57,6 +60,8 @@ public class HackableATM : NetworkBehaviour
         _progressPerSegmant = _slider.maxValue / _totalSegments;
         _currentSegmant = 0;
         _currentKey = _keySequence[_currentSegmant];
+
+        _outlinable = GetComponentInChildren<Outlinable>();
 
         var intP = FindObjectOfType<InputPromptUIManager>();
 
@@ -255,8 +260,6 @@ public class HackableATM : NetworkBehaviour
         _isCanTakeInput = true;
     }
 
-    bool hasPressedCorrectKey = false;
-
     private void EvaluateProgress()
     {
         _slider.value = Mathf.SmoothDamp(_slider.value, (_progressPerSegmant * _currentSegmant), ref progressVelocity, progressSmoothTime);
@@ -292,8 +295,13 @@ public class HackableATM : NetworkBehaviour
 
         yield return new WaitForSeconds(0.1f);
         _cashEndPoint.gameObject.SetActive(false);
+
         if (_cashAddAudio != null)
             _cashAddAudio.Play();
+
+        if (_outlinable != null)
+            _outlinable.enabled = false;
+
         var damageHandler = _thirdPersonController.GetComponent<PlayerDamageHandler>();
         damageHandler.AddMoney(_moneyAmount);
 
