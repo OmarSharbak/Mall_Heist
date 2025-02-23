@@ -7143,6 +7143,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 1379370859274107690, guid: 2350780d0e33f6d40ad15845e61cde16, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1413864503049806862, guid: 2350780d0e33f6d40ad15845e61cde16, type: 3}
       propertyPath: m_Name
       value: Floor
@@ -13672,7 +13676,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
