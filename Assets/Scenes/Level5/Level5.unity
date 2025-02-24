@@ -10303,6 +10303,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 8952969332761739116, guid: 67ec1a3169a7dae458d9e5c1cf40107b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 7276025645061292972, guid: 67ec1a3169a7dae458d9e5c1cf40107b, type: 3}
@@ -13676,7 +13680,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
