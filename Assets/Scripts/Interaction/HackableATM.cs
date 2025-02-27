@@ -80,7 +80,7 @@ public class HackableATM : NetworkBehaviour
 
         EvaluateProgress();
 
-        if (Mathf.Approximately(_slider.value, _slider.maxValue))
+        if ((_slider.maxValue - _slider.value) < .05f)
         {
             _slider.value = _slider.maxValue;
             EvaluateProgress();
@@ -281,20 +281,20 @@ public class HackableATM : NetworkBehaviour
 
     IEnumerator WidrawCash()
     {
-        if (_cashPrefab != null && _cashEndPoint != null)
-        {
-            _cashWidrawAudio.Play();
-            for (int i = 0; i < _cashCount; i++)
-            {
-                var cash = Instantiate(_cashPrefab, _cashEndPoint, true);
-                cash.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
-                yield return new WaitForSeconds(0.1f);
-            }
-            _cashWidrawAudio.Stop();
-        }
+        //if (_cashPrefab != null && _cashEndPoint != null)
+        //{
+        //    _cashWidrawAudio.Play();
+        //    for (int i = 0; i < _cashCount; i++)
+        //    {
+        //        var cash = Instantiate(_cashPrefab, _cashEndPoint, true);
+        //        cash.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+        //        yield return new WaitForSeconds(0.1f);
+        //    }
+        //    _cashWidrawAudio.Stop();
+        //}
 
-        yield return new WaitForSeconds(0.1f);
-        _cashEndPoint.gameObject.SetActive(false);
+        //yield return new WaitForSeconds(0.1f);
+        //_cashEndPoint.gameObject.SetActive(false);
 
         if (_cashAddAudio != null)
             _cashAddAudio.Play();
@@ -304,6 +304,7 @@ public class HackableATM : NetworkBehaviour
 
         var damageHandler = _thirdPersonController.GetComponent<PlayerDamageHandler>();
         damageHandler.AddMoney(_moneyAmount);
+        yield return null;
 
     }
 }
