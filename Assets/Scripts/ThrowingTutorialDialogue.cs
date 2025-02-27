@@ -21,7 +21,7 @@ public class ThrowingTutorialDialogue : MonoBehaviour
         if (interactableObject.pickedUpTimes == 2 && hasInteracted == false)
         {
             hasInteracted = true;
-            DialogueManager.Instance.StartDialogue(dialogue);
+            //DialogueManager.Instance.StartDialogue(dialogue);
         }
     }
 }

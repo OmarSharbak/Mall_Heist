@@ -61,6 +61,8 @@ public class DialogueManager : MonoBehaviour
 		// Check if the current level is finished before starting the dialogue
 		if (IsCurrentLevelFinished()) return;
 
+		return;
+
 		thirdPersonController.StopPlayer();
 		playerDamageHandler.SetInvincible();
 		EscalatorManager.Instance.SetExposed(thirdPersonController,false);

@@ -655,7 +655,7 @@ public class EscalatorManager : NetworkBehaviour
     {
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
-        if (nextSceneIndex > 4)
+        if (nextSceneIndex > 5)
             nextSceneIndex = 1;
         if (MultiplayerMode.Instance != null)
             MultiplayerMode.Instance.SetLevelIndex(nextSceneIndex);

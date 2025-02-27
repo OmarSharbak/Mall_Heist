@@ -75,17 +75,37 @@ public class SaveLoadManager : MonoBehaviour
 
         for (int i = 0; i < levelNames.Length; i++)
         {
-            LevelData newLevel = new LevelData()
+            if(i == 0)
             {
-                levelName = levelNames[i],
-                isUnlocked = true,
-                bestTime = float.MaxValue,
-                bestTier = "None",
-                achievements = new List<bool> { false, false, false },
-                finished = false
-            };
+                LevelData newLevel = new LevelData()
+                {
+                    levelName = levelNames[i],
+                    isUnlocked = true,
+                    bestTime = float.MaxValue,
+                    bestTier = "None",
+                    achievements = new List<bool> { false, false, false },
+                    finished = false
+                };
 
-            currentSaveData.levelsData.Add(newLevel);
+                currentSaveData.levelsData.Add(newLevel);
+            }
+            else
+            {
+                LevelData newLevel = new LevelData()
+                {
+                    levelName = levelNames[i],
+                    isUnlocked = false,
+                    bestTime = float.MaxValue,
+                    bestTier = "None",
+                    achievements = new List<bool> { false, false, false },
+                    finished = false
+                };
+
+                currentSaveData.levelsData.Add(newLevel);
+            }
+            
+
+            
         }
 
         Debug.Log("Save File Created");
@@ -122,6 +142,18 @@ public class SaveLoadManager : MonoBehaviour
         else
         {
             Debug.LogError("Level data not found for: " + levelName);
+
+            LevelData newLevel = new LevelData()
+            {
+                levelName = levelName,
+                isUnlocked = false,
+                bestTime = float.MaxValue,
+                bestTier = "None",
+                achievements = new List<bool> { false, false, false },
+                finished = false
+            };
+
+            currentSaveData.levelsData.Add(newLevel);
         }
     }
 

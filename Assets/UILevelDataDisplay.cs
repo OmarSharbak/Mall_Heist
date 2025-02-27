@@ -72,6 +72,7 @@ public class UILevelDataDisplay : MonoBehaviour
             achievementsOffGO.SetActive(false);
 			if (levelLockedGO != null)
 				levelLockedGO.SetActive(true);
+            
             goldClockGO.SetActive(false);
             silverClockGO.SetActive(false);
             bronzeClockGO.SetActive(false);

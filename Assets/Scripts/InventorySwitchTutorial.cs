@@ -24,8 +24,8 @@ public class InventorySwitchTutorial : MonoBehaviour
 			string currentLevelName = SceneManager.GetActiveScene().name;
             
             hasInteracted = true;
-            if (currentLevelName == "Level1")
-				DialogueManager.Instance.StartDialogue(dialogue);
+            //if (currentLevelName == "Level1")
+				//DialogueManager.Instance.StartDialogue(dialogue);
             
         }
     }

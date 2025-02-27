@@ -6696,6 +6696,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.9999995, y: 1.4762356, z: 1.6602437}
   m_Center: {x: -1.9999998, y: 0.7381178, z: 0.49999994}
+--- !u!114 &160121606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTarget: {fileID: 1648302827}
+  mAlignment_RTL: 514
+  mAlignment_LTR: 514
+  mAlignmentWasRTL: 0
+  mInitializeAlignment: 0
 --- !u!1001 &160666789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31609,6 +31626,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 124354, guid: cc653bb519e03774d9b9569addb9bffc, type: 3}
   m_PrefabInstance: {fileID: 1938159370}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &915653905 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3322624310216684284, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 1029499504}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &920764213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36130,7 +36158,7 @@ PrefabInstance:
       objectReference: {fileID: 1172512306}
     - target: {fileID: 2540027349533062883, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_text
-      value: Necklace
+      value: 'Necklace:'
       objectReference: {fileID: 0}
     - target: {fileID: 2540027349533062883, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_fontSize
@@ -36170,11 +36198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2693376328707933955, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 19.6
+      value: 19.600006
       objectReference: {fileID: 0}
     - target: {fileID: 2693376328707933955, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4.16
+      value: -4.159999
       objectReference: {fileID: 0}
     - target: {fileID: 3267334266324555514, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: mLocalizeTarget
@@ -36258,7 +36286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4692827998975810704, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -44.12
+      value: -44.119995
       objectReference: {fileID: 0}
     - target: {fileID: 4692827998975810704, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -36278,7 +36306,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4902301435108756870, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4.64
+      value: -4.6400003
       objectReference: {fileID: 0}
     - target: {fileID: 4915339786794651139, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -48651,6 +48679,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.000002, y: 4.6851273, z: 0.05487466}
   m_Center: {x: -2.500001, y: 2.0719004, z: 0.02743733}
+--- !u!114 &1379704115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTarget: {fileID: 915653905}
+  mAlignment_RTL: 514
+  mAlignment_LTR: 514
+  mAlignmentWasRTL: 0
+  mInitializeAlignment: 0
 --- !u!1001 &1391338765
 PrefabInstance:
   m_ObjectHideFlags: 0

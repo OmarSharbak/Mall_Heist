@@ -29383,13 +29383,13 @@ MonoBehaviour:
   - {fileID: 852478106}
   - {fileID: 1350914815}
   clockImage: {fileID: 1991563155}
-  mapImage: {fileID: 0}
+  mapImage: {fileID: 363527195}
   achievementsOnGO: {fileID: 1616999425}
   achievementsOffGO: {fileID: 747024526}
   levelLockedGO: {fileID: 136396261}
-  goldClockGO: {fileID: 0}
-  silverClockGO: {fileID: 0}
-  bronzeClockGO: {fileID: 0}
+  goldClockGO: {fileID: 1044426890}
+  silverClockGO: {fileID: 1854771213}
+  bronzeClockGO: {fileID: 1499613817}
   starFilled: {fileID: 21300000, guid: f39a2d6530066114290f88aebe095255, type: 3}
   starEmpty: {fileID: 21300000, guid: ae4a7a3fc739b764f88364ddf40ad740, type: 3}
   goldClock: {fileID: 21300000, guid: b4a7d58542a7ee849895a2fd97b9cf88, type: 3}
@@ -51363,12 +51363,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!81 &5373501536057453681
 AudioListener:
   m_ObjectHideFlags: 0
