@@ -20,4 +20,13 @@ public class BreakableItem : NetworkBehaviour
         _renderer.enabled = false;
         _interactableItem.GetComponent<Collider>().enabled = true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent<ThirdPersonController>(out var controller))
+        {
+            Hit();
+        }
+
+    }
 }

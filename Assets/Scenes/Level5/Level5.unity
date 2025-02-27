@@ -10931,28 +10931,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.000002, y: 4.6851273, z: 0.05487466}
   m_Center: {x: -2.500001, y: 2.0719004, z: 0.02743733}
---- !u!114 &200310193 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3322624310216684284, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
-  m_PrefabInstance: {fileID: 1626779485}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &200310194 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4229820531397439892, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
-  m_PrefabInstance: {fileID: 1626779485}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &200644134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13702,7 +13680,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -29899,7 +29877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3743581605515211785, guid: bdbec0858085c40eea9424704c18958c, type: 3}
       propertyPath: outlineTargets.Array.data[0].IsVisible
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5108725833842090069, guid: bdbec0858085c40eea9424704c18958c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29956,6 +29934,22 @@ PrefabInstance:
     - target: {fileID: 5809947723431916925, guid: bdbec0858085c40eea9424704c18958c, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102711669970435171, guid: bdbec0858085c40eea9424704c18958c, type: 3}
+      propertyPath: m_Size.x
+      value: 2.115766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102711669970435171, guid: bdbec0858085c40eea9424704c18958c, type: 3}
+      propertyPath: m_Size.y
+      value: 3.751281
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102711669970435171, guid: bdbec0858085c40eea9424704c18958c, type: 3}
+      propertyPath: m_Size.z
+      value: 2.064969
+      objectReference: {fileID: 0}
+    - target: {fileID: 6102711669970435171, guid: bdbec0858085c40eea9424704c18958c, type: 3}
+      propertyPath: m_Center.y
+      value: 1.0519603
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -49036,23 +49030,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5, y: 0, z: 5}
   m_Center: {x: -2.5, y: 0, z: 2.5}
---- !u!114 &1254803436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mTarget: {fileID: 200310194}
-  mAlignment_RTL: 514
-  mAlignment_LTR: 514
-  mAlignmentWasRTL: 0
-  mInitializeAlignment: 0
 --- !u!1001 &1256916013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77166,23 +77143,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.0000033, y: 4.6851273, z: 0.054874673}
   m_Center: {x: -2.5000007, y: 2.0719004, z: 0.027441151}
---- !u!114 &1886056148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mTarget: {fileID: 200310193}
-  mAlignment_RTL: 514
-  mAlignment_LTR: 514
-  mAlignmentWasRTL: 0
-  mInitializeAlignment: 0
 --- !u!1001 &1893140685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87942,7 +87902,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3430382538429674371, guid: 16db9b1ae9f39e543b3b4898e9c12a45, type: 3}
       propertyPath: TabNumber
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3430382538429674371, guid: 16db9b1ae9f39e543b3b4898e9c12a45, type: 3}
       propertyPath: WalkSpeed
@@ -88030,7 +87990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3430382538429674371, guid: 16db9b1ae9f39e543b3b4898e9c12a45, type: 3}
       propertyPath: DamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AlertOtherGuards
+      value: CheckExposed
       objectReference: {fileID: 0}
     - target: {fileID: 3430382538429674371, guid: 16db9b1ae9f39e543b3b4898e9c12a45, type: 3}
       propertyPath: OnDoDamageEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
