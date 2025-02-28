@@ -69,6 +69,7 @@ public class PlayerDamageHandler : NetworkBehaviour
 	bool stopGuard = false;
 
 	public static event Action OnPlayerCaught;
+	public static event Action OnGuardBribed;
 
 	[SyncVar]
 
@@ -559,6 +560,8 @@ public class PlayerDamageHandler : NetworkBehaviour
 		TimerText.enabled = false;
 		CmdSetDamageStarted(false);
 		StartCoroutine(HandleInvincibility());
+		OnGuardBribed?.Invoke();
+
 	}
 
 	[ClientCallback]
