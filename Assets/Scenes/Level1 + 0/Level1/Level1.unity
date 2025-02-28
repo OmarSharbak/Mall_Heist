@@ -37890,7 +37890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 0, g: 1, b: 0.13595366, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: -2, z: 0}
   mainCamera: {fileID: 0}
@@ -44768,7 +44768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 0, g: 0.092921734, b: 1, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: -2, z: 0}
   mainCamera: {fileID: 0}
@@ -45288,7 +45288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 1, g: 0.54509807, b: 0.90588236, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: -2, z: 0}
   mainCamera: {fileID: 0}
@@ -47120,7 +47120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 1, g: 0.54509807, b: 0.90588236, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: -2, z: 0}
   mainCamera: {fileID: 0}
@@ -56333,7 +56333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 0.043704987, g: 1, b: 0, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: 0, z: -1}
   mainCamera: {fileID: 0}
@@ -60155,7 +60155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 1
   startColor: {r: 1, g: 0.9325029, b: 0.4198113, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 2, y: 0, z: 0}
   mainCamera: {fileID: 0}
@@ -60327,7 +60327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 0, g: 1, b: 0.065425634, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: 0, z: -1}
   mainCamera: {fileID: 0}
@@ -64489,7 +64489,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startActive: 0
   startColor: {r: 1, g: 0.7394293, b: 0, a: 0}
-  arrowPrefab: {fileID: 844948026024720784, guid: ac5a05685a0008642aecb62b6fced7e7, type: 3}
+  arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
   vfxPrefab: {fileID: 107158, guid: add31a167134c4f4095d6610013a701f, type: 3}
   vfxOffset: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 0}
