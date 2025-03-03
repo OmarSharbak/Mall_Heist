@@ -841,15 +841,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0e6446860af7c06429346d078de199e8, type: 2}
-  m_sharedMaterial: {fileID: -4763566082251765803, guid: 0e6446860af7c06429346d078de199e8, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1bd6da5446a608145aeb20788c2c9da2, type: 2}
+  m_sharedMaterial: {fileID: 8965277803644657753, guid: 1bd6da5446a608145aeb20788c2c9da2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278979339
-  m_fontColor: {r: 0.043137256, g: 0.043137256, b: 0.047058824, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
