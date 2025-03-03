@@ -1,10 +1,7 @@
 using Mirror;
-using System;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class Objective : MonoBehaviour
+public class Objective : NetworkBehaviour
 {
 	public bool startActive = false;
 	public Color startColor;
@@ -52,7 +49,7 @@ public class Objective : MonoBehaviour
 		}
 
 
-		player = GameObject.FindGameObjectWithTag("Player")?.transform;
+		player = controller.transform;
 
 		Debug.Log("Objective: " + mainCamera + " " + player);
 

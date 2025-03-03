@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
+using Mirror;
 
-public class AimLine: MonoBehaviour
+public class AimLine: NetworkBehaviour
 {
 	public LineRenderer lineRenderer; // Reference to the LineRenderer
 	private Transform playerTransform; // Reference to the player’s transform
@@ -29,6 +30,8 @@ public class AimLine: MonoBehaviour
 
 	private void PlayerCaught()
 	{
+		if (playerTransform==null)
+			return;
 		tutorialActive = false;
 		lineRenderer.enabled = false;
 		promptUIManager.HideWestButtonUI();
@@ -44,11 +47,18 @@ public class AimLine: MonoBehaviour
 
 	private void GuardBribed()
 	{
+
+		if (playerTransform == null)
+			return;
 		tutorialActive = true;
 	}
 
 	private void StartLocal(ThirdPersonController controller)
 	{
+		if (!isLocalPlayer)
+		{
+			return;
+		}
 		playerTransform = controller.transform;
 
 		if (lineRenderer == null)
