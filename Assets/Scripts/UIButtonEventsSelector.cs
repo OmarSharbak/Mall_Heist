@@ -16,8 +16,9 @@ public class UIButtonEventsSelector : MonoBehaviour
     [SerializeField] TMP_Text musicLabel;
     [SerializeField] TMP_Text sfxLabel;
     [SerializeField] Image dropDownBG;
+    [SerializeField] Image dropDown1BG;
 
-    [SerializeField] VirtualMouseInput virtualMouse;
+	[SerializeField] VirtualMouseInput virtualMouse;
     [SerializeField] Image cursorImage;
 
     [SerializeField] InputSchemeChecker inputSchemeChecker;
@@ -115,7 +116,15 @@ public class UIButtonEventsSelector : MonoBehaviour
             {
                 dropDownBG.color = Color.white;
             }
-        }
+			if (EventSystem.current.currentSelectedGameObject.name == "Dropdown (1)")
+			{
+				dropDown1BG.color = new Color(240f / 255f, 40f / 255f, 40f / 255f);
+			}
+			else
+			{
+				dropDown1BG.color = Color.white;
+			}
+		}
     }
     // Function to select a UI button
     public void SelectButton(GameObject button)
