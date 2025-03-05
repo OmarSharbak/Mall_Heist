@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class CrackableSafe : NetworkBehaviour
 {
@@ -13,6 +14,8 @@ public class CrackableSafe : NetworkBehaviour
     [SerializeField] private float unlockDelay = 1f; // Time to stay in range before unlocking
     [SerializeField] private AudioSource _dialAudio;
     [SerializeField] private AudioSource _doorOpenAudio;
+    [SerializeField] private InventoryItem _inventoryItem;
+    [SerializeField] private Transform _itemHolder;
 
     private ThirdPersonController _thirdPersonController;
     private CrackableSafePanel _crackableSafePanel;
@@ -69,7 +72,7 @@ public class CrackableSafe : NetworkBehaviour
         if (currentRotation < 0f) currentRotation += 360f;
         {
             //currentRotation = newRotation;
-            _crackableSafePanel.Dial.rotation = Quaternion.Euler(0, 0, currentRotation);
+            _crackableSafePanel.Dial.localRotation = Quaternion.Euler(0, 0, currentRotation);
         }
 
     }
@@ -105,7 +108,7 @@ public class CrackableSafe : NetworkBehaviour
             if (currentIndex >= _combination.Length)
             {
                 isUnlocked = true;
-                Invoke(nameof(UnlockSafe), 2);
+                Invoke(nameof(UnlockSafe), 1);
             }
         }
         else
@@ -120,6 +123,14 @@ public class CrackableSafe : NetworkBehaviour
         _crackableSafePanel.SetGameObjectActive(false);
         _animator.SetTrigger("Open");
         _doorOpenAudio.Play();
+        _itemHolder.DOLocalMoveZ(.5f, .5f)
+            .SetRelative(true)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                _thirdPersonController.GetComponent<Inventory>().AddItem(_inventoryItem);
+                _itemHolder.SetGameObjectActive(false);
+            });
         Debug.Log("Safe Unlocked!");
     }
 
