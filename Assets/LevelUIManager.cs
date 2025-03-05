@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,8 +27,20 @@ public class LevelUIManager : MonoBehaviour
             }
             else
             {
+                LevelData newLevel = new LevelData()
+                {
+                    levelName = levelUIs[i].name,
+                    isUnlocked = false,
+                    bestTime = float.MaxValue,
+                    bestTier = "None",
+                    achievements = new List<bool> { false, false, false },
+                    finished = false
+                };
+
+                SaveLoadManager.Instance.currentSaveData.levelsData.Add(newLevel);
+
                 playButtons[i].gameObject.SetActive(false); // Disable the button if no data is found
-                Debug.LogError("Level data not found for: " + levelUIs[i].name);
+                //Debug.LogError("Level data not found for: " + levelUIs[i].name);
             }
         }
     }
