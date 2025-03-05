@@ -71,11 +71,11 @@ public class SaveLoadManager : MonoBehaviour
     {
         currentSaveData.levelsData = new List<LevelData>();
 
-        string[] levelNames = new string[] { "Level1", "Level2", "Level3", "Level4", "Level5" };
+        string[] levelNames = new string[] { "Level1", "Level2", "Level3", "Level4", "Level5", "Level6" };
 
         for (int i = 0; i < levelNames.Length; i++)
         {
-            if(i == 0)
+            if (i == 0 || i == 5)
             {
                 LevelData newLevel = new LevelData()
                 {
@@ -103,9 +103,9 @@ public class SaveLoadManager : MonoBehaviour
 
                 currentSaveData.levelsData.Add(newLevel);
             }
-            
 
-            
+
+
         }
 
         Debug.Log("Save File Created");
