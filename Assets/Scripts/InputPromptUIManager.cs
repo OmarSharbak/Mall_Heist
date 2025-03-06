@@ -14,10 +14,15 @@ public class InputPromptUIManager : MonoBehaviour
     [SerializeField] private GameObject xKeyboardUI; // Assign in inspector
     [SerializeField] private GameObject northPadUI;  // Assign in inspector
 
-	[SerializeField] private GameObject fKeyboardUI; // Assign in inspector
-	[SerializeField] private GameObject westPadUI;  // Assign in inspector
+    [SerializeField] private GameObject fKeyboardUI; // Assign in inspector
+    [SerializeField] private GameObject westPadUI;  // Assign in inspector
 
-	[SerializeField] private UnityEngine.UI.Image _atmInteractionImage;
+    [SerializeField] private GameObject _zKeyboardUI;
+    [SerializeField] private GameObject _xKeyboardUI;
+    [SerializeField] private GameObject _r1PadUI;
+    [SerializeField] private GameObject _l1PadUI;
+
+    [SerializeField] private UnityEngine.UI.Image _atmInteractionImage;
 
     InputSchemeChecker schemeChecker;
 
@@ -88,9 +93,9 @@ public class InputPromptUIManager : MonoBehaviour
         HideSouthButtonEscalatorUI();
         HideSouthButtonObjectsUI();
         HideSouthButtonUI();
-		HideWestButtonUI();
+        HideWestButtonUI();
 
-		string currentScheme = schemeChecker.currentScheme;
+        string currentScheme = schemeChecker.currentScheme;
 
         if (xKeyboardUI != null && currentScheme == "KeyboardMouse")
         {
@@ -102,39 +107,39 @@ public class InputPromptUIManager : MonoBehaviour
         }
     }
 
-	public void ShowWestButtonUI()
-	{
-		HideSouthButtonEscalatorUI();
-		HideSouthButtonObjectsUI();
-		HideSouthButtonUI();
-		HideNorthButtonUI();
+    public void ShowWestButtonUI()
+    {
+        HideSouthButtonEscalatorUI();
+        HideSouthButtonObjectsUI();
+        HideSouthButtonUI();
+        HideNorthButtonUI();
 
-		string currentScheme = schemeChecker.currentScheme;
+        string currentScheme = schemeChecker.currentScheme;
 
-		if (fKeyboardUI != null && currentScheme == "KeyboardMouse")
-		{
-			fKeyboardUI.SetActive(true);
-		}
-		if (westPadUI != null && currentScheme == "Gamepad")
-		{
-			westPadUI.SetActive(true);
-		}
-	}
+        if (fKeyboardUI != null && currentScheme == "KeyboardMouse")
+        {
+            fKeyboardUI.SetActive(true);
+        }
+        if (westPadUI != null && currentScheme == "Gamepad")
+        {
+            westPadUI.SetActive(true);
+        }
+    }
 
-	public void HideNorthButtonUI()
+    public void HideNorthButtonUI()
     {
         if (xKeyboardUI != null) xKeyboardUI.SetActive(false);
         if (northPadUI != null) northPadUI.SetActive(false);
     }
 
-	public void HideWestButtonUI()
-	{
-		if (fKeyboardUI != null) fKeyboardUI.SetActive(false);
-		if (westPadUI != null) westPadUI.SetActive(false);
-	}
+    public void HideWestButtonUI()
+    {
+        if (fKeyboardUI != null) fKeyboardUI.SetActive(false);
+        if (westPadUI != null) westPadUI.SetActive(false);
+    }
 
 
-	public void HideSouthButtonUI()
+    public void HideSouthButtonUI()
     {
         if (eKeyboardUI != null) eKeyboardUI.SetActive(false);
         if (southPadUI != null) southPadUI.SetActive(false);
@@ -153,6 +158,30 @@ public class InputPromptUIManager : MonoBehaviour
     public void HideInteractionImage()
     {
         _atmInteractionImage.gameObject.SetActive(false);
+    }
+
+    public void ShowSafeDialInteraction()
+    {
+        string currentScheme = schemeChecker.currentScheme;
+
+        if (currentScheme == "KeyboardMouse")
+        {
+            _zKeyboardUI.SetActive(true);
+            _xKeyboardUI.SetActive(true);
+        }
+        else if (currentScheme == "Gamepad")
+        {
+            _r1PadUI.SetActive(true);
+            _l1PadUI.SetActive(true);
+        }
+    }
+
+    public void HideSafeDialInteraction()
+    {
+        _zKeyboardUI.SetActive(false);
+        _xKeyboardUI.SetActive(false);
+        _r1PadUI.SetActive(false);
+        _l1PadUI.SetActive(false);
     }
 
     private void OnEnable()

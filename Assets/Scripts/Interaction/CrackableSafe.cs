@@ -55,6 +55,7 @@ public class CrackableSafe : NetworkBehaviour
         {
             _crackableSafePanel.SetGameObjectActive(true);
             _inputPromptUIManager.HideSouthButtonUI();
+            _inputPromptUIManager.ShowSafeDialInteraction();
             isInteracting = true;
         }
 
@@ -120,6 +121,7 @@ public class CrackableSafe : NetworkBehaviour
 
     void UnlockSafe()
     {
+        _inputPromptUIManager.HideSafeDialInteraction();
         _crackableSafePanel.SetGameObjectActive(false);
         _animator.SetTrigger("Open");
         _doorOpenAudio.Play();
@@ -177,8 +179,9 @@ public class CrackableSafe : NetworkBehaviour
             {
                 _isCracking = false;
                 _inputPromptUIManager.HideSouthButtonUI();
+                _inputPromptUIManager.HideSafeDialInteraction();
                 _crackableSafePanel.SetGameObjectActive(false);
-                _crackableSafePanel.Dial.eulerAngles = Vector3.zero;
+                _crackableSafePanel.Dial.localEulerAngles = Vector3.zero;
                 isInteracting = false;
                 currentIndex = 0;
                 currentRotation = 0;
