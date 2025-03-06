@@ -37552,6 +37552,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 443854, guid: 9d8bd1e956e9e994e93ffbf60eaa3a97, type: 3}
   m_PrefabInstance: {fileID: 2100070232}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &943113466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mTarget: {fileID: 1303295356}
+  mAlignment_RTL: 516
+  mAlignment_LTR: 513
+  mAlignmentWasRTL: 0
+  mInitializeAlignment: 1
 --- !u!1 &946601953
 GameObject:
   m_ObjectHideFlags: 0
@@ -51791,6 +51808,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 443854, guid: 9d8bd1e956e9e994e93ffbf60eaa3a97, type: 3}
   m_PrefabInstance: {fileID: 1301668373}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1303295356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7570246739744249064, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+  m_PrefabInstance: {fileID: 1626779485}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626779492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1303933724
 GameObject:
   m_ObjectHideFlags: 0
@@ -63187,7 +63215,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -65525,6 +65553,14 @@ PrefabInstance:
     - target: {fileID: 902970326030359008, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1212948873829735513, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1613082401}
+    - target: {fileID: 1212948873829735513, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 1353036714978017449, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_IsActive
@@ -84734,7 +84770,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
