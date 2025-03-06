@@ -69,27 +69,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "InteractDoor",
-                    "type": "PassThrough",
-                    "id": "5636b344-5e7e-48ff-ad4d-bef3ef6c9edc",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Sprint",
                     "type": "PassThrough",
                     "id": "980e881e-182c-404c-8cbf-3d09fdb48fef",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Crouch",
-                    "type": "PassThrough",
-                    "id": "f69bf0ec-04e0-4c04-bf27-4b6deeece847",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -285,28 +267,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a0db0caa-2363-4113-904f-6657332ec2dd",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "42e5d186-a3f8-42f3-8fcb-5ead7c72d5a3",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Crouch",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "959bb45e-b3db-4e60-98a4-3ccd302f983e",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -458,39 +418,6 @@
                     "action": "SwitchDown",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "b4eeb954-3f2c-40f2-9e61-9218eadc5b34",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "InteractDoor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9b5ee92b-bcb8-4f23-b3b6-2edcad6a2dcb",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "InteractDoor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2aae6602-7535-4772-a3bc-887435f5becb",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "InteractDoor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 },
                 {
                     "name": "",

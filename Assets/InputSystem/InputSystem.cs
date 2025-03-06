@@ -15,7 +15,6 @@ using UnityEngine.InputSystem;
         public bool throwItem;
         public bool interact;
         public bool resume;
-        public bool interactDoor;
         public bool switchUp;
         public bool switchDown;
         public bool pause;
@@ -81,11 +80,6 @@ using UnityEngine.InputSystem;
 			PauseInput(value.isPressed);
 		}
 
-		public void OnInteractDoor(InputValue value)
-		{
-			InteractDoorInput(value.isPressed);
-		}
-
 		public void OnSwitchUp(InputValue value)
 		{
 			SwitchUpInput(value.isPressed);
@@ -147,10 +141,6 @@ using UnityEngine.InputSystem;
             pause = newPauseState;
         }
 
-    public void InteractDoorInput(bool newInteractDoorState)
-        {
-            interactDoor = newInteractDoorState;
-        }
 
         public void SwitchUpInput(bool newSwitchUpState)
         {

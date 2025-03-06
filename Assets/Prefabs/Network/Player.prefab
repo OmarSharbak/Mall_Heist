@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 2524498618530390169}
   - component: {fileID: 112767635571993167}
   - component: {fileID: 2895513499290765801}
+  - component: {fileID: 4817845850293590868}
   m_Layer: 5
   m_Name: KeyboardButton
   m_TagString: Untagged
@@ -264,6 +265,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4817845850293590868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179571162801689266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bda726e31d5d439ebe818d0d5599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
+  targetImage: {fileID: 2895513499290765801}
+  actionName: Resume
 --- !u!1 &208481020946819565
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,6 +5728,7 @@ GameObject:
   - component: {fileID: 2176676632919573037}
   - component: {fileID: 7446373650996888388}
   - component: {fileID: 6091015698101636726}
+  - component: {fileID: 5220215106936440695}
   m_Layer: 5
   m_Name: KeyboardButton
   m_TagString: Untagged
@@ -5776,6 +5793,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5220215106936440695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3089296983425259345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bda726e31d5d439ebe818d0d5599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
+  targetImage: {fileID: 6091015698101636726}
+  actionName: Interact
 --- !u!1 &3121927277218318813
 GameObject:
   m_ObjectHideFlags: 0
@@ -6320,6 +6352,7 @@ GameObject:
   - component: {fileID: 6167371598326987153}
   - component: {fileID: 3058177654931742631}
   - component: {fileID: 3239312016013782371}
+  - component: {fileID: 9064314270023759891}
   m_Layer: 5
   m_Name: KeyboardButton
   m_TagString: Untagged
@@ -6384,6 +6417,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9064314270023759891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3295618834895910034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bda726e31d5d439ebe818d0d5599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
+  targetImage: {fileID: 3239312016013782371}
+  actionName: Throw
 --- !u!1 &3308520044999492092
 GameObject:
   m_ObjectHideFlags: 0
@@ -7981,6 +8029,7 @@ GameObject:
   - component: {fileID: 5604953052596473}
   - component: {fileID: 5043949981687219612}
   - component: {fileID: 8740116783656525391}
+  - component: {fileID: 6665320343320763018}
   m_Layer: 5
   m_Name: KeyboardButton
   m_TagString: Untagged
@@ -8045,6 +8094,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6665320343320763018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4084157834791401813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bda726e31d5d439ebe818d0d5599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
+  targetImage: {fileID: 8740116783656525391}
+  actionName: Interact
 --- !u!1 &4122874112417259506
 GameObject:
   m_ObjectHideFlags: 0
@@ -8958,6 +9022,7 @@ GameObject:
   - component: {fileID: 4016592582761687195}
   - component: {fileID: 6140096521791499055}
   - component: {fileID: 7290231038525570135}
+  - component: {fileID: 5899760713267584509}
   m_Layer: 5
   m_Name: KeyboardButton
   m_TagString: Untagged
@@ -9022,6 +9087,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5899760713267584509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4621068780595862950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bda726e31d5d439ebe818d0d5599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
+  targetImage: {fileID: 7290231038525570135}
+  actionName: Interact
 --- !u!1 &4647785158587150702
 GameObject:
   m_ObjectHideFlags: 0
@@ -14689,6 +14769,7 @@ GameObject:
   - component: {fileID: 8088514368656469052}
   - component: {fileID: 6338033989424350967}
   - component: {fileID: 3470926909125207831}
+  - component: {fileID: 8607763154973963102}
   m_Layer: 5
   m_Name: KeyboardButton
   m_TagString: Untagged
@@ -14753,6 +14834,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8607763154973963102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8642709253347941110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4bda726e31d5d439ebe818d0d5599e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
+  targetImage: {fileID: 3470926909125207831}
+  actionName: Interact
 --- !u!1 &9183202663651866784
 GameObject:
   m_ObjectHideFlags: 0
