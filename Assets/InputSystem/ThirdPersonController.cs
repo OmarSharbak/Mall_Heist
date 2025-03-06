@@ -750,7 +750,7 @@ public class ThirdPersonController : NetworkBehaviour
 		{
 			grassDecoration.Interact(this.netIdentity);
 		}
-		_input.interact = false;
+		//_input.interact = false;
 	}
 
 	private void StopGrassHiding()

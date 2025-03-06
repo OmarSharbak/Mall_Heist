@@ -69,6 +69,7 @@ public class InputRebindUI : MonoBehaviour
 		action.Disable();
 		action.PerformInteractiveRebinding()
 			.WithControlsExcluding("Mouse") // Exclude mouse if needed
+			.WithControlsExcluding("Gamepad") // Exclude gamepad if needed
 			.OnComplete(operation =>
 			{
 				action.Enable();

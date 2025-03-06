@@ -19,28 +19,34 @@ public class KeyBindingImageLoader : MonoBehaviour
 		// Get the input action map and action
 		var action = inputActions.FindActionMap("Player").FindAction(actionName);
 
+		Debug.Log("action:" + action.name);
 		// Loop through all the bindings of this action
 		foreach (var binding in action.bindings)
 		{
+			Debug.Log("action binding:" + binding.ToDisplayString());
 			if (!binding.isComposite)
 			{
-				// Get the key from the binding
-				string keyName = binding.ToDisplayString();
-
-				// Generate the image name based on the key (e.g., "B_Key_flat_dark")
-				string imageName = $"Images/{keyName}_Key_flat_dark"; // Customize this for your needs
-
-				// Load the image from Resources folder
-				Sprite keyImage = Resources.Load<Sprite>(imageName);
-
-				// If the image is found, assign it to the UI Image
-				if (keyImage != null)
+				if (binding.path.Contains("Keyboard"))
 				{
-					targetImage.sprite = keyImage;
-				}
-				else
-				{
-					Debug.LogWarning("Image not found: " + imageName);
+
+					// Get the key from the binding
+					string keyName = binding.ToDisplayString();
+
+					// Generate the image name based on the key (e.g., "B_Key_flat_dark")
+					string imageName = $"Images/{keyName}_Key_flat_dark"; // Customize this for your needs
+
+					// Load the image from Resources folder
+					Sprite keyImage = Resources.Load<Sprite>(imageName);
+
+					// If the image is found, assign it to the UI Image
+					if (keyImage != null)
+					{
+						targetImage.sprite = keyImage;
+					}
+					else
+					{
+						Debug.LogWarning("Image not found: " + imageName);
+					}
 				}
 			}
 		}
