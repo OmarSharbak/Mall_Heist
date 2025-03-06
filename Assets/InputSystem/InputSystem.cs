@@ -14,7 +14,7 @@ using UnityEngine.InputSystem;
         public bool crouch;
         public bool throwItem;
         public bool interact;
-        public bool resume;
+        public bool bribe;
         public bool switchUp;
         public bool switchDown;
         public bool pause;
@@ -70,9 +70,9 @@ using UnityEngine.InputSystem;
 			InteractInput(value.isPressed);
 		}
 
-		public void OnResume(InputValue value)
+		public void OnBribe(InputValue value)
 		{
-			ResumeInput(value.isPressed);
+			BribeInput(value.isPressed);
 		}
 
         public void OnPause(InputValue value)
@@ -131,9 +131,9 @@ using UnityEngine.InputSystem;
             interact = newInteractState;
         }
 
-        public void ResumeInput(bool newResumeState)
+        public void BribeInput(bool newBribeState)
         {
-            resume = newResumeState;
+            bribe = newBribeState;
         }
 
         public void PauseInput(bool newPauseState)

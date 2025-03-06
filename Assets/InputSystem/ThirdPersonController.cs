@@ -615,9 +615,9 @@ public class ThirdPersonController : NetworkBehaviour
 	}
 	private void ResumeAfterCapture()
 	{
-		if (_input.resume)
+		if (_input.bribe)
 		{
-			_input.resume = false;
+			_input.bribe = false;
 			_playerDamageHandler.ResumePlay();
 		}
 	}

@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Resume",
+                    "name": "Bribe",
                     "type": "Button",
                     "id": "87340f59-2629-4055-a0d2-e78723ab31e8",
                     "expectedControlType": "Button",
@@ -426,7 +426,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Resume",
+                    "action": "Bribe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -437,7 +437,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Resume",
+                    "action": "Bribe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

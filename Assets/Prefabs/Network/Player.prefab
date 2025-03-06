@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: 3609416c50763c24388c24cbab80d358, type: 3}
   targetImage: {fileID: 2895513499290765801}
-  actionName: Resume
+  actionName: Bribe
 --- !u!1 &208481020946819565
 GameObject:
   m_ObjectHideFlags: 0
