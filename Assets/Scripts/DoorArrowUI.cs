@@ -50,7 +50,21 @@ public class DoorArrowUI : MonoBehaviour
 
             arrowUI.gameObject.SetActive(true); // Ensure the arrow is visible
         }
-    }
+        else if (EscalatorManager.Instance == null)
+        {
+            Debug.LogWarning("DoorArrow - EscalatorManager null");
+        }
+
+		else if (doorTransform == null)
+		{
+			Debug.LogWarning("DoorArrow - door null");
+		}
+
+		else if (playerTransform == null)
+		{
+			Debug.LogWarning("DoorArrow - player transform null");
+		}
+	}
 
 	private void OnEnable()
 	{

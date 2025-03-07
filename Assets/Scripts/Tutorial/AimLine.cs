@@ -30,8 +30,6 @@ public class AimLine: NetworkBehaviour
 
 	private void PlayerCaught()
 	{
-		if (playerTransform==null)
-			return;
 		tutorialActive = false;
 		lineRenderer.enabled = false;
 		promptUIManager.HideWestButtonUI();
@@ -47,9 +45,6 @@ public class AimLine: NetworkBehaviour
 
 	private void GuardBribed()
 	{
-
-		if (playerTransform == null)
-			return;
 		tutorialActive = true;
 	}
 
@@ -66,14 +61,19 @@ public class AimLine: NetworkBehaviour
 			lineRenderer = GetComponent<LineRenderer>(); // Find LineRenderer if not set
 		}
 		inventory = GetComponent<Inventory>();
+		
+		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
+
+
 
 		if (EscalatorManager.Instance.levelName == "Level1")
 		{
 			tutorialActive = true;
 		}
-
-		promptUIManager = GameObject.Find("InteractionPrompts").GetComponent<InputPromptUIManager>();
-
+		else
+		{
+			enabled = false;
+		}
 	}
 
 	Vector3 AimAssist(Vector3 itemPosition)
