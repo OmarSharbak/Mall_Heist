@@ -624,7 +624,7 @@ public class EscalatorManager : NetworkBehaviour
 	public void NextLevel()
 	{
 		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-		bool isDemoCap = DemoManager.Instance.IsLevelCap(nextSceneIndex);
+		bool isDemoCap = DemoManager.Instance!=null && DemoManager.Instance.IsLevelCap(nextSceneIndex);
 
 		if(isDemoCap)
 		{

@@ -7,6 +7,7 @@ using Mirror;
 public class ArrowIndicator : NetworkBehaviour
 {
 	private Transform player;
+	private PlayerState playerState;
 	public List<Transform> guards = new List<Transform>();
 	public Image arrowPrefab;
 	public float circleRadius = 100f;  // The radius of the circle around the player on the screen where the arrows are placed.
@@ -26,6 +27,7 @@ public class ArrowIndicator : NetworkBehaviour
 		Debug.Log("Arrows - local player started");
 
 		player = localPlayer.transform;
+		playerState = localPlayer.GetComponent<PlayerState>();
 		PlayerDamageHandler.OnPlayerCaught += PlayerDamageHandler_OnPlayerCaught;
 		GrassDecorationStealth.OnPlayerHidePlants += PlayerDamageHandler_OnPlayerCaught;
 		ThrowableItem.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
@@ -74,13 +76,19 @@ public class ArrowIndicator : NetworkBehaviour
 			arrow.enabled = false;
 		}
 		int i = 0;
+		bool arrowsActive = false;
 		foreach (Transform guard in currentGuards)
 		{
 			arrows[i].enabled = true;
 			PointArrowToGuard(arrows[i], guard);
 			i++;
+			arrowsActive = true;
 		}
-
+		if (playerState != null && arrowsActive)
+		{
+			if (playerState.currentState == EscalatorManager.GameState.Stealth)
+				PlayerDamageHandler_OnPlayerCaught();//disable arrows
+		}
 	}
 
 
