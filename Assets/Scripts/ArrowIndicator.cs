@@ -14,8 +14,7 @@ public class ArrowIndicator : NetworkBehaviour
 	private Camera mainCamera;
 	private List<Image> arrows = new List<Image>();
 
-	private bool arrowsActive = false;
-	private Transform currentGuard = null;
+	public List<Transform> currentGuards = new List<Transform>();
 
 	private void Start()
 	{
@@ -28,7 +27,7 @@ public class ArrowIndicator : NetworkBehaviour
 
 		player = localPlayer.transform;
 		PlayerDamageHandler.OnPlayerCaught += PlayerDamageHandler_OnPlayerCaught;
-		GrassDecorationStealth.OnPlayerHidePlants+= PlayerDamageHandler_OnPlayerCaught;
+		GrassDecorationStealth.OnPlayerHidePlants += PlayerDamageHandler_OnPlayerCaught;
 		ThrowableItem.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
 		TrapItem.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
 		MeleeWeapon.OnGuardHit += PlayerDamageHandler_OnPlayerCaught;
@@ -65,17 +64,18 @@ public class ArrowIndicator : NetworkBehaviour
 
 	public void Update()
 	{
-		foreach (Image arrow in arrows)
-		{
-			arrow.enabled = arrowsActive;
-			if (arrowsActive)
-			{
-				PointArrowToGuard(arrow, currentGuard);
-			}
 
+		int i = 0;
+		foreach (Transform guard in currentGuards)
+		{
+			arrows[i].enabled = true;
+			PointArrowToGuard(arrows[i], guard);
+			i++;
 		}
 
 	}
+
+
 
 	private void OnTargetDetected()
 	{
@@ -84,12 +84,12 @@ public class ArrowIndicator : NetworkBehaviour
 		if (player == null)
 			return;
 
-		for (int i = 0; i < guards.Count; i++)
+		foreach (Transform guard in guards)
 		{
-			Transform _player = IsGuardFollowing(guards[i]);
+			Transform _player = IsGuardFollowing(guard);
 			if (_player != null)
 			{
-				CmdEnableArrows(guards[i], _player);
+				CmdEnableArrows(guard, _player);
 			}
 
 		}
@@ -104,7 +104,7 @@ public class ArrowIndicator : NetworkBehaviour
 		return null;
 	}
 
-	[Command(requiresAuthority =false)]
+	[Command(requiresAuthority = false)]
 	private void CmdDisableArrows(Transform _player)
 	{
 		RpcDisableArrows(_player);
@@ -128,7 +128,12 @@ public class ArrowIndicator : NetworkBehaviour
 
 			return;
 		}
-		arrowsActive = false;
+
+		currentGuards.Clear();
+		foreach (Image arrow in arrows)
+		{
+			arrow.enabled = false;
+		}
 		Debug.Log("CLIENT - Arrows - disabled");
 
 	}
@@ -150,9 +155,9 @@ public class ArrowIndicator : NetworkBehaviour
 
 			return;
 		}
-		arrowsActive = true;
 
-		currentGuard = guard;
+		if (!currentGuards.Contains(guard))
+			currentGuards.Add(guard);
 
 		Debug.Log("CLIENT - Arrows - enabled");
 
@@ -193,10 +198,10 @@ public class ArrowIndicator : NetworkBehaviour
 	{
 		// Unsubscribe from the event to avoid memory leaks
 		ThirdPersonController.OnLocalPlayerStarted -= HandleLocalPlayerStarted;
-        PlayerDamageHandler.OnPlayerCaught -= PlayerDamageHandler_OnPlayerCaught;
-        GrassDecorationStealth.OnPlayerHidePlants -= PlayerDamageHandler_OnPlayerCaught;
-        ThrowableItem.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
-        TrapItem.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
-        MeleeWeapon.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
-    }
+		PlayerDamageHandler.OnPlayerCaught -= PlayerDamageHandler_OnPlayerCaught;
+		GrassDecorationStealth.OnPlayerHidePlants -= PlayerDamageHandler_OnPlayerCaught;
+		ThrowableItem.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
+		TrapItem.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
+		MeleeWeapon.OnGuardHit -= PlayerDamageHandler_OnPlayerCaught;
+	}
 }
