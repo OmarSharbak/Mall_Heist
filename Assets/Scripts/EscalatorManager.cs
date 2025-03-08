@@ -624,8 +624,14 @@ public class EscalatorManager : NetworkBehaviour
 	public void NextLevel()
 	{
 		int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+		bool isDemoCap = DemoManager.Instance.IsLevelCap(nextSceneIndex);
 
-		if (nextSceneIndex > 5)
+		if(isDemoCap)
+		{
+			LoadTitleScreen();
+		}
+
+		if (nextSceneIndex > 6)
 			nextSceneIndex = 1;
 		if (MultiplayerMode.Instance != null)
 			MultiplayerMode.Instance.SetLevelIndex(nextSceneIndex);

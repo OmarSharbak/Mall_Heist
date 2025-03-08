@@ -18,8 +18,11 @@ public class ClockTimer : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(StartAfterDelay(3f)); // Start the timer after a 3-second delay
-        
+        if(MultiplayerMode.Instance.isSinglePlayer)
+            StartCoroutine(StartAfterDelay(4f));
+        else
+            StartCoroutine(StartAfterDelay(3f));
+
     }
 
     IEnumerator StartAfterDelay(float delay)

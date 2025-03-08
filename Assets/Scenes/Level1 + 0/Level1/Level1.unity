@@ -37876,6 +37876,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1461824540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37888,6 +37891,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 0, g: 1, b: 0.13595366, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -37907,6 +37913,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 7036813502637290230}
 --- !u!1001 &1463243800
@@ -39546,7 +39555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldTierTimeLimit: 60
   silverTierTimeLimit: 90
-  bronzeTierTimeLimit: 200
+  bronzeTierTimeLimit: 320
 --- !u!4 &1500801874
 Transform:
   m_ObjectHideFlags: 0
@@ -44766,6 +44775,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 0, g: 0.092921734, b: 1, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -44785,6 +44797,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1703149495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44797,6 +44812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 2090846056}
 --- !u!1001 &1704441040
@@ -45260,6 +45278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 1461824540}
 --- !u!114 &1713766164
@@ -45274,6 +45295,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1713766165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45286,6 +45310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 1, g: 0.54509807, b: 0.90588236, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -47092,6 +47119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 1996380722}
 --- !u!114 &1810114263
@@ -47106,6 +47136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1810114264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47118,6 +47151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 1, g: 0.54509807, b: 0.90588236, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -56331,6 +56367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 0.043704987, g: 1, b: 0, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -56350,6 +56389,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &1996380731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56362,6 +56404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 1713766165}
 --- !u!1 &1996872182
@@ -60153,6 +60198,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 1
   startColor: {r: 1, g: 0.9325029, b: 0.4198113, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -60172,6 +60220,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &2089497828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60184,6 +60235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 1703149486}
 --- !u!1001 &2089969265
@@ -60313,6 +60367,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &2090846056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60325,6 +60382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 0, g: 1, b: 0.065425634, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -60344,6 +60404,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 788be7f4abdb9e540b5397a2281da910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   nextObjectives:
   - {fileID: 1810114264}
 --- !u!1 &2091750715
@@ -62991,6 +63054,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 2326014480714986937, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 13.099976
+      objectReference: {fileID: 0}
     - target: {fileID: 2540027349533062883, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_fontSizeMax
       value: 14
@@ -63119,6 +63186,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5129844492057177602, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 399.99994
+      objectReference: {fileID: 0}
     - target: {fileID: 5137273214561805800, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -14
@@ -63154,6 +63225,14 @@ PrefabInstance:
     - target: {fileID: 6330608687904160841, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: sceneId
       value: 3327652716
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623931274542821261, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -87.80084
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788108389867685840, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
+      propertyPath: bronzeTime
+      value: 320
       objectReference: {fileID: 0}
     - target: {fileID: 8935846135186050182, guid: 6e711803e86f14d4d93d84e5e898ff74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64487,6 +64566,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ce759c63148a54092a2ec9af63dbdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   startActive: 0
   startColor: {r: 1, g: 0.7394293, b: 0, a: 0}
   arrowPrefab: {fileID: 1707525625466952, guid: beb162d963ca065489b61138f84de28d, type: 3}
@@ -64506,6 +64588,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2040dde8f37094ba2fa11a6087d29d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
 --- !u!114 &7141619735437732399 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2540584497875765584, guid: 592f0f25de9e3da4bb646ef3b8fe54b7, type: 3}

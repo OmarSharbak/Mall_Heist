@@ -65,7 +65,13 @@ public class LevelUIManager : MonoBehaviour
         if (currentLevelIndex + 1 < levelUIs.Length)
         {
             currentLevelIndex++;
-            ShowLevelUI(currentLevelIndex);
+            bool isDemoCap = DemoManager.Instance.IsLevelCap(currentLevelIndex);
+            if (isDemoCap)
+            {
+                currentLevelIndex--;
+                return;
+            }
+                ShowLevelUI(currentLevelIndex);
         }
     }
 
