@@ -30,10 +30,12 @@ public class AimLine: NetworkBehaviour
 
 	private void PlayerCaught()
 	{
-		tutorialActive = false;
-		lineRenderer.enabled = false;
-		promptUIManager.HideWestButtonUI();
-
+		if (isLocalPlayer)
+		{
+			tutorialActive = false;
+			lineRenderer.enabled = false;
+			promptUIManager.HideWestButtonUI();
+		}
 	}
 
 	void OnDisable()
@@ -45,7 +47,8 @@ public class AimLine: NetworkBehaviour
 
 	private void GuardBribed()
 	{
-		tutorialActive = true;
+		if(isLocalPlayer)
+			tutorialActive = true;
 	}
 
 	private void StartLocal(ThirdPersonController controller)
