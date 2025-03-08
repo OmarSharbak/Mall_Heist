@@ -37,7 +37,7 @@ public class MeleeWeapon : InventoryItem
 
     public static event Action OnHitGuitar;
 
-    public static event Action OnGuardHit;
+    public static event Action<Transform> OnGuardHit;
 
     public void SetCanDamage(bool damage)
     {
@@ -172,7 +172,7 @@ public class MeleeWeapon : InventoryItem
                     StartCoroutine("HoldRotation");
 
                     OnHitGuitar?.Invoke();
-                    OnGuardHit?.Invoke();
+                    OnGuardHit?.Invoke(netIdentity.transform);
 
 
                     // Cache initial AI rotation for animation reset

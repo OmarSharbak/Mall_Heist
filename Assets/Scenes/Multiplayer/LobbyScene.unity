@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6248,6 +6248,7 @@ MonoBehaviour:
   lobbiesBackObject: {fileID: 1335314561}
   lobbyUserPanel: {fileID: 3779488491472161332, guid: 042dc7a8268ae37479c6d80f21305b7f, type: 3}
   lobbyUserHolder: {fileID: 644051052142860956}
+  totalLevels: 5
 --- !u!4 &1475941337
 Transform:
   m_ObjectHideFlags: 0

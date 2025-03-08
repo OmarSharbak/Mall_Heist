@@ -35,7 +35,7 @@ public class TrapItem : InventoryItem
 	Outlinable outlinable;
 	private MMFeedbacks mmFeedbacks;
 
-	public static event Action OnGuardHit;
+	public static event Action<Transform> OnGuardHit;
 
 
 	void Start()
@@ -183,7 +183,7 @@ public class TrapItem : InventoryItem
 
 					// Invoke event 
 					OnHitBanana?.Invoke();
-					OnGuardHit?.Invoke();
+					OnGuardHit?.Invoke(netIdentity.transform);
 
 
 					if (aiAnimator != null)

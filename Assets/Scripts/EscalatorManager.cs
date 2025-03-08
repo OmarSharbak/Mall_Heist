@@ -726,15 +726,18 @@ public class EscalatorManager : NetworkBehaviour
 			// Access the EventSystem and set the selected GameObject
 			EventSystem.current.SetSelectedGameObject(null); // Deselect current selection
 
+			bool isDemoCap = DemoManager.Instance != null && DemoManager.Instance.IsLevelCap(SceneManager.GetActiveScene().buildIndex);
+
 			if (MultiplayerMode.Instance != null && MultiplayerMode.Instance.isSinglePlayer)
 			{
 				EventSystem.current.SetSelectedGameObject(winRestartButtonGameObject); // Set new selection
 
 				LevelPerformanceManager.Instance.EvaluateLevelPerformance(levelName, elapsedTime);
 
+
 				if (LevelPerformanceManager.Instance.IsNextLevelUnlocked(levelName))
 				{
-					winNextLevelButtonGameObject.SetActive(true);
+					winNextLevelButtonGameObject.SetActive(!isDemoCap);
 
 					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject); // Set new selection
 				}
@@ -752,7 +755,7 @@ public class EscalatorManager : NetworkBehaviour
 				if (LevelPerformanceManager.Instance.IsNextLevelUnlocked(levelName))
 				{
 					winRestartButtonGameObject.SetActive(true);
-					winNextLevelButtonGameObject.SetActive(true);
+					winNextLevelButtonGameObject.SetActive(!isDemoCap);
 					EventSystem.current.SetSelectedGameObject(winNextLevelButtonGameObject); // Set new selection
 
 				}

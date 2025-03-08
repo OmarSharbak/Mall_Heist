@@ -36,7 +36,12 @@ public class ArrowIndicator : NetworkBehaviour
 
 	private void PlayerDamageHandler_OnPlayerCaught()
 	{
-		CmdDisableArrows(player);
+		foreach (Transform guard in currentGuards)
+			PlayerDamageHandler_OnPlayerCaught(guard);
+	}
+	private void PlayerDamageHandler_OnPlayerCaught(Transform guard)
+	{
+		CmdDisableArrows(guard,player);
 	}
 
 	private void CreateArrows()
@@ -64,7 +69,10 @@ public class ArrowIndicator : NetworkBehaviour
 
 	public void Update()
 	{
-
+		foreach (Image arrow in arrows)
+		{
+			arrow.enabled = false;
+		}
 		int i = 0;
 		foreach (Transform guard in currentGuards)
 		{
@@ -105,9 +113,9 @@ public class ArrowIndicator : NetworkBehaviour
 	}
 
 	[Command(requiresAuthority = false)]
-	private void CmdDisableArrows(Transform _player)
+	private void CmdDisableArrows(Transform guard, Transform _player)
 	{
-		RpcDisableArrows(_player);
+		RpcDisableArrows(guard,_player);
 		Debug.Log("SERVER - Arrows - disabled");
 
 	}
@@ -120,7 +128,7 @@ public class ArrowIndicator : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	private void RpcDisableArrows(Transform _player)
+	private void RpcDisableArrows(Transform guard, Transform _player)
 	{
 		if (_player != player)
 		{
@@ -129,11 +137,7 @@ public class ArrowIndicator : NetworkBehaviour
 			return;
 		}
 
-		currentGuards.Clear();
-		foreach (Image arrow in arrows)
-		{
-			arrow.enabled = false;
-		}
+		currentGuards.Remove(guard);
 		Debug.Log("CLIENT - Arrows - disabled");
 
 	}

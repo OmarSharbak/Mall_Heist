@@ -41,6 +41,9 @@ public class LobbyMenuManager : MonoBehaviour
 	[SerializeField] private LobbyUserPanel lobbyUserPanel;
 	[SerializeField] private Transform lobbyUserHolder;
 
+	[Header("Level Setup")]
+	[SerializeField] private int totalLevels;
+
 
 	private Dictionary<UserData, LobbyUserPanel> _lobbyUserPanels = new();
 
@@ -151,8 +154,11 @@ public class LobbyMenuManager : MonoBehaviour
 
 
 		lobbyDropdown.options.Clear();
-		for (int i = 1; i <= 4; i++)
+		for (int i = 1; i <= totalLevels; i++)
 		{
+			bool isDemoCap = DemoManager.Instance!=null && DemoManager.Instance.IsLevelCap(i-1);
+			if (isDemoCap)
+				continue;
 			LocalizedString level = "Level " + i;
 			level.mRTL_IgnoreArabicFix = true;
 			lobbyDropdown.options.Add(new TMP_Dropdown.OptionData(level));

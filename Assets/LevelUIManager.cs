@@ -23,7 +23,9 @@ public class LevelUIManager : MonoBehaviour
             LevelData levelData = SaveLoadManager.Instance.GetCurrentLevelData(levelUIs[i].name);
             if (levelData != null)
             {
-                playButtons[i].gameObject.SetActive(levelData.isUnlocked);
+                bool isDemoCap = DemoManager.Instance.IsLevelCap(i);
+
+                playButtons[i].gameObject.SetActive(levelData.isUnlocked && !isDemoCap);
             }
             else
             {

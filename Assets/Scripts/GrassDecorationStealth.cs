@@ -259,12 +259,12 @@ public class GrassDecorationStealth : NetworkBehaviour
 	}
 	private IEnumerator EnableExitAfterDelay(ThirdPersonController thirdPersonController)
 	{
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.3f);
 		thirdPersonController.canExitHiding = true;
 	}
 	private IEnumerator EnableEnterAfterDelay(ThirdPersonController thirdPersonController)
 	{
-		yield return new WaitForSeconds(0.1f);
+		yield return new WaitForSeconds(0.3f);
 		thirdPersonController.canEnterHiding = true;
 		thirdPersonController.EnablePlayerPositionHolder(true);
 	}

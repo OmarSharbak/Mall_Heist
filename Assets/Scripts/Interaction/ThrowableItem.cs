@@ -41,7 +41,7 @@ public class ThrowableItem : InventoryItem
     [SyncVar]
     bool noiseShown = false;
 
-    public static event Action OnGuardHit;
+    public static event Action<Transform> OnGuardHit;
 
     private void ShowNoiseRadius()
     {
@@ -240,7 +240,7 @@ public class ThrowableItem : InventoryItem
                 eventsManager.ClearTarget();
                 aiSystem.Damage(damageAmount, EmeraldAI.EmeraldAISystem.TargetType.Player, playerTransform, 1);
 
-                OnGuardHit?.Invoke();
+                OnGuardHit?.Invoke(netIdentity.transform);
 
                 eventsManager.CancelAttackAnimation();
 
