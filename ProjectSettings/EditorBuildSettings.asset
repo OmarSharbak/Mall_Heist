@@ -6,12 +6,40 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/S01_LoadingSplashScreen.unity
-    guid: b6e1366728952844d9e04419c0f6aab4
+    path: Assets/Scenes/MenuScene2.unity
+    guid: 40756f7f05367564e8c3a1e0b04aa1e5
   - enabled: 1
-    path: Assets/Scenes/S02_MainMenu.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Scenes/Level1 + 0/Level1/Level1.unity
+    guid: 7b03f94cd6ecff2468e3d5cfa21943e1
   - enabled: 1
-    path: Assets/Scenes/S03_Gameplay.unity
-    guid: 7baee721d64e5bd44bc930921962963e
-  m_configObjects: {}
+    path: Assets/Scenes/Level2/Level2.unity
+    guid: 3f98b3b2db89b56429838cd8dc07b58a
+  - enabled: 1
+    path: Assets/Scenes/Level3/Level3.unity
+    guid: 1e259df7ed64f8a4d8d91c52ff956453
+  - enabled: 1
+    path: Assets/Scenes/Level4/Level4.unity
+    guid: 432d9894604b3854787d8f22b605de0b
+  - enabled: 1
+    path: Assets/Scenes/Level5/Level5.unity
+    guid: 665b6c0cf53ea6d4d8bdd002536b2d47
+  - enabled: 1
+    path: Assets/Scenes/Level6/Level6.unity
+    guid: d9778e80482668b4ab3deb02fcf7937a
+  - enabled: 1
+    path: Assets/Scenes/TestingLevel1.unity
+    guid: fb351273dd5f8490e95f91b39e4d80c5
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer/SingleplayerScene.unity
+    guid: dad1f809dd72a5844b682cdc825d7ee8
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer/LobbyScene.unity
+    guid: f295d016b9db2ea44950ea3cdf4493e0
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer/OfflineScene.unity
+    guid: 86127bf202684d74995a2994a9affbb9
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer/RestartSingleScene.unity
+    guid: 32c685c87fc6d4744b160e4ed67d948b
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d358dff3bcf552d4784519fbe4159b60, type: 2}

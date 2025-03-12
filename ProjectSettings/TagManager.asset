@@ -4,11 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - LevelBounds
-  - FX
-  - Enemy
-  - World
-  - NoMask
+  - CinemachineTarget
+  - Guard
+  - PlayerInvisible
+  - ThrownItem
+  - UIGuardEnabler
+  - Ignore
+  - Missile
+  - PlayerEyes
   layers:
   - Default
   - TransparentFX
@@ -16,24 +19,24 @@ TagManager:
   - 
   - Water
   - UI
+  - Interactable
+  - Item
+  - Pushable
+  - Guards
+  - PlayerVisible
+  - PlayerInvisible
+  - Player1Camera
+  - Player2Camera
+  - Walls
+  - PostProcessing
+  - LightingPosts
+  - Floor
+  - guardlight
+  - Computer
+  - Outside
+  - Walls2
+  - Breakable
   - 
-  - 
-  - Obstacles
-  - Ground
-  - Player
-  - ObstaclesDoors
-  - NoPathfinding
-  - Enemies
-  - NoCollisions
-  - Hole
-  - MovingPlatform
-  - FallingPlatform
-  - Projectile
-  - Camera1
-  - Camera2
-  - Camera3
-  - Camera4
-  - ObstaclesMineable
   - 
   - 
   - 
@@ -45,19 +48,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 4192534461
-    locked: 0
-  - name: Ground
-    uniqueID: 3586135633
-    locked: 0
-  - name: Foreground
-    uniqueID: 4292248953
-    locked: 0
-  - name: Characters
-    uniqueID: 2524656315
-    locked: 0
-  - name: Above
-    uniqueID: 3228787301
     locked: 0
