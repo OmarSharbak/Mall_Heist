@@ -1,0 +1,112 @@
+Player.png
+size:1887,299
+filter:Linear,Linear
+pma:true
+Player Arm L/arm-l-01-base
+bounds:1204,134,103,163
+offsets:0,0,105,163
+Player Arm L/arm-l-02
+bounds:1104,132,98,165
+offsets:0,1,98,166
+Player Arm L/arm-l-03
+bounds:1309,134,103,163
+offsets:0,0,105,163
+Player Arm L/arm-l-twin-02
+bounds:997,131,105,166
+Player Arm L/arm-l-twin-02-hammer
+bounds:2,2,86,84
+offsets:24,40,144,151
+Player Arm R/arm-2-twin-02
+bounds:470,12,82,79
+rotate:90
+Player Arm R/arm-r-01-base
+bounds:322,7,72,87
+Player Arm R/arm-r-02
+bounds:232,2,92,88
+offsets:0,29,99,117
+rotate:90
+Player Arm R/arm-r-03
+bounds:396,7,72,87
+Player Bag/bag-01-base
+bounds:917,2,101,157
+offsets:1,1,103,160
+rotate:90
+Player Boot L/boot-l-01-base
+bounds:163,3,67,83
+offsets:1,2,69,86
+Player Boot L/boot-l-twin-02
+bounds:90,3,71,83
+offsets:1,2,77,86
+Player Boot R/boot-r-01-base
+bounds:551,13,68,81
+offsets:1,1,71,83
+Player Boot R/boot-r-twin-02
+bounds:727,14,68,81
+offsets:2,1,72,83
+Player Bottom Back/bottom-back-01-base
+bounds:1076,8,147,121
+offsets:14,0,161,121
+Player Bottom Back/bottom-back-twin-02
+bounds:1585,19,147,121
+offsets:15,0,162,121
+Player Bottom Front/bottom-front-01-base
+bounds:797,17,78,118
+offsets:17,0,95,118
+rotate:90
+Player Bottom Front/bottom-front-twin-02
+bounds:1734,22,78,118
+offsets:17,1,95,120
+Player Hand R/hand-r-01-pickaxe
+bounds:1559,142,155,149
+offsets:1,1,157,151
+rotate:90
+Player Hand R/hand-r-02-empty
+bounds:1814,75,65,71
+offsets:1,1,67,74
+rotate:90
+Player Hand R/hand-r-02-pickaxe
+bounds:1710,142,155,149
+offsets:1,1,157,151
+rotate:90
+Player Hand R/hand-r-twin-02
+bounds:1814,10,63,50
+offsets:0,0,63,62
+rotate:90
+Player Head Accessory/miner-helm
+bounds:892,105,192,103
+offsets:1,3,194,107
+rotate:90
+Player Head/head-f-01-miner-helm-hair-crop
+bounds:554,97,200,167
+offsets:2,2,204,171
+rotate:90
+Player Head/head-m-01-miner-helm-hair-crop
+bounds:2,88,183,209
+offsets:6,1,190,211
+Player Head/head-m-02
+bounds:187,96,201,194
+offsets:1,1,203,196
+rotate:90
+Player Head/head-twin-01
+bounds:723,97,200,167
+offsets:2,2,204,171
+rotate:90
+Player Head/head-twin-02
+bounds:383,96,201,169
+offsets:1,3,203,173
+rotate:90
+Player Top/top-01-base
+bounds:1414,140,143,157
+offsets:1,2,145,281
+Player Top/top-02
+bounds:1225,3,118,129
+offsets:1,1,120,131
+Player Top/top-03
+bounds:1345,3,118,129
+offsets:1,1,120,131
+Player Top/top-twin-02
+bounds:1465,7,118,131
+offsets:7,1,126,133
+fx-spark
+bounds:621,2,104,93
+offsets:1,1,106,95

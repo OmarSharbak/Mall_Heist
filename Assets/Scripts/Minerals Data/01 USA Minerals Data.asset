@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a3d2f3938decd4c9c51ce08f3f9c5d, type: 3}
+  m_Name: 01 USA Minerals Data
+  m_EditorClassIdentifier: 
+  Region: USA
+  Minerals:
+  - Index: 1
+    MineralItem: {fileID: 11400000, guid: b36886d3d3f47d145b7ef8abab99a49c, type: 2}
+    ChrisCheck: 0
+  - Index: 2
+    MineralItem: {fileID: 11400000, guid: 050903741ed699947a412786309bdcf5, type: 2}
+    ChrisCheck: 1
+  - Index: 3
+    MineralItem: {fileID: 11400000, guid: 0f4c8cad6a53dd944b75884e9fc0df04, type: 2}
+    ChrisCheck: 0
+  - Index: 4
+    MineralItem: {fileID: 11400000, guid: 91fc750ac5aba6040bf141ba35a8a89a, type: 2}
+    ChrisCheck: 0
+  - Index: 5
+    MineralItem: {fileID: 11400000, guid: b75850c83c52f0f49b9539fe42d9a3d8, type: 2}
+    ChrisCheck: 0
+  - Index: 6
+    MineralItem: {fileID: 11400000, guid: d25ff02cf90fb2f4695a6b6d3b446e67, type: 2}
+    ChrisCheck: 0
+  - Index: 7
+    MineralItem: {fileID: 11400000, guid: c2a5a189f827708438d8687971eb87d5, type: 2}
+    ChrisCheck: 0
+  - Index: 8
+    MineralItem: {fileID: 11400000, guid: 8ef4058d42b5ff54883a2dd968a90198, type: 2}
+    ChrisCheck: 0
+  - Index: 9
+    MineralItem: {fileID: 11400000, guid: a024070784ce4af4e994320f9530e6cf, type: 2}
+    ChrisCheck: 0
+  - Index: 10
+    MineralItem: {fileID: 11400000, guid: d5c6bc92a5090c249bbe1d40a525da25, type: 2}
+    ChrisCheck: 0
+  - Index: 11
+    MineralItem: {fileID: 11400000, guid: c50f171b54c4e504e83e7b8eb0c82f74, type: 2}
+    ChrisCheck: 0
+  - Index: 12
+    MineralItem: {fileID: 11400000, guid: ca26d77721942b04fbd3768d44777c6d, type: 2}
+    ChrisCheck: 0
+  - Index: 13
+    MineralItem: {fileID: 11400000, guid: 13076a4355714c044ac5b71573a097ee, type: 2}
+    ChrisCheck: 0
+  - Index: 14
+    MineralItem: {fileID: 11400000, guid: f7d3f97971e763348a463e5b4844907b, type: 2}
+    ChrisCheck: 0
+  - Index: 15
+    MineralItem: {fileID: 11400000, guid: faed4d711faa7824c882c88c0073e7b3, type: 2}
+    ChrisCheck: 0
+  - Index: 16
+    MineralItem: {fileID: 11400000, guid: 55b841ed8968bbb4aa2efeb820a1b03a, type: 2}
+    ChrisCheck: 0
+  - Index: 17
+    MineralItem: {fileID: 11400000, guid: 04b04146441de7b4e9778de2d437370d, type: 2}
+    ChrisCheck: 0
+  - Index: 18
+    MineralItem: {fileID: 11400000, guid: f23d6e160f03a0b42b8b20bedb738fe7, type: 2}
+    ChrisCheck: 0
+  - Index: 19
+    MineralItem: {fileID: 11400000, guid: fb664ab796573ec4b89a4fdb12ff8f1d, type: 2}
+    ChrisCheck: 0
+  - Index: 20
+    MineralItem: {fileID: 11400000, guid: 961081e9cff4efe4fb894804caf05abd, type: 2}
+    ChrisCheck: 0
+  - Index: 21
+    MineralItem: {fileID: 11400000, guid: 3eebb906f4c9f9b4b98079624ac0bb57, type: 2}
+    ChrisCheck: 0
+  - Index: 22
+    MineralItem: {fileID: 11400000, guid: 7ad0224513ffb5140a90fd6fb5004535, type: 2}
+    ChrisCheck: 0
+  - Index: 23
+    MineralItem: {fileID: 11400000, guid: 41db83f72ee5a124f9ae6e7315595c37, type: 2}
+    ChrisCheck: 0
+  - Index: 24
+    MineralItem: {fileID: 11400000, guid: 362eb2b5613a88948bb3cf29e69992a3, type: 2}
+    ChrisCheck: 0
+  - Index: 25
+    MineralItem: {fileID: 11400000, guid: 2eec0410163d3ea4381507ff24b30f7c, type: 2}
+    ChrisCheck: 0
+  - Index: 26
+    MineralItem: {fileID: 11400000, guid: f2f261fe8ab0a524bb3b244db8ebd4c5, type: 2}
+    ChrisCheck: 0
+  - Index: 27
+    MineralItem: {fileID: 11400000, guid: 08fcc19d8e57d1f4da782f93f91fa8ff, type: 2}
+    ChrisCheck: 0
+  - Index: 28
+    MineralItem: {fileID: 11400000, guid: b2dc5eedbe2e95542b620a8625be556c, type: 2}
+    ChrisCheck: 0
+  - Index: 29
+    MineralItem: {fileID: 11400000, guid: d7aea63ebd4df6c48982c79a43530bab, type: 2}
+    ChrisCheck: 0
+  - Index: 30
+    MineralItem: {fileID: 11400000, guid: c36e5975789b92642afc6aff1d28d292, type: 2}
+    ChrisCheck: 0
+  - Index: 31
+    MineralItem: {fileID: 11400000, guid: 8712668910f022e4f8dd3763b9adb869, type: 2}
+    ChrisCheck: 0
+  - Index: 32
+    MineralItem: {fileID: 11400000, guid: a7dbc6dd9f284fe468502a60a6e1e9fd, type: 2}
+    ChrisCheck: 1

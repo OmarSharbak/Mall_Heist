@@ -1,0 +1,1191 @@
+fileFormatVersion: 2
+guid: 7ed9b5c4cf4cd1444905feb161d1d0b9
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_0
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3dba9ecbf0cfcb41989afd24afc6d79
+      internalID: 920932037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_1
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0001869165e9c8d40919ca5452ed31ec
+      internalID: 132317011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_2
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f21687191f077f4b8cdbea05bca3ca0
+      internalID: 1415152179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_3
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3198dde32968448469d3691307ae2bc6
+      internalID: 29444027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_4
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ed715d1f2600d4595e81e222ac803b
+      internalID: 166282605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_5
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f8e70aad5b859f4e827258b405fe246
+      internalID: 1220258970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_6
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 215847dc1366ddc4a9ad5e5fdc757c97
+      internalID: -2070754036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_7
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 892
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57d7cc2c5a68ef44b9c2231375d7a30c
+      internalID: 461308420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_8
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b541669874fbb446860136576f3af99
+      internalID: 570598641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_9
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f5c6558569388458759e221ef5ee59
+      internalID: 2007745578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_10
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a23c55ee96a294eb2c77a328b193b3
+      internalID: 167651130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_11
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70164614870c5ce4f83c7090ba06b7fb
+      internalID: 2141569795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_12
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ce6230637594104cb27c6911947b42c
+      internalID: 2128527599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_13
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45bebf3fc54ad5740bdae5df3b34e47f
+      internalID: -1414614437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_14
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5172697959601bd42aae3985b22784aa
+      internalID: -26440779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_15
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 756
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1080dde4a047754fb1775025d7c6344
+      internalID: -1250074063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_16
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d22d9becd33ba42a7d11f5a66c4095
+      internalID: -775136950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_17
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b32257010c4fa9498dfbe94e261a7a4
+      internalID: -1321020708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_18
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a157ca68c178f4d8478225767c7441
+      internalID: 997977631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_19
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 662d4a64b5c128548a4a63c615f3f882
+      internalID: 774026964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_20
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895329730b748484b8c4038e7689b0f5
+      internalID: 899449696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_21
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4016ec522c046aa40955c1ec484789cd
+      internalID: 383437458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_22
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d85cfde9ab25e5e408ede36ec3e3e68f
+      internalID: 1155196215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_23
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 620
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d3920cf6eeab4a43a470616b384de49
+      internalID: -506425346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_24
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 530489b7536306e4b85f93596ced8aac
+      internalID: -194226699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_25
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dee354909a94455459fac6c664e7e404
+      internalID: -1742413193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_26
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed911bb414477aa4fa82690ef80006b6
+      internalID: 130137707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_27
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e60bd33ac0083d4e9bfb56b5cf1bf7e
+      internalID: 231703495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_28
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 072e799245f5f3a48af0a4a24117528b
+      internalID: -1065342440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_29
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fad5385f71f55b944a418bd1ab487354
+      internalID: -246177286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_30
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 146336618059a0b48b0d92c568d1bc0c
+      internalID: 1121946083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_31
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 484
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aff2f391012720542923e0caf392fbea
+      internalID: 932562103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_32
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad459e89854fe0d47b10c7c3f48b785f
+      internalID: -2119432642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_33
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf70dcc16dab954b9a0855ec59d19bf
+      internalID: 1042054781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_34
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63ae4e72f309da240a67e3b4c958419e
+      internalID: 1900698325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_35
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 614fc3bddeeedae4dbb119a3454f2664
+      internalID: -847857866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_36
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c95276fad0dd24a909c83dfc0b9fb8
+      internalID: -575434574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_37
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 921830c4d93bbec449a031a2abc1bd62
+      internalID: -81138826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_38
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02bc46aba759b0242b1b4f7bd22f9cc4
+      internalID: -1912123379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_39
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 348
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7bbe257f230ced4ba827fdf95d4c6e9
+      internalID: -961263757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_40
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8800ff299c3afc4ab88758dd446b001
+      internalID: 368679276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_41
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbf99b3eea14184db8390909ee33f23
+      internalID: -607747278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_42
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2907695cf5b4a4a48af6293c58637525
+      internalID: -1158843456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_43
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9fc2aa90924737439ac73d685102079
+      internalID: -1625070223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_44
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36bffe3b54fc747479e16a336dd952ec
+      internalID: -1828671041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_45
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e531dc6549cf644a6cb25fe508eb65
+      internalID: -1934332674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_46
+      rect:
+        serializedVersion: 2
+        x: 820
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6ad44b75484e984480c94c01a674b4f
+      internalID: 612750041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileset_level_map_cave_ground_47
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 212
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d5c7a7a535b7f44abe8cc57041ddf30
+      internalID: -631043055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tileset_level_map_cave_ground_11: 2141569795
+      tileset_level_map_cave_ground_44: -1828671041
+      tileset_level_map_cave_ground_40: 368679276
+      tileset_level_map_cave_ground_37: -81138826
+      tileset_level_map_cave_ground_22: 1155196215
+      tileset_level_map_cave_ground_42: -1158843456
+      tileset_level_map_cave_ground_20: 899449696
+      tileset_level_map_cave_ground_45: -1934332674
+      tileset_level_map_cave_ground_36: -575434574
+      tileset_level_map_cave_ground_0: 920932037
+      tileset_level_map_cave_ground_8: 570598641
+      tileset_level_map_cave_ground_35: -847857866
+      tileset_level_map_cave_ground_41: -607747278
+      tileset_level_map_cave_ground_4: 166282605
+      tileset_level_map_cave_ground_32: -2119432642
+      tileset_level_map_cave_ground_17: -1321020708
+      tileset_level_map_cave_ground_15: -1250074063
+      tileset_level_map_cave_ground_39: -961263757
+      tileset_level_map_cave_ground_24: -194226699
+      tileset_level_map_cave_ground_1: 132317011
+      tileset_level_map_cave_ground_23: -506425346
+      tileset_level_map_cave_ground_26: 130137707
+      tileset_level_map_cave_ground_9: 2007745578
+      tileset_level_map_cave_ground_12: 2128527599
+      tileset_level_map_cave_ground_27: 231703495
+      tileset_level_map_cave_ground_7: 461308420
+      tileset_level_map_cave_ground_18: 997977631
+      tileset_level_map_cave_ground_34: 1900698325
+      tileset_level_map_cave_ground_3: 29444027
+      tileset_level_map_cave_ground_29: -246177286
+      tileset_level_map_cave_ground_21: 383437458
+      tileset_level_map_cave_ground_31: 932562103
+      tileset_level_map_cave_ground_2: 1415152179
+      tileset_level_map_cave_ground_6: -2070754036
+      tileset_level_map_cave_ground_19: 774026964
+      tileset_level_map_cave_ground_28: -1065342440
+      tileset_level_map_cave_ground_16: -775136950
+      tileset_level_map_cave_ground_5: 1220258970
+      tileset_level_map_cave_ground_13: -1414614437
+      tileset_level_map_cave_ground_47: -631043055
+      tileset_level_map_cave_ground_38: -1912123379
+      tileset_level_map_cave_ground_33: 1042054781
+      tileset_level_map_cave_ground_46: 612750041
+      tileset_level_map_cave_ground_14: -26440779
+      tileset_level_map_cave_ground_30: 1121946083
+      tileset_level_map_cave_ground_43: -1625070223
+      tileset_level_map_cave_ground_25: -1742413193
+      tileset_level_map_cave_ground_10: 167651130
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
